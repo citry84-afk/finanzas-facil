@@ -1,0 +1,26 @@
+<svg width="300" height="80" viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/> 
+      <stop offset="50%" stop-color="#3B82F6"/> 
+      <stop offset="100%" stop-color="#EC4899"/> 
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="300" height="80" rx="15" fill="url(#mainGradient)"/>
+  
+  <g filter="url(#shadow)">
+    <rect x="15" y="15" width="50" height="50" rx="12" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+    <rect x="15" y="15" width="50" height="50" rx="12" fill="url(#mainGradient)" fill-opacity="0.1"/>
+  </g>
+
+  <!-- Tipografía moderna y atractiva -->
+  <text x="90" y="32" text-anchor="start" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="20" fill="white" letter-spacing="0.5px">FINANZAS</text>
+  <text x="90" y="52" text-anchor="start" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="16" fill="white" opacity="0.95" letter-spacing="0.3px">FÁCIL</text>
+  
+  <!-- Línea decorativa más sutil -->
+  <rect x="90" y="60" width="60" height="1.5" rx="1" fill="white" opacity="0.7" filter="url(#shadow)"/>
+</svg>

@@ -405,30 +405,24 @@ Es el proceso de configurar transferencias automáticas y pagos programados para
 ## Configuración paso a paso
 
 **1. Gastos Fijos (Automáticos)**
-```
-Salario → Cuenta Gastos Fijos
+- Salario → Cuenta Gastos Fijos
 - Hipoteca: 800€
 - Luz/Agua/Gas: 150€
 - Internet/Teléfono: 80€
 - Seguros: 120€
 - Otros servicios: 350€
-```
 
 **2. Ahorro (Automático)**
-```
-Salario → Cuenta Ahorro
+- Salario → Cuenta Ahorro
 - Fondo emergencia: 200€
 - Objetivo vacaciones: 100€
 - Inversión: 75€
-```
 
 **3. Gastos Variables (Manual controlado)**
-```
-Salario → Cuenta Gastos Variables
+- Salario → Cuenta Gastos Variables
 - Supermercado: 400€
 - Transporte: 150€
 - Ocio: 75€
-```
 
 ## Herramientas para automatización
 

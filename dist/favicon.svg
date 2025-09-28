@@ -1,0 +1,23 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/> 
+      <stop offset="50%" stop-color="#3B82F6"/> 
+      <stop offset="100%" stop-color="#EC4899"/> 
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="32" height="32" rx="6" fill="url(#mainGradient)"/>
+  
+  <g filter="url(#shadow)">
+    <rect x="4" y="4" width="24" height="24" rx="4" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+    <rect x="4" y="4" width="24" height="24" rx="4" fill="url(#mainGradient)" fill-opacity="0.1"/>
+  </g>
+
+  <!-- Tipografía moderna y atractiva -->
+  <text x="16" y="14" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="8" fill="white" letter-spacing="0.3px">F</text>
+  <text x="16" y="22" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="6" fill="white" opacity="0.95">F</text>
+</svg>

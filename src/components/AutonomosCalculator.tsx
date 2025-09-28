@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { ArrowLeft, Calculator, TrendingUp, Users, Euro } from 'lucide-react';
+import { ArrowLeft, Calculator, TrendingUp, Euro } from 'lucide-react';
 
 interface AutonomosCalculatorProps {
   onBack: () => void;
@@ -276,7 +276,15 @@ function AutonomosCalculator({ onBack }: AutonomosCalculatorProps) {
       desiredNetIncome: 0,
       deductibleExpenses: 0,
       fiscalYear: '2024',
-      isNewAutonomo: false
+      isNewAutonomo: false,
+      hasOfficeExpenses: false,
+      officeExpenses: 0,
+      hasVehicleExpenses: false,
+      vehicleExpenses: 0,
+      hasTrainingExpenses: false,
+      trainingExpenses: 0,
+      hasOtherExpenses: false,
+      otherExpenses: 0
     });
   };
 
