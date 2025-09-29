@@ -89,18 +89,11 @@ function App() {
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50">
         {/* Structured Data para Calculadora Autónomos */}
         <StructuredData 
-          type="Calculator" 
+          type="AutonomosCalculator" 
           data={{
-            name: "Calculadora de Autónomos 2024-2025 - IRPF y Seguridad Social",
+            name: "Calculadora de Autónomos 2025 - IRPF y Seguridad Social",
             description: "Calculadora gratuita para autónomos en España. Calcula IRPF, cuota de Seguridad Social, gastos deducibles y bonificaciones por comunidad autónoma.",
-            url: "https://finanzasmuyfaciles.netlify.app/autonomos",
-            features: [
-              "Cálculo IRPF por comunidad autónoma",
-              "Cuota Seguridad Social 2024-2025",
-              "Bonificaciones para autónomos nuevos",
-              "Gastos deducibles",
-              "Comparativa con asalariados"
-            ]
+            url: "https://finanzasmuyfaciles.netlify.app/autonomos"
           }} 
         />
         

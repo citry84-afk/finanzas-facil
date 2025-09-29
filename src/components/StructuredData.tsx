@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 interface StructuredDataProps {
-  type: 'WebSite' | 'WebApplication' | 'Calculator' | 'SoftwareApplication';
+  type: 'WebSite' | 'WebApplication' | 'Calculator' | 'SoftwareApplication' | 'AutonomosCalculator';
   data: any;
 }
 
@@ -61,6 +61,31 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) => {
               "priceCurrency": "EUR"
             },
             "featureList": data.features
+          };
+        
+        case 'AutonomosCalculator':
+          return {
+            ...baseData,
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web Browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "EUR"
+            },
+            "featureList": [
+              "Cálculo de IRPF para autónomos",
+              "Cuota de Seguridad Social 2025",
+              "Gastos deducibles por categorías",
+              "Comparativa entre comunidades autónomas",
+              "Bonificaciones para autónomos nuevos",
+              "Cálculo de cuánto facturar para ganancia neta deseada"
+            ],
+            "keywords": "calculadora autónomos, IRPF autónomos, cuota seguridad social, gastos deducibles, fiscalidad autónomos",
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Autónomos y trabajadores por cuenta propia"
+            }
           };
         
         default:
