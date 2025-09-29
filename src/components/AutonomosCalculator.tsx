@@ -256,7 +256,7 @@ function AutonomosCalculator({ onBack }: AutonomosCalculatorProps) {
   }, [data]);
 
   const handleNext = () => {
-    if (step < 5) {
+    if (step < 9) {
       setStep(step + 1);
     }
   };
