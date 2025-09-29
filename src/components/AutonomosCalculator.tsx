@@ -896,19 +896,19 @@ function AutonomosCalculator({ onBack }: AutonomosCalculatorProps) {
                   (step === 1 && !data.calculationType) ||
                   (step === 2 && !data.community) ||
                   (step === 3 && ((data.calculationType === 'facturar' ? (data.desiredNetIncome || 0) : data.grossIncome) <= 0)) ||
-                  (step === 4 && data.hasOfficeExpenses && data.officeExpenses <= 0) ||
-                  (step === 5 && data.hasVehicleExpenses && data.vehicleExpenses <= 0) ||
-                  (step === 6 && data.hasTrainingExpenses && data.trainingExpenses <= 0) ||
-                  (step === 7 && data.hasOtherExpenses && data.otherExpenses <= 0)
+                  (step === 4 && data.hasOfficeExpenses && data.officeExpenses < 0) ||
+                  (step === 5 && data.hasVehicleExpenses && data.vehicleExpenses < 0) ||
+                  (step === 6 && data.hasTrainingExpenses && data.trainingExpenses < 0) ||
+                  (step === 7 && data.hasOtherExpenses && data.otherExpenses < 0)
                 }
                 className={`px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform ${
                   (step === 1 && !data.calculationType) ||
                   (step === 2 && !data.community) ||
                   (step === 3 && ((data.calculationType === 'facturar' ? (data.desiredNetIncome || 0) : data.grossIncome) <= 0)) ||
-                  (step === 4 && data.hasOfficeExpenses && data.officeExpenses <= 0) ||
-                  (step === 5 && data.hasVehicleExpenses && data.vehicleExpenses <= 0) ||
-                  (step === 6 && data.hasTrainingExpenses && data.trainingExpenses <= 0) ||
-                  (step === 7 && data.hasOtherExpenses && data.otherExpenses <= 0)
+                  (step === 4 && data.hasOfficeExpenses && data.officeExpenses < 0) ||
+                  (step === 5 && data.hasVehicleExpenses && data.vehicleExpenses < 0) ||
+                  (step === 6 && data.hasTrainingExpenses && data.trainingExpenses < 0) ||
+                  (step === 7 && data.hasOtherExpenses && data.otherExpenses < 0)
                     ? 'bg-gray-100 text-gray-400 cursor-not-allowed scale-95'
                     : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 hover:scale-105 hover:shadow-xl'
                 }`}
