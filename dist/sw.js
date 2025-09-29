@@ -1,13 +1,12 @@
-const CACHE_NAME = 'finanzas-facil-v1.0.1';
+const CACHE_NAME = 'finanzas-facil-v1.0.2';
 const urlsToCache = [
-  '/',
-  '/index.html',
+  // No cacheamos HTML para evitar pantallas en blanco por versiones desincronizadas
   '/manifest.json',
   '/favicon.svg',
   '/logo-square.svg',
   '/logo-horizontal.svg',
   '/logo.svg',
-  // Archivos CSS y JS se cachearán automáticamente
+  // Archivos CSS y JS con hash se cachearán bajo demanda
 ];
 
 // Instalación del Service Worker
@@ -53,8 +52,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Estrategia: Network First para API calls, Cache First para assets
-  if (event.request.url.includes('/api/') || event.request.url.includes('firebase')) {
+  // Detección de navegación/HTML
+  const isNavigationRequest = event.request.mode === 'navigate' ||
+    (event.request.headers.get('accept') || '').includes('text/html');
+
+  // Estrategia: Network First para HTML y APIs; Cache First para assets estáticos
+  if (isNavigationRequest || event.request.url.includes('/api/') || event.request.url.includes('firebase')) {
     // Network First para APIs
     event.respondWith(
       fetch(event.request)

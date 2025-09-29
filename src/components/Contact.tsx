@@ -22,10 +22,10 @@ function Contact() {
                 <div>
                   <p className="font-medium text-blue-800">Email principal:</p>
                   <a 
-                    href="mailto:soporte@finanzasmuyfaciles.netlify.app" 
+                    href="mailto:lipastudios4@gmail.com" 
                     className="text-blue-600 hover:text-blue-800 underline break-all"
                   >
-                    soporte@finanzasmuyfaciles.netlify.app
+                    lipastudios4@gmail.com
                   </a>
                 </div>
                 <div>
@@ -52,7 +52,7 @@ function Contact() {
                   <li>• Captura de pantalla (opcional)</li>
                 </ul>
                 <a 
-                  href="mailto:errores@finanzasmuyfaciles.netlify.app" 
+                  href="mailto:lipastudios4@gmail.com" 
                   className="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
                 >
                   Reportar Error
@@ -100,10 +100,10 @@ function Contact() {
                 <div>
                   <p className="font-medium text-gray-800">Email empresarial:</p>
                   <a 
-                    href="mailto:empresas@finanzasmuyfaciles.netlify.app" 
+                    href="mailto:lipastudios4@gmail.com" 
                     className="text-blue-600 hover:text-blue-800 underline"
                   >
-                    empresas@finanzasmuyfaciles.netlify.app
+                    lipastudios4@gmail.com
                   </a>
                 </div>
                 <div>
