@@ -4,13 +4,18 @@ import ArticuloSEO2 from './ArticuloSEO2';
 import ArticuloSEO3 from './ArticuloSEO3';
 import ArticuloSEO4 from './ArticuloSEO4';
 import ArticuloSEO5 from './ArticuloSEO5';
+import ArticuloSEO6 from './ArticuloSEO6';
+import ArticuloSEO7 from './ArticuloSEO7';
+import ArticuloSEO8 from './ArticuloSEO8';
+import ArticuloSEO9 from './ArticuloSEO9';
+import ArticuloSEO10 from './ArticuloSEO10';
 
 function Blog() {
   const [articuloSeleccionado, setArticuloSeleccionado] = useState<number | null>(null);
 
   // Si hay un artículo seleccionado, mostrarlo
   if (articuloSeleccionado !== null) {
-    const componentes = [ArticuloSEO1, ArticuloSEO2, ArticuloSEO3, ArticuloSEO4, ArticuloSEO5];
+    const componentes = [ArticuloSEO1, ArticuloSEO2, ArticuloSEO3, ArticuloSEO4, ArticuloSEO5, ArticuloSEO6, ArticuloSEO7, ArticuloSEO8, ArticuloSEO9, ArticuloSEO10];
     const ArticuloComponente = componentes[articuloSeleccionado - 1];
     
     return (
@@ -146,6 +151,114 @@ function Blog() {
                   <span className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Autónomos</span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Seguridad Social</span>
                   <span className="bg-cyan-100 text-cyan-800 text-xs font-medium px-3 py-1 rounded-full">Cuotas</span>
+                </div>
+                <div className="mt-4 text-blue-600 font-semibold">
+                  Leer artículo completo →
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        {/* MÁS ARTÍCULOS SEO 2025 */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">📚 Más Guías Especializadas</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <article 
+              className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl border-2 border-green-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105"
+              onClick={() => setArticuloSeleccionado(6)}
+            >
+              <div className="p-8">
+                <div className="text-4xl mb-4">🎉</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Tarifa Plana Autónomos 2025</h3>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Guía completa para ahorrar 2.568€ el primer año con la tarifa plana de 80€/mes. Requisitos, bonificaciones y estrategias.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <span className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Autónomos</span>
+                  <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full">Ahorro</span>
+                </div>
+                <div className="mt-4 text-blue-600 font-semibold">
+                  Leer artículo completo →
+                </div>
+              </div>
+            </article>
+
+            <article 
+              className="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl border-2 border-red-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105"
+              onClick={() => setArticuloSeleccionado(7)}
+            >
+              <div className="p-8">
+                <div className="text-4xl mb-4">⚡</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Facturación Electrónica 2025</h3>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Todo sobre la facturación electrónica obligatoria: software, plazos, sanciones y cómo adaptarte sin morir en el intento.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <span className="bg-red-100 text-red-800 text-xs font-medium px-3 py-1 rounded-full">Obligatorio</span>
+                  <span className="bg-orange-100 text-orange-800 text-xs font-medium px-3 py-1 rounded-full">Tecnología</span>
+                </div>
+                <div className="mt-4 text-blue-600 font-semibold">
+                  Leer artículo completo →
+                </div>
+              </div>
+            </article>
+
+            <article 
+              className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-3xl border-2 border-orange-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105"
+              onClick={() => setArticuloSeleccionado(8)}
+            >
+              <div className="p-8">
+                <div className="text-4xl mb-4">💸</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Retenciones IRPF Autónomos</h3>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Cuándo aplicar 7% o 15%, cómo facturar correctamente y cómo recuperar el dinero retenido en la declaración.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <span className="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">IRPF</span>
+                  <span className="bg-orange-100 text-orange-800 text-xs font-medium px-3 py-1 rounded-full">Retenciones</span>
+                </div>
+                <div className="mt-4 text-blue-600 font-semibold">
+                  Leer artículo completo →
+                </div>
+              </div>
+            </article>
+
+            <article 
+              className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-3xl border-2 border-purple-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105"
+              onClick={() => setArticuloSeleccionado(9)}
+            >
+              <div className="p-8">
+                <div className="text-4xl mb-4">💼</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Pluriactividad Autónomos 2025</h3>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  Bonificación del 50% si trabajas por cuenta ajena y eres autónomo. Ahorra hasta 2.646€ en 18 meses.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <span className="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">Bonificación</span>
+                  <span className="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Pluriactividad</span>
+                </div>
+                <div className="mt-4 text-blue-600 font-semibold">
+                  Leer artículo completo →
+                </div>
+              </div>
+            </article>
+
+            <article 
+              className="bg-gradient-to-br from-indigo-50 to-cyan-50 rounded-3xl border-2 border-indigo-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105"
+              onClick={() => setArticuloSeleccionado(10)}
+            >
+              <div className="p-8">
+                <div className="text-4xl mb-4">🔄</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Módulos vs Estimación Directa</h3>
+                <p className="text-gray-700 mb-4 leading-relaxed">
+                  ¿Cuál te conviene más? Comparativa completa para elegir el régimen fiscal correcto y ahorrar miles de euros.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <span className="bg-indigo-100 text-indigo-800 text-xs font-medium px-3 py-1 rounded-full">Fiscalidad</span>
+                  <span className="bg-cyan-100 text-cyan-800 text-xs font-medium px-3 py-1 rounded-full">Estrategia</span>
                 </div>
                 <div className="mt-4 text-blue-600 font-semibold">
                   Leer artículo completo →

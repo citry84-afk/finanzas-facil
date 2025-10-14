@@ -710,12 +710,12 @@ function App() {
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                <div className="text-2xl font-bold text-white">14+</div>
+                <div className="text-2xl font-bold text-white">24+</div>
                 <div className="text-sm text-white/80">Artículos</div>
               </div>
               <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                <div className="text-2xl font-bold text-white">5</div>
-                <div className="text-sm text-white/80">Nuevos sobre Autónomos</div>
+                <div className="text-2xl font-bold text-white">10</div>
+                <div className="text-sm text-white/80">Guías Autónomos 2025</div>
               </div>
               <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
                 <div className="text-2xl font-bold text-white">12</div>

@@ -41,6 +41,36 @@ export default function ArticulosRelacionados({ excluir, onNavegar }: ArticulosR
       descripcion: "Novedades y estrategias para pagar menos",
       emoji: "📊",
       link: "cuota-autonomos"
+    },
+    {
+      titulo: "Tarifa Plana Autónomos 2025",
+      descripcion: "Guía completa para ahorrar 2.568€ el primer año",
+      emoji: "🎉",
+      link: "tarifa-plana"
+    },
+    {
+      titulo: "Facturación Electrónica 2025",
+      descripcion: "Todo sobre la obligación de facturar electrónicamente",
+      emoji: "⚡",
+      link: "facturacion-electronica"
+    },
+    {
+      titulo: "Retenciones IRPF Autónomos",
+      descripcion: "Cuándo aplicar 7% o 15% y cómo recuperarlas",
+      emoji: "💸",
+      link: "retenciones-irpf"
+    },
+    {
+      titulo: "Pluriactividad Autónomos 2025",
+      descripcion: "Bonificaciones si trabajas por cuenta ajena y propia",
+      emoji: "💼",
+      link: "pluriactividad"
+    },
+    {
+      titulo: "Módulos vs Estimación Directa",
+      descripcion: "¿Cuál te conviene más? Comparativa completa",
+      emoji: "🔄",
+      link: "modulos-estimacion"
     }
   ];
 
@@ -53,7 +83,12 @@ export default function ArticulosRelacionados({ excluir, onNavegar }: ArticulosR
     'gastos-deducibles': 2,
     'modelo-130': 3,
     'irpf-autonomos': 4,
-    'cuota-autonomos': 5
+    'cuota-autonomos': 5,
+    'tarifa-plana': 6,
+    'facturacion-electronica': 7,
+    'retenciones-irpf': 8,
+    'pluriactividad': 9,
+    'modulos-estimacion': 10
   };
 
   return (
