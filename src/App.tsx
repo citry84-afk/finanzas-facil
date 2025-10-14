@@ -15,6 +15,9 @@ import AutonomosCalculator from './components/AutonomosCalculator';
 import AmazonArticles from './components/AmazonArticles';
 import ProductoGastos from './components/ProductoGastos';
 import LeadMagnet from './components/LeadMagnet';
+import LandingIRPF from './components/LandingIRPF';
+import LandingCuota from './components/LandingCuota';
+import LandingGastos from './components/LandingGastos';
 import DonationModal from './components/DonationModal';
 import { analyticsEvents, trackPageView } from './utils/analytics';
 import { BannerAd, InlineAd } from './components/AdSense';
@@ -24,7 +27,7 @@ import PWADebug from './components/PWADebug';
 import { useSwipe } from './hooks/useSwipe';
 
 function App() {
-  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'articles' | 'guides' | 'faq' | 'resources' | 'autonomos' | 'blog' | 'amazon' | 'producto-gastos' | 'donate'>('landing');
+  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'articles' | 'guides' | 'faq' | 'resources' | 'autonomos' | 'blog' | 'amazon' | 'producto-gastos' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos'>('landing');
 
   // Configurar navegación por swipe
   const swipeRef = useSwipe({
@@ -360,6 +363,54 @@ function App() {
     return (
       <div className="min-h-screen">
         <DonationModal isOpen={true} onClose={() => setMode('landing')} />
+      </div>
+    );
+  }
+
+  if (mode === 'landing-irpf') {
+    return (
+      <div className="min-h-screen">
+        <div className="absolute top-20 left-4 z-10">
+          <button
+            onClick={() => setMode('landing')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <LandingIRPF />
+      </div>
+    );
+  }
+
+  if (mode === 'landing-cuota') {
+    return (
+      <div className="min-h-screen">
+        <div className="absolute top-20 left-4 z-10">
+          <button
+            onClick={() => setMode('landing')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <LandingCuota />
+      </div>
+    );
+  }
+
+  if (mode === 'landing-gastos') {
+    return (
+      <div className="min-h-screen">
+        <div className="absolute top-20 left-4 z-10">
+          <button
+            onClick={() => setMode('landing')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <LandingGastos />
       </div>
     );
   }
