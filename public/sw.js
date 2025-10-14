@@ -1,4 +1,4 @@
-const CACHE_NAME = 'finanzas-facil-v1.0.4-seo';
+const CACHE_NAME = 'finanzas-facil-v1.0.5-curso-finanzas';
 const urlsToCache = [
   // No cacheamos HTML para evitar pantallas en blanco por versiones desincronizadas
   '/manifest.json',

@@ -126,4 +126,13 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  
+  <!-- Productos Digitales -->
+  <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/curso-finanzas-desde-0</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
 </urlset>
