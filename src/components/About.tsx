@@ -103,18 +103,50 @@ function About() {
             <div className="bg-blue-50 rounded-xl p-6">
               <p className="text-gray-700 mb-4">
                 ¿Tienes preguntas, sugerencias o has encontrado algún error en nuestros cálculos? 
-                Estamos aquí para ayudarte.
+                Estamos aquí para ayudarte. Nuestro equipo de especialistas en finanzas y desarrolladores 
+                está disponible para resolver tus dudas y mejorar continuamente nuestras herramientas.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <h3 className="font-semibold text-blue-900 mb-2">📧 Email de soporte</h3>
-                  <p className="text-blue-800">soporte@finanzasmuyfaciles.netlify.app</p>
+                  <p className="text-blue-800">lipastudios4@gmail.com</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-blue-900 mb-2">⏰ Tiempo de respuesta</h3>
                   <p className="text-blue-800">24-48 horas laborables</p>
                 </div>
               </div>
+              <div className="mt-4 p-4 bg-white rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">¿Cómo podemos ayudarte?</h4>
+                <ul className="text-gray-700 space-y-1 text-sm">
+                  <li>• Dudas sobre cálculos fiscales y salariales</li>
+                  <li>• Sugerencias para nuevas funcionalidades</li>
+                  <li>• Reporte de errores en las calculadoras</li>
+                  <li>• Consultas sobre optimización fiscal</li>
+                  <li>• Solicitudes de contenido educativo</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Nuestra historia y compromiso</h2>
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                FinanzasFácil nació en 2024 con la misión de hacer accesible la educación financiera a todos los españoles. 
+                Observamos que muchas personas tenían dificultades para entender conceptos básicos como el cálculo del salario neto, 
+                la fiscalidad de los autónomos o la planificación del ahorro para la jubilación.
+              </p>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                Decidimos crear herramientas gratuitas y fáciles de usar que democratizaran el acceso a la información financiera. 
+                Nuestro equipo combina experiencia en el sector financiero español con las últimas tecnologías web para ofrecer 
+                calculadoras precisas y actualizadas con la normativa vigente.
+              </p>
+              <p className="text-gray-700 leading-relaxed">
+                Hoy, miles de usuarios confían en nuestras herramientas para tomar decisiones financieras informadas. 
+                Seguimos comprometidos con nuestro objetivo original: hacer que las finanzas personales sean realmente fáciles 
+                para todo el mundo, sin importar su nivel de conocimientos previos.
+              </p>
             </div>
           </section>
 

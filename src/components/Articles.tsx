@@ -890,7 +890,7 @@ function Articles() {
                 
                 <div className="bg-gray-50 rounded-xl p-6 mb-6">
                   <div className="text-gray-800 whitespace-pre-line text-sm leading-relaxed">
-                    {post.content.length > 500 ? post.content.substring(0, 500) + '...' : post.content}
+                    {post.content}
                   </div>
                 </div>
                 

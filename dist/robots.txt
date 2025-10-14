@@ -1,21 +1,35 @@
+# Robots.txt para FinanzasFácil
+# Optimizado para SEO y rastreo de Google
+
 User-agent: *
 Allow: /
 
 # Sitemap
 Sitemap: https://finanzasmuyfaciles.netlify.app/sitemap.xml
 
-# Standard rules: do not block JS/CSS or essential assets
-Disallow: /admin/
-Disallow: /private/
+# Priorizar rastreo de contenido importante
+Allow: /blog/
+Allow: /autonomos
+Allow: /producto-gastos
+Allow: /amazon
+Allow: /guias
+Allow: /articulos
 
-# Allow important pages
+# Evitar rastreo de recursos innecesarios
+Disallow: /assets/
+Disallow: /*.json$
+Disallow: /sw.js
+Disallow: /manifest.json
+
+# Googlebot específico
+User-agent: Googlebot
 Allow: /
-Allow: /calculadora-salario-neto
-Allow: /cuando-ser-millonario
-Allow: /control-gastos
+Crawl-delay: 0
 
-# Crawl delay (optional)
+# Googlebot Images
+User-agent: Googlebot-Image
+Allow: /
+
+# Velocidad de rastreo para otros bots
+User-agent: *
 Crawl-delay: 1
-
-
-

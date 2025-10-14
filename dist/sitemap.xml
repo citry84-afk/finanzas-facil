@@ -2,61 +2,109 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/autonomos</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/articulos</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/blog</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/blog/calculadora-autonomos-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/blog/gastos-deducibles-autonomos-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/blog/modelo-130-autonomos-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/blog/irpf-autonomos-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/blog/cuota-autonomos-2025</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/producto-gastos</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfaciles.netlify.app/amazon</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://finanzasmuyfaciles.netlify.app/guias</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/recursos</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/faq</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/sobre</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/contacto</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/privacy</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://finanzasmuyfaciles.netlify.app/terms</loc>
-    <lastmod>2025-01-19</lastmod>
+    <lastmod>2025-01-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
