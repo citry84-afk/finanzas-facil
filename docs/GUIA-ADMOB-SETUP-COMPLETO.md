@@ -1,14 +1,16 @@
 # 🎯 GUÍA COMPLETA ADMOB SETUP - FINANZASFÁCIL
 
 ## 📋 RESUMEN EJECUTIVO
-Esta guía te llevará paso a paso para configurar Google AdMob en tu proyecto FinanzasFácil, tanto para web como para las apps móviles Android e iOS.
+Esta guía te llevará paso a paso para configurar Google AdMob en tu proyecto FinanzasFácil **SOLO para las apps móviles Android e iOS**.
+
+**IMPORTANTE**: Para web usamos **Google AdSense** (ya configurado), no AdMob.
 
 ## 🎯 OBJETIVOS
 - ✅ Configurar cuenta AdMob
-- ✅ Crear apps en AdMob (Web, Android, iOS)
+- ✅ Crear apps en AdMob (Android, iOS)
 - ✅ Obtener Ad Unit IDs
-- ✅ Integrar anuncios en la aplicación
-- ✅ Monetización: €550-900/mes objetivo
+- ✅ Integrar anuncios en las apps móviles
+- ✅ Monetización apps: €300-800/mes objetivo
 
 ---
 
@@ -28,22 +30,16 @@ Esta guía te llevará paso a paso para configurar Google AdMob en tu proyecto F
 
 ## 📱 PASO 2: AGREGAR APPS EN ADMOB
 
-### 2.1 App Web
-1. En AdMob, haz clic en **"+ Agregar app"**
-2. Selecciona **"Sitio web"**
-3. **Nombre de la app**: `FinanzasFácil Web`
-4. **URL del sitio web**: `https://finanzasmuyfaciles.netlify.app`
-5. **Plataforma**: Web
-6. Haz clic en **"Agregar"**
+**NOTA**: Solo agregamos apps móviles. La web usa AdSense, no AdMob.
 
-### 2.2 App Android
+### 2.1 App Android
 1. Haz clic en **"+ Agregar app"**
 2. Selecciona **"Android"**
 3. **Nombre de la app**: `FinanzasFácil Android`
 4. **Nombre del paquete**: `com.lipastudios.finanzasfacil`
 5. Haz clic en **"Agregar"**
 
-### 2.3 App iOS
+### 2.2 App iOS
 1. Haz clic en **"+ Agregar app"**
 2. Selecciona **"iOS"**
 3. **Nombre de la app**: `FinanzasFácil iOS`

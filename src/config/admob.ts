@@ -1,12 +1,13 @@
-// Configuración de AdMob para FinanzasFácil
+// Configuración de AdMob para FinanzasFácil (SOLO APPS MÓVILES)
+// NOTA: Para web usamos Google AdSense, no AdMob
 // TODO: Reemplazar con tus IDs reales de AdMob
 
 export const ADMOB_CONFIG = {
-  // App IDs (uno por plataforma)
+  // App IDs (SOLO para apps móviles)
   APP_IDS: {
     ANDROID: 'ca-app-pub-3940256099942544~3347511713', // ID de prueba
     IOS: 'ca-app-pub-3940256099942544~1458002511', // ID de prueba
-    WEB: 'ca-app-pub-3940256099942544~3347511713' // ID de prueba
+    // WEB: No usamos AdMob para web, usamos AdSense
   },
   
   // Ad Unit IDs (IDs de prueba de Google)
@@ -35,16 +36,14 @@ export const ADMOB_CONFIG = {
 };
 
 // Función helper para obtener el App ID correcto según la plataforma
-export const getAppId = (platform: 'android' | 'ios' | 'web'): string => {
+export const getAppId = (platform: 'android' | 'ios'): string => {
   switch (platform) {
     case 'android':
       return ADMOB_CONFIG.APP_IDS.ANDROID;
     case 'ios':
       return ADMOB_CONFIG.APP_IDS.IOS;
-    case 'web':
-      return ADMOB_CONFIG.APP_IDS.WEB;
     default:
-      return ADMOB_CONFIG.APP_IDS.WEB;
+      throw new Error('AdMob solo se usa para apps móviles. Para web usar AdSense.');
   }
 };
 

@@ -28,9 +28,10 @@ const config: CapacitorConfig = {
     },
     AdMob: {
       // TODO: Reemplazar con tus App IDs reales de AdMob
+      // NOTA: Solo para apps móviles. Web usa Google AdSense
       appIdAndroid: 'ca-app-pub-3940256099942544~3347511713', // ID de prueba
       appIdIos: 'ca-app-pub-3940256099942544~1458002511', // ID de prueba
-      appIdWeb: 'ca-app-pub-3940256099942544~3347511713', // ID de prueba
+      // appIdWeb: No se usa - web usa AdSense
       initializeForTesting: true // Cambiar a false en producción
     }
   }

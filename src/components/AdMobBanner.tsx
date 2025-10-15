@@ -71,13 +71,9 @@ export const AdMobBanner: React.FC<AdMobBannerProps> = ({
     return null;
   }
 
-  // En web, mostrar un placeholder si AdMob no está disponible
+  // En web, no mostrar nada ya que usamos AdSense
   if (!AdMob) {
-    return (
-      <div className={`bg-gray-200 h-16 flex items-center justify-center ${className}`}>
-        <span className="text-gray-500 text-sm">Ad Space</span>
-      </div>
-    );
+    return null; // Web usa AdSense, no AdMob
   }
 
   // El banner se renderiza nativamente, este componente solo maneja la lógica
