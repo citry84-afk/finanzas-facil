@@ -5,21 +5,21 @@
 export const ADMOB_CONFIG = {
   // App IDs (SOLO para apps móviles)
   APP_IDS: {
-    ANDROID: 'ca-app-pub-3940256099942544~3347511713', // ID de prueba
-    IOS: 'ca-app-pub-3940256099942544~1458002511', // ID de prueba
+    ANDROID: 'ca-app-pub-4837743291717475~5262527045', // ID de prueba
+    IOS: 'ca-app-pub-4837743291717475~3521575123', // ID de prueba
     // WEB: No usamos AdMob para web, usamos AdSense
   },
   
   // Ad Unit IDs (IDs de prueba de Google)
   AD_UNITS: {
-    BANNER: 'ca-app-pub-3940256099942544/6300978111',
-    INTERSTITIAL: 'ca-app-pub-3940256099942544/1033173712',
-    REWARDED: 'ca-app-pub-3940256099942544/5224354917'
+    BANNER: 'ca-app-pub-4837743291717475/5805807742',
+    INTERSTITIAL: 'ca-app-pub-4837743291717475/9665161708',
+    REWARDED: 'ca-app-pub-4837743291717475/8858991273'
   },
 
   // Configuración de testing
   TESTING: {
-    ENABLED: true, // Cambiar a false en producción
+    ENABLED: false, // Cambiar a false en producción
     TEST_DEVICE_IDS: [
       // Agregar IDs de dispositivos de prueba aquí
       'TEST_DEVICE_ID_1',
