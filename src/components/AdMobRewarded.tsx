@@ -62,7 +62,7 @@ class AdMobRewardedManager {
   /**
    * Muestra el anuncio rewarded
    */
-  async show(options: RewardedAdOptions = {}): Promise<RewardedResult> {
+  async show(_options: RewardedAdOptions = {}): Promise<RewardedResult> {
     try {
       if (!AdMob) {
         return { 
@@ -90,14 +90,18 @@ class AdMobRewardedManager {
       this.showCount++;
       this.isPrepared = false; // Necesita prepararse de nuevo
       
-      if (result.rewarded) {
+      // Check if user completed the ad (plugin returns reward info if completed)
+      if (result && result.amount > 0) {
         this.rewardCount++;
-        console.log('User rewarded successfully!', result.reward);
+        console.log('User rewarded successfully!', result);
         
         return {
           success: true,
           rewarded: true,
-          reward: result.reward
+          reward: {
+            type: result.type || 'unknown',
+            amount: result.amount || 1
+          }
         };
       } else {
         console.log('User did not complete the ad');

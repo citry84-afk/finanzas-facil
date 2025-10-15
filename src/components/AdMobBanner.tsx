@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { AdMob, BannerAdSize, BannerAdPosition } from '@capacitor-community/admob';
-import { ADMOB_CONFIG, getBannerConfig } from '../config/admob';
+import { getBannerConfig } from '../config/admob';
 
 interface AdMobBannerProps {
   position?: 'top' | 'bottom';
   size?: 'adaptive' | 'large' | 'medium' | 'full';
-  className?: string;
 }
 
 export const AdMobBanner: React.FC<AdMobBannerProps> = ({ 
   position = 'bottom', 
-  size = 'adaptive',
-  className = ''
+  size = 'adaptive'
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);

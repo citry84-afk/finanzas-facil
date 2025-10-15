@@ -4,7 +4,7 @@ import { AppTrackingTransparency } from 'capacitor-plugin-app-tracking-transpare
 import { Capacitor } from '@capacitor/core';
 
 export interface ATTResult {
-  status: 'authorized' | 'denied' | 'restricted' | 'not-determined';
+  status: 'authorized' | 'denied' | 'restricted' | 'notDetermined';
   canTrack: boolean;
 }
 
@@ -23,21 +23,9 @@ export const requestTrackingPermission = async (): Promise<ATTResult> => {
       return { status: 'authorized', canTrack: true };
     }
 
-    // Check if ATT is available (iOS 14.5+)
-    const status = await AppTrackingTransparency.getTrackingStatus();
-    console.log('ATT: Current status:', status);
-
-    // If already determined, return current status
-    if (status.status !== 'not-determined') {
-      return {
-        status: status.status,
-        canTrack: status.status === 'authorized'
-      };
-    }
-
-    // Request permission
+    // Request permission directly (plugin handles status check internally)
     console.log('ATT: Requesting tracking permission...');
-    const result = await AppTrackingTransparency.requestTrackingPermission();
+    const result = await AppTrackingTransparency.requestPermission();
     
     console.log('ATT: Permission result:', result);
     
@@ -69,7 +57,7 @@ export const getTrackingStatus = async (): Promise<ATTResult> => {
       return { status: 'authorized', canTrack: true };
     }
 
-    const status = await AppTrackingTransparency.getTrackingStatus();
+    const status = await AppTrackingTransparency.requestPermission();
     return {
       status: status.status,
       canTrack: status.status === 'authorized'
