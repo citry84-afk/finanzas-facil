@@ -20,6 +20,10 @@ import LandingCuota from './components/LandingCuota';
 import LandingGastos from './components/LandingGastos';
 import ProductoCursoFinanzas from './components/ProductoCursoFinanzas';
 import DonationModal from './components/DonationModal';
+import { Login } from './components/Login';
+import { Register } from './components/Register';
+import { ForgotPassword } from './components/ForgotPassword';
+import { AuthProvider } from './contexts/AuthContext';
 import { analyticsEvents, trackPageView } from './utils/analytics';
 import { BannerAd, InlineAd } from './components/AdSense';
 import StructuredData from './components/StructuredData';
@@ -27,8 +31,8 @@ import PWAInstall from './components/PWAInstall';
 import PWADebug from './components/PWADebug';
 import { useSwipe } from './hooks/useSwipe';
 
-function App() {
-  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'articles' | 'guides' | 'faq' | 'resources' | 'autonomos' | 'blog' | 'amazon' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos'>('landing');
+function AppContent() {
+  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'articles' | 'guides' | 'faq' | 'resources' | 'autonomos' | 'blog' | 'amazon' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password'>('landing');
 
   // Configurar navegación por swipe
   const swipeRef = useSwipe({
@@ -432,6 +436,62 @@ function App() {
     );
   }
 
+  // Rutas de autenticación
+  if (mode === 'login') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 to-green-500">
+        <div className="absolute top-20 left-4 z-10">
+          <button
+            onClick={() => setMode('landing')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl border border-white/30 text-white hover:bg-white/30 transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <Login 
+          onNavigateToRegister={() => setMode('register')}
+          onNavigateToForgotPassword={() => setMode('forgot-password')}
+          onSuccess={() => setMode('landing')}
+        />
+      </div>
+    );
+  }
+
+  if (mode === 'register') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-pink-500">
+        <div className="absolute top-20 left-4 z-10">
+          <button
+            onClick={() => setMode('login')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl border border-white/30 text-white hover:bg-white/30 transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <Register 
+          onNavigateToLogin={() => setMode('login')}
+          onSuccess={() => setMode('landing')}
+        />
+      </div>
+    );
+  }
+
+  if (mode === 'forgot-password') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-orange-500 to-red-500">
+        <div className="absolute top-20 left-4 z-10">
+          <button
+            onClick={() => setMode('login')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl border border-white/30 text-white hover:bg-white/30 transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <ForgotPassword onNavigateToLogin={() => setMode('login')} />
+      </div>
+    );
+  }
+
 
   return (
     <div 
@@ -453,6 +513,22 @@ function App() {
         <h1 className="text-6xl font-bold text-white mb-4">FinanzasFácil</h1>
         <p className="text-xl text-white/80 mb-4">Calculadoras Financieras Gratuitas 2025</p>
         <p className="text-lg text-white/70 mb-8">Salario neto, libertad financiera y control de gastos</p>
+        
+        {/* Botones de Autenticación */}
+        <div className="flex justify-center gap-4 mb-8">
+          <button
+            onClick={() => setMode('login')}
+            className="bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 shadow-lg"
+          >
+            🔐 Iniciar Sesión
+          </button>
+          <button
+            onClick={() => setMode('register')}
+            className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold px-6 py-3 rounded-xl hover:from-green-600 hover:to-blue-600 transition-all duration-300 shadow-lg"
+          >
+            ✨ Registrarse
+          </button>
+        </div>
         
         {/* Descripción expandida para SEO */}
         <div className="max-w-4xl mx-auto mt-12 mb-8">
@@ -931,6 +1007,14 @@ function App() {
       {/* PWA Debug Info */}
       <PWADebug />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
