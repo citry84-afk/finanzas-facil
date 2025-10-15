@@ -26,6 +26,7 @@ import { ForgotPassword } from './components/ForgotPassword';
 import { AuthProvider } from './contexts/AuthContext';
 import { AdMobBanner } from './components/AdMobBanner';
 import { useInterstitialAd } from './components/AdMobInterstitial';
+import { requestTrackingPermission, initializeTrackingServices } from './utils/att';
 import { analyticsEvents, trackPageView } from './utils/analytics';
 import { BannerAd, InlineAd } from './components/AdSense';
 import StructuredData from './components/StructuredData';
@@ -61,6 +62,22 @@ function AppContent() {
   });
 
   useEffect(() => {
+    // Initialize App Tracking Transparency
+    const initializeATT = async () => {
+      try {
+        console.log('Initializing ATT...');
+        const result = await requestTrackingPermission();
+        console.log('ATT result:', result);
+        await initializeTrackingServices(result.canTrack);
+      } catch (error) {
+        console.error('Error initializing ATT:', error);
+        // Continue without tracking if ATT fails
+        await initializeTrackingServices(false);
+      }
+    };
+
+    initializeATT();
+
     const handleModeChange = (event: CustomEvent) => {
       if (event.detail === 'millonario') {
         setMode('tiktok-millonario');
