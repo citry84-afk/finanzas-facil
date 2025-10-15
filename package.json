@@ -10,6 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor-community/admob": "^7.0.3",
+    "@capacitor-firebase/app": "^7.3.1",
+    "@capacitor-firebase/authentication": "^7.3.1",
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/ios": "^7.4.3",
+    "@capacitor/preferences": "^7.0.2",
+    "@capacitor/push-notifications": "^7.0.3",
+    "@capacitor/share": "^7.0.2",
     "chart.js": "^4.5.0",
     "firebase": "^12.3.0",
     "lucide-react": "^0.263.1",
@@ -34,8 +44,3 @@
     "vite": "^4.4.5"
   }
 }
-
-
-
-
-

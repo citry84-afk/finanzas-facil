@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FinanzasFacil</string>
+    <string name="title_activity_main">FinanzasFacil</string>
+    <string name="package_name">com.lipastudios.finanzasfacil</string>
+    <string name="custom_url_scheme">com.lipastudios.finanzasfacil</string>
+</resources>
