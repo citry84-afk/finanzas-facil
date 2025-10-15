@@ -25,6 +25,13 @@ const config: CapacitorConfig = {
     },
     PushNotifications: {
       presentationOptions: ["badge", "sound", "alert"]
+    },
+    AdMob: {
+      // TODO: Reemplazar con tus App IDs reales de AdMob
+      appIdAndroid: 'ca-app-pub-3940256099942544~3347511713', // ID de prueba
+      appIdIos: 'ca-app-pub-3940256099942544~1458002511', // ID de prueba
+      appIdWeb: 'ca-app-pub-3940256099942544~3347511713', // ID de prueba
+      initializeForTesting: true // Cambiar a false en producción
     }
   }
 };

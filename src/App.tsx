@@ -24,6 +24,8 @@ import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { ForgotPassword } from './components/ForgotPassword';
 import { AuthProvider } from './contexts/AuthContext';
+import { AdMobBanner } from './components/AdMobBanner';
+import { useInterstitialAd } from './components/AdMobInterstitial';
 import { analyticsEvents, trackPageView } from './utils/analytics';
 import { BannerAd, InlineAd } from './components/AdSense';
 import StructuredData from './components/StructuredData';
@@ -33,6 +35,16 @@ import { useSwipe } from './hooks/useSwipe';
 
 function AppContent() {
   const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'articles' | 'guides' | 'faq' | 'resources' | 'autonomos' | 'blog' | 'amazon' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password'>('landing');
+  
+  // Hook para manejar anuncios interstitial
+  const { showOnNavigation } = useInterstitialAd();
+
+  // Función helper para cambiar modo con posible anuncio interstitial
+  const handleModeChange = async (newMode: string, currentMode: string = mode) => {
+    // Mostrar anuncio interstitial ocasionalmente al navegar
+    await showOnNavigation(currentMode, newMode);
+    setMode(newMode as any);
+  };
 
   // Configurar navegación por swipe
   const swipeRef = useSwipe({
@@ -1006,6 +1018,9 @@ function AppContent() {
       
       {/* PWA Debug Info */}
       <PWADebug />
+      
+      {/* AdMob Banner */}
+      <AdMobBanner position="bottom" size="adaptive" />
     </div>
   );
 }
