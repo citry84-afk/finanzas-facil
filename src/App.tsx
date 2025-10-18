@@ -24,9 +24,12 @@ import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { ForgotPassword } from './components/ForgotPassword';
 import { AuthProvider } from './contexts/AuthContext';
+import SocialLinks from './components/SocialLinks';
+import ShareApp from './components/ShareApp';
 import { AdMobBanner } from './components/AdMobBanner';
 // import { useInterstitialAd } from './components/AdMobInterstitial';
-import { requestTrackingPermission, initializeTrackingServices } from './utils/att';
+// import { requestTrackingPermission, initializeTrackingServices } from './utils/att';
+import { Capacitor } from '@capacitor/core';
 import { analyticsEvents, trackPageView } from './utils/analytics';
 import { BannerAd, InlineAd } from './components/AdSense';
 import StructuredData from './components/StructuredData';
@@ -35,7 +38,7 @@ import PWADebug from './components/PWADebug';
 import { useSwipe } from './hooks/useSwipe';
 
 function AppContent() {
-  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'articles' | 'guides' | 'faq' | 'resources' | 'autonomos' | 'blog' | 'amazon' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password'>('landing');
+  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'articles' | 'guides' | 'faq' | 'resources' | 'autonomos' | 'blog' | 'amazon' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password' | 'social'>('landing');
   
   // Hook para manejar anuncios interstitial
   // const { showOnNavigation } = useInterstitialAd();
@@ -62,21 +65,12 @@ function AppContent() {
   });
 
   useEffect(() => {
-    // Initialize App Tracking Transparency
-    const initializeATT = async () => {
-      try {
-        console.log('Initializing ATT...');
-        const result = await requestTrackingPermission();
-        console.log('ATT result:', result);
-        await initializeTrackingServices(result.canTrack);
-      } catch (error) {
-        console.error('Error initializing ATT:', error);
-        // Continue without tracking if ATT fails
-        await initializeTrackingServices(false);
-      }
-    };
-
-    initializeATT();
+    // Initialize App Tracking Transparency - TEMPORALMENTE DESACTIVADO
+    // NOTA: Causaba crashes en Android, lo reactivaremos después
+    
+    // Firebase temporalmente desactivado - esperando configuración de reglas
+    console.log('App initialized on platform:', Capacitor.getPlatform());
+    console.log('Firebase temporalmente desactivado - esperando configuración de reglas');
 
     const handleModeChange = (event: CustomEvent) => {
       if (event.detail === 'millonario') {
@@ -521,6 +515,23 @@ function AppContent() {
     );
   }
 
+  if (mode === 'social') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-4">
+        <div className="absolute top-4 left-4 z-10">
+          <button
+            onClick={() => setMode('landing')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl border border-white/30 text-white hover:bg-white/30 transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <div className="max-w-2xl mx-auto pt-20">
+          <SocialLinks />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div 
@@ -543,20 +554,35 @@ function AppContent() {
         <p className="text-xl text-white/80 mb-4">Calculadoras Financieras Gratuitas 2025</p>
         <p className="text-lg text-white/70 mb-8">Salario neto, libertad financiera y control de gastos</p>
         
-        {/* Botones de Autenticación */}
-        <div className="flex justify-center gap-4 mb-8">
+      {/* Botones de Autenticación - OCULTOS temporalmente para aprobación de AdSense */}
+      {/* Google AdSense requiere acceso completo al contenido sin barreras de autenticación */}
+      {/* <div className="flex justify-center gap-4 mb-8">
+        <button
+          onClick={() => setMode('login')}
+          className="bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 shadow-lg"
+        >
+          🔐 Iniciar Sesión
+        </button>
+        <button
+          onClick={() => setMode('register')}
+          className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold px-6 py-3 rounded-xl hover:from-green-600 hover:to-blue-600 transition-all duration-300 shadow-lg"
+        >
+          ✨ Registrarse
+        </button>
+      </div> */}
+
+        {/* Botones Redes Sociales y Compartir */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
           <button
-            onClick={() => setMode('login')}
-            className="bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/30 transition-all duration-300 shadow-lg"
+            onClick={() => {
+              analyticsEvents.navigationToCalculator('social');
+              setMode('social');
+            }}
+            className="bg-gradient-to-r from-red-600 via-pink-600 to-purple-600 text-white font-bold px-8 py-4 rounded-2xl hover:from-red-700 hover:via-pink-700 hover:to-purple-700 transition-all duration-300 shadow-2xl transform hover:scale-105 border-2 border-white/30 animate-pulse"
           >
-            🔐 Iniciar Sesión
+            🎥 ¡Síguenos en YouTube! 🔥
           </button>
-          <button
-            onClick={() => setMode('register')}
-            className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold px-6 py-3 rounded-xl hover:from-green-600 hover:to-blue-600 transition-all duration-300 shadow-lg"
-          >
-            ✨ Registrarse
-          </button>
+          <ShareApp variant="primary" />
         </div>
         
         {/* Descripción expandida para SEO */}
