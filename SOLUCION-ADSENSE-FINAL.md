@@ -85,7 +85,7 @@ Netlify se actualizará automáticamente en 1-2 minutos.
     <h2>Artículos Recientes</h2>
     <article>20 Gastos Deducibles...</article>
     <article>Cómo Calcular IRPF...</article>
-    <article>Finanzas desde 0...</article>
+    <article>Guía de Gastos Deducibles 2025...</article>
   </div>
   
   <!-- Script que oculta el contenido después -->

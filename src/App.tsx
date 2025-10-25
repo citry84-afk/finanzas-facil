@@ -569,40 +569,7 @@ function AppContent() {
           <BannerAd />
         </div>
         
-        {/* Banner Curso Finanzas NUEVO */}
-        <div className="mb-8 bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 rounded-3xl p-8 shadow-2xl border-4 border-white/30 hover:scale-[1.02] transition-transform">
-          <div className="text-center">
-            <div className="inline-block bg-yellow-400 text-yellow-900 px-6 py-2 rounded-full font-bold mb-4 animate-pulse">
-              🚀 NUEVO CURSO 2025
-            </div>
-            <h2 className="text-4xl font-bold text-white mb-3">
-              FINANZAS DESDE 0: Tu Camino a la Libertad Financiera
-            </h2>
-            <p className="text-xl text-white/90 mb-4">
-              De no tener ni idea de dinero... a invertir en bolsa con confianza
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-white">
-                📚 50 páginas
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-white">
-                📊 20+ gráficas
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-white">
-                💡 10 casos prácticos
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-white font-bold text-lg">
-                💰 Solo 29€
-              </div>
-            </div>
-            <button
-              onClick={() => setMode('producto-curso-finanzas')}
-              className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-xl px-10 py-4 rounded-2xl transition-all transform hover:scale-105 shadow-xl"
-            >
-              📖 VER CURSO COMPLETO
-            </button>
-          </div>
-        </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Control de Gastos */}
