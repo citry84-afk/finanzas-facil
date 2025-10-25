@@ -6,13 +6,10 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import About from './components/About';
 import Contact from './components/Contact';
-import Articles from './components/Articles';
-import Guides from './components/Guides';
+import ContentHub from './components/ContentHub';
 import FAQ from './components/FAQ';
 import Resources from './components/Resources';
-import Blog from './components/Blog';
 import AutonomosCalculator from './components/AutonomosCalculator';
-import AmazonArticles from './components/AmazonArticles';
 import ProductoGastos from './components/ProductoGastos';
 import LeadMagnet from './components/LeadMagnet';
 import LandingIRPF from './components/LandingIRPF';
@@ -38,7 +35,7 @@ import PWADebug from './components/PWADebug';
 import { useSwipe } from './hooks/useSwipe';
 
 function AppContent() {
-  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'articles' | 'guides' | 'faq' | 'resources' | 'autonomos' | 'blog' | 'amazon' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password' | 'social'>('landing');
+  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'content-hub' | 'faq' | 'resources' | 'autonomos' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password' | 'social'>('landing');
   
   // Hook para manejar anuncios interstitial
   // const { showOnNavigation } = useInterstitialAd();
@@ -275,7 +272,7 @@ function AppContent() {
     );
   }
 
-  if (mode === 'articles') {
+  if (mode === 'content-hub') {
     return (
       <div className="min-h-screen">
         <div className="absolute top-20 left-4 z-10">
@@ -286,26 +283,11 @@ function AppContent() {
             ← Volver
           </button>
         </div>
-        <Articles />
+        <ContentHub />
       </div>
     );
   }
 
-  if (mode === 'guides') {
-    return (
-      <div className="min-h-screen">
-        <div className="absolute top-20 left-4 z-10">
-          <button
-            onClick={() => setMode('landing')}
-            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
-          >
-            ← Volver
-          </button>
-        </div>
-        <Guides />
-      </div>
-    );
-  }
 
   if (mode === 'faq') {
     return (
@@ -339,37 +321,7 @@ function AppContent() {
     );
   }
 
-  if (mode === 'blog') {
-    return (
-      <div className="min-h-screen">
-        <div className="absolute top-20 left-4 z-10">
-          <button
-            onClick={() => setMode('landing')}
-            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
-          >
-            ← Volver
-          </button>
-        </div>
-        <Blog />
-      </div>
-    );
-  }
 
-  if (mode === 'amazon') {
-    return (
-      <div className="min-h-screen">
-        <div className="absolute top-20 left-4 z-10">
-          <button
-            onClick={() => setMode('landing')}
-            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
-          >
-            ← Volver
-          </button>
-        </div>
-        <AmazonArticles />
-      </div>
-    );
-  }
 
   if (mode === 'producto-gastos') {
     return (
@@ -518,10 +470,11 @@ function AppContent() {
   if (mode === 'social') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-4">
-        <div className="absolute top-4 left-4 z-10">
+        <div className="absolute top-4 left-4 z-50">
           <button
             onClick={() => setMode('landing')}
-            className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl border border-white/30 text-white hover:bg-white/30 transition-colors shadow-lg"
+            className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-xl border border-white/30 text-white hover:bg-white/30 transition-colors shadow-lg touch-manipulation"
+            style={{ zIndex: 9999 }}
           >
             ← Volver
           </button>
@@ -748,28 +701,10 @@ function AppContent() {
           <div className="text-center space-y-4">
             <div className="flex justify-center flex-wrap gap-4 text-white/70">
               <button 
-                onClick={() => setMode('articles')}
+                onClick={() => setMode('content-hub')}
                 className="hover:text-white transition-colors underline"
               >
-                Artículos
-              </button>
-              <button 
-                onClick={() => setMode('blog')}
-                className="hover:text-white transition-colors underline"
-              >
-                Blog
-              </button>
-              <button 
-                onClick={() => setMode('amazon')}
-                className="hover:text-white transition-colors underline"
-              >
-                Productos Recomendados
-              </button>
-              <button 
-                onClick={() => setMode('guides')}
-                className="hover:text-white transition-colors underline"
-              >
-                Guías
+                Hub de Contenido
               </button>
               <button 
                 onClick={() => setMode('resources')}
@@ -957,16 +892,10 @@ function AppContent() {
             </div>
             <div className="flex flex-wrap gap-4 justify-center">
               <button
-                onClick={() => setMode('blog')}
+                onClick={() => setMode('content-hub')}
                 className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                📖 Leer Blog
-              </button>
-              <button
-                onClick={() => setMode('amazon')}
-                className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/30 transition-all duration-300 border-2 border-white/30"
-              >
-                🛒 Productos Recomendados
+                📚 Hub de Contenido
               </button>
             </div>
           </div>

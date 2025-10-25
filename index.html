@@ -2,7 +2,8 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-192.png" />
     
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="/manifest.json" />
@@ -13,9 +14,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="FinanzasFácil" />
-    <link rel="apple-touch-icon" href="/logo-square.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/logo-square.svg" />
-    <link rel="mask-icon" href="/logo-square.svg" color="#3b82f6" />
+    <link rel="apple-touch-icon" href="/icons/icon-180.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png" />
+    <link rel="mask-icon" href="/icons/icon-192.png" color="#3b82f6" />
     
     <!-- Microsoft Meta Tags -->
     <meta name="msapplication-TileColor" content="#3b82f6" />
@@ -153,6 +154,205 @@
     
   </head>
   <body>
+    <!-- Contenido visible para AdSense mientras carga la app - OCULTO cuando React renderiza -->
+    <div id="initial-content" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif;">
+      <h1 style="font-size: 42px; color: #1a1a1a; margin-bottom: 20px; text-align: center;">
+        FinanzasFácil - Calculadoras Financieras Gratuitas 2025
+      </h1>
+      <p style="font-size: 18px; color: #666; text-align: center; margin-bottom: 40px;">
+        Herramientas gratuitas para mejorar tus finanzas personales en España
+      </p>
+      
+      <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 40px; border-radius: 20px; margin-bottom: 40px; color: white;">
+        <h2 style="font-size: 32px; margin-bottom: 20px; text-align: center;">¿Qué es FinanzasFácil?</h2>
+        <p style="font-size: 18px; line-height: 1.8; text-align: center; max-width: 900px; margin: 0 auto;">
+          FinanzasFácil es la plataforma líder en España para educación financiera y herramientas de cálculo gratuitas. 
+          Nuestro objetivo es democratizar el acceso a la información financiera de calidad, proporcionando calculadoras 
+          precisas, guías prácticas y recursos educativos que te ayuden a tomar mejores decisiones económicas.
+        </p>
+      </div>
+
+      <h2 style="font-size: 32px; color: #1a1a1a; margin: 60px 0 30px; text-align: center;">Herramientas Principales</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px;">
+        <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+          <div style="font-size: 48px; margin-bottom: 15px;">💸</div>
+          <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Control de Gastos</h3>
+          <p style="color: #666; line-height: 1.6;">
+            App gratuita para gestionar gastos diarios, categorizar compras y controlar tu presupuesto mensual.
+          </p>
+        </div>
+        
+        <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+          <div style="font-size: 48px; margin-bottom: 15px;">🎉</div>
+          <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora Millonaria</h3>
+          <p style="color: #666; line-height: 1.6;">
+            Descubre cuándo alcanzarás 1 millón de euros ahorrando e invirtiendo.
+          </p>
+        </div>
+        
+        <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+          <div style="font-size: 48px; margin-bottom: 15px;">💰</div>
+          <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora de Salario Neto</h3>
+          <p style="color: #666; line-height: 1.6;">
+            Calcula tu salario neto 2025 considerando IRPF y Seguridad Social.
+          </p>
+        </div>
+        
+        <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+          <div style="font-size: 48px; margin-bottom: 15px;">👨‍💼</div>
+          <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora de Autónomos</h3>
+          <p style="color: #666; line-height: 1.6;">
+            Calcula IRPF, cuota de Seguridad Social y gastos deducibles para autónomos.
+          </p>
+        </div>
+      </div>
+
+      <div style="background: #f9fafb; padding: 40px; border-radius: 20px; margin-bottom: 40px;">
+        <h2 style="font-size: 32px; color: #1a1a1a; margin-bottom: 30px; text-align: center;">Artículos Recientes</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+          <article style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="font-size: 24px; color: #1a1a1a; margin-bottom: 15px;">20 Gastos Deducibles para Autónomos 2025</h3>
+            <p style="color: #666; line-height: 1.8;">
+              Descubre los 20 gastos que todo autónomo puede deducir para ahorrar entre 2.000€ y 5.000€ al año. 
+              Guía completa actualizada con la normativa fiscal vigente en España.
+            </p>
+          </article>
+          
+          <article style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="font-size: 24px; color: #1a1a1a; margin-bottom: 15px;">Cómo Calcular IRPF: Guía Completa 2025</h3>
+            <p style="color: #666; line-height: 1.8;">
+              Aprende a calcular correctamente el IRPF como autónomo. Incluye ejemplos prácticos y todas las deducciones aplicables.
+            </p>
+          </article>
+          
+          <article style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="font-size: 24px; color: #1a1a1a; margin-bottom: 15px;">Finanzas desde 0: Tu Camino a la Libertad Financiera</h3>
+            <p style="color: #666; line-height: 1.8;">
+              Curso completo de finanzas personales. Desde lo básico hasta invertir en bolsa con confianza. Más de 50 páginas de contenido.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 50px 40px; border-radius: 20px; color: white; text-align: center;">
+        <h2 style="font-size: 32px; margin-bottom: 20px;">¿Necesitas Ayuda?</h2>
+        <p style="font-size: 18px; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+          En FinanzasFácil proporcionamos herramientas de cálculo y contenido educativo con fines informativos. 
+          Para asesoramiento personalizado, consulta con un profesional cualificado.
+        </p>
+        <p style="font-size: 14px; opacity: 0.9;">
+          © 2025 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+
+    <!-- Script para ocultar contenido inicial cuando React renderiza -->
+    <script>
+      // Ocultar contenido inicial cuando la app React se monta
+      setTimeout(function() {
+        var initialContent = document.getElementById('initial-content');
+        if (initialContent) {
+          initialContent.style.display = 'none';
+        }
+      }, 100);
+    </script>
+
+    <noscript>
+      <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif;">
+        <h1 style="font-size: 42px; color: #1a1a1a; margin-bottom: 20px; text-align: center;">
+          FinanzasFácil - Calculadoras Financieras Gratuitas 2025
+        </h1>
+        <p style="font-size: 18px; color: #666; text-align: center; margin-bottom: 40px;">
+          Herramientas gratuitas para mejorar tus finanzas personales en España
+        </p>
+        
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 40px; border-radius: 20px; margin-bottom: 40px; color: white;">
+          <h2 style="font-size: 32px; margin-bottom: 20px; text-align: center;">¿Qué es FinanzasFácil?</h2>
+          <p style="font-size: 18px; line-height: 1.8; text-align: center; max-width: 900px; margin: 0 auto;">
+            FinanzasFácil es la plataforma líder en España para educación financiera y herramientas de cálculo gratuitas. 
+            Nuestro objetivo es democratizar el acceso a la información financiera de calidad, proporcionando calculadoras 
+            precisas, guías prácticas y recursos educativos que te ayuden a tomar mejores decisiones económicas.
+          </p>
+        </div>
+
+        <h2 style="font-size: 32px; color: #1a1a1a; margin: 60px 0 30px; text-align: center;">Herramientas Principales</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px;">
+          <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 15px;">💸</div>
+            <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Control de Gastos</h3>
+            <p style="color: #666; line-height: 1.6;">
+              App gratuita para gestionar gastos diarios, categorizar compras y controlar tu presupuesto mensual.
+            </p>
+          </div>
+          
+          <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 15px;">🎉</div>
+            <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora Millonaria</h3>
+            <p style="color: #666; line-height: 1.6;">
+              Descubre cuándo alcanzarás 1 millón de euros ahorrando e invirtiendo.
+            </p>
+          </div>
+          
+          <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 15px;">💰</div>
+            <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora de Salario Neto</h3>
+            <p style="color: #666; line-height: 1.6;">
+              Calcula tu salario neto 2025 considerando IRPF y Seguridad Social.
+            </p>
+          </div>
+          
+          <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 15px;">👨‍💼</div>
+            <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora de Autónomos</h3>
+            <p style="color: #666; line-height: 1.6;">
+              Calcula IRPF, cuota de Seguridad Social y gastos deducibles para autónomos.
+            </p>
+          </div>
+        </div>
+
+        <div style="background: #f9fafb; padding: 40px; border-radius: 20px; margin-bottom: 40px;">
+          <h2 style="font-size: 32px; color: #1a1a1a; margin-bottom: 30px; text-align: center;">Artículos Recientes</h2>
+          <div style="max-width: 800px; margin: 0 auto;">
+            <article style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <h3 style="font-size: 24px; color: #1a1a1a; margin-bottom: 15px;">20 Gastos Deducibles para Autónomos 2025</h3>
+              <p style="color: #666; line-height: 1.8;">
+                Descubre los 20 gastos que todo autónomo puede deducir para ahorrar entre 2.000€ y 5.000€ al año. 
+                Guía completa actualizada con la normativa fiscal vigente en España.
+              </p>
+            </article>
+            
+            <article style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <h3 style="font-size: 24px; color: #1a1a1a; margin-bottom: 15px;">Cómo Calcular IRPF: Guía Completa 2025</h3>
+              <p style="color: #666; line-height: 1.8;">
+                Aprende a calcular correctamente el IRPF como autónomo. Incluye ejemplos prácticos y todas las deducciones aplicables.
+              </p>
+            </article>
+            
+            <article style="background: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+              <h3 style="font-size: 24px; color: #1a1a1a; margin-bottom: 15px;">Finanzas desde 0: Tu Camino a la Libertad Financiera</h3>
+              <p style="color: #666; line-height: 1.8;">
+                Curso completo de finanzas personales. Desde lo básico hasta invertir en bolsa con confianza. Más de 50 páginas de contenido.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 50px 40px; border-radius: 20px; color: white; text-align: center;">
+          <h2 style="font-size: 32px; margin-bottom: 20px;">¿Necesitas Ayuda?</h2>
+          <p style="font-size: 18px; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            En FinanzasFácil proporcionamos herramientas de cálculo y contenido educativo con fines informativos. 
+            Para asesoramiento personalizado, consulta con un profesional cualificado.
+          </p>
+          <p style="font-size: 14px; opacity: 0.9;">
+            © 2025 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </noscript>
+
+    <!-- Aplicación React -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -6,15 +6,25 @@ export default function LeadMagnet() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
 
   // Mostrar popup después de 30 segundos o al intentar salir
   React.useEffect(() => {
+    // Verificar si ya fue cerrado antes
+    const wasClosed = localStorage.getItem('finanzas_lead_closed');
+    if (wasClosed) {
+      setIsClosed(true);
+      return;
+    }
+
     const timer = setTimeout(() => {
-      setShowPopup(true);
+      if (!isClosed) {
+        setShowPopup(true);
+      }
     }, 30000); // 30 segundos
 
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
+      if (e.clientY <= 0 && !isClosed) {
         setShowPopup(true);
       }
     };
@@ -25,7 +35,7 @@ export default function LeadMagnet() {
       clearTimeout(timer);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [isClosed]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,6 +58,7 @@ export default function LeadMagnet() {
 
       setIsSuccess(true);
       setShowPopup(false);
+      setIsClosed(true);
 
       // Aquí iría la lógica para enviar el PDF por email
       // O redirigir a página de descarga
@@ -62,15 +73,16 @@ export default function LeadMagnet() {
 
   const closePopup = () => {
     setShowPopup(false);
-    // No mostrar de nuevo en esta sesión
-    sessionStorage.setItem('popup_shown', 'true');
+    setIsClosed(true);
+    // No mostrar de nuevo permanentemente
+    localStorage.setItem('finanzas_lead_closed', 'true');
   };
 
-  // No mostrar si ya se capturó el lead
+  // No mostrar si ya se capturó el lead o fue cerrado
   const leadCaptured = localStorage.getItem('finanzas_lead_captured');
-  const popupShown = sessionStorage.getItem('popup_shown');
+  const wasClosed = localStorage.getItem('finanzas_lead_closed');
 
-  if (leadCaptured || popupShown) {
+  if (leadCaptured || wasClosed || isClosed) {
     return null;
   }
 

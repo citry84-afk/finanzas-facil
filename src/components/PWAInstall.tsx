@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Capacitor } from '@capacitor/core';
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[];
@@ -15,6 +16,10 @@ const PWAInstall: React.FC = () => {
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
+    // NO mostrar en apps nativas (iOS/Android)
+    if (Capacitor.isNativePlatform()) {
+      return;
+    }
     // Verificar si ya está instalado
     const checkIfInstalled = () => {
       // Para iOS

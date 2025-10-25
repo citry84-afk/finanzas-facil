@@ -872,62 +872,134 @@ El IRPF para autónomos puede parecer complejo, pero con la información correct
 
 function Articles() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Artículos de Finanzas Personales</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Guías completas y consejos prácticos para mejorar tu educación financiera y alcanzar tus objetivos económicos.
-          </p>
-        </div>
+    <div className="min-h-screen bg-black text-white">
+      {/* Hero Section - Estilo Apple */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-gray-900 via-black to-black">
+        <div className="absolute inset-0 opacity-20" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`}}></div>
         
+        <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-24">
+          <div className="text-center">
+            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-6 leading-tight">
+              Finanzas
+              <br />
+              <span className="text-blue-400">Inteligentes</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed">
+              Descubre los secretos de la gestión financiera personal con nuestras guías expertas. 
+              Convierte tu dinero en tu mejor aliado.
+            </p>
+            
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-blue-400 mb-2">7</div>
+                <div className="text-gray-400">Guías Expertas</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-green-400 mb-2">100%</div>
+                <div className="text-gray-400">Gratuito</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-purple-400 mb-2">∞</div>
+                <div className="text-gray-400">Valor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Articles Grid - Estilo Apple Cards */}
+      <div className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {posts.map((post) => (
-            <article key={post.slug} className="bg-white/80 backdrop-blur-sm rounded-3xl border border-gray-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 leading-tight">{post.title}</h2>
-                <p className="text-gray-600 mb-6 leading-relaxed">{post.excerpt}</p>
-                
-                <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                  <div className="text-gray-800 whitespace-pre-line text-sm leading-relaxed">
-                    {post.content}
+          {posts.map((post, index) => (
+            <article 
+              key={post.slug} 
+              className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-xl rounded-3xl border border-gray-700/50 overflow-hidden hover:border-blue-500/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/10"
+            >
+              {/* Card Background Pattern */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative p-8">
+                {/* Article Number */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="text-6xl font-bold text-gray-700/30 group-hover:text-blue-500/20 transition-colors duration-300">
+                    {String(index + 1).padStart(2, '0')}
                   </div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
-                      Finanzas Personales
+                  <div className="flex space-x-2">
+                    <span className="bg-blue-500/10 text-blue-400 text-xs font-medium px-3 py-1 rounded-full border border-blue-500/20">
+                      Premium
                     </span>
-                    <span className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
+                    <span className="bg-green-500/10 text-green-400 text-xs font-medium px-3 py-1 rounded-full border border-green-500/20">
                       Guía Completa
                     </span>
                   </div>
-                  <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                    Leer Más
-                  </button>
+                </div>
+
+                {/* Article Content */}
+                <div className="space-y-6">
+                  <h2 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300 leading-tight">
+                    {post.title}
+                  </h2>
+                  
+                  <p className="text-gray-300 text-lg leading-relaxed">
+                    {post.excerpt}
+                  </p>
+
+                  {/* Preview Content */}
+                  <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700/50">
+                    <div className="text-gray-300 text-sm leading-relaxed line-clamp-6">
+                      {post.content.split('\n').slice(0, 8).join('\n')}...
+                    </div>
+                  </div>
+
+                  {/* Read More Button */}
+                  <div className="flex items-center justify-between pt-4">
+                    <div className="flex items-center space-x-4 text-sm text-gray-400">
+                      <span>📖 15 min lectura</span>
+                      <span>⭐ 4.9/5</span>
+                      <span>💡 Experto</span>
+                    </div>
+                    
+                    <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-2xl font-semibold hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 group-hover:scale-105">
+                      Leer Guía
+                      <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </article>
           ))}
         </div>
+      </div>
+
+      {/* Newsletter Section - Estilo Apple */}
+      <div className="relative bg-gradient-to-r from-gray-900 via-blue-900/20 to-purple-900/20 border-t border-gray-800">
+        <div className="absolute inset-0 opacity-30" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M20 20c0-11.046-8.954-20-20-20v20h20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`}}></div>
         
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">¿Quieres más contenido financiero?</h3>
-            <p className="text-lg mb-6 opacity-90">
-              Suscríbete a nuestro boletín para recibir artículos exclusivos y consejos financieros directamente en tu email.
-            </p>
-            <div className="max-w-md mx-auto flex gap-3">
+        <div className="relative max-w-4xl mx-auto px-6 py-24 text-center">
+          <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Mantente al día con las
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> finanzas inteligentes</span>
+          </h3>
+          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+            Recibe contenido exclusivo, guías avanzadas y consejos de expertos directamente en tu bandeja de entrada.
+          </p>
+          
+          <div className="max-w-md mx-auto">
+            <div className="flex gap-3 bg-gray-800/50 backdrop-blur-xl rounded-2xl p-2 border border-gray-700/50">
               <input 
                 type="email" 
-                placeholder="Tu email" 
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500"
+                placeholder="tu@email.com" 
+                className="flex-1 bg-transparent text-white placeholder-gray-400 px-4 py-3 focus:outline-none focus:ring-0"
               />
-              <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-blue-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/25">
                 Suscribirse
               </button>
             </div>
+            
+            <p className="text-sm text-gray-400 mt-4">
+              Sin spam. Cancela cuando quieras. Respetamos tu privacidad.
+            </p>
           </div>
         </div>
       </div>

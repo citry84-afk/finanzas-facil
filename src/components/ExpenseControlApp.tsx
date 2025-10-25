@@ -365,12 +365,13 @@ const ExpenseControlApp = ({ onBack }: ExpenseControlAppProps) => {
   const { user, logout } = useAuth();
   const { userData, saveUserData, loading: dataLoading } = useUserData(user);
   
-  // Mostrar modal de auth automáticamente si no hay usuario
-  const [showAuthModal, setShowAuthModal] = useState<boolean>(!user);
+  // Mostrar modal de auth automáticamente si no hay usuario - DESACTIVADO para AdSense
+  // const [showAuthModal, setShowAuthModal] = useState<boolean>(!user);
+  const [showAuthModal, setShowAuthModal] = useState<boolean>(false); // Siempre oculto
 
-  // Actualizar estado del modal cuando cambie el usuario
+  // Actualizar estado del modal cuando cambie el usuario - DESACTIVADO
   useEffect(() => {
-    setShowAuthModal(!user);
+    // setShowAuthModal(!user); // DESACTIVADO: Todo el contenido debe ser público para AdSense
     
     // Si el usuario se autentica
     if (user) {

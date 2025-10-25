@@ -44,3 +44,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <App />
   </React.StrictMode>,
 )
+
+// Ocultar contenido inicial HTML cuando React se monte
+// Esto asegura que AdSense vea el contenido, pero la UX permanece inalterada
+setTimeout(() => {
+  const initialContent = document.getElementById('initial-content');
+  if (initialContent) {
+    initialContent.style.display = 'none';
+  }
+}, 100);

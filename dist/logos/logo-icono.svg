@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo con gradiente circular -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FBBF24;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Fondo circular -->
+  <circle cx="512" cy="512" r="512" fill="url(#bgGradient)" filter="url(#shadow)"/>
+  
+  <!-- Calculadora moderna centrada -->
+  <g transform="translate(512, 512)">
+    <!-- Base de la calculadora -->
+    <rect x="-140" y="-100" width="280" height="200" rx="25" fill="url(#iconGradient)" opacity="0.95"/>
+    
+    <!-- Pantalla de la calculadora -->
+    <rect x="-120" y="-80" width="240" height="50" rx="10" fill="#1F2937" opacity="0.9"/>
+    
+    <!-- Números en la pantalla (simulando resultado) -->
+    <text x="0" y="-50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FBBF24" text-anchor="middle">€1,250</text>
+    
+    <!-- Botones de la calculadora -->
+    <g fill="#374151" opacity="0.8">
+      <!-- Fila 1 -->
+      <circle cx="-75" cy="-15" r="15"/>
+      <circle cx="-25" cy="-15" r="15"/>
+      <circle cx="25" cy="-15" r="15"/>
+      <circle cx="75" cy="-15" r="15"/>
+      
+      <!-- Fila 2 -->
+      <circle cx="-75" cy="20" r="15"/>
+      <circle cx="-25" cy="20" r="15"/>
+      <circle cx="25" cy="20" r="15"/>
+      <circle cx="75" cy="20" r="15"/>
+      
+      <!-- Fila 3 -->
+      <circle cx="-75" cy="55" r="15"/>
+      <circle cx="-25" cy="55" r="15"/>
+      <circle cx="25" cy="55" r="15"/>
+      <circle cx="75" cy="55" r="15"/>
+    </g>
+    
+    <!-- Botón de igual (=) destacado -->
+    <rect x="95" y="45" width="50" height="25" rx="12" fill="#10B981" opacity="0.9"/>
+    <text x="120" y="62" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">=</text>
+  </g>
+</svg>
