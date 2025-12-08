@@ -173,7 +173,7 @@ const PrivacyPolicy: React.FC = () => {
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Información de contacto</h3>
               <ul className="space-y-2">
                 <li><strong>Email:</strong> <a href="mailto:lipastudios4@gmail.com" className="text-blue-600 hover:underline">lipastudios4@gmail.com</a></li>
-                <li><strong>Sitio web:</strong> <a href="https://finanzasmuyfaciles.netlify.app" className="text-blue-600 hover:underline">https://finanzasmuyfaciles.netlify.app</a></li>
+                <li><strong>Sitio web:</strong> <a href="https://finanzasmuyfacil.com" className="text-blue-600 hover:underline">https://finanzasmuyfacil.com</a></li>
                 <li><strong>Asunto sugerido:</strong> "Consulta sobre Política de Privacidad"</li>
               </ul>
             </div>

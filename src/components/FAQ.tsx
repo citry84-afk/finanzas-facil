@@ -170,7 +170,7 @@ function FAQ() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="mailto:soporte@finanzasmuyfaciles.netlify.app"
+              href="mailto:lipastudios4@gmail.com"
               className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors"
             >
               📧 Enviar Email

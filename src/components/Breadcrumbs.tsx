@@ -50,7 +50,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
             "@type": "ListItem",
             "position": index + 1,
             "name": item.label,
-            "item": item.href ? `https://finanzasmuyfaciles.netlify.app${item.href}` : undefined
+            "item": item.href ? `https://finanzasmuyfacil.com${item.href}` : undefined
           }))
         })}
       </script>

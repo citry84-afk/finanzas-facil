@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import ExpenseControlApp from './components/ExpenseControlApp';
 import TikTokMillionaireCalculator from './components/TikTokMillionaireCalculator';
 import SalaryCalculator from './components/SalaryCalculator';
+import HipotecaCalculator from './components/HipotecaCalculator';
+import YouTubeVideosSlider from './components/YouTubeVideosSlider';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import About from './components/About';
@@ -20,10 +22,10 @@ import DonationModal from './components/DonationModal';
 import { Login } from './components/Login';
 import { Register } from './components/Register';
 import { ForgotPassword } from './components/ForgotPassword';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import SocialLinks from './components/SocialLinks';
 import ShareApp from './components/ShareApp';
-import { AdMobBanner } from './components/AdMobBanner';
+// import { AdMobBanner } from './components/AdMobBanner'; // Temporalmente desactivado para debug Android
 // import { useInterstitialAd } from './components/AdMobInterstitial';
 // import { requestTrackingPermission, initializeTrackingServices } from './utils/att';
 import { Capacitor } from '@capacitor/core';
@@ -33,9 +35,11 @@ import StructuredData from './components/StructuredData';
 import PWAInstall from './components/PWAInstall';
 import PWADebug from './components/PWADebug';
 import { useSwipe } from './hooks/useSwipe';
-
 function AppContent() {
-  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'privacy' | 'terms' | 'about' | 'contact' | 'content-hub' | 'faq' | 'resources' | 'autonomos' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password' | 'social'>('landing');
+  const { user } = useAuth();
+  // Estado inicial: si hay usuario, empezar en 'gastos', sino en 'landing'
+  // Pero permitir navegar a 'landing' explícitamente después
+  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'hipoteca' | 'privacy' | 'terms' | 'about' | 'contact' | 'content-hub' | 'faq' | 'resources' | 'autonomos' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password' | 'social'>(user ? 'gastos' : 'landing');
   
   // Hook para manejar anuncios interstitial
   // const { showOnNavigation } = useInterstitialAd();
@@ -61,13 +65,42 @@ function AppContent() {
     }
   });
 
+  // Effect para inicializar la app y manejar cambios de modo
   useEffect(() => {
-    // Initialize App Tracking Transparency - TEMPORALMENTE DESACTIVADO
-    // NOTA: Causaba crashes en Android, lo reactivaremos después
-    
-    // Firebase temporalmente desactivado - esperando configuración de reglas
-    console.log('App initialized on platform:', Capacitor.getPlatform());
-    console.log('Firebase temporalmente desactivado - esperando configuración de reglas');
+    const initializeApp = async () => {
+      console.log('App initialized on platform:', Capacitor.getPlatform());
+      
+      // Solo inicializar ATT y AdMob en apps móviles (no en web)
+      if (Capacitor.getPlatform() !== 'web') {
+        try {
+          // Importar ATT dinámicamente solo en móviles
+          const { requestTrackingPermission, initializeTrackingServices } = await import('./utils/att');
+          
+          // Solicitar permiso ATT con timeout para evitar bloqueos
+          // Usar un pequeño delay para no bloquear el renderizado inicial
+          setTimeout(async () => {
+            try {
+              const attResult = await requestTrackingPermission();
+              console.log('ATT Result:', attResult);
+              
+              // Inicializar servicios de tracking (Firebase Analytics y AdMob)
+              await initializeTrackingServices(attResult.canTrack);
+            } catch (attError) {
+              console.error('Error requesting ATT permission:', attError);
+              // Si falla ATT, inicializar con tracking deshabilitado
+              await initializeTrackingServices(false);
+            }
+          }, 500); // Pequeño delay para no bloquear el renderizado
+        } catch (error) {
+          console.error('Error initializing ATT/AdMob:', error);
+          // Continuar aunque falle la inicialización de ATT/AdMob
+        }
+      } else {
+        console.log('Web platform detected - using AdSense instead of AdMob');
+      }
+    };
+
+    initializeApp();
 
     const handleModeChange = (event: CustomEvent) => {
       if (event.detail === 'millonario') {
@@ -91,6 +124,21 @@ function AppContent() {
     };
   }, []);
 
+  // Effect para cambiar a 'gastos' cuando el usuario se autentica desde login/register
+  // NO redirigir cuando el usuario navega explícitamente a 'landing' desde el dashboard
+  useEffect(() => {
+    console.log('[App] User state changed:', user ? `Authenticated: ${user.email}` : 'Not authenticated');
+    console.log('[App] Current mode:', mode);
+    
+    // SOLO redirigir automáticamente si viene de login o register
+    // NO redirigir desde 'landing' aunque haya usuario (permite navegación explícita)
+    if (user && (mode === 'login' || mode === 'register')) {
+      console.log('[App] User authenticated from', mode, ', switching to gastos mode');
+      setMode('gastos');
+    }
+    // Si el modo es 'landing', no hacer nada (permitir que el usuario se quede ahí)
+  }, [user, mode]);
+
   // Track mode changes
   useEffect(() => {
     switch (mode) {
@@ -113,7 +161,34 @@ function AppContent() {
   }, [mode]);
 
   if (mode === 'gastos') {
-    return <ExpenseControlApp onBack={() => setMode('landing')} />;
+    // console.log('[App] Rendering ExpenseControlApp component'); // Comentado para reducir logs
+    return (
+      <ExpenseControlApp 
+        onBack={() => {
+          setMode('landing');
+          trackPageView('/', 'Landing Page');
+        }} 
+        onNavigate={(newMode) => {
+          if (newMode === 'landing') {
+            // Navegar a landing explícitamente
+            setMode('landing');
+            trackPageView('/', 'Landing Page');
+          } else if (newMode === 'content-hub') {
+            setMode('content-hub');
+            trackPageView('/content-hub', 'Content Hub');
+          } else if (newMode === 'resources') {
+            // Abrir canal de YouTube en lugar de navegar a resources
+            // Usar la misma URL que en YouTubeVideosSlider para consistencia
+            const youtubeUrl = 'https://youtube.com/@FinanzasMuyFáciles?sub_confirmation=1';
+            
+            // En apps móviles, window.open debería funcionar bien y abrirá en Safari/Chrome
+            // En web, también abrirá en una nueva pestaña
+            window.open(youtubeUrl, '_blank');
+            trackPageView('/youtube-channel', 'YouTube Channel');
+          }
+        }}
+      />
+    );
   }
 
   if (mode === 'autonomos') {
@@ -125,7 +200,7 @@ function AppContent() {
           data={{
             name: "Calculadora de Autónomos 2025 - IRPF y Seguridad Social",
             description: "Calculadora gratuita para autónomos en España. Calcula IRPF, cuota de Seguridad Social, gastos deducibles y bonificaciones por comunidad autónoma.",
-            url: "https://finanzasmuyfaciles.netlify.app/autonomos"
+            url: "https://finanzasmuyfacil.com/autonomos"
           }} 
         />
         
@@ -151,7 +226,7 @@ function AppContent() {
           data={{
             name: "Calculadora ¿Cuándo Seré Millonario? - Libertad Financiera",
             description: "Calculadora interactiva para saber cuándo podrás cumplir tus sueños y alcanzar la libertad financiera. Calcula tu edad para ser millonario con gráficos y animaciones.",
-            url: "https://finanzasmuyfaciles.netlify.app/cuando-ser-millonario",
+            url: "https://finanzasmuyfacil.com/cuando-ser-millonario",
             features: [
               "Cálculo de interés compuesto",
               "Gráficos interactivos",
@@ -184,7 +259,7 @@ function AppContent() {
           data={{
             name: "Calculadora Salario Neto 2025 - Sueldo Bruto a Neto España",
             description: "Calculadora de salario neto 2025 para España. Convierte tu sueldo bruto a neto con cálculos precisos de IRPF, Seguridad Social y comparativas regionales.",
-            url: "https://finanzasmuyfaciles.netlify.app/calculadora-salario-neto",
+            url: "https://finanzasmuyfacil.com/calculadora-salario-neto",
             features: [
               "Cálculo IRPF 2025",
               "Deducciones Seguridad Social",
@@ -204,6 +279,40 @@ function AppContent() {
           </button>
         </div>
         <SalaryCalculator />
+      </div>
+    );
+  }
+
+  if (mode === 'hipoteca') {
+    return (
+      <div className="min-h-screen">
+        {/* Structured Data para Calculadora Hipoteca */}
+        <StructuredData 
+          type="Calculator" 
+          data={{
+            name: "Calculadora de Hipoteca Gratuita 2025 - Simula tu Hipoteca",
+            description: "Calculadora de hipoteca gratuita 2025. Calcula tu cuota mensual, intereses totales, gastos adicionales y viabilidad de operación. Compara hipotecas fijas, variables y mixtas.",
+            url: "https://finanzasmuyfacil.com/calculadora-hipoteca",
+            features: [
+              "Cálculo de cuota mensual",
+              "Análisis de viabilidad bancaria",
+              "Gastos adicionales (comunidad, IBI, seguros)",
+              "Comparador de tipos de hipoteca",
+              "Capacidad de endeudamiento",
+              "Recomendaciones personalizadas"
+            ]
+          }} 
+        />
+        
+        <div className="absolute top-20 left-4 z-10">
+          <button
+            onClick={() => setMode('landing')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <HipotecaCalculator />
       </div>
     );
   }
@@ -426,7 +535,10 @@ function AppContent() {
         <Login 
           onNavigateToRegister={() => setMode('register')}
           onNavigateToForgotPassword={() => setMode('forgot-password')}
-          onSuccess={() => setMode('landing')}
+          onSuccess={() => {
+            console.log('[App] Login onSuccess called, user should be authenticated now');
+            // No cambiar el modo aquí, el useEffect detectará el cambio de usuario y cambiará automáticamente
+          }}
         />
       </div>
     );
@@ -445,7 +557,10 @@ function AppContent() {
         </div>
         <Register 
           onNavigateToLogin={() => setMode('login')}
-          onSuccess={() => setMode('landing')}
+          onSuccess={() => {
+            console.log('[App] Register onSuccess called, user should be authenticated now');
+            // No cambiar el modo aquí, el useEffect detectará el cambio de usuario y cambiará automáticamente
+          }}
         />
       </div>
     );
@@ -497,13 +612,20 @@ function AppContent() {
         data={{
           name: "Finanzas Fáciles - Calculadoras Financieras Gratuitas",
           description: "Calculadora de salario neto 2024, calculadora cuándo ser millonario, control de gastos gratis. Herramientas financieras para mejorar tu economía personal.",
-          url: "https://finanzasmuyfaciles.netlify.app"
+          url: "https://finanzasmuyfacil.com"
         }} 
       />
       
       {/* Header */}
       <div className="text-center pt-16 pb-8">
-        <h1 className="text-6xl font-bold text-white mb-4">FinanzasFácil</h1>
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <img 
+            src="/logos/logo-grafica.svg" 
+            alt="FinanzasFácil - Gráfica Positiva" 
+            className="h-20 md:h-24"
+          />
+        </div>
         <p className="text-xl text-white/80 mb-4">Calculadoras Financieras Gratuitas 2025</p>
         <p className="text-lg text-white/70 mb-8">Salario neto, libertad financiera y control de gastos</p>
         
@@ -571,7 +693,7 @@ function AppContent() {
         
 
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
           {/* Control de Gastos */}
           <div className="bg-white/10 backdrop-blur-sm border-4 border-white/30 rounded-3xl p-8 shadow-2xl hover:scale-105 transform transition-all duration-300">
             <div className="text-center">
@@ -632,6 +754,26 @@ function AppContent() {
             </div>
           </div>
 
+          {/* Calculadora Hipoteca */}
+          <div className="bg-white/10 backdrop-blur-sm border-4 border-white/30 rounded-3xl p-8 shadow-2xl hover:scale-105 transform transition-all duration-300">
+            <div className="text-center">
+              <div className="text-6xl mb-6">🏠</div>
+              <h2 className="text-3xl font-bold text-white mb-4">Calculadora de Hipoteca</h2>
+              <p className="text-white/90 mb-6 text-lg">
+                Calcula tu cuota mensual de hipoteca, intereses totales y tabla de amortización. Compara hipotecas fijas, variables y mixtas para tomar la mejor decisión.
+              </p>
+              <button
+                onClick={() => {
+                  analyticsEvents.navigationToCalculator('hipoteca');
+                  setMode('hipoteca');
+                }}
+                className="bg-gradient-to-r from-cyan-500 to-teal-600 text-white font-bold text-xl px-8 py-4 rounded-2xl hover:from-cyan-600 hover:to-teal-700 transition-all duration-300 shadow-2xl"
+              >
+                Calcular Hipoteca
+              </button>
+            </div>
+          </div>
+
           {/* Calculadora Autónomos */}
           <div className="bg-white/10 backdrop-blur-sm border-4 border-white/30 rounded-3xl p-8 shadow-2xl hover:scale-105 transform transition-all duration-300">
             <div className="text-center">
@@ -661,6 +803,11 @@ function AppContent() {
         {/* Lead Magnet CTA */}
         <div className="mt-16">
           <LeadMagnet />
+        </div>
+
+        {/* YouTube Videos Slider */}
+        <div className="mt-16">
+          <YouTubeVideosSlider maxVideos={6} />
         </div>
 
         {/* Footer con enlaces legales y donaciones */}
@@ -709,13 +856,14 @@ function AppContent() {
               >
                 Términos
               </button>
-              <button
+              {/* Apple no permite donaciones fuera de In-App Purchase */}
+              {/* <button
                 onClick={() => setMode('donate')}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 hover:text-white transition-colors"
                 aria-label="Donar a través de PayPal"
               >
                 <span>💖 Donar</span>
-              </button>
+              </button> */}
             </div>
             <p className="text-white/50 text-sm">
               © 2025 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
@@ -744,7 +892,7 @@ function AppContent() {
                 </a>
                 <span className="text-white/30">•</span>
                 <a 
-                  href="https://finanzasmuyfaciles.netlify.app" 
+                  href="https://finanzasmuyfacil.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-300 hover:text-blue-200 underline transition-colors"
@@ -934,7 +1082,7 @@ function AppContent() {
 
             {/* Finanzas Muy Fáciles */}
             <a 
-              href="https://finanzasmuyfaciles.netlify.app" 
+              href="https://finanzasmuyfacil.com" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 border border-white/20"
@@ -958,8 +1106,8 @@ function AppContent() {
       {/* PWA Debug Info */}
       <PWADebug />
       
-      {/* AdMob Banner */}
-      <AdMobBanner position="bottom" size="adaptive" />
+      {/* AdMob Banner - TEMPORALMENTE DESACTIVADO PARA DEBUG ANDROID */}
+      {/* <AdMobBanner position="bottom" size="adaptive" /> */}
     </div>
   );
 }

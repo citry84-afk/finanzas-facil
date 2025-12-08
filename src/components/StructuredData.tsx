@@ -21,7 +21,7 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) => {
         "publisher": {
           "@type": "Organization",
           "name": "Finanzas Fáciles",
-          "url": "https://finanzasmuyfaciles.netlify.app"
+          "url": "https://finanzasmuyfacil.com"
         }
       };
 
@@ -31,7 +31,7 @@ const StructuredData: React.FC<StructuredDataProps> = ({ type, data }) => {
             ...baseData,
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://finanzasmuyfaciles.netlify.app/?q={search_term_string}",
+              "target": "https://finanzasmuyfacil.com/?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           };
