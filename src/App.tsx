@@ -12,6 +12,7 @@ import ContentHub from './components/ContentHub';
 import FAQ from './components/FAQ';
 import Resources from './components/Resources';
 import AutonomosCalculator from './components/AutonomosCalculator';
+import PresupuestoEstudianteCalculator from './components/PresupuestoEstudianteCalculator';
 import ProductoGastos from './components/ProductoGastos';
 import LeadMagnet from './components/LeadMagnet';
 import LandingIRPF from './components/LandingIRPF';
@@ -35,11 +36,127 @@ import StructuredData from './components/StructuredData';
 import PWAInstall from './components/PWAInstall';
 import PWADebug from './components/PWADebug';
 import { useSwipe } from './hooks/useSwipe';
+
+// Helper para determinar el modo inicial según URL y usuario
+function getInitialMode(hasUser: boolean) {
+  const defaultMode: AppMode = hasUser ? 'gastos' : 'landing';
+
+  if (typeof window === 'undefined') {
+    return defaultMode;
+  }
+
+  type ModeParam =
+    | 'autonomos'
+    | 'hipoteca'
+    | 'salario'
+    | 'millonario'
+    | 'gastos'
+    | 'presupuesto-estudiante'
+    | 'landing'
+    | 'landing-irpf'
+    | 'landing-cuota'
+    | 'landing-gastos';
+
+  const mapTokenToMode = (token: string | null): AppMode | null => {
+    const value = token as ModeParam | null;
+    switch (value) {
+      case 'autonomos':
+        return 'autonomos';
+      case 'hipoteca':
+        return 'hipoteca';
+      case 'salario':
+        return 'salario';
+      case 'millonario':
+        return 'tiktok-millonario';
+      case 'gastos':
+        return 'gastos';
+      case 'presupuesto-estudiante':
+        return 'presupuesto-estudiante';
+      case 'landing':
+        return 'landing';
+      case 'landing-irpf':
+        return 'landing-irpf';
+      case 'landing-cuota':
+        return 'landing-cuota';
+      case 'landing-gastos':
+        return 'landing-gastos';
+      default:
+        return null;
+    }
+  };
+
+  const path = window.location.pathname;
+  const searchParams = new URLSearchParams(window.location.search);
+
+  // 1) Prioridad al parámetro ?mode=...
+  const modeFromQuery = mapTokenToMode(searchParams.get('mode'));
+  if (modeFromQuery) {
+    return modeFromQuery;
+  }
+
+  // 2) Mapear paths SEO a modos internos
+  switch (path) {
+    case '/autonomos':
+    case '/calculadora-autonomos':
+    case '/calculadora-irpf-autonomos':
+      return 'autonomos';
+    case '/calculadora-hipoteca':
+    case '/hipoteca':
+      return 'hipoteca';
+    case '/calculadora-salario-neto':
+    case '/salario':
+      return 'salario';
+    case '/cuando-sere-millonario':
+    case '/millonario':
+      return 'tiktok-millonario';
+    case '/control-gastos':
+    case '/gastos':
+      return 'gastos';
+    case '/calculadora-presupuesto-estudiante-universitario':
+    case '/presupuesto-estudiante':
+      return 'presupuesto-estudiante';
+    case '/irpf-autonomos':
+    case '/guia-irpf-autonomos-2025':
+      return 'landing-irpf';
+    case '/cuota-autonomos':
+      return 'landing-cuota';
+    case '/gastos-deducibles-autonomos':
+      return 'landing-gastos';
+    default:
+      return defaultMode;
+  }
+}
+
+type AppMode =
+  | 'landing'
+  | 'gastos'
+  | 'tiktok-millonario'
+  | 'salario'
+  | 'hipoteca'
+  | 'presupuesto-estudiante'
+  | 'privacy'
+  | 'terms'
+  | 'about'
+  | 'contact'
+  | 'content-hub'
+  | 'faq'
+  | 'resources'
+  | 'autonomos'
+  | 'producto-gastos'
+  | 'producto-curso-finanzas'
+  | 'donate'
+  | 'landing-irpf'
+  | 'landing-cuota'
+  | 'landing-gastos'
+  | 'login'
+  | 'register'
+  | 'forgot-password'
+  | 'social';
 function AppContent() {
   const { user } = useAuth();
-  // Estado inicial: si hay usuario, empezar en 'gastos', sino en 'landing'
-  // Pero permitir navegar a 'landing' explícitamente después
-  const [mode, setMode] = useState<'landing' | 'gastos' | 'tiktok-millonario' | 'salario' | 'hipoteca' | 'privacy' | 'terms' | 'about' | 'contact' | 'content-hub' | 'faq' | 'resources' | 'autonomos' | 'producto-gastos' | 'producto-curso-finanzas' | 'donate' | 'landing-irpf' | 'landing-cuota' | 'landing-gastos' | 'login' | 'register' | 'forgot-password' | 'social'>(user ? 'gastos' : 'landing');
+  // Estado inicial: detectar modo a partir de URL (pathname / ?mode=) y usuario
+  // Esto permite que URLs como /autonomos o /calculadora-hipoteca carguen directamente la herramienta correcta
+  const [mode, setMode] = useState<AppMode>(() => getInitialMode(!!user));
   
   // Hook para manejar anuncios interstitial
   // const { showOnNavigation } = useInterstitialAd();
@@ -153,6 +270,9 @@ function AppContent() {
       case 'salario':
         analyticsEvents.salaryCalculatorOpened();
         trackPageView('/salario', 'Calculadora Salario Neto');
+        break;
+      case 'presupuesto-estudiante':
+        trackPageView('/presupuesto-estudiante', 'Calculadora Presupuesto Estudiante');
         break;
       case 'landing':
         trackPageView('/', 'Finanzas Fáciles - Landing');
@@ -279,6 +399,39 @@ function AppContent() {
           </button>
         </div>
         <SalaryCalculator />
+      </div>
+    );
+  }
+
+  if (mode === 'presupuesto-estudiante') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+        {/* Structured Data para Calculadora Presupuesto Estudiante */}
+        <StructuredData
+          type="Calculator"
+          data={{
+            name: "Calculadora Presupuesto Estudiante Universitario 2025",
+            description: "Calculadora gratuita para gestionar el presupuesto universitario con la regla 50/30/20. Calcula gastos, ahorro y proyecciones para estudiantes.",
+            url: "https://finanzasmuyfacil.com/calculadora-presupuesto-estudiante-universitario",
+            features: [
+              "Regla 50/30/20",
+              "Cálculo por ciudad",
+              "Gráficos interactivos",
+              "Proyecciones a 4 años",
+              "Descarga PDF"
+            ]
+          }}
+        />
+        
+        <div className="absolute top-20 left-4 z-10">
+          <button
+            onClick={() => setMode('landing')}
+            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
+          >
+            ← Volver
+          </button>
+        </div>
+        <PresupuestoEstudianteCalculator onBack={() => setMode('landing')} />
       </div>
     );
   }
@@ -678,7 +831,19 @@ function AppContent() {
               Nuestras calculadoras cubren aspectos esenciales de la economía personal: desde convertir tu salario bruto a neto 
               considerando IRPF y Seguridad Social, hasta simular cuándo podrás alcanzar la libertad financiera con tus ahorros. 
               También ofrecemos herramientas especializadas para autónomos, incluyendo cálculos de gastos deducibles y bonificaciones 
-              por comunidad autónoma.
+              por comunidad autónoma. Si eres autónomo puedes empezar por nuestra{' '}
+              <a href="/autonomos" className="underline font-semibold">
+                calculadora IRPF autónomos 2025
+              </a>{' '}
+              o revisar la{' '}
+              <a href="/tabla-irpf-autonomos-2022.html" className="underline font-semibold">
+                tabla IRPF autónomos 2022
+              </a>{' '}
+              y la{' '}
+              <a href="/tabla-irpf-autonomos-2025.html" className="underline font-semibold">
+                tabla IRPF autónomos 2025
+              </a>{' '}
+              para comparar tramos y retenciones.
             </p>
           </div>
         </div>
@@ -693,7 +858,7 @@ function AppContent() {
         
 
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Control de Gastos */}
           <div className="bg-white/10 backdrop-blur-sm border-4 border-white/30 rounded-3xl p-8 shadow-2xl hover:scale-105 transform transition-all duration-300">
             <div className="text-center">
@@ -790,6 +955,26 @@ function AppContent() {
                 className="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-xl px-8 py-4 rounded-2xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-2xl"
               >
                 Calcular Impuestos
+              </button>
+            </div>
+          </div>
+
+          {/* Calculadora Presupuesto Estudiante */}
+          <div className="bg-white/10 backdrop-blur-sm border-4 border-white/30 rounded-3xl p-8 shadow-2xl hover:scale-105 transform transition-all duration-300">
+            <div className="text-center">
+              <div className="text-6xl mb-6">🎓</div>
+              <h2 className="text-3xl font-bold text-white mb-4">Presupuesto Estudiante</h2>
+              <p className="text-white/90 mb-6 text-lg">
+                Calculadora gratuita para gestionar el presupuesto universitario con la regla 50/30/20. Calcula gastos por ciudad, tipo de alojamiento, alimentación y transporte.
+              </p>
+              <button
+                onClick={() => {
+                  analyticsEvents.navigationToCalculator('presupuesto-estudiante');
+                  setMode('presupuesto-estudiante');
+                }}
+                className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold text-xl px-8 py-4 rounded-2xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-2xl"
+              >
+                Calcular Presupuesto
               </button>
             </div>
           </div>
