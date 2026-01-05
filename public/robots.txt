@@ -5,15 +5,34 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://finanzasmuyfaciles.netlify.app/sitemap.xml
+Sitemap: https://finanzasmuyfacil.com/sitemap.xml
 
 # Priorizar rastreo de contenido importante
 Allow: /blog/
+Allow: /blog.html
 Allow: /autonomos
 Allow: /producto-gastos
 Allow: /amazon
 Allow: /guias
 Allow: /articulos
+Allow: /privacidad.html
+Allow: /terminos.html
+Allow: /contacto.html
+Allow: /acerca-de.html
+
+# Nuevas páginas SEO optimizadas
+Allow: /calculadora-irpf-autonomo-2025.html
+Allow: /tabla-irpf-autonomos-2022.html
+Allow: /calculadora-sueldo-neto-autonomos.html
+Allow: /salario-bruto-espana.html
+Allow: /irpf-autonomo.html
+Allow: /30000-brutos-a-netos.html
+Allow: /calculadora-autonomos.html
+Allow: /calculadoras.html
+Allow: /tramos-irpf-autonomos-2021.html
+Allow: /retencion-irpf-autonomos.html
+Allow: /modelo-130-online.html
+Allow: /calculadora-presupuesto-estudiante-universitario.html
 
 # Evitar rastreo de recursos innecesarios
 Disallow: /assets/

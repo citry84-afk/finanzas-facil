@@ -1,138 +1,428 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/</loc>
-    <lastmod>2025-01-20</lastmod>
+    <loc>https://finanzasmuyfacil.com/</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/autonomos</loc>
+    <lastmod>2025-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/autonomos</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://finanzasmuyfacil.com/calculadora-irpf-autonomos</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/articulos</loc>
+    <loc>https://finanzasmuyfacil.com/irpf-autonomos</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/guia-irpf-autonomos-2025</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/articulos</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/blog</loc>
+    <loc>https://finanzasmuyfacil.com/blog</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/blog/calculadora-autonomos-2025</loc>
+    <loc>https://finanzasmuyfacil.com/blog/calculadora-autonomos-2025</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/blog/gastos-deducibles-autonomos-2025</loc>
+    <loc>https://finanzasmuyfacil.com/blog/gastos-deducibles-autonomos-2025</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/blog/modelo-130-autonomos-2025</loc>
+    <loc>https://finanzasmuyfacil.com/blog/modelo-130-autonomos-2025</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/blog/irpf-autonomos-2025</loc>
+    <loc>https://finanzasmuyfacil.com/blog/irpf-autonomos-2025</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/blog/calcular-irpf-autonomos-2025</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/blog/cuota-autonomos-2025</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/blog/cuota-autonomos-2025</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/producto-gastos</loc>
+    <loc>https://finanzasmuyfacil.com/producto-gastos</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/calculadora-irpf-autonomos</loc>
+    <loc>https://finanzasmuyfacil.com/calculadora-irpf-autonomos</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/cuota-autonomos-2025</loc>
+    <loc>https://finanzasmuyfacil.com/cuota-autonomos-2025</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/gastos-deducibles-autonomos</loc>
+    <loc>https://finanzasmuyfacil.com/gastos-deducibles-autonomos</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/amazon</loc>
+    <loc>https://finanzasmuyfacil.com/amazon</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/guias</loc>
+    <loc>https://finanzasmuyfacil.com/guias</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/recursos</loc>
+    <loc>https://finanzasmuyfacil.com/recursos</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/faq</loc>
+    <loc>https://finanzasmuyfacil.com/faq</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/sobre</loc>
+    <loc>https://finanzasmuyfacil.com/sobre</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/contacto</loc>
+    <loc>https://finanzasmuyfacil.com/contacto</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/privacy</loc>
+    <loc>https://finanzasmuyfacil.com/privacy</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/terms</loc>
+    <loc>https://finanzasmuyfacil.com/terms</loc>
     <lastmod>2025-01-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   
+  <!-- Páginas HTML estáticas para AdSense -->
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadora-autonomos.html</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/30000-brutos-a-netos.html</loc>
+    <lastmod>2025-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/presupuesto-navideno-2025.html</loc>
+    <lastmod>2025-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/ahorrar-black-friday.html</loc>
+    <lastmod>2025-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/tabla-irpf-autonomos-2025.html</loc>
+    <lastmod>2025-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/blog.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/privacidad.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/terminos.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/contacto.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/acerca-de.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
   <!-- Productos Digitales -->
   <url>
-    <loc>https://finanzasmuyfaciles.netlify.app/curso-finanzas-desde-0</loc>
+    <loc>https://finanzasmuyfacil.com/curso-finanzas-desde-0</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
+  </url>
+  
+  <!-- Nuevas Landing Pages SEO -->
+  <url>
+    <loc>https://finanzasmuyfacil.com/tarifa-plana-autonomos-2025.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/blog/tarifa-plana-autonomos-2025</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/gastos-deducibles-autonomos-2025.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/modelo-130-autonomos-2025.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/blog/calcular-irpf-autonomos-2025.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadora-hipoteca-gratis.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/calcular-salario-neto.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/cuota-autonomos-2025.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/modelo-130-online.html</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/modelo-130-autonomos-2025.html</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadora-autonomos.html</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadora-irpf-autonomos-2021.html</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/retencion-irpf-autonomos.html</loc>
+    <lastmod>2026-12-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/cuando-hacer-modelo-130.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/tarifa-plana-requisitos.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/lista-gastos-deducibles.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/base-cotizacion-autonomos.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/autonomos-jovenes-2025.html</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <!-- Nuevas páginas SEO optimizadas -->
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadora-irpf-autonomo-2025.html</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/tabla-irpf-autonomos-2022.html</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/retencion-irpf-autonomos.html</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadora-sueldo-neto-autonomos.html</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/salario-bruto-espana.html</loc>
+    <lastmod>2026-12-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/irpf-autonomo.html</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadoras.html</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <!-- Nuevas páginas SEO optimizadas - Diciembre 2025 -->
+  <url>
+    <loc>https://finanzasmuyfacil.com/calcular-salario-neto-2025.html</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/mejor-calculadora-autonomos-2025.html</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/como-calcular-irpf-autonomos-2025.html</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://finanzasmuyfacil.com/comparativa-hipotecas-fija-vs-variable-2025.html</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <!-- Nueva página SEO optimizada - 5 Diciembre 2025 -->
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadora-irpf-autonomos-2021.html</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <!-- Nueva página SEO optimizada - 26 Diciembre 2025 -->
+  <url>
+    <loc>https://finanzasmuyfacil.com/tramos-irpf-autonomos-2021.html</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <!-- Nueva calculadora - 5 Enero 2026 -->
+  <url>
+    <loc>https://finanzasmuyfacil.com/calculadora-presupuesto-estudiante-universitario.html</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
   </url>
   
 </urlset>

@@ -1,4 +1,4 @@
-# ads.txt file for finanzasmuyfaciles.netlify.app
+# ads.txt file for finanzasmuyfacil.com
 # This file is required by Google AdSense for domain verification
 
 google.com, pub-4837743291717475, DIRECT, f08c47fec0942fa0
