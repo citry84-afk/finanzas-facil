@@ -3,27 +3,29 @@
 # Script de pre-build para Xcode Cloud
 # Este script se ejecuta automáticamente antes de cada build en Xcode Cloud
 # Ubicación: ios/App/ci_scripts/ci_pre_xcodebuild.sh
+# NOTA: Xcode Cloud ejecuta este script desde el directorio ci_scripts
 
 set -e  # Salir si cualquier comando falla
 
 echo "=========================================="
 echo "🔧 Xcode Cloud: Iniciando pre-build script"
 echo "=========================================="
-echo "📂 Directorio actual: $(pwd)"
+echo "📂 Directorio actual (donde se ejecuta el script): $(pwd)"
 echo "📂 Usuario: $(whoami)"
 echo "📂 PATH: $PATH"
 
-# El script se ejecuta desde la raíz del repositorio en Xcode Cloud
-# Necesitamos navegar al directorio donde está el Podfile
+# Xcode Cloud ejecuta el script desde ci_scripts/
+# Necesitamos navegar al directorio donde está el Podfile (un nivel arriba)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
-
 echo "📂 Directorio del script: $SCRIPT_DIR"
-echo "📂 Raíz del repositorio: $REPO_ROOT"
 
-# Navegar al directorio donde está el Podfile
-cd "$REPO_ROOT/ios/App" || {
-    echo "❌ Error: No se pudo cambiar al directorio ios/App"
+# El Podfile está en ios/App/, que es un nivel arriba de ci_scripts/
+PODFILE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+echo "📂 Directorio del Podfile: $PODFILE_DIR"
+
+# Cambiar al directorio donde está el Podfile
+cd "$PODFILE_DIR" || {
+    echo "❌ Error: No se pudo cambiar al directorio $PODFILE_DIR"
     echo "📂 Directorio actual: $(pwd)"
     echo "📂 Contenido del directorio actual:"
     ls -la || true
@@ -56,7 +58,7 @@ if ! command -v pod &> /dev/null; then
         echo "❌ Error: No se encontró 'gem' para instalar CocoaPods"
         echo "💡 Intentando usar pod directamente..."
         # En algunos casos, pod puede estar disponible pero no en PATH
-        export PATH="/usr/local/bin:$PATH"
+        export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
         if ! command -v pod &> /dev/null; then
             echo "❌ Error: CocoaPods no está disponible"
             exit 1
@@ -79,13 +81,15 @@ echo "📦 Instalando dependencias de CocoaPods..."
 echo "=========================================="
 
 # Usar --repo-update para asegurar que los repos están actualizados
+# Si falla, intentar sin --repo-update
 pod install --repo-update || {
-    echo "❌ Error: 'pod install --repo-update' falló"
-    echo "💡 Intentando sin --repo-update..."
+    echo "⚠️  'pod install --repo-update' falló, intentando sin --repo-update..."
     pod install || {
         echo "❌ Error: 'pod install' también falló"
         echo "📂 Contenido del directorio después del fallo:"
         ls -la || true
+        echo "📂 Verificando si existe Podfile.lock:"
+        [ -f "Podfile.lock" ] && echo "✅ Podfile.lock existe" || echo "❌ Podfile.lock no existe"
         exit 1
     }
 }
@@ -104,6 +108,8 @@ if [ ! -f "$RELEASE_CONFIG" ]; then
     echo "❌ Error: No se generó $RELEASE_CONFIG"
     echo "📂 Contenido de Pods/Target Support Files/Pods-App/:"
     ls -la "Pods/Target Support Files/Pods-App/" 2>/dev/null || echo "Directorio no existe"
+    echo "📂 Contenido de Pods/Target Support Files/:"
+    ls -la "Pods/Target Support Files/" 2>/dev/null || echo "Directorio no existe"
     exit 1
 fi
 
