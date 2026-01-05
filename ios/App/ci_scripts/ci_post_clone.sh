@@ -3,22 +3,21 @@
 # Script post-clone para Xcode Cloud
 # Este script se ejecuta después de clonar el repositorio
 
-# NO usar set -e, queremos controlar los errores manualmente
-set +e
+set +e  # No salir inmediatamente en caso de error
 
 echo "🔧 Xcode Cloud: Post-clone script iniciado"
-echo "📂 Directorio inicial: $(pwd)"
 
-# Navegar a la raíz del repositorio
-# El script se ejecuta desde ios/App/ci_scripts/
-# Necesitamos ir 3 niveles arriba
-cd "$(dirname "$0")/../../.." 2>&1
-if [ $? -ne 0 ]; then
-    echo "❌ Error: No se pudo navegar a la raíz"
-    exit 1
+# Usar CI_WORKSPACE si está disponible (variable de entorno de Xcode Cloud)
+# Si no, navegar desde el directorio del script
+if [ -n "$CI_WORKSPACE" ]; then
+    echo "📂 Usando CI_WORKSPACE: $CI_WORKSPACE"
+    cd "$CI_WORKSPACE" || exit 1
+else
+    echo "📂 Navegando desde script..."
+    cd "$(dirname "$0")/../../.." || exit 1
 fi
 
-echo "📂 Raíz del repositorio: $(pwd)"
+echo "📂 Directorio actual: $(pwd)"
 
 # Instalar dependencias de npm
 echo "📦 Instalando npm dependencies..."
@@ -34,11 +33,7 @@ else
 fi
 
 # Navegar al directorio del Podfile
-cd ios/App 2>&1
-if [ $? -ne 0 ]; then
-    echo "❌ Error: No se pudo navegar a ios/App"
-    exit 1
-fi
+cd ios/App 2>&1 || exit 1
 
 echo "📂 Directorio Podfile: $(pwd)"
 
@@ -48,15 +43,14 @@ if [ ! -f "Podfile" ]; then
     exit 1
 fi
 
-# Buscar pod
+# Buscar e instalar CocoaPods si es necesario
 export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 
 if ! command -v pod >/dev/null 2>&1; then
+    echo "📦 Instalando CocoaPods..."
     if command -v brew >/dev/null 2>&1; then
-        echo "📦 Instalando CocoaPods..."
         brew install cocoapods 2>&1 || true
     elif command -v gem >/dev/null 2>&1; then
-        echo "📦 Instalando CocoaPods con gem..."
         gem install cocoapods --no-document 2>&1 || true
     fi
 fi
@@ -72,10 +66,9 @@ fi
 
 # Verificar resultado final
 if [ $? -eq 0 ]; then
-    echo "✅ Post-clone script completado"
+    echo "✅ Post-clone script completado exitosamente"
     exit 0
 else
-    echo "⚠️  pod install falló, pero continuando..."
-    # No fallar el build, dejar que continúe
+    echo "⚠️  pod install falló, pero continuando para no bloquear el build"
     exit 0
 fi
