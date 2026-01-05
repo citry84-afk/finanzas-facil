@@ -46,7 +46,7 @@ fi
 echo "✅ Podfile encontrado"
 
 # Verificar que CocoaPods está instalado
-# En Xcode Cloud, CocoaPods puede estar preinstalado o necesitar instalación
+# CocoaPods debería haberse instalado en ci_post_clone.sh
 POD_CMD=""
 if command -v pod >/dev/null 2>&1; then
     POD_CMD="pod"
@@ -58,37 +58,20 @@ elif [ -f "/opt/homebrew/bin/pod" ]; then
     POD_CMD="/opt/homebrew/bin/pod"
     echo "✅ CocoaPods encontrado en /opt/homebrew/bin/pod"
 else
-    echo "⚠️  CocoaPods no encontrado, intentando instalar..."
-    
-    # Intentar instalar con gem
-    if command -v gem >/dev/null 2>&1; then
-        echo "📦 Instalando CocoaPods con gem..."
-        if gem install cocoapods --no-document; then
-            # Después de instalar, buscar pod
-            if command -v pod >/dev/null 2>&1; then
-                POD_CMD="pod"
-            elif [ -f "$HOME/.gem/ruby/*/bin/pod" ]; then
-                POD_CMD="$(find $HOME/.gem/ruby -name pod -type f 2>/dev/null | head -1)"
-            else
-                # Añadir gem bin al PATH
-                export PATH="$HOME/.gem/ruby/*/bin:$PATH"
-                if command -v pod >/dev/null 2>&1; then
-                    POD_CMD="pod"
-                fi
-            fi
-        else
-            echo "❌ Error: No se pudo instalar CocoaPods con gem"
-            exit 1
-        fi
+    echo "❌ Error: CocoaPods no está disponible"
+    echo "💡 CocoaPods debería haberse instalado en ci_post_clone.sh"
+    echo "💡 Verificando si está en PATH alternativo..."
+    export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
+    if command -v pod >/dev/null 2>&1; then
+        POD_CMD="pod"
     else
-        echo "❌ Error: No se encontró 'gem' para instalar CocoaPods"
-        echo "💡 Xcode Cloud debería tener CocoaPods preinstalado"
+        echo "❌ Error: CocoaPods no está disponible en ninguna ubicación"
         exit 1
     fi
 fi
 
 if [ -z "$POD_CMD" ]; then
-    echo "❌ Error: No se pudo encontrar o instalar CocoaPods"
+    echo "❌ Error: No se pudo encontrar CocoaPods"
     exit 1
 fi
 
