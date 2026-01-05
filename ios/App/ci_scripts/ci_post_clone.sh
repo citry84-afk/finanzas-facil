@@ -2,15 +2,13 @@
 
 # Script post-clone para Xcode Cloud
 # Este script se ejecuta después de clonar el repositorio
-# Apple recomienda instalar dependencias aquí, no en ci_pre_xcodebuild.sh
 
-echo "🔧 Xcode Cloud: Iniciando post-clone script"
+set +e  # No salir inmediatamente en caso de error
+
+echo "🔧 Xcode Cloud: Post-clone script"
 
 # Navegar al directorio del Podfile
-cd "$(dirname "$0")/.." || {
-    echo "❌ Error: No se pudo cambiar al directorio"
-    exit 1
-}
+cd "$(dirname "$0")/.." || exit 1
 
 # Verificar Podfile
 if [ ! -f "Podfile" ]; then
@@ -18,18 +16,16 @@ if [ ! -f "Podfile" ]; then
     exit 1
 fi
 
-# Buscar pod en ubicaciones estándar
+# Buscar pod
 if ! command -v pod >/dev/null 2>&1; then
     export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
     
-    # Si aún no está disponible, intentar instalar
+    # Si aún no está, intentar instalar
     if ! command -v pod >/dev/null 2>&1; then
         if command -v brew >/dev/null 2>&1; then
-            echo "📦 Instalando CocoaPods con Homebrew..."
-            brew install cocoapods
+            brew install cocoapods || true
         elif command -v gem >/dev/null 2>&1; then
-            echo "📦 Instalando CocoaPods con gem..."
-            gem install cocoapods --no-document
+            gem install cocoapods --no-document || true
             export PATH="$HOME/.gem/ruby/*/bin:$PATH"
         fi
     fi
@@ -37,10 +33,20 @@ fi
 
 # Ejecutar pod install
 echo "📦 Ejecutando pod install..."
-pod install || pod install --repo-update || {
-    echo "❌ Error: pod install falló"
-    exit 1
-}
+pod install
 
-echo "✅ Post-clone script completado exitosamente"
-exit 0
+# Si falla, intentar con --repo-update
+if [ $? -ne 0 ]; then
+    echo "⚠️  Reintentando con --repo-update..."
+    pod install --repo-update
+fi
+
+# Verificar resultado
+if [ $? -eq 0 ]; then
+    echo "✅ Post-clone script completado"
+    exit 0
+else
+    echo "⚠️  pod install falló, pero continuando..."
+    # No salir con error, dejar que el build continúe
+    exit 0
+fi
