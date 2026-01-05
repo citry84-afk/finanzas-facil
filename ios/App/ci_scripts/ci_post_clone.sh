@@ -7,8 +7,19 @@ set +e  # No salir inmediatamente en caso de error
 
 echo "🔧 Xcode Cloud: Post-clone script"
 
+# Navegar a la raíz del repositorio (3 niveles arriba desde ci_scripts)
+cd "$(dirname "$0")/../../.." || exit 1
+
+# Instalar dependencias de npm primero (necesario para Capacitor)
+echo "📦 Instalando dependencias de npm..."
+if command -v npm >/dev/null 2>&1; then
+    npm install || echo "⚠️  npm install falló, continuando..."
+else
+    echo "⚠️  npm no encontrado, continuando..."
+fi
+
 # Navegar al directorio del Podfile
-cd "$(dirname "$0")/.." || exit 1
+cd ios/App || exit 1
 
 # Verificar Podfile
 if [ ! -f "Podfile" ]; then
