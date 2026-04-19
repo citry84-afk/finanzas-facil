@@ -70,3 +70,22 @@ node_modules/
 
 # TernJS port file
 .tern-port
+node_modules
+node_modules
+node_modules
+
+# Python venv
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Netlify local
+.netlify/
+
+# Cursor / notas temporales
+AUDITORIA-CLAUDE.md
