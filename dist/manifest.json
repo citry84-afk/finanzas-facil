@@ -51,21 +51,21 @@
       "name": "Calculadora Salario",
       "short_name": "Salario",
       "description": "Calcula tu salario neto",
-      "url": "/?mode=salary",
+      "url": "/?mode=salario",
       "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
     },
     {
       "name": "Calculadora Millonario",
       "short_name": "Millonario",
       "description": "¿Cuándo serás millonario?",
-      "url": "/?mode=millionaire",
+      "url": "/?mode=millonario",
       "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
     },
     {
       "name": "Control Gastos",
       "short_name": "Gastos",
       "description": "Controla tus gastos",
-      "url": "/?mode=expenses",
+      "url": "/?mode=gastos",
       "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
     }
   ]

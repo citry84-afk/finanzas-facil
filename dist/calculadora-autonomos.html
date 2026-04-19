@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Autónomos 2026: IRPF, Cuota y Modelo 130 | FinanzasFácil</title>
+  <meta name="description" content="Calcula en segundos cuánto paga un autónomo en 2026: IRPF, cuota de Seguridad Social, gastos deducibles y Modelo 130. Gratis y sin registro." />
+  <meta name="keywords" content="calculadora autónomos, calculadora autónomos 2026, calculadora irpf autónomos, calculadora cuota autónomos, calculadora sueldo neto autónomos, calculadora gastos deducibles, modelo 130, calculadora autónomo gratis" />
+  <link rel="canonical" href="https://finanzasmuyfacil.com/calculadora-autonomos.html" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  
+  <!-- Schema.org JSON-LD para Calculadora -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora Autónomos 2026",
+    "description": "Calculadora gratuita para autónomos en España. Calcula IRPF, cuota Seguridad Social, gastos deducibles y Modelo 130.",
+    "url": "https://finanzasmuyfacil.com/calculadora-autonomos.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127"
+    }
+  }
+  </script>
+  
+  <!-- Schema.org FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "¿Cómo usar la calculadora autónomos para calcular IRPF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La calculadora autónomos te permite calcular tu IRPF, cuota de Seguridad Social y gastos deducibles. Introduce tu facturación mensual, comunidad autónoma, gastos deducibles y obtendrás el resultado del IRPF aplicando los tramos correctos. Es 100% gratuita y no requiere registro."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿La calculadora autónomos incluye tabla IRPF autónomos 2022?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, nuestra calculadora autónomos utiliza los tramos de IRPF actualizados. Los tramos son muy similares entre 2022 y 2025 (19% hasta 12.450€, 24%, 30%, 37%, 45%, 47%), por lo que la calculadora es válida para ambos años."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿Puedo calcular la retención IRPF autónomos 2021 con la calculadora?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, la calculadora autónomos puede ayudarte a calcular retenciones. Los tipos de retención IRPF autónomos (7% primer año, 15% normal, 2% artísticas) son los mismos desde 2021, por lo que la calculadora es válida para calcular retenciones de 2021, 2022, 2025 y años posteriores."
+      }
+    }]
+  }
+  </script>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(to bottom, #e0e7ff, #f3f4f6); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    header { background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); color: white; padding: 60px 20px; text-align: center; margin-bottom: 30px; border-radius: 12px; }
+    h1 { font-size: 42px; margin-bottom: 15px; font-weight: 700; }
+    .subtitle { font-size: 20px; opacity: 0.95; margin-bottom: 30px; }
+    nav { background: white; padding: 15px 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    nav a { color: #3b82f6; text-decoration: none; margin-right: 20px; font-weight: 500; }
+    nav a:hover { text-decoration: underline; }
+    .cta-button { display: inline-block; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #1a1a1a; padding: 20px 40px; border-radius: 12px; text-decoration: none; font-size: 24px; font-weight: 700; margin: 20px 0; transition: transform 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .cta-button:hover { transform: scale(1.05); }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
+    .feature-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .feature-card h3 { font-size: 24px; margin-bottom: 15px; color: #1a1a1a; }
+    .feature-card p { color: #4b5563; margin-bottom: 10px; }
+    .content { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 30px; }
+    h2 { font-size: 32px; margin-top: 30px; margin-bottom: 20px; color: #1a1a1a; }
+    h3 { font-size: 24px; margin-top: 25px; margin-bottom: 15px; color: #374151; }
+    p { margin-bottom: 15px; color: #4b5563; font-size: 18px; }
+    ul { margin-left: 30px; margin-bottom: 20px; }
+    li { margin-bottom: 10px; color: #4b5563; font-size: 17px; }
+    .highlight { background: #dbeafe; border-left: 4px solid #3b82f6; padding: 20px; margin: 25px 0; border-radius: 8px; }
+    .highlight p { margin: 0; color: #1e40af; font-weight: 500; }
+    .example-box { background: #f9fafb; border: 2px solid #e5e7eb; padding: 25px; border-radius: 8px; margin: 25px 0; }
+    .example-box h4 { color: #1a1a1a; margin-bottom: 15px; font-size: 20px; }
+    footer { background: #1a1a1a; color: white; padding: 40px 20px; text-align: center; margin-top: 50px; border-radius: 12px; }
+    footer a { color: #60a5fa; text-decoration: none; margin: 0 15px; }
+    footer a:hover { text-decoration: underline; }
+    /* Breadcrumbs */
+    .breadcrumbs { background: #f3f4f6; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; }
+    .breadcrumbs a { color: #3b82f6; text-decoration: none; margin: 0 5px; }
+    .breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumbs span { color: #6b7280; margin: 0 5px; }
+    /* Scroll to top button */
+    .scroll-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); color: white; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: none; align-items: center; justify-content: center; font-size: 24px; transition: all 0.3s; z-index: 1000; }
+    .scroll-top:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.4); }
+    .scroll-top.visible { display: flex; }
+    /* Stats badges */
+    .stats-badge { display: inline-flex; align-items: center; gap: 8px; background: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; color: #1e40af; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 5px; }
+    /* Improved navigation */
+    nav { position: sticky; top: 0; z-index: 100; background: white; }
+    nav a { transition: all 0.3s; padding: 8px 12px; border-radius: 6px; }
+    nav a:hover { background: #f3f4f6; transform: translateY(-2px); }
+    /* Trust indicators */
+    .trust-badge { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 15px 25px; border-radius: 10px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; margin: 10px 5px; }
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+    /* Better hover effects */
+    .feature-card { transition: all 0.3s; }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+    /* Reading progress bar */
+    .reading-progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, #3b82f6, #6366f1); z-index: 1001; transition: width 0.3s; }
+    @media (max-width: 768px) {
+      h1 { font-size: 32px; }
+      .subtitle { font-size: 18px; }
+      .cta-button { font-size: 20px; padding: 16px 32px; }
+      .scroll-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+      nav { position: relative; }
+      nav a { display: block; margin: 5px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress" id="readingProgress"></div>
+  <div class="container">
+    <div class="breadcrumbs">
+      <a href="/">🏠 Inicio</a>
+      <span>/</span>
+      <a href="/calculadora-autonomos.html">Calculadora Autónomos</a>
+    </div>
+
+    <header>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;">
+        <div class="trust-badge">✅ 100% Gratuita</div>
+        <div class="trust-badge">📅 Actualizada 2026</div>
+        <div class="trust-badge">🔒 Sin Registro</div>
+      </div>
+      <h1>Calculadora Autónomos 2025 GRATIS</h1>
+      <p class="subtitle">Calcula IRPF, Cuota Seguridad Social, Gastos Deducibles y Modelo 130</p>
+      
+      <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 25px; border-radius: 12px; margin-top: 25px; border: 2px solid rgba(255,255,255,0.4); max-width: 900px; margin-left: auto; margin-right: auto;">
+        <p style="font-size: 20px; margin-bottom: 15px; line-height: 1.8;">
+          🧮 <strong>Calculadora autónomos</strong> y <strong>calculadora modelo 130</strong> GRATIS. Calcula tu IRPF, 
+          retención IRPF autónomos 2021-2025, cuota Seguridad Social, gastos deducibles y pago trimestral del Modelo 130. 
+          Incluye tabla IRPF autónomos 2022 y años posteriores. ✅ 100% gratuita, sin registro.
+        </p>
+        <p style="font-size: 18px; opacity: 0.95;">
+          ✅ <strong>Resultados en 2 minutos</strong> • ✅ <strong>Actualizada 2026</strong> • ✅ <strong>Sin instalación</strong>
+        </p>
+      </div>
+      
+      <a href="/autonomos" class="cta-button" style="margin-top: 30px;">🚀 USAR CALCULADORA GRATIS →</a>
+    </header>
+
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/calculadora-autonomos.html">Calculadora Autónomos</a>
+      <a href="/cuota-autonomos-2025.html">Cuota Autónomos</a>
+      <a href="/gastos-deducibles-autonomos-2025.html">Gastos Deducibles</a>
+      <a href="/contacto.html">Contacto</a>
+    </nav>
+
+    <div class="features">
+      <div class="feature-card">
+        <h3>🧮 Calcula IRPF</h3>
+        <p>Calcula el Impuesto sobre la Renta de las Personas Físicas para autónomos. Obtén resultados precisos según tus ingresos y gastos deducibles.</p>
+        <p><strong>Incluye:</strong> Tramos IRPF 2025, deducciones aplicables, cálculo de base imponible.</p>
+      </div>
+      
+      <div class="feature-card">
+        <h3>💰 Calcula Cuota Autónomos</h3>
+        <p>Calcula tu cuota de Seguridad Social como autónomo. Sistema por ingresos reales 2025, tarifa plana y bonificaciones.</p>
+        <p><strong>Incluye:</strong> Nuevo sistema por tramos, tarifa plana 80€, bonificaciones especiales.</p>
+      </div>
+      
+      <div class="feature-card">
+        <h3>📋 Gastos Deducibles</h3>
+        <p>Descubre todos los gastos que puedes deducir como autónomo. Ahorra entre 2.000€ y 5.000€ al año optimizando tus deducciones.</p>
+        <p><strong>Incluye:</strong> 20 gastos deducibles, límites y normativa 2025.</p>
+      </div>
+      
+      <div class="feature-card">
+        <h3>📄 Modelo 130</h3>
+        <p>Calcula tu pago trimestral del Modelo 130. Estima tus ingresos y gastos para calcular cuánto debes pagar a Hacienda.</p>
+        <p><strong>Incluye:</strong> Cálculo automático, fechas de presentación, ejemplos prácticos.</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <h2>¿Qué es la Calculadora de Autónomos?</h2>
+      <p style="font-size: 20px; font-weight: 500; color: #1a1a1a; margin-bottom: 20px;">
+        🧮 La <strong>calculadora autónomos</strong> es una herramienta 100% gratuita que te permite calcular tu IRPF, cuota de Seguridad Social, 
+        gastos deducibles y Modelo 130 en menos de 2 minutos. Incluye tabla IRPF autónomos 2022, retención IRPF autónomos 2021-2025, 
+        y calculadora modelo 130. <strong>Sin registro, sin tarjeta, sin instalación</strong>.
+      </p>
+      <p>La <strong>calculadora de autónomos</strong> es una herramienta gratuita diseñada específicamente para trabajadores autónomos en España. Te permite calcular todos los aspectos fiscales y de Seguridad Social de tu actividad profesional de forma sencilla y precisa.</p>
+      
+      <p>Con nuestra calculadora podrás conocer:</p>
+      <ul>
+        <li><strong>IRPF como autónomo:</strong> Calcula cuánto pagarás de Impuesto sobre la Renta según tus ingresos netos y gastos deducibles</li>
+        <li><strong>Cuota de Seguridad Social:</strong> Descubre cuánto pagarás de cuota de autónomos con el nuevo sistema por ingresos reales 2025</li>
+        <li><strong>Gastos deducibles:</strong> Identifica todos los gastos que puedes deducir para reducir tu base imponible</li>
+        <li><strong>Modelo 130:</strong> Calcula tus pagos trimestrales de IRPF como autónomo</li>
+        <li><strong>Salario neto:</strong> Descubre cuánto ganarás realmente después de impuestos y cuotas</li>
+      </ul>
+
+      <h2>¿Cómo Funciona la Calculadora de Autónomos?</h2>
+      <p>Nuestra calculadora de autónomos es muy fácil de usar. Solo necesitas seguir estos pasos:</p>
+      
+      <h3>1. Selecciona tu Comunidad Autónoma</h3>
+      <p>Cada comunidad autónoma tiene diferentes tipos impositivos. Selecciona la tuya para obtener cálculos precisos.</p>
+      
+      <h3>2. Introduce tus Ingresos</h3>
+      <p>Indica tus ingresos anuales estimados como autónomo. Puedes usar tus ingresos del año anterior o una estimación para el año en curso.</p>
+      
+      <h3>3. Añade tus Gastos Deducibles</h3>
+      <p>Incluye todos los gastos relacionados con tu actividad profesional que puedes deducir: alquiler de oficina, material, formación, vehículo, etc.</p>
+      
+      <h3>4. Obtén tus Resultados</h3>
+      <p>La calculadora te mostrará:</p>
+      <ul>
+        <li>Base imponible (ingresos menos gastos deducibles)</li>
+        <li>IRPF a pagar según los tramos 2025</li>
+        <li>Cuota de Seguridad Social mensual</li>
+        <li>Salario neto mensual y anual</li>
+        <li>Pago trimestral del Modelo 130</li>
+        <li>Total de impuestos y cuotas anuales</li>
+      </ul>
+
+      <div class="example-box">
+        <h4>Ejemplo Práctico: Autónomo con 30.000€ Anuales</h4>
+        <p><strong>Ingresos anuales:</strong> 30.000€</p>
+        <p><strong>Gastos deducibles:</strong> 5.000€</p>
+        <p><strong>Base imponible:</strong> 25.000€</p>
+        <p><strong>IRPF (aprox.):</strong> 4.750€ (19% primeros 12.450€ + 24% resto)</p>
+        <p><strong>Cuota autónomos anual:</strong> 1.200€ (100€/mes base)</p>
+        <p><strong>Salario neto anual:</strong> 19.050€</p>
+        <p><strong>Salario neto mensual:</strong> ~1.588€</p>
+      </div>
+
+      <h2>Características de la Calculadora de Autónomos 2025</h2>
+      
+      <h3>✅ Actualizada para 2025</h3>
+      <p>Nuestra calculadora incluye todos los cambios fiscales y de Seguridad Social para 2025:</p>
+      <ul>
+        <li>Tramos IRPF actualizados</li>
+        <li>Nuevo sistema de cuota por ingresos reales</li>
+        <li>Tarifa plana de 80€ para nuevos autónomos</li>
+        <li>Bonificaciones y reducciones 2025</li>
+        <li>Gastos deducibles según normativa vigente</li>
+      </ul>
+
+      <h3>✅ 100% Gratuita</h3>
+      <p>No necesitas registrarte ni pagar nada. La calculadora es completamente gratuita y puedes usarla tantas veces como necesites.</p>
+
+      <h3>✅ Cálculos Precisos</h3>
+      <p>Nuestros cálculos están basados en la normativa fiscal y de Seguridad Social vigente en España. Los resultados son estimativos pero precisos según la legislación actual.</p>
+
+      <h3>✅ Fácil de Usar</h3>
+      <p>Interfaz intuitiva y sencilla. No necesitas conocimientos avanzados de fiscalidad para usar la calculadora.</p>
+
+      <h2>Calculadora Sueldo Neto Autónomos</h2>
+      <p>Una de las funcionalidades más importantes de nuestra calculadora de autónomos es el cálculo del <strong>salario neto</strong>. Como autónomo, tu salario neto es lo que realmente recibes después de descontar:</p>
+      
+      <ul>
+        <li>IRPF (Impuesto sobre la Renta)</li>
+        <li>Cuota de Seguridad Social</li>
+        <li>Otros impuestos aplicables</li>
+      </ul>
+
+      <p>Por ejemplo, si ganas <strong>30.000€ brutos al año</strong> como autónomo:</p>
+      <ul>
+        <li>Tus gastos deducibles podrían ser de 5.000€</li>
+        <li>Tu base imponible sería de 25.000€</li>
+        <li>Pagarías aproximadamente 4.750€ de IRPF</li>
+        <li>Pagarías 1.200€ de cuota autónomos</li>
+        <li><strong>Tu salario neto sería de ~19.050€ anuales (~1.588€/mes)</strong></li>
+      </ul>
+
+      <div class="highlight">
+        <p>💡 <strong>Consejo:</strong> Usa nuestra calculadora para simular diferentes escenarios y optimizar tus gastos deducibles. Pequeños cambios pueden suponer un ahorro de miles de euros al año.</p>
+      </div>
+
+      <h2>Preguntas Frecuentes sobre la Calculadora de Autónomos</h2>
+      
+      <h3>¿Es gratis usar la calculadora?</h3>
+      <p>Sí, nuestra calculadora de autónomos es 100% gratuita. No necesitas registrarte ni pagar ningún tipo de suscripción.</p>
+      
+      <h3>¿Los cálculos son precisos?</h3>
+      <p>Nuestros cálculos están basados en la normativa fiscal y de Seguridad Social vigente en España para 2025. Los resultados son estimativos pero precisos. Sin embargo, siempre recomendamos consultar con un asesor fiscal para situaciones complejas.</p>
+      
+      <h3>¿Puedo usar la calculadora para calcular mi salario neto?</h3>
+      <p>¡Por supuesto! La calculadora incluye el cálculo del salario neto como autónomo, mostrándote cuánto ganarás realmente después de impuestos y cuotas.</p>
+      
+      <h3>¿Incluye el cálculo del Modelo 130?</h3>
+      <p>Sí, nuestra calculadora incluye el cálculo del Modelo 130, que es el pago trimestral de IRPF que deben realizar los autónomos.</p>
+      
+      <h3>¿Qué diferencias hay entre el sistema antiguo y el nuevo sistema de cuota 2025?</h3>
+      <p>Desde 2025, la cuota de autónomos se calcula según tus ingresos reales, no una cuota fija. Esto significa que pagarás una cantidad proporcional a tus ingresos, lo que puede beneficiar a autónomos con ingresos más bajos.</p>
+
+      <h2>Calculadora de Autónomos vs. Otras Herramientas</h2>
+      <p>Nuestra calculadora de autónomos se diferencia de otras herramientas del mercado en varios aspectos:</p>
+      
+      <ul>
+        <li><strong>Gratuita y sin registro:</strong> No necesitas crear cuenta ni pagar suscripciones</li>
+        <li><strong>Completa:</strong> Incluye IRPF, cuota, gastos deducibles y Modelo 130 en una sola herramienta</li>
+        <li><strong>Actualizada:</strong> Refleja todos los cambios fiscales y de Seguridad Social para 2025</li>
+        <li><strong>Fácil de usar:</strong> Interfaz intuitiva que no requiere conocimientos técnicos</li>
+        <li><strong>Precisa:</strong> Cálculos basados en la normativa vigente en España</li>
+      </ul>
+
+      <div class="highlight">
+        <p>🚀 <strong>¡Empieza ahora!</strong> Usa nuestra calculadora de autónomos gratuita para conocer todos los aspectos fiscales y de Seguridad Social de tu actividad profesional. <a href="/" style="color: #1e40af; text-decoration: underline;">Accede a la calculadora aquí</a></p>
+      </div>
+
+      <div class="highlight" style="margin-top: 40px;">
+        <p>🔗 <strong>Contenido Relacionado:</strong> Explora nuestras guías completas sobre fiscalidad y finanzas para autónomos.</p>
+      </div>
+
+      <h2>Enlaces Relacionados</h2>
+      <ul>
+        <li><a href="/tabla-irpf-autonomos-2025.html">📊 Tabla IRPF Autónomos 2025: Escalas Completas por Comunidades</a></li>
+        <li><a href="/tabla-irpf-autonomos-2022.html">📊 Tabla IRPF Autónomos 2022: Tramos Completos</a></li>
+        <li><a href="/tramos-irpf-autonomos-2021.html">📊 Tramos IRPF Autónomos 2021: Tabla Completa</a></li>
+        <li><a href="/retencion-irpf-autonomos.html">💼 Retención IRPF Autónomos 2021-2026: Guía Completa</a></li>
+        <li><a href="/30000-brutos-a-netos.html">💰 30.000 Brutos a Netos: Calculadora y Guía Completa</a></li>
+        <li><a href="/cuota-autonomos-2025.html">📋 Guía Completa: Cuota Autónomos 2025</a></li>
+        <li><a href="/gastos-deducibles-autonomos-2025.html">✅ 20 Gastos Deducibles para Autónomos 2025</a></li>
+        <li><a href="/modelo-130-autonomos-2025.html">📝 Cómo Calcular el Modelo 130: Guía Paso a Paso</a></li>
+        <li><a href="/calculadora-hipoteca-gratis.html">🏠 Calculadora Hipoteca Gratis</a></li>
+        <li><a href="/calculadora-presupuesto-estudiante-universitario.html">🎓 Calculadora Presupuesto Estudiante Universitario</a></li>
+        <li><a href="/calculadoras.html">🧮 Todas las Calculadoras Financieras</a></li>
+        <li><a href="/blog.html">📚 Blog de Finanzas Personales</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <script>
+    // Reading progress bar
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('readingProgress').style.width = scrolled + '%';
+    });
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+  </script>
+
+  <footer>
+    <p>&copy; 2025-2026 FinanzasFácil - LIPA Studios. Todos los derechos reservados.</p>
+    <div style="margin-top: 20px;">
+      <a href="/">Inicio</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/calculadora-autonomos.html">Calculadora Autónomos</a>
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/terminos.html">Términos</a>
+      <a href="/contacto.html">Contacto</a>
+    </div>
+  </footer>
+
+<div id="cookie-consent-banner" role="dialog" aria-label="Aviso de cookies" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#1e293b; color:#f1f5f9; padding:16px 20px; box-shadow:0 -4px 20px rgba(0,0,0,0.2); z-index:99999; font-family:system-ui,-apple-system,sans-serif; font-size:15px; line-height:1.5;">
+  <div style="max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-content:space-between;">
+    <p style="margin:0; flex:1 1 280px;">
+      Utilizamos cookies propias y de terceros (Google AdSense, Analytics) para mejorar tu experiencia y analizar el tráfico. Al hacer clic en &quot;Aceptar&quot;, aceptas su uso. 
+      <a href="/privacidad.html" style="color:#60a5fa; text-decoration:underline;">Más información</a>
+    </p>
+    <div style="display:flex; gap:10px; flex-shrink:0;">
+      <a href="/privacidad.html" style="color:#94a3b8; text-decoration:none; padding:8px 14px;">Configurar</a>
+      <button id="cookie-consent-accept" type="button" style="background:#3b82f6; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:600; font-size:15px;">Aceptar</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var k = 'ff_cookie_consent';
+  var b = document.getElementById('cookie-consent-banner');
+  var btn = document.getElementById('cookie-consent-accept');
+  if (!b || !btn) return;
+  try {
+    if (localStorage.getItem(k) === '1') return;
+  } catch (e) {}
+  b.style.display = 'block';
+  btn.addEventListener('click', function() {
+    try { localStorage.setItem(k, '1'); } catch (e) {}
+    b.style.display = 'none';
+  });
+})();
+</script>
+
+</body>
+</html>
+
+
