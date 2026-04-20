@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:web": "tsc -b && vite build && node scripts/postbuild-sitemap.js && node scripts/postbuild-cookie-consent.js",
+    "build:web": "tsc -b && vite build && node scripts/postbuild-sitemap.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "build:all": "bash scripts/build-all.sh",
