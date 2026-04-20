@@ -1,239 +1,3 @@
-# Redirigir subdominio Netlify → dominio canonical (evita "alternate with canonical" en Search Console)
-# Solo aplica a finanzasmuyfaciles.netlify.app; NO afecta deploy previews (xxx--site.netlify.app)
-[[redirects]]
-  from = "https://finanzasmuyfaciles.netlify.app/*"
-  to = "https://finanzasmuyfacil.com/:splat"
-  status = 301
-  force = true
-
-# CRÍTICO: Servir ads.txt, app-ads.txt, robots.txt y sitemap.xml ANTES del catch-all
-# Sin esto, el catch-all /* envía estas URLs a index.html y AdSense no encuentra ads.txt
-[[redirects]]
-  from = "/ads.txt"
-  to = "/ads.txt"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/app-ads.txt"
-  to = "/app-ads.txt"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/robots.txt"
-  to = "/robots.txt"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/sitemap.xml"
-  status = 200
-  force = true
-
-# Rutas /privacy, /about, /blog → páginas estáticas (AdSense, crawlers sin JS)
-[[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/about"
-  to = "/acerca-de.html"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/blog"
-  to = "/blog/index.html"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/blog/"
-  to = "/blog/index.html"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/blog.html"
-  to = "/blog/"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/calculadora-autonomos"
-  to = "/calculadora-autonomos.html"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/calculadora-interes-compuesto"
-  to = "/calculadora-interes-compuesto.html"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/interes-compuesto"
-  to = "/calculadora-interes-compuesto.html"
-  status = 200
-  force = true
-
-# Redirigir rutas SPA a versión estática preferida (evita "alternativa con canonical")
-[[redirects]]
-  from = "/autonomos"
-  to = "/calculadora-autonomos.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/sobre"
-  to = "/acerca-de.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/contacto"
-  to = "/contacto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/terms"
-  to = "/terminos.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/cuota-autonomos-2025"
-  to = "/cuota-autonomos-2025.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/gastos-deducibles-autonomos"
-  to = "/gastos-deducibles-autonomos-2025.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/presupuesto-navideno-2025"
-  to = "/presupuesto-navideno-2025.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/calculadora-irpf-autonomos"
-  to = "/calculadora-irpf-autonomo-2025.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/producto-gastos"
-  to = "/gastos-deducibles-autonomos-2025.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/faq"
-  to = "/blog/"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/guias"
-  to = "/blog/"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/articulos"
-  to = "/blog/"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/blog/gastos-deducibles-autonomos-2025"
-  to = "/gastos-deducibles-autonomos-2025.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/blog/gastos-deducibles-autonomos-2026"
-  to = "/blog/gastos-deducibles-autonomos-2026/"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/blog/cuanto-paga-autonomo-40000"
-  to = "/blog/cuanto-paga-autonomo-40000/"
-  status = 200
-  force = true
-[[redirects]]
-  from = "/blog/etf-vs-fondo-indexado-espana"
-  to = "/blog/etf-vs-fondo-indexado-espana/"
-  status = 200
-  force = true
-
-# Artículo antiguo → nuevo
-[[redirects]]
-  from = "/blog/calcular-irpf-autonomos-2025.html"
-  to = "/blog/calcular-irpf-autonomo-2026/"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/blog/calcular-irpf-autonomos-2025"
-  to = "/blog/calcular-irpf-autonomo-2026/"
-  status = 301
-  force = true
-
-# Tabla IRPF: URL 2026 → archivo actual (misma base)
-[[redirects]]
-  from = "/tabla-irpf-autonomos-2026.html"
-  to = "/tabla-irpf-autonomos-2025.html"
-  status = 200
-  force = true
-
-# ==========================================================
-# CONSOLIDACIÓN SEO — Salario neto/bruto (abril 2026)
-# Todas las variantes redirigen a la canónica: /calcular-salario-neto.html
-# ==========================================================
-[[redirects]]
-  from = "/calcular-salario-neto-2025.html"
-  to = "/calcular-salario-neto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/calcular-salario-neto-2025"
-  to = "/calcular-salario-neto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/salario-neto-espana-2025.html"
-  to = "/calcular-salario-neto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/salario-neto-espana-2025"
-  to = "/calcular-salario-neto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/salario-bruto-espana.html"
-  to = "/calcular-salario-neto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/salario-bruto-espana"
-  to = "/calcular-salario-neto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/30000-brutos-a-netos.html"
-  to = "/calcular-salario-neto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/30000-brutos-a-netos"
-  to = "/calcular-salario-neto.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/calculadora-sueldo-neto-autonomos.html"
-  to = "/calculadora-autonomos.html"
-  status = 301
-  force = true
-[[redirects]]
-  from = "/calculadora-sueldo-neto-autonomos"
-  to = "/calculadora-autonomos.html"
-  status = 301
-  force = true
-
-# Redirigir HTML estáticos primero (antes del catch-all)
-[[redirects]]
-  from = "/*.html"
-  to = ":splat.html"
-  status = 200
-
-# Catch-all para SPA (React)
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -247,31 +11,19 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-# Cache-Control para HTML y raíz: obliga al CDN a revalidar (evita servir versión antigua)
-# Netlify-Cache-Tag: permite purgar caché por CLI (npm run purge-cdn)
-[[headers]]
-  for = "/"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-    Netlify-Cache-Tag = "ff-html"
-[[headers]]
-  for = "/blog/*"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-    Netlify-Cache-Tag = "ff-html"
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-    Netlify-Cache-Tag = "ff-html"
     
 # Headers para assets estáticos (CSS, JS, imágenes)
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
+    
+# Headers para HTML (sin cache para siempre mostrar última versión)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    
 # Headers para Service Worker
 [[headers]]
   for = "/sw.js"
@@ -285,7 +37,7 @@
     Cache-Control = "public, max-age=604800, immutable"
 
 [build]
-  command = "npm run build:web"
+  command = "npm run build"
   publish = "dist"
 
 [build.environment]

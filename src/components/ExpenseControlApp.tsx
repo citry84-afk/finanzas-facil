@@ -31,7 +31,6 @@ ChartJS.register(
 
 interface ExpenseControlAppProps {
   onBack: () => void;
-  onNavigate?: (mode: string) => void;
 }
 
 interface OnboardingData {
