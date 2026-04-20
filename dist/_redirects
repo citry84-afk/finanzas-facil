@@ -1,0 +1,14 @@
+# Redirects: app-ads.txt, ads.txt, blog y SPA
+
+# app-ads.txt para AdMob (apps móviles)
+/app-ads.txt /app-ads.txt 200
+
+# ads.txt para AdSense (web)
+/ads.txt /ads.txt 200
+
+# Blog: redirigir blog.html a /blog/
+/blog.html /blog/ 301
+
+# Catch-all para SPA - debe ir al final
+/* /index.html 200
+

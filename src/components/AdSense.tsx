@@ -1,3 +1,24 @@
+import type { CSSProperties, FC } from 'react';
+
+interface AdSenseProps {
+  slot: string;
+  style?: CSSProperties;
+  format?: string;
+  responsive?: boolean;
+  className?: string;
+}
+
+/** Desactivado temporalmente hasta aprobación de Google AdSense — reactivar descomentando el bloque inferior y restaurando el cuerpo del componente. */
+const AdSense: FC<AdSenseProps> = () => null;
+
+export const BannerAd: FC<{ className?: string }> = () => null;
+export const SidebarAd: FC<{ className?: string }> = () => null;
+export const MobileAd: FC<{ className?: string }> = () => null;
+export const InlineAd: FC<{ className?: string }> = () => null;
+
+export default AdSense;
+
+/*
 import { useEffect } from 'react';
 
 interface AdSenseProps {
@@ -8,9 +29,9 @@ interface AdSenseProps {
   className?: string;
 }
 
-const AdSense: React.FC<AdSenseProps> = ({ 
-  slot, 
-  style = { display: 'block' }, 
+const AdSense: React.FC<AdSenseProps> = ({
+  slot,
+  style = { display: 'block' },
   format = 'auto',
   responsive = true,
   className = ''
@@ -18,43 +39,12 @@ const AdSense: React.FC<AdSenseProps> = ({
   useEffect(() => {
     try {
       if (typeof window !== 'undefined' && (window as any).adsbygoogle) {
-        // Solo ejecutar si AdSense está aprobado
-        const isAdSenseApproved = localStorage.getItem('adsense-approved') === 'true';
-        if (isAdSenseApproved) {
-          ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-        }
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
       }
     } catch (error) {
       console.log('AdSense error:', error);
     }
   }, []);
-
-  // Mostrar placeholder hasta aprobación
-  const isAdSenseApproved = typeof window !== 'undefined' ? 
-    localStorage.getItem('adsense-approved') === 'true' : false;
-
-  if (!isAdSenseApproved) {
-    return (
-      <div className={`adsense-placeholder ${className}`} style={{
-        ...style,
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        borderRadius: '8px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontSize: '14px',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        padding: '20px'
-      }}>
-        📢 Espacio publicitario<br/>
-        <small style={{opacity: 0.8, fontSize: '12px'}}>
-          AdSense en proceso de aprobación
-        </small>
-      </div>
-    );
-  }
 
   return (
     <div className={`adsense-container ${className}`}>
@@ -70,10 +60,9 @@ const AdSense: React.FC<AdSenseProps> = ({
   );
 };
 
-// Componentes predefinidos para diferentes tipos de anuncios
 export const BannerAd: React.FC<{ className?: string }> = ({ className }) => (
-  <AdSense 
-    slot="6673201053" 
+  <AdSense
+    slot="6673201053"
     format="auto"
     responsive={true}
     style={{ display: 'block', textAlign: 'center', margin: '20px 0', minHeight: '90px' }}
@@ -82,8 +71,8 @@ export const BannerAd: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 export const SidebarAd: React.FC<{ className?: string }> = ({ className }) => (
-  <AdSense 
-    slot="6673201053" 
+  <AdSense
+    slot="6673201053"
     format="rectangle"
     style={{ display: 'block', width: '300px', height: '250px', margin: '20px auto' }}
     className={className}
@@ -91,8 +80,8 @@ export const SidebarAd: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 export const MobileAd: React.FC<{ className?: string }> = ({ className }) => (
-  <AdSense 
-    slot="6673201053" 
+  <AdSense
+    slot="6673201053"
     format="fluid"
     responsive={true}
     style={{ display: 'block', textAlign: 'center', margin: '20px 0' }}
@@ -101,8 +90,8 @@ export const MobileAd: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 export const InlineAd: React.FC<{ className?: string }> = ({ className }) => (
-  <AdSense 
-    slot="6673201053" 
+  <AdSense
+    slot="6673201053"
     format="auto"
     responsive={true}
     style={{ display: 'block', textAlign: 'center', margin: '30px 0', minHeight: '90px' }}
@@ -111,3 +100,4 @@ export const InlineAd: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 export default AdSense;
+*/

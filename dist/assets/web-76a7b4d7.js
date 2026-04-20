@@ -1,0 +1,1 @@
+import{W as e}from"./index-dc5b648d.js";import"./react-vendor-fdd35676.js";import"./charts-0e97fb87.js";class i extends e{getStatus(){return Promise.resolve({status:"authorized"})}requestPermission(){return Promise.resolve({status:"authorized"})}}export{i as AppTrackingTransparencyWeb};
