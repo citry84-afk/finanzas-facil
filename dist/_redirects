@@ -1,0 +1,12 @@
+# Netlify redirects file
+# Este archivo asegura que app-ads.txt y ads.txt se sirvan correctamente
+
+# app-ads.txt para AdMob (apps móviles)
+/app-ads.txt /app-ads.txt 200
+
+# ads.txt para AdSense (web)
+/ads.txt /ads.txt 200
+
+# Catch-all para SPA - debe ir al final
+/* /index.html 200
+

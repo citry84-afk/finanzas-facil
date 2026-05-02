@@ -288,25 +288,6 @@ function AppContent() {
           setMode('landing');
           trackPageView('/', 'Landing Page');
         }} 
-        onNavigate={(newMode) => {
-          if (newMode === 'landing') {
-            // Navegar a landing explícitamente
-            setMode('landing');
-            trackPageView('/', 'Landing Page');
-          } else if (newMode === 'content-hub') {
-            setMode('content-hub');
-            trackPageView('/content-hub', 'Content Hub');
-          } else if (newMode === 'resources') {
-            // Abrir canal de YouTube en lugar de navegar a resources
-            // Usar la misma URL que en YouTubeVideosSlider para consistencia
-            const youtubeUrl = 'https://youtube.com/@FinanzasMuyFáciles?sub_confirmation=1';
-            
-            // En apps móviles, window.open debería funcionar bien y abrirá en Safari/Chrome
-            // En web, también abrirá en una nueva pestaña
-            window.open(youtubeUrl, '_blank');
-            trackPageView('/youtube-channel', 'YouTube Channel');
-          }
-        }}
       />
     );
   }
