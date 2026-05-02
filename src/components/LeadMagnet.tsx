@@ -1,30 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+
+const STORAGE_SUBSCRIBED = 'finanzas_newsletter_subscribed';
+const STORAGE_POPUP_DISMISSED = 'finanzas_newsletter_popup_dismissed';
+/** Compatibilidad con claves antiguas */
+const LEGACY_CLOSED = 'finanzas_lead_closed';
+const LEGACY_CAPTURED = 'finanzas_lead_captured';
+
+function readStoredBoolean(key: string): boolean {
+  try {
+    return localStorage.getItem(key) === 'true';
+  } catch {
+    return false;
+  }
+}
 
 export default function LeadMagnet() {
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [isClosed, setIsClosed] = useState(false);
+  const [popupDismissed, setPopupDismissed] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  // Mostrar popup después de 30 segundos o al intentar salir
-  React.useEffect(() => {
-    // Verificar si ya fue cerrado antes
-    const wasClosed = localStorage.getItem('finanzas_lead_closed');
-    if (wasClosed) {
-      setIsClosed(true);
-      return;
+  /** Hidratar desde localStorage (solo cliente) */
+  useEffect(() => {
+    const sub =
+      readStoredBoolean(STORAGE_SUBSCRIBED) || readStoredBoolean(LEGACY_CAPTURED);
+    const dismissed =
+      readStoredBoolean(STORAGE_POPUP_DISMISSED) || readStoredBoolean(LEGACY_CLOSED);
+    if (sub) setSubscribed(true);
+    if (dismissed) setPopupDismissed(true);
+  }, []);
+
+  const dismissPopup = useCallback(() => {
+    setShowPopup(false);
+    setPopupDismissed(true);
+    try {
+      localStorage.setItem(STORAGE_POPUP_DISMISSED, 'true');
+      localStorage.setItem(LEGACY_CLOSED, 'true');
+    } catch {
+      /* ignore */
     }
+  }, []);
 
-    const timer = setTimeout(() => {
-      if (!isClosed) {
-        setShowPopup(true);
-      }
-    }, 30000); // 30 segundos
+  /** Popup retardado + salida del cursor (solo escritorio aprox.) */
+  useEffect(() => {
+    if (popupDismissed || subscribed) return;
+
+    const timer = window.setTimeout(() => {
+      setShowPopup(true);
+    }, 60000);
 
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !isClosed) {
+      if (e.clientY <= 0 && window.innerWidth >= 768) {
         setShowPopup(true);
       }
     };
@@ -35,255 +64,295 @@ export default function LeadMagnet() {
       clearTimeout(timer);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [isClosed]);
+  }, [popupDismissed, subscribed]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  /** Cerrar con Escape cuando el modal está abierto */
+  useEffect(() => {
+    if (!showPopup) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') dismissPopup();
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [showPopup, dismissPopup]);
+
+  const submitToNetlify = async (fuente: 'popup' | 'inline') => {
+    const params = new URLSearchParams();
+    params.append('form-name', 'newsletter');
+    params.append('bot-field', '');
+    params.append('nombre', nombre.trim());
+    params.append('email', email.trim());
+    params.append('fuente', fuente);
+
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+    });
+
+    if (!res.ok) {
+      throw new Error(`Respuesta ${res.status}`);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent, fuente: 'popup' | 'inline') => {
     e.preventDefault();
+    setSubmitError(null);
     setIsSubmitting(true);
 
-    // Aquí integrarás tu servicio de email marketing
-    // Por ahora, simulamos el envío
     try {
-      // TODO: Integrar con Brevo/Mailchimp API
-      // await fetch('/api/subscribe', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ email, nombre }),
-      // });
+      await submitToNetlify(fuente);
 
-      // Guardar en localStorage para no mostrar popup de nuevo
-      localStorage.setItem('finanzas_lead_captured', 'true');
-      
-      // Simular delay de red
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      try {
+        localStorage.setItem(STORAGE_SUBSCRIBED, 'true');
+        localStorage.setItem(LEGACY_CAPTURED, 'true');
+      } catch {
+        /* ignore */
+      }
 
-      setIsSuccess(true);
+      setSubscribed(true);
       setShowPopup(false);
-      setIsClosed(true);
-
-      // Aquí iría la lógica para enviar el PDF por email
-      // O redirigir a página de descarga
-      
-    } catch (error) {
-      console.error('Error al suscribir:', error);
-      alert('Hubo un error. Por favor, intenta de nuevo.');
+      setNombre('');
+      setEmail('');
+    } catch (err) {
+      console.error('Newsletter:', err);
+      setSubmitError(
+        'No se pudo enviar ahora. Comprueba la conexión o escríbenos desde Contacto.'
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const closePopup = () => {
-    setShowPopup(false);
-    setIsClosed(true);
-    // No mostrar de nuevo permanentemente
-    localStorage.setItem('finanzas_lead_closed', 'true');
-  };
-
-  // No mostrar si ya se capturó el lead o fue cerrado
-  const leadCaptured = localStorage.getItem('finanzas_lead_captured');
-  const wasClosed = localStorage.getItem('finanzas_lead_closed');
-
-  if (leadCaptured || wasClosed || isClosed) {
-    return null;
-  }
+  const thankYou = (
+    <div className="text-center py-6 md:py-8">
+      <div className="text-5xl mb-3" aria-hidden="true">
+        🎉
+      </div>
+      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">¡Listo, gracias!</h3>
+      <p className="text-blue-100 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
+        Gracias. Te hemos apuntado: cuando empecemos a enviar el resumen semanal, lo recibirás en
+        tu correo (revisa spam si no ves nada). Mientras tanto, usa las calculadoras y el blog.
+      </p>
+    </div>
+  );
 
   return (
     <>
-      {/* Popup Modal */}
-      {showPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden relative animate-slideUp">
-            {/* Close Button */}
-            <button
-              onClick={closePopup}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold z-10"
-            >
-              ×
-            </button>
+      {/* Popup: siempre se puede cerrar (backdrop, Escape, botón) */}
+      {showPopup && !popupDismissed && !subscribed && (
+        <div
+          className="fixed inset-0 bg-black/60 z-[200] flex items-center justify-center p-4 animate-fadeIn"
+          role="presentation"
+          onClick={dismissPopup}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="lead-popup-title"
+            className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative z-[201]"
+            onClick={(ev) => ev.stopPropagation()}
+          >
+            <div className="sticky top-0 z-10 flex justify-end gap-2 p-3 md:p-4 bg-white/95 backdrop-blur border-b border-gray-100 rounded-t-3xl">
+              <button
+                type="button"
+                onClick={dismissPopup}
+                className="min-h-[44px] min-w-[44px] px-4 rounded-xl border-2 border-gray-300 text-gray-800 font-semibold text-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Cerrar
+              </button>
+            </div>
 
-            <div className="p-8 md:p-12">
-              {/* Header */}
-              <div className="text-center mb-8">
-                <div className="text-6xl mb-4">📚</div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  ¡ESPERA! 🎁
+            <div className="p-6 md:p-10 pt-2">
+              <div className="text-center mb-6">
+                <div className="text-5xl mb-3" aria-hidden="true">
+                  📬
+                </div>
+                <h2
+                  id="lead-popup-title"
+                  className="text-2xl md:text-3xl font-bold text-gray-900 mb-3"
+                >
+                  Newsletter semanal + recursos para autónomos
                 </h2>
-                <p className="text-xl text-gray-700 font-semibold">
-                  Descarga GRATIS la Guía Definitiva del Autónomo 2025
+                <p className="text-lg text-gray-700">
+                  Un correo a la semana con resúmenes prácticos: autónomos, impuestos, ahorro y
+                  novedades fiscales en España. Sin spam, baja en un clic.
                 </p>
               </div>
 
-              {/* Beneficios */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 mb-8">
-                <h3 className="font-bold text-lg text-gray-900 mb-4">📖 Descubre:</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-600 font-bold text-xl flex-shrink-0">✓</span>
-                    <span className="text-gray-700"><strong>20+ gastos deducibles</strong> que desconoces (ahorra 2.000-5.000€/año)</span>
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-5 mb-6 text-left">
+                <h3 className="font-bold text-gray-900 mb-3">Qué puedes esperar</h3>
+                <ul className="space-y-2 text-gray-700 text-sm md:text-base">
+                  <li className="flex gap-2">
+                    <span className="text-green-600 font-bold">✓</span>
+                    Resumen de cambios en cotización, IRPF y calendario fiscal
                   </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-600 font-bold text-xl flex-shrink-0">✓</span>
-                    <span className="text-gray-700"><strong>Calculadora fiscal 2025</strong> actualizada con nuevas normativas</span>
+                  <li className="flex gap-2">
+                    <span className="text-green-600 font-bold">✓</span>
+                    Ideas de gastos deducibles y buenas prácticas
                   </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-600 font-bold text-xl flex-shrink-0">✓</span>
-                    <span className="text-gray-700"><strong>Plantillas</strong> de facturas, presupuestos y control de gastos</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-600 font-bold text-xl flex-shrink-0">✓</span>
-                    <span className="text-gray-700"><strong>Calendario fiscal</strong> con fechas clave para no pagar multas</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-600 font-bold text-xl flex-shrink-0">✓</span>
-                    <span className="text-gray-700"><strong>Estrategias legales</strong> para pagar menos impuestos</span>
+                  <li className="flex gap-2">
+                    <span className="text-green-600 font-bold">✓</span>
+                    Enlace a calculadoras y artículos del sitio
                   </li>
                 </ul>
               </div>
 
-              {/* Form */}
-              {!isSuccess ? (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Tu nombre"
-                      value={nombre}
-                      onChange={(e) => setNombre(e.target.value)}
-                      required
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-lg"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Tu mejor email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-lg"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 shadow-lg text-lg disabled:opacity-50"
-                  >
-                    {isSubmitting ? 'Enviando...' : '🎁 QUIERO MI GUÍA GRATIS'}
-                  </button>
-                  <p className="text-xs text-center text-gray-500">
-                    💯 100% gratis. Sin spam. Cancela cuando quieras.
-                  </p>
-                </form>
-              ) : (
-                <div className="text-center py-8">
-                  <div className="text-6xl mb-4">🎉</div>
-                  <h3 className="text-2xl font-bold text-green-600 mb-4">
-                    ¡Revisa tu email!
-                  </h3>
-                  <p className="text-gray-700 mb-4">
-                    Te hemos enviado la <strong>Guía Definitiva del Autónomo 2025</strong> a <strong>{email}</strong>
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Si no lo ves, revisa tu carpeta de spam 📧
-                  </p>
+              <form onSubmit={(e) => handleSubmit(e, 'popup')} className="space-y-4">
+                <div>
+                  <label htmlFor="lead-nombre-popup" className="sr-only">
+                    Nombre
+                  </label>
+                  <input
+                    id="lead-nombre-popup"
+                    type="text"
+                    placeholder="Tu nombre"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    required
+                    autoComplete="given-name"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-lg"
+                  />
                 </div>
-              )}
-
-              {/* Social Proof */}
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600">
-                  ⭐⭐⭐⭐⭐ Más de <strong>1.000 autónomos</strong> ya han descargado esta guía
+                <div>
+                  <label htmlFor="lead-email-popup" className="sr-only">
+                    Email
+                  </label>
+                  <input
+                    id="lead-email-popup"
+                    type="email"
+                    placeholder="Tu email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    autoComplete="email"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-lg"
+                  />
+                </div>
+                {submitError && (
+                  <p className="text-sm text-red-600 text-center" role="alert">
+                    {submitError}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg text-lg disabled:opacity-50 min-h-[48px]"
+                >
+                  {isSubmitting ? 'Enviando…' : 'Suscribirme'}
+                </button>
+                <p className="text-xs text-center text-gray-500 leading-relaxed">
+                  Al enviar, aceptas recibir correos según nuestra{' '}
+                  <a href="/privacidad.html" className="underline text-blue-600">
+                    política de privacidad
+                  </a>
+                  . Puedes darte de baja en cualquier momento.
                 </p>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       )}
 
-      {/* Inline CTA (para usar en páginas) */}
-      <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
+      {/* Acceso rápido: ancla fija (no tapa el aviso PWA, va a la izquierda) */}
+      {!subscribed && (
+        <a
+          href="#newsletter-finanzas"
+          className="fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg ring-2 ring-white/30 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white md:text-base"
+          onClick={(e) => {
+            e.preventDefault();
+            document
+              .getElementById('newsletter-finanzas')
+              ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        >
+          <span aria-hidden="true">📬</span>
+          Newsletter semanal
+        </a>
+      )}
+
+      {/* Bloque en página: siempre visible salvo ya suscrito */}
+      <div
+        id="newsletter-finanzas"
+        className="scroll-mt-24 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 md:p-12 text-white shadow-2xl"
+      >
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="text-6xl mb-4">📚</div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Guía Definitiva del Autónomo 2025
-            </h2>
-            <p className="text-xl text-blue-100">
-              Descarga GRATIS y ahorra miles de euros en impuestos
-            </p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur rounded-2xl p-6 mb-8">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0">✓</span>
-                <span>20+ gastos deducibles desconocidos</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0">✓</span>
-                <span>Calculadora fiscal 2025 actualizada</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0">✓</span>
-                <span>Plantillas profesionales incluidas</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0">✓</span>
-                <span>Calendario fiscal completo</span>
-              </div>
-            </div>
-          </div>
-
-          {!isSuccess ? (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Tu nombre"
-                  value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
-                  required
-                  className="px-4 py-3 rounded-xl border-2 border-white/20 bg-white/10 backdrop-blur text-white placeholder-white/60 focus:border-white focus:outline-none text-lg"
-                />
-                <input
-                  type="email"
-                  placeholder="Tu mejor email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="px-4 py-3 rounded-xl border-2 border-white/20 bg-white/10 backdrop-blur text-white placeholder-white/60 focus:border-white focus:outline-none text-lg"
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-white text-blue-600 font-bold py-4 rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg text-lg disabled:opacity-50"
-              >
-                {isSubmitting ? 'Enviando...' : '🎁 DESCARGAR GUÍA GRATIS'}
-              </button>
-              <p className="text-xs text-center text-blue-100">
-                💯 100% gratis. Sin spam. Cancela cuando quieras.
-              </p>
-            </form>
+          {subscribed ? (
+            thankYou
           ) : (
-            <div className="text-center py-8 bg-white/10 backdrop-blur rounded-2xl">
-              <div className="text-6xl mb-4">🎉</div>
-              <h3 className="text-2xl font-bold mb-4">
-                ¡Revisa tu email!
-              </h3>
-              <p className="text-blue-100 mb-4">
-                Te hemos enviado la guía a <strong>{email}</strong>
-              </p>
-            </div>
-          )}
+            <>
+              <div className="text-center mb-8">
+                <div className="text-5xl mb-4" aria-hidden="true">
+                  📬
+                </div>
+                <h2 className="text-2xl md:text-4xl font-bold mb-4">
+                  Newsletter semanal FinanzasFácil
+                </h2>
+                <p className="text-lg text-blue-100 leading-relaxed">
+                  Apunta tu email y recibe cada semana un resumen claro: fiscalidad para autónomos,
+                  ideas de ahorro y enlaces a las calculadoras del sitio. Sin promesas mágicas: solo
+                  contenido útil.
+                </p>
+              </div>
 
-          <div className="mt-6 text-center">
-            <p className="text-sm text-blue-100">
-              ⭐⭐⭐⭐⭐ Más de 1.000 autónomos ya la han descargado
-            </p>
-          </div>
+              <div className="bg-white/10 backdrop-blur rounded-2xl p-6 mb-8 text-sm md:text-base text-blue-50">
+                <p className="font-semibold text-white mb-3">Qué enviamos (cuando arranque el boletín)</p>
+                <ul className="space-y-2 leading-relaxed opacity-95 list-none pl-0">
+                  <li>✓ Fechas y cambios que suelen afectar a autónomos</li>
+                  <li>✓ Recordatorios útiles (sin saturar)</li>
+                  <li>✓ Enlace al contenido nuevo del blog o la web</li>
+                </ul>
+              </div>
+
+              <form onSubmit={(e) => handleSubmit(e, 'inline')} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <label htmlFor="lead-nombre-inline" className="sr-only">
+                    Nombre
+                  </label>
+                  <input
+                    id="lead-nombre-inline"
+                    type="text"
+                    placeholder="Tu nombre"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    required
+                    autoComplete="given-name"
+                    className="px-4 py-3 rounded-xl border-2 border-white/20 bg-white/10 backdrop-blur text-white placeholder-white/60 focus:border-white focus:outline-none text-lg"
+                  />
+                  <label htmlFor="lead-email-inline" className="sr-only">
+                    Email
+                  </label>
+                  <input
+                    id="lead-email-inline"
+                    type="email"
+                    placeholder="Tu email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    autoComplete="email"
+                    className="px-4 py-3 rounded-xl border-2 border-white/20 bg-white/10 backdrop-blur text-white placeholder-white/60 focus:border-white focus:outline-none text-lg"
+                  />
+                </div>
+                {submitError && (
+                  <p className="text-sm text-amber-200 text-center" role="alert">
+                    {submitError}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-white text-blue-600 font-bold py-4 rounded-xl hover:bg-blue-50 transition-all shadow-lg text-lg disabled:opacity-50 min-h-[48px]"
+                >
+                  {isSubmitting ? 'Enviando…' : 'Apuntarme a la newsletter'}
+                </button>
+                <p className="text-xs text-center text-blue-100">
+                  Sin spam. Baja cuando quieras. Base legal en privacidad y términos del sitio.
+                </p>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </>
   );
 }
-

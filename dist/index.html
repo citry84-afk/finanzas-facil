@@ -319,8 +319,8 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://finanzasmuyfacil.com" />
     
-    <script type="module" crossorigin src="/assets/index-2268c5ed.js"></script>
-    <link rel="stylesheet" href="/assets/index-a11c5bc9.css">
+    <script type="module" crossorigin src="/assets/index-e4016a95.js"></script>
+    <link rel="stylesheet" href="/assets/index-3aaaae47.css">
   </head>
   <body>
     <!-- Contenido visible para AdSense mientras carga la app - OCULTO cuando React renderiza -->
@@ -791,6 +791,14 @@
         </footer>
       </div>
     </noscript>
+
+    <!-- Formulario oculto para Netlify Forms (registro en build; el envío lo hace React) -->
+    <form name="newsletter" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" style="display: none" aria-hidden="true">
+      <input type="text" name="bot-field" />
+      <input type="text" name="nombre" />
+      <input type="email" name="email" />
+      <input type="text" name="fuente" />
+    </form>
 
     <!-- Aplicación React -->
     <div id="root"></div>

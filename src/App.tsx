@@ -836,8 +836,11 @@ function AppContent() {
         <div className="mb-8">
           <BannerAd />
         </div>
-        
 
+        {/* Newsletter: arriba para que el formulario sea visible sin bajar toda la página */}
+        <div className="mb-12">
+          <LeadMagnet />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Control de Gastos */}
@@ -964,11 +967,6 @@ function AppContent() {
         {/* Inline Ad */}
         <div className="mt-12">
           <InlineAd />
-        </div>
-
-        {/* Lead Magnet CTA */}
-        <div className="mt-16">
-          <LeadMagnet />
         </div>
 
         {/* YouTube Videos Slider */}
@@ -1100,46 +1098,6 @@ function AppContent() {
               <h4 className="text-xl font-bold text-white mb-3">¿Cómo controlar mis gastos?</h4>
               <p className="text-white/80">Nuestra app de control de gastos te permite categorizar tus compras, establecer presupuestos y analizar tus patrones de gasto.</p>
             </div>
-          </div>
-        </div>
-
-        {/* Producto Digital Banner */}
-        <div className="mt-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-8 md:p-12 shadow-2xl border-4 border-white/20">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full mb-4 font-bold animate-pulse">
-              <span className="text-xl">🔥</span>
-              <span>NUEVO PRODUCTO</span>
-            </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              20 Gastos Deducibles para Autónomos 2025
-            </h3>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto mb-6">
-              PDF Premium con los 20 gastos que TODO autónomo puede deducir para ahorrar entre 2.000€ y 5.000€ al año
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 mb-8">
-              <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl">
-                <div className="text-3xl font-bold text-white">19€</div>
-                <div className="text-sm text-white/80">Precio lanzamiento</div>
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl">
-                <div className="text-3xl font-bold text-white">25</div>
-                <div className="text-sm text-white/80">Páginas de contenido</div>
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl">
-                <div className="text-3xl font-bold text-white">⭐⭐⭐⭐⭐</div>
-                <div className="text-sm text-white/80">500+ satisfechos</div>
-              </div>
-            </div>
-            <button
-              onClick={() => setMode('producto-gastos')}
-              className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 px-10 py-5 rounded-2xl font-bold text-xl transition-all duration-300 shadow-2xl hover:shadow-xl transform hover:scale-105 inline-flex items-center gap-3"
-            >
-              <span>🎁</span>
-              <span>VER PRODUCTO (19€)</span>
-            </button>
-            <p className="mt-4 text-white/80 text-sm">
-              ✅ Descarga inmediata • ✅ Garantía 30 días • ✅ Actualizado 2025
-            </p>
           </div>
         </div>
 

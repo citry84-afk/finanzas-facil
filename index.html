@@ -790,6 +790,14 @@
       </div>
     </noscript>
 
+    <!-- Formulario oculto para Netlify Forms (registro en build; el envío lo hace React) -->
+    <form name="newsletter" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" style="display: none" aria-hidden="true">
+      <input type="text" name="bot-field" />
+      <input type="text" name="nombre" />
+      <input type="email" name="email" />
+      <input type="text" name="fuente" />
+    </form>
+
     <!-- Aplicación React -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
