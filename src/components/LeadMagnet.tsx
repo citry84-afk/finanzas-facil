@@ -137,7 +137,11 @@ export default function LeadMagnet() {
       }
     });
 
-  /** action="/" en index.html; fetch e iframe usan la misma ruta que el form estático de Netlify */
+  /**
+   * Netlify Forms: un POST con `fetch` puede responder 200 con el HTML de gracias pero **no**
+   * crear submission (SPA + rewrites / edge). El POST “de navegador” vía iframe sí lo registra.
+   * Orden: iframe primero; fetch solo como respaldo.
+   */
   const submitToNetlify = async (fuente: 'popup' | 'inline') => {
     const params = new URLSearchParams();
     params.append('form-name', 'newsletter');
@@ -147,20 +151,21 @@ export default function LeadMagnet() {
     params.append('fuente', fuente);
 
     try {
-      const res = await fetch('/newsletter.html', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        },
-        body: params.toString(),
-        credentials: 'same-origin',
-      });
-      if (res.ok) return;
+      await postViaHiddenIframe(params);
+      return;
     } catch {
-      /* siguiente método */
+      /* fallback */
     }
 
-    await postViaHiddenIframe(params);
+    const res = await fetch('/newsletter.html', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString(),
+      credentials: 'same-origin',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
   };
 
   const handleSubmit = async (e: React.FormEvent, fuente: 'popup' | 'inline') => {
