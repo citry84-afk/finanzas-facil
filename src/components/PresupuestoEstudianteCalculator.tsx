@@ -430,7 +430,12 @@ function PresupuestoEstudianteCalculator({ onBack }: PresupuestoEstudianteCalcul
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      label={({ name, value, percent }) => `${name}: ${value.toFixed(0)}€ (${percent ? (percent * 100).toFixed(0) : '0'}%)`}
+                      label={(props: { name?: string; value?: number; percent?: number }) => {
+                        const { name, value, percent } = props;
+                        const v = value ?? 0;
+                        const pct = percent != null ? (percent * 100).toFixed(0) : '0';
+                        return `${name ?? ''}: ${v.toFixed(0)}€ (${pct}%)`;
+                      }}
                       outerRadius={100}
                       fill="#8884d8"
                       dataKey="value"
@@ -439,7 +444,7 @@ function PresupuestoEstudianteCalculator({ onBack }: PresupuestoEstudianteCalcul
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip formatter={(value: number | undefined) => value !== undefined ? `${value.toFixed(2)}€` : '0€'} />
+                    <Tooltip formatter={(value) => (typeof value === 'number' ? `${value.toFixed(2)}€` : `${value ?? '0'}€`)} />
                     <Legend />
                   </PieChart>
                 </ResponsiveContainer>
