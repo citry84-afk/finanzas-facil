@@ -25,8 +25,9 @@ export default function LeadMagnet() {
 
   /** Hidratar desde localStorage (solo cliente) */
   useEffect(() => {
-    const sub =
-      readStoredBoolean(STORAGE_SUBSCRIBED) || readStoredBoolean(LEGACY_CAPTURED);
+    // Solo la clave nueva cuenta como alta real (la antigua finanzas_lead_captured se ponía
+    // incluso con el envío simulado — ocultaba el formulario sin newsletter funcionando).
+    const sub = readStoredBoolean(STORAGE_SUBSCRIBED);
     const dismissed =
       readStoredBoolean(STORAGE_POPUP_DISMISSED) || readStoredBoolean(LEGACY_CLOSED);
     if (sub) setSubscribed(true);
@@ -128,14 +129,14 @@ export default function LeadMagnet() {
   };
 
   const thankYou = (
-    <div className="text-center py-6 md:py-8">
+    <div className="text-center py-6 md:py-8 rounded-2xl bg-white/10 px-4 ring-1 ring-white/30">
       <div className="text-5xl mb-3" aria-hidden="true">
         🎉
       </div>
-      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">¡Listo, gracias!</h3>
+      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">¡Listo, estás en la lista!</h3>
       <p className="text-blue-100 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-        Gracias. Te hemos apuntado: cuando empecemos a enviar el resumen semanal, lo recibirás en
-        tu correo (revisa spam si no ves nada). Mientras tanto, usa las calculadoras y el blog.
+        Cuando enviemos el resumen semanal, llegará a tu correo (revisa spam). Mientras tanto,
+        usa las calculadoras y el blog.
       </p>
     </div>
   );
@@ -257,11 +258,11 @@ export default function LeadMagnet() {
         </div>
       )}
 
-      {/* Acceso rápido: ancla fija (no tapa el aviso PWA, va a la izquierda) */}
+      {/* Acceso rápido: ancla fija (encima del contenido; PWA sigue a la derecha) */}
       {!subscribed && (
         <a
           href="#newsletter-finanzas"
-          className="fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg ring-2 ring-white/30 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white md:text-base"
+          className="fixed bottom-4 left-4 z-[100] inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg ring-2 ring-white/30 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white md:text-base"
           onClick={(e) => {
             e.preventDefault();
             document
@@ -274,10 +275,10 @@ export default function LeadMagnet() {
         </a>
       )}
 
-      {/* Bloque en página: siempre visible salvo ya suscrito */}
+      {/* Bloque en página: siempre visible salvo ya suscrito (confirmación explícita) */}
       <div
         id="newsletter-finanzas"
-        className="scroll-mt-24 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 md:p-12 text-white shadow-2xl"
+        className="relative z-10 scroll-mt-24 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 md:p-12 text-white shadow-2xl ring-1 ring-white/20"
       >
         <div className="max-w-3xl mx-auto">
           {subscribed ? (
