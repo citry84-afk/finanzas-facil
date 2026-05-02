@@ -790,13 +790,33 @@
       </div>
     </noscript>
 
-    <!-- Formulario oculto para Netlify Forms (registro en build; el envío lo hace React) -->
-    <form name="newsletter" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" style="display: none" aria-hidden="true">
-      <input type="text" name="bot-field" />
+    <!--
+      Netlify NO debe detectar el form si el <form> tiene display:none.
+      Lo dejamos fuera de pantalla (siguen existiendo en el HTML del deploy).
+    -->
+    <form
+      name="newsletter"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      action="/"
+      class="netlify-honeypot-form"
+      aria-hidden="true"
+    >
+      <input type="text" name="bot-field" autocomplete="off" tabindex="-1" />
       <input type="text" name="nombre" />
       <input type="email" name="email" />
       <input type="text" name="fuente" />
     </form>
+    <style>
+      .netlify-honeypot-form {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+    </style>
 
     <!-- Aplicación React -->
     <div id="root"></div>

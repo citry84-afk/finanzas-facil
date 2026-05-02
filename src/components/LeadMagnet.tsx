@@ -84,14 +84,17 @@ export default function LeadMagnet() {
     params.append('email', email.trim());
     params.append('fuente', fuente);
 
-    const res = await fetch('/', {
+    // Misma ruta que el action del form estático; evita 404 en algunos despliegues SPA
+    const url = '/index.html';
+
+    const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: params.toString(),
     });
 
     if (!res.ok) {
-      throw new Error(`Respuesta ${res.status}`);
+      throw new Error(`HTTP ${res.status}`);
     }
   };
 
