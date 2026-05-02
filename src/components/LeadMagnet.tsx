@@ -77,6 +77,67 @@ export default function LeadMagnet() {
     return () => document.removeEventListener('keydown', onKey);
   }, [showPopup, dismissPopup]);
 
+  const postViaHiddenIframe = (params: URLSearchParams): Promise<void> =>
+    new Promise((resolve, reject) => {
+      let finished = false;
+      const done = () => {
+        if (finished) return;
+        finished = true;
+        resolve();
+      };
+
+      try {
+        const iframe = document.createElement('iframe');
+        const targetName = `netlify-nl-${Date.now()}`;
+        iframe.name = targetName;
+        iframe.title = 'Envío newsletter';
+        iframe.style.cssText =
+          'position:absolute;width:0;height:0;border:0;left:-9999px;visibility:hidden';
+        document.body.appendChild(iframe);
+
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/newsletter.html';
+        form.target = targetName;
+        form.setAttribute('enctype', 'application/x-www-form-urlencoded');
+
+        params.forEach((value, key) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+        });
+
+        const removeIframe = () => {
+          try {
+            iframe.remove();
+          } catch {
+            /* ignore */
+          }
+        };
+
+        const fallbackMs = 2500;
+        const timer = window.setTimeout(() => {
+          removeIframe();
+          done();
+        }, fallbackMs);
+
+        iframe.onload = () => {
+          window.clearTimeout(timer);
+          removeIframe();
+          done();
+        };
+
+        document.body.appendChild(form);
+        form.submit();
+        form.remove();
+      } catch (e) {
+        reject(e);
+      }
+    });
+
+  /** action="/" en index.html; fetch e iframe usan la misma ruta que el form estático de Netlify */
   const submitToNetlify = async (fuente: 'popup' | 'inline') => {
     const params = new URLSearchParams();
     params.append('form-name', 'newsletter');
@@ -85,18 +146,21 @@ export default function LeadMagnet() {
     params.append('email', email.trim());
     params.append('fuente', fuente);
 
-    // Misma ruta que el action del form estático; evita 404 en algunos despliegues SPA
-    const url = '/index.html';
-
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params.toString(),
-    });
-
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}`);
+    try {
+      const res = await fetch('/newsletter.html', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        },
+        body: params.toString(),
+        credentials: 'same-origin',
+      });
+      if (res.ok) return;
+    } catch {
+      /* siguiente método */
     }
+
+    await postViaHiddenIframe(params);
   };
 
   const handleSubmit = async (e: React.FormEvent, fuente: 'popup' | 'inline') => {
