@@ -15,6 +15,7 @@ import AutonomosCalculator from './components/AutonomosCalculator';
 import PresupuestoEstudianteCalculator from './components/PresupuestoEstudianteCalculator';
 import ProductoGastos from './components/ProductoGastos';
 import LeadMagnet from './components/LeadMagnet';
+import LandingEditorialSection from './components/LandingEditorialSection';
 import LandingIRPF from './components/LandingIRPF';
 import LandingCuota from './components/LandingCuota';
 import LandingGastos from './components/LandingGastos';
@@ -744,8 +745,8 @@ function AppContent() {
       <StructuredData 
         type="WebSite" 
         data={{
-          name: "Finanzas Fáciles - Calculadoras Financieras Gratuitas",
-          description: "Calculadora de salario neto 2024, calculadora cuándo ser millonario, control de gastos gratis. Herramientas financieras para mejorar tu economía personal.",
+          name: "FinanzasFácil — Calculadoras y guías en España",
+          description: "Calculadoras gratuitas (autónomos, salario neto, hipoteca, presupuesto) y artículos editoriales sobre fiscalidad y finanzas personales. Contenido educativo en español.",
           url: "https://finanzasmuyfacil.com"
         }} 
       />
@@ -799,14 +800,22 @@ function AppContent() {
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-left">
             <h2 className="text-2xl font-bold text-white mb-6 text-center">¿Qué es FinanzasFácil?</h2>
             <p className="text-white/90 mb-4 leading-relaxed">
-              FinanzasFácil es la plataforma líder en España para educación financiera y herramientas de cálculo gratuitas. 
-              Nuestro objetivo es democratizar el acceso a la información financiera de calidad, proporcionando calculadoras 
-              precisas, guías prácticas y recursos educativos que te ayuden a tomar mejores decisiones económicas.
+              FinanzasFácil publica <strong className="text-white">herramientas de cálculo gratuitas</strong> y{' '}
+              <strong className="text-white">guías en español</strong> sobre fiscalidad para autónomos, nómina, vivienda y
+              hábitos de ahorro. El sitio lo mantiene LIPA Studios; las calculadoras sirven para simular escenarios, no
+              sustituyen el criterio de un gestor o asesor fiscal.
             </p>
             <p className="text-white/90 mb-4 leading-relaxed">
-              Desde 2024, hemos ayudado a miles de españoles a entender sus finanzas personales, calcular correctamente 
-              sus impuestos como autónomos, planificar su ahorro para la jubilación y alcanzar sus objetivos de libertad financiera. 
-              Todas nuestras herramientas están actualizadas con la normativa fiscal vigente y son completamente gratuitas.
+              Actualizamos textos y fórmulas cuando cambian tramos, cuotas o calendarios de la AEAT y la Seguridad Social.
+              Puedes empezar por la{' '}
+              <a href="/guia-fiscal-autonomos-espana-2026.html" className="underline font-semibold">
+                guía fiscal para autónomos (2026)
+              </a>
+              , leer el{' '}
+              <a href="/blog.html" className="underline font-semibold">
+                blog
+              </a>{' '}
+              o ir directo a la calculadora que necesites en la rejilla inferior.
             </p>
             <p className="text-white/90 leading-relaxed">
               Nuestras calculadoras cubren aspectos esenciales de la economía personal: desde convertir tu salario bruto a neto 
@@ -974,6 +983,8 @@ function AppContent() {
           <YouTubeVideosSlider maxVideos={6} />
         </div>
 
+        <LandingEditorialSection />
+
         {/* Footer con enlaces legales y donaciones */}
         <div className="mt-16 bg-white/5 backdrop-blur-sm rounded-3xl p-8">
           <div className="text-center space-y-4">
@@ -1109,24 +1120,20 @@ function AppContent() {
               <span className="text-white font-semibold">NUEVO CONTENIDO</span>
             </div>
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Blog de Finanzas Personales 2025
+              Blog y guías de finanzas personales
             </h3>
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-6">
-              Descubre artículos especializados sobre autónomos, fiscalidad, inversión y gestión del dinero. 
-              Guías completas actualizadas para 2025.
+              Artículos sobre autónomos, IRPF, gastos deducibles, nómina y hábitos de ahorro. Las guías largas en HTML
+              complementan las calculadoras de la app.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                <div className="text-2xl font-bold text-white">24+</div>
-                <div className="text-sm text-white/80">Artículos</div>
+            <div className="flex flex-wrap justify-center gap-4 mb-8 text-white/90 text-sm md:text-base max-w-2xl mx-auto">
+              <div className="bg-white/15 backdrop-blur-sm px-4 py-3 rounded-lg text-left">
+                <strong className="text-white block mb-1">Contenido editorial</strong>
+                Incluye la nueva guía fiscal 2026 y páginas estáticas enlazadas desde la home.
               </div>
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                <div className="text-2xl font-bold text-white">10</div>
-                <div className="text-sm text-white/80">Guías Autónomos 2025</div>
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                <div className="text-2xl font-bold text-white">12</div>
-                <div className="text-sm text-white/80">Productos Recomendados</div>
+              <div className="bg-white/15 backdrop-blur-sm px-4 py-3 rounded-lg text-left">
+                <strong className="text-white block mb-1">Sin registro obligatorio</strong>
+                Puedes leer y calcular en web sin crear cuenta (salvo funciones opcionales de la app de gastos).
               </div>
             </div>
             <div className="flex flex-wrap gap-4 justify-center">
