@@ -7,6 +7,37 @@
 # ads.txt para AdSense (web)
 /ads.txt /ads.txt 200
 
+# API de funciones Netlify
+/api/* /.netlify/functions/:splat 200
+
+# Rutas editoriales principales sin extension
+/metodo-dinero-tranquilo /metodo-dinero-tranquilo.html 200
+/privacidad-sin-bancos /privacidad-sin-bancos.html 200
+
+# URLs legacy: consolidar señales antiguas en páginas actuales
+/calculadora-irpf-autonomos-2021.html /calculadora-irpf-autonomo-2026.html 301!
+/tabla-irpf-autonomos-2022.html /tabla-irpf-autonomos-2026.html 301!
+/tramos-irpf-autonomos-2021.html /tabla-irpf-autonomos-2026.html 301!
+/autonomos-jovenes-2025.html /guia-fiscal-autonomos-espana-2026.html 301!
+/cuota-autonomos-2025.html /cuota-autonomos-2026.html 301!
+/calcular-salario-neto-2025.html /calcular-salario-neto-2026.html 301!
+/tabla-irpf-autonomos-2025.html /tabla-irpf-autonomos-2026.html 301!
+/gastos-deducibles-autonomos-2025.html /gastos-deducibles-autonomos-2026.html 301!
+/modelo-130-autonomos-2025.html /modelo-130-autonomos-2026.html 301!
+/calculadora-irpf-autonomo-2025.html /calculadora-irpf-autonomo-2026.html 301!
+/base-cotizacion-autonomos.html /calculadora-autonomos.html 301!
+/tarifa-plana-autonomos-2025.html /guia-fiscal-autonomos-espana-2026.html 301!
+/tarifa-plana-requisitos.html /guia-fiscal-autonomos-espana-2026.html 301!
+/cuando-hacer-modelo-130.html /modelo-130-autonomos-2025.html 301!
+/lista-gastos-deducibles.html /gastos-deducibles-autonomos-2025.html 301!
+/modelo-130-online.html /modelo-130-autonomos-2025.html 301!
+/calcular-salario-neto.html /calcular-salario-neto-2025.html 301!
+/privacy.html /privacidad.html 301!
+
+# Evitar que assets o HTML inexistentes devuelvan la home de la SPA
+/assets/* /404.html 404
+/public/* /404.html 404
+/*.html /404.html 404
+
 # Catch-all para SPA - debe ir al final
 /* /index.html 200
-
