@@ -25,6 +25,9 @@
     
     <!-- Viewport para PWA -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     
     <!-- SEO Meta Tags -->
     <title>FinanzasFácil | Calculadoras, control de gastos y guías en España (2026)</title>
@@ -150,17 +153,14 @@
         "price": "0",
         "priceCurrency": "EUR"
       },
-      "description": "Calculadora gratuita para estimar IRPF, cuota de Seguridad Social y gastos deducibles. Resultados orientativos; revisa siempre la normativa y tu gestoría.",
-      "url": "https://finanzasmuyfacil.com/calculadora-autonomos.html",
+      "description": "Herramienta gratuita para estimar un tramo de cotización, una cuota mensual aproximada y una reserva fiscal de planificación. Resultados orientativos; revisa siempre la normativa y tu gestoría.",
+      "url": "https://finanzasmuyfacil.com/autonomos",
       "featureList": [
-        "Cálculo orientativo de IRPF para autónomos 2026",
-        "Cuota de Seguridad Social actualizada",
-        "Gastos deducibles por categorías",
-        "Tabla IRPF por comunidades autónomas",
-        "Cálculo de Modelo 130",
-        "Bonificaciones para nuevos autónomos",
-        "30.000 brutos a netos",
-        "Calculadora sueldo neto autónomos"
+        "Rango de bases de cotización 2026 según rendimiento previsto",
+        "Cuota mensual aproximada con base ajustable",
+        "Reserva fiscal para planificación",
+        "Guías sobre retenciones, gastos y Modelo 130 con fuentes oficiales",
+        "Control de gastos local con exportación"
       ],
       "keywords": "calculadora autónomos, calculadora irpf autónomo, guía fiscal autónomos 2026, calculadora sueldo neto autónomos, 30.000 brutos a netos, salario bruto españa, irpf autónomo",
       "inLanguage": "es-ES",
@@ -195,21 +195,21 @@
         "name": "¿Cómo calcular IRPF autónomos en 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Resta gastos deducibles a tus ingresos para obtener la base imponible y aplica los tramos de IRPF vigentes. Los tipos varían por comunidad autónoma. Usa la calculadora de autónomos y la guía fiscal 2026 del sitio; confirma siempre con tu gestoría."
+          "text": "El IRPF depende de tus ingresos, gastos deducibles, retenciones, situación personal y comunidad autónoma. Las herramientas del sitio sirven para planificar; consulta la guía fiscal 2026 y confirma los datos con la AEAT o tu gestoría."
         }
       },{
         "@type": "Question",
         "name": "¿Cuánto apartar para impuestos siendo autónomo?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Como referencia orientativa, muchos autónomos reservan entre el 25% y el 35% de cada cobro para IRPF, IVA y cotización, según actividad y deducciones. La guía cuanto-apartar-impuestos-autonomo y la calculadora te ayudan a afinar la estimación."
+          "text": "No hay un porcentaje universal. Separa el IVA cuando corresponda, considera tu cuota, las retenciones y una reserva fiscal acorde a tu actividad. La calculadora ofrece una referencia de planificación, no una liquidación oficial."
         }
       },{
         "@type": "Question",
         "name": "¿La app de FinanzasFácil requiere crear cuenta?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. El control de gastos guarda los datos en tu dispositivo (localStorage en web o almacenamiento de la app en iOS). Puedes exportar CSV, JSON o PDF cuando quieras."
+          "text": "No. El control de gastos guarda los datos en tu dispositivo (localStorage en web o almacenamiento de la app en iOS). Puedes exportar CSV o JSON cuando quieras."
         }
       },{
         "@type": "Question",
@@ -261,8 +261,8 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://finanzasmuyfacil.com" />
     
-    <script type="module" crossorigin src="/assets/index-b4efe265.js"></script>
-    <link rel="stylesheet" href="/assets/index-03db343a.css">
+    <script type="module" crossorigin src="/assets/index-60000d04.js"></script>
+    <link rel="stylesheet" href="/assets/index-836cd17a.css">
   </head>
   <body>
     <!-- Contenido inicial accesible mientras carga la app React -->
@@ -317,13 +317,13 @@
           <div style="font-size: 48px; margin-bottom: 15px;">💰</div>
           <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora de Salario Neto</h3>
           <p style="color: #666; line-height: 1.6;">
-            Calcula tu salario neto 2025 considerando IRPF y Seguridad Social.
+            Calcula tu salario neto 2026 considerando IRPF y Seguridad Social.
           </p>
         </div>
         
           <div style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
             <div style="font-size: 48px; margin-bottom: 15px;">👨‍💼</div>
-            <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora de Autónomos 2025</h3>
+            <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora de Autónomos 2026</h3>
             <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
               Estima IRPF, cuota de Seguridad Social, gastos deducibles y pagos trimestrales con resultados orientativos.
             </p>
@@ -368,7 +368,7 @@
             <h3 style="font-size: 24px; color: #1a1a1a; margin-bottom: 20px; font-weight: bold;">¿Qué puedes calcular?</h3>
             <ul style="list-style: none; padding: 0; margin: 0;">
               <li style="padding: 12px 0; border-bottom: 1px solid #e5e7eb; font-size: 16px; color: #333;">
-                ✅ <strong>Calculadora IRPF autónomo:</strong> Calcula tu IRPF con los tramos actualizados para 2025
+                ✅ <strong>Calculadora IRPF autónomo:</strong> Calcula tu IRPF con los tramos actualizados para 2026
               </li>
               <li style="padding: 12px 0; border-bottom: 1px solid #e5e7eb; font-size: 16px; color: #333;">
                 ✅ <strong>Tablas y tramos IRPF:</strong> Consulta artículos de apoyo para entender los tipos aplicables
@@ -400,7 +400,7 @@
         <div style="max-width: 900px; margin: 0 auto;">
           
           <article style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">20 Gastos Deducibles para Autónomos 2025: Guía Completa</h3>
+            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">20 Gastos Deducibles para Autónomos 2026: Guía Completa</h3>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
               Revisa criterios prudentes sobre gastos deducibles habituales: relación con la actividad, factura completa, forma de pago y conservación de justificantes.
             </p>
@@ -413,15 +413,15 @@
           </article>
           
           <article style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Cómo Calcular IRPF: Guía Completa 2025 para Autónomos</h3>
+            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Cómo Calcular IRPF: Guía Completa 2026 para Autónomos</h3>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
-              Aprende a calcular correctamente el IRPF como autónomo. Esta guía incluye ejemplos prácticos, todas las deducciones aplicables y las últimas actualizaciones fiscales para 2025.
+              Aprende a calcular correctamente el IRPF como autónomo. Esta guía incluye ejemplos prácticos, todas las deducciones aplicables y las últimas actualizaciones fiscales para 2026.
             </p>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
               El IRPF (Impuesto sobre la Renta de las Personas Físicas) es uno de los impuestos más importantes que debes gestionar como autónomo. Se calcula sobre tus ingresos netos, es decir, ingresos menos gastos deducibles. Los tramos de IRPF en España van desde el 19% para los primeros 12.450€ hasta el 45% para ingresos superiores a 60.000€.
             </p>
             <p style="color: #666; line-height: 1.8;">
-              Como autónomo, debes realizar pagos fraccionados trimestrales (Modelo 130) o mensuales (Modelo 131) basados en una estimación de tus ingresos anuales. Al final del año, presentarás la declaración de la renta donde se regularizará la diferencia entre lo pagado y lo realmente debido.
+              Los modelos 130 y 131 son pagos fraccionados trimestrales de IRPF. El modelo aplicable depende del régimen y de la actividad; al final del año la declaración de la renta regulariza la situación.
             </p>
           </article>
 
@@ -439,12 +439,12 @@
           </article>
 
           <article style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Cuota de Autónomos 2025: Tarifas, Bonificaciones y Reducciones</h3>
+            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Cuota de Autónomos 2026: Tarifas, Bonificaciones y Reducciones</h3>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
-              La cuota de autónomos es uno de los gastos fijos más importantes que debes considerar al iniciar tu actividad como trabajador por cuenta propia. En 2025, la cuota base mínima es de 70€ mensuales para los primeros 12 meses, aumentando gradualmente hasta los 294€.
+              La cuota de autónomos es uno de los gastos fijos más importantes al iniciar o mantener una actividad. En 2026, la base y la cuota dependen de los rendimientos previstos y del tramo aplicable; consulta la guía actual y la información de la Seguridad Social antes de tomar una decisión.
             </p>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
-              Existen importantes bonificaciones para nuevos autónomos: durante los primeros 12 meses puedes beneficiarte de una tarifa plana de 60€, y en los siguientes 6 meses pagarás 134€. Además, hay reducciones adicionales según tu comunidad autónoma, especialmente para jóvenes menores de 30 años, mujeres, y personas en situación de desempleo.
+              Puede existir una cuota reducida para altas que cumplan los requisitos y medidas complementarias según la comunidad autónoma. Las condiciones, duración y compatibilidades deben revisarse en la información oficial vigente antes de solicitarlas.
             </p>
             <p style="color: #666; line-height: 1.8;">
               Es fundamental conocer todas las bonificaciones disponibles en tu comunidad autónoma, ya que pueden suponer un ahorro significativo durante los primeros años de actividad. También puedes optar por cotizar por una base superior a la mínima para aumentar tu pensión futura, aunque esto incrementará tu cuota mensual.
@@ -491,7 +491,7 @@
           </article>
 
           <article style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Cómo Calcular tu Salario Neto en España 2025</h3>
+            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Cómo Calcular tu Salario Neto en España 2026</h3>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
               Calcular tu salario neto es fundamental para planificar tus finanzas personales. El salario neto es lo que realmente recibes después de descontar IRPF, Seguridad Social y otras retenciones. En España, las retenciones principales son: IRPF (que varía según tus ingresos y situación personal) y las cotizaciones a la Seguridad Social (aproximadamente el 6,35% del salario bruto).
             </p>
@@ -499,20 +499,20 @@
               El IRPF se calcula según tramos: 19% para ingresos hasta 12.450€, 24% hasta 20.200€, 30% hasta 35.200€, 37% hasta 60.000€, y 45% para ingresos superiores. Sin embargo, existen deducciones que pueden reducir tu base imponible, como deducciones por hijos, discapacidad, o aportaciones a planes de pensiones.
             </p>
             <p style="color: #666; line-height: 1.8;">
-              Para calcular tu salario neto exacto, utiliza nuestra calculadora gratuita que tiene en cuenta todos estos factores. Recuerda que el salario neto puede variar según tu situación familiar, comunidad autónoma (algunas tienen tipos adicionales), y otras circunstancias personales. Es importante revisar tu nómina mensualmente para asegurarte de que las retenciones son correctas.
+              Para estimar tu salario neto, utiliza nuestra calculadora como referencia inicial. Recuerda que el salario neto puede variar según tu situación familiar, comunidad autónoma y otras circunstancias personales. Es importante revisar tu nómina mensualmente para asegurarte de que las retenciones son correctas.
             </p>
           </article>
 
           <article style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Modelo 130 y Modelo 131: Guía para Autónomos 2025</h3>
+            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Modelo 130 y Modelo 131: Guía para Autónomos 2026</h3>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
-              Los modelos 130 y 131 son las declaraciones trimestrales y mensuales respectivamente que los autónomos deben presentar para pagar el IRPF de forma anticipada. El Modelo 130 se presenta trimestralmente (abril, julio, octubre y enero) y es el más común entre autónomos.
+              Los modelos 130 y 131 son pagos fraccionados trimestrales de IRPF. El Modelo 130 se utiliza en actividades en estimación directa; el modelo que corresponde depende de tu régimen y de la actividad.
             </p>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
-              Para calcular el pago del Modelo 130, debes estimar tus ingresos y gastos del trimestre, calcular la base imponible (ingresos menos gastos), aplicar el tipo de IRPF correspondiente (generalmente 20% para autónomos), y restar las retenciones si las hubiera. El resultado es lo que debes pagar a Hacienda.
+              El Modelo 130 utiliza importes acumulados desde el inicio del año hasta el final del trimestre. La AEAT aplica, con carácter general, el 20% sobre el rendimiento neto positivo antes de restar pagos fraccionados anteriores y retenciones, con posibles particularidades.
             </p>
             <p style="color: #666; line-height: 1.8;">
-              El Modelo 131 es similar pero se presenta mensualmente, lo que puede ser útil si tus ingresos son muy variables y quieres ajustar mejor los pagos. Ambos modelos se pueden presentar online a través de la sede electrónica de la AEAT. Es importante llevar un buen control de ingresos y gastos durante el trimestre para calcular correctamente estos pagos.
+              El Modelo 131 también es un pago fraccionado trimestral y se asocia, con carácter general, al régimen de estimación objetiva. Ambos modelos se gestionan a través de la sede electrónica de la AEAT; confirma cuál te corresponde y revisa la documentación antes de presentar.
             </p>
           </article>
 
@@ -543,9 +543,9 @@
           </article>
 
           <article style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Cómo Negociar una Hipoteca: Guía Completa 2025</h3>
+            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Cómo Negociar una Hipoteca: Guía Completa 2026</h3>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
-              Negociar una hipoteca puede ahorrarte miles de euros a lo largo de los años. Antes de firmar, compara ofertas de al menos 3-5 entidades bancarias diferentes. No te conformes con la primera oferta, y utiliza las ofertas de otros bancos como palanca de negociación.
+              Negociar una hipoteca puede ayudarte a reducir costes a lo largo de los años. Antes de firmar, compara ofertas de al menos 3-5 entidades bancarias diferentes. No te conformes con la primera oferta, y utiliza las ofertas de otros bancos como palanca de negociación.
             </p>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
               Aspectos clave a negociar incluyen: el tipo de interés (fijo, variable o mixto), la comisión de apertura (intenta que sea 0% o lo más baja posible), la comisión de cancelación anticipada, y los productos vinculados (cuenta corriente, seguros, planes de pensiones). Los bancos suelen ofrecer mejores condiciones si contratas varios productos, pero evalúa si realmente los necesitas.
@@ -569,7 +569,7 @@
           </article>
 
           <article style="background: white; padding: 35px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Inflación: Cómo Proteger tu Dinero en 2025</h3>
+            <h3 style="font-size: 26px; color: #1a1a1a; margin-bottom: 15px; font-weight: bold;">Inflación: Cómo Proteger tu Dinero en 2026</h3>
             <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
               La inflación es el aumento generalizado de los precios que reduce el poder adquisitivo de tu dinero con el tiempo. Si la inflación es del 3% anual, 100€ hoy valdrán solo 97€ en poder adquisitivo el año que viene. Por eso, mantener todo tu dinero en una cuenta corriente es una mala estrategia a largo plazo.
             </p>
@@ -610,10 +610,11 @@
         <div style="margin-bottom: 20px;">
           <a href="/" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Inicio</a>
           <a href="/calculadora-autonomos.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Calculadora Autónomos</a>
-          <a href="/tabla-irpf-autonomos-2025.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Tabla IRPF 2025</a>
-          <a href="/presupuesto-navideno-2025.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Presupuesto Navideño</a>
+          <a href="/tabla-irpf-autonomos-2026.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Tabla IRPF 2026</a>
+          <a href="/blog.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Guías de ahorro</a>
           <a href="/ahorrar-black-friday.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Black Friday</a>
           <a href="/blog.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Blog</a>
+          <a href="/metodologia-fuentes.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Metodología</a>
           <a href="/acerca-de.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Sobre Nosotros</a>
           <a href="/contacto.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Contacto</a>
         </div>
@@ -627,7 +628,7 @@
           </div>
         </div>
         <p style="font-size: 14px; opacity: 0.8; margin-top: 20px;">
-          © 2025 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
+          © 2026 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
         </p>
       </footer>
     </div>
@@ -694,7 +695,7 @@
             <div style="font-size: 48px; margin-bottom: 15px;">💰</div>
             <h3 style="font-size: 22px; color: #1a1a1a; margin-bottom: 15px;">Calculadora de Salario Neto</h3>
             <p style="color: #666; line-height: 1.6;">
-              Calcula tu salario neto 2025 considerando IRPF y Seguridad Social.
+              Calcula tu salario neto 2026 considerando IRPF y Seguridad Social.
             </p>
           </div>
           
@@ -712,7 +713,7 @@
           <div style="max-width: 900px; margin: 0 auto;">
             <p style="color: #666; line-height: 1.8; margin-bottom: 30px; text-align: center;">
               Explora nuestra colección completa de artículos sobre finanzas personales, fiscalidad, ahorro e inversión. 
-              Todo el contenido está actualizado para 2025 y adaptado a la normativa española.
+              Todo el contenido está actualizado para 2026 y adaptado a la normativa española.
             </p>
             <p style="color: #666; line-height: 1.8; margin-bottom: 30px;">
               En FinanzasFácil encontrarás guías detalladas sobre cómo calcular tu salario neto, gestionar tus gastos como autónomo, 
@@ -745,6 +746,7 @@
           <div style="margin-bottom: 20px;">
             <a href="/" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Inicio</a>
             <a href="/blog.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Blog</a>
+            <a href="/metodologia-fuentes.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Metodología</a>
             <a href="/acerca-de.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Sobre Nosotros</a>
             <a href="/contacto.html" style="color: #60a5fa; text-decoration: none; margin: 0 15px; font-weight: 500;">Contacto</a>
           </div>
@@ -758,7 +760,7 @@
             </div>
           </div>
           <p style="font-size: 14px; opacity: 0.8; margin-top: 20px;">
-            © 2025 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
+            © 2026 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
           </p>
         </footer>
       </div>
