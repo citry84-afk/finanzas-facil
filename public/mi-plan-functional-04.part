@@ -1,0 +1,92 @@
+c.concentration === 0 ? 10 : 0) + (contributionOk ? 10 : 0);
+    const initials = onboardingDraft.name.trim().split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase() || 'FF';
+    livePreview.innerHTML = `<div class="preview-head"><div><small>Tu sistema financiero</small><strong>Hola, ${escapeHtml(onboardingDraft.name || 'tú')}.</strong></div><div class="preview-avatar">${initials}</div></div>
+      <div class="preview-score" style="--score:${score}%"><div><span>Índice de control</span><strong>${score}</strong><small>${calc.liquidity >= onboardingDraft.minLiquidity ? 'Todo en orden' : 'Revisar liquidez'}</small></div></div>
+      <div class="preview-metrics"><div class="preview-metric"><span>Patrimonio neto</span><strong>${euro(calc.netWorth, true)}</strong><small>Foto actual</small></div><div class="preview-metric"><span>Objetivo</span><strong>${percent(onboardingDraft.goalTarget ? onboardingDraft.goalCurrent / onboardingDraft.goalTarget * 100 : 0)}</strong><small>${euro(onboardingDraft.goalTarget)}</small></div><div class="preview-metric"><span>Aportación</span><strong>${euro(onboardingDraft.contribution)}</strong><small>Cada mes</small></div><div class="preview-metric"><span>Liquidez</span><strong>${percent(calc.liquidity)}</strong><small>Regla: ${percent(onboardingDraft.minLiquidity)}</small></div><div class="preview-metric wide"><span>Evolución proyectada</span><div class="mini-chart"></div><small>${onboardingDraft.products.size} módulos activos · ${onboardingDraft.detail}</small></div></div>`;
+  }
+
+  function finishOnboarding() {
+    const goalDefinition = GOAL_TYPES[onboardingDraft.goalType];
+    data = defaultData();
+    data.onboardingComplete = true;
+    data.profile = { name: onboardingDraft.name.trim() || 'Usuario', detail: onboardingDraft.detail, reviewFrequency: onboardingDraft.reviewFrequency };
+    data.goal = {
+      type: onboardingDraft.goalType,
+      name: onboardingDraft.goalType === 'wealth' ? `Patrimonio de ${euro(onboardingDraft.goalTarget)}` : goalDefinition.title,
+      target: onboardingDraft.goalTarget,
+      current: onboardingDraft.goalCurrent,
+      linkedToNetWorth: onboardingDraft.goalType === 'wealth',
+      monthlyContribution: onboardingDraft.contribution,
+      deadline: '',
+    };
+    data.rules = { minLiquidityPct: onboardingDraft.minLiquidity, maxConcentrationPct: onboardingDraft.maxConcentration };
+    const selected = [...onboardingDraft.products];
+    data.items = selected.map(type => ({
+      id: id(), name: TYPES[type].label, type, value: safeNumber(onboardingDraft.productValues[type]), monthlyIncome: type === 'realestate' ? onboardingDraft.passiveIncome : 0, owner: 'Familiar', updatedAt: nowIso(),
+    })).filter(item => item.value > 0 || item.monthlyIncome > 0);
+    if (onboardingDraft.goalCurrent > 0 && !data.goal.linkedToNetWorth) data.goal.current = onboardingDraft.goalCurrent;
+    data.movements = [];
+    saveData();
+    runReveal();
+  }
+
+  function runReveal() {
+    onboarding.classList.add('hidden');
+    app.classList.add('hidden');
+    reveal.classList.remove('hidden');
+    const checks = [
+      `Objetivo: ${data.goal.name}`,
+      `${data.items.length} elementos patrimoniales preparados`,
+      'Reglas personales activadas',
+      'Privacidad: almacenamiento local',
+    ];
+    const statuses = ['Entendiendo tu objetivo…', 'Calculando tu fotografía…', 'Activando tus controles…', 'Tu sistema está listo.'];
+    $('#revealChecks').innerHTML = '';
+    checks.forEach((text, index) => setTimeout(() => {
+      $('#revealStatus').textContent = statuses[index];
+      $('#revealChecks').insertAdjacentHTML('beforeend', `<div><i>✓</i>${escapeHtml(text)}</div>`);
+      vibrate(5);
+    }, 350 + index * 420));
+    setTimeout(showApp, 2300);
+  }
+
+  function showApp() {
+    document.body.classList.add('app-active');
+    onboarding.classList.add('hidden'); reveal.classList.add('hidden'); app.classList.remove('hidden');
+    updateAppHeader();
+    setView('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateAppHeader() {
+    const hour = new Date().getHours();
+    const salutation = hour < 13 ? 'Buenos días' : hour < 20 ? 'Buenas tardes' : 'Buenas noches';
+    $('#todayLabel').textContent = new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date()).toUpperCase();
+    $('#greeting').textContent = `${salutation}, ${data.profile.name}.`;
+    const initials = data.profile.name.trim().split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase() || 'FF';
+    $('#avatarButton').textContent = initials;
+  }
+
+  function setView(view) {
+    currentView = view;
+    $$('[data-view]').forEach(button => button.classList.toggle('active', button.dataset.view === view));
+    if (view === 'home') renderHome();
+    if (view === 'wealth') renderWealth();
+    if (view === 'goals') renderGoals();
+    if (view === 'report') renderReport();
+    if (view === 'settings') renderSettings();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderHome() {
+    const calc = totals();
+    const score = controlScore(calc);
+    const issueList = alerts(calc);
+    const progress = goalProgress(calc);
+    const contributionStatus = calc.movementTotals.contribution >= data.goal.monthlyContribution;
+    const liquidityStatus = calc.financialAssets === 0 || calc.liquidityPct >= data.rules.minLiquidityPct;
+    const concentrationStatus = calc.financialAssets === 0 || calc.concentrationPct <= data.rules.maxConcentrationPct;
+    const issueTitle = issueList[0].kind === 'good' ? 'Tu plan está en orden' : `${issueList.filter(a => a.kind === 'warn').length} aspecto${issueList.filter(a => a.kind === 'warn').length === 1 ? '' : 's'} que revisar`;
+    viewRoot.innerHTML = `<section class="status-hero"><div><span class="status-kicker"><i></i>${issueTitle.toUpperCase()}</span><h2>${score >= 80 ? 'Estás construyendo libertad con un sistema que puedes mantener.' : 'Ya tienes una visión clara. Ahora toca completar el siguiente paso.'}</h2><p>${calc.monthChange >= 0 ? `Tu patrimonio ha avanzado ${euro(calc.monthChange)} este mes.` : `Tu patrimonio ha variado ${euro(calc.monthChange)} este mes.`} El panel usa tus datos reales guardados en este dispositivo.</p><div class="status-chips"><span>${contributionStatus ? '✓' : '○'} Aportación ${contributionStatus ? 'realizada' : 'pendiente'}</span><span>${liquidityStatus ? '✓' : '○'} Liquidez ${liquidityStatus ? 'protegida' : 'a revisar'}</span><span>${concentrationStatus ? '✓' : '○'} Concentración ${concentrationStatus ? 'dentro del límite' : 'superior al límite'}</span></div></div><div class="score-ring" style="--score:${score}%"><div><span>Índice de control</span><strong>${score}</strong><small>${score >= 80 ? 'Buen control' : 'En construcción'}</small></div></div></section>
+      <div class="metrics">${metricCards(calc).join('')}</div>
+      <div class="view-grid"><article class="panel"><div class="panel-head"><div><p class="eyebrow">TU OBJETIVO PRINCIPAL</p><h2>${escapeHtml(data.goal.name)}</h2></div><button class="mini-button" data-action="edit-goal">Editar plan</button></div><div class="goal-progress"><div class="goal-meta
