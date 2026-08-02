@@ -1,0 +1,90 @@
+><div class="story-breakdown"><div><span>Liquidez</span><strong>${calc.liquidityPct >= data.rules.minLiquidityPct ? 'Dentro de la regla' : 'Revisar'}</strong></div><div><span>Concentración</span><strong>${calc.concentrationPct <= data.rules.maxConcentrationPct ? 'Dentro de la regla' : 'Revisar'}</strong></div></div>`,
+      `<p class="eyebrow">TU OBJETIVO</p><h2>Has completado <em>${percent(goalProgress(calc),1)}</em>.</h2><p>Con una aportación de ${euro(data.goal.monthlyContribution)} al mes, la fecha estimada sería ${projectedDate(calc)}.</p>`,
+      `<p class="eyebrow">CONTROL FINANCIERO</p><h2>Tu índice es <em>${controlScore(calc)}</em> de 100.</h2><p>Este indicador premia datos actualizados, aportaciones y cumplimiento de tus reglas. Nunca premia operar más o asumir más riesgo.</p>`,
+    ];
+  }
+
+  function renderStory() {
+    const slides = storySlides();
+    storyIndex = Math.max(0, Math.min(storyIndex, slides.length - 1));
+    $('#storyProgress').innerHTML = slides.map((_, index) => `<i class="${index <= storyIndex ? 'done' : ''}"></i>`).join('');
+    $('#storyContent').innerHTML = slides[storyIndex];
+    $('[data-action="story-prev"]').style.visibility = storyIndex === 0 ? 'hidden' : 'visible';
+    $('[data-action="story-next"]').textContent = storyIndex === slides.length - 1 ? 'Cerrar' : 'Siguiente →';
+  }
+
+  async function generateShareCard() {
+    const canvas = $('#shareCanvas');
+    const ctx = canvas.getContext('2d');
+    const calc = totals();
+    const gradient = ctx.createLinearGradient(0, 0, 1080, 1350);
+    gradient.addColorStop(0, '#041a3b'); gradient.addColorStop(.62, '#0b448a'); gradient.addColorStop(1, '#ff8613');
+    ctx.fillStyle = gradient; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(255,255,255,.08)'; ctx.beginPath(); ctx.arc(930, 170, 260, 0, Math.PI * 2); ctx.fill();
+    const image = new Image(); image.src = $('.brand img').src;
+    await new Promise(resolve => { image.onload = resolve; image.onerror = resolve; });
+    if (image.complete && image.naturalWidth) { ctx.save(); ctx.beginPath(); ctx.arc(150, 150, 75, 0, Math.PI * 2); ctx.clip(); ctx.drawImage(image, 75, 75, 150, 150); ctx.restore(); }
+    ctx.fillStyle = '#fff'; ctx.font = '700 42px system-ui'; ctx.fillText('FinanzasFácil · Mi Plan', 260, 140);
+    ctx.fillStyle = '#ffd0a0'; ctx.font = '700 28px system-ui'; ctx.fillText('RESUMEN FINANCIERO', 260, 190);
+    ctx.fillStyle = '#fff'; ctx.font = '750 76px system-ui'; wrapText(ctx, `He avanzado ${data.preferences.hideSensitive ? 'hacia mi objetivo' : euro(calc.monthChange)} este mes.`, 85, 390, 900, 86);
+    ctx.fillStyle = '#ffb45f'; ctx.font = '800 150px system-ui'; ctx.fillText(`${Math.round(goalProgress(calc))}%`, 85, 780);
+    ctx.fillStyle = 'rgba(255,255,255,.78)'; ctx.font = '500 38px system-ui'; ctx.fillText('de mi objetivo completado', 85, 835);
+    const cards = [['Índice de control', `${controlScore(calc)}/100`], ['Liquidez', percent(calc.liquidityPct,1)], ['Aportación mensual', data.preferences.hideSensitive ? 'Configurada' : euro(data.goal.monthlyContribution)]];
+    cards.forEach(([label, value], index) => { const y = 940 + index * 105; ctx.fillStyle = 'rgba(255,255,255,.11)'; roundRect(ctx,85,y,910,78,22); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,.72)'; ctx.font = '500 27px system-ui'; ctx.fillText(label,115,y+49); ctx.fillStyle='#fff'; ctx.font='750 30px system-ui'; ctx.textAlign='right'; ctx.fillText(value,960,y+49); ctx.textAlign='left'; });
+    ctx.fillStyle='rgba(255,255,255,.62)';ctx.font='500 24px system-ui';ctx.fillText('Mis cifras, mis reglas, mi progreso.',85,1300);
+    canvas.toBlob(blob => { if (!blob) return; const url=URL.createObjectURL(blob); const link=document.createElement('a');link.href=url;link.download=`finanzasfacil-resumen-${dateIso()}.png`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000); showToast('Ficha generada'); }, 'image/png');
+  }
+
+  function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' '); let line = ''; let currentY = y;
+    words.forEach(word => { const test = `${line}${word} `; if (ctx.measureText(test).width > maxWidth && line) { ctx.fillText(line.trim(), x, currentY); line = `${word} `; currentY += lineHeight; } else line = test; });
+    if (line) ctx.fillText(line.trim(), x, currentY);
+  }
+
+  function roundRect(ctx, x, y, width, height, radius) {
+    ctx.beginPath(); ctx.roundRect(x, y, width, height, radius);
+  }
+
+  function exportData() {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = `finanzasfacil-copia-${dateIso()}.json`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); showToast('Copia exportada');
+  }
+
+  function importData(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      try { data = migrate(JSON.parse(reader.result)); data.onboardingComplete = true; saveData('Copia restaurada'); updateAppHeader(); setView('home'); }
+      catch (error) { showToast('El archivo no es una copia válida'); }
+    };
+    reader.readAsText(file);
+  }
+
+  function resetAll() {
+    if (!confirm('¿Borrar todos los datos y volver a empezar?')) return;
+    storageRemove(STORAGE_KEY); data = defaultData(); onboardingDraft.step = 0; document.body.classList.remove('app-active'); app.classList.add('hidden'); reveal.classList.add('hidden'); onboarding.classList.remove('hidden'); renderOnboarding(); showToast('Datos eliminados');
+  }
+
+  document.addEventListener('click', event => {
+    const button = event.target.closest('[data-action], [data-view]');
+    if (!button) return;
+    if (button.dataset.view) { setView(button.dataset.view); vibrate(); return; }
+    const action = button.dataset.action;
+    if (action === 'go-home' && data.onboardingComplete) setView('home');
+    if (action === 'add-item') openItemDialog();
+    if (action === 'edit-item') openItemDialog(button.dataset.id);
+    if (action === 'add-movement') openMovementDialog();
+    if (action === 'edit-goal') openGoalDialog();
+    if (action === 'edit-rules') openRulesDialog();
+    if (action === 'open-story') openStory();
+    if (action === 'close-story') $('#storyDialog').close();
+    if (action === 'story-prev') { storyIndex -= 1; renderStory(); }
+    if (action === 'story-next') { const slides = storySlides(); if (storyIndex >= slides.length - 1) $('#storyDialog').close(); else { storyIndex += 1; renderStory(); } }
+    if (action === 'share-card') generateShareCard();
+    if (action === 'toggle-sensitive') { data.preferences.hideSensitive = !data.preferences.hideSensitive; saveData(); renderSettings(); showToast(data.preferences.hideSensitive ? 'Importes ocultos' : 'Importes visibles'); }
+    if (action === 'export-data') exportData();
+    if (action === 'import-data') $('#importInput').click();
+    if (action === 'reset-all') resetAll();
+  });
+
+  $('#themeButton').addEventListener('click', () => applyTheme(document.body.classList.contains('theme-dark') ? 'light' : 'dark'));
+  backButton.addEventListener('click', () => { if (onboardingDraft.step > 0) { o
