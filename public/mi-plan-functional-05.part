@@ -1,0 +1,54 @@
+"><span><strong>${sensitive(euro(goalCurrent(calc)))}</strong> actuales</span><span>${percent(progress, 1)} completado</span></div><div class="bar"><i style="width:${progress}%"></i></div><div class="insight"><span>↗</span><div><b>Fecha estimada: ${projectedDate(calc)}</b><br />Manteniendo ${euro(data.goal.monthlyContribution)} al mes y usando una hipótesis del 5 % anual.</div></div></div></article>
+      <article class="panel"><div class="panel-head"><div><p class="eyebrow">ATENCIÓN</p><h3>Reglas personales</h3></div><button class="mini-button" data-action="edit-rules">Editar</button></div><div class="alerts">${issueList.map(alert => `<div class="alert ${alert.kind}"><strong>${escapeHtml(alert.title)}</strong><small>${escapeHtml(alert.text)}</small></div>`).join('')}</div></article>
+      <article class="panel"><div class="panel-head"><div><p class="eyebrow">MOVIMIENTOS</p><h3>Este mes</h3></div><button class="mini-button" data-action="add-movement">Registrar</button></div>${movementList(calc.monthMovements.slice().sort((a,b) => String(b.date).localeCompare(String(a.date))).slice(0,5))}</article></div>`;
+  }
+
+  function metricCards(calc) {
+    const cards = [
+      ['◫', 'Patrimonio neto', sensitive(euro(calc.netWorth)), `${calc.debtTotal ? `Deuda: ${euro(calc.debtTotal)}` : 'Sin deuda registrada'}`, calc.netWorth >= 0 ? 'positive' : 'warning'],
+      ['↗', 'Cambio del mes', sensitive(euro(calc.monthChange)), `Aportaciones: ${euro(calc.movementTotals.contribution)}`, calc.monthChange >= 0 ? 'positive' : 'warning'],
+      ['€', 'Liquidez', percent(calc.liquidityPct, 1), `Regla mínima: ${percent(data.rules.minLiquidityPct)}`, calc.liquidityPct >= data.rules.minLiquidityPct || calc.financialAssets === 0 ? 'positive' : 'warning'],
+      ['⌂', 'Ingresos pasivos', sensitive(euro(calc.passiveIncome)), 'Estimación mensual', calc.passiveIncome > 0 ? 'positive' : ''],
+    ];
+    return cards.map(([icon, label, value, sub, kind]) => `<article class="metric"><div class="metric-head"><span>${label}</span><i class="metric-icon">${icon}</i></div><strong>${value}</strong><p class="${kind}">${sub}</p></article>`);
+  }
+
+  function sensitive(value) {
+    return data.preferences.hideSensitive ? '••••••' : value;
+  }
+
+  function movementList(list) {
+    if (!list.length) return `<div class="empty"><b>No hay movimientos este mes</b>Registra una aportación, retirada, ingreso o movimiento de mercado.</div>`;
+    const icon = { contribution: '+', market: '↗', withdrawal: '−', income: '€' };
+    const label = { contribution: 'Aportación', market: 'Mercado', withdrawal: 'Retirada / gasto', income: 'Ingreso pasivo' };
+    return `<div class="movement-list">${list.map(item => `<div class="movement"><span class="movement-icon">${icon[item.kind] || '•'}</span><div><strong>${label[item.kind] || item.kind}</strong><small>${escapeHtml(item.note || item.date)}</small></div><strong class="${item.kind === 'withdrawal' ? 'warning' : 'positive'}">${item.kind === 'withdrawal' ? '−' : '+'}${euro(item.amount)}</strong></div>`).join('')}</div>`;
+  }
+
+  function renderWealth() {
+    const calc = totals();
+    const grouped = Object.entries(TYPES).map(([type, definition]) => ({ type, definition, value: data.items.filter(item => item.type === type).reduce((sum, item) => sum + safeNumber(item.value), 0) })).filter(row => row.value > 0);
+    const maxAllocation = Math.max(1, ...grouped.filter(row => row.type !== 'debt').map(row => row.value));
+    viewRoot.innerHTML = `<div class="section-toolbar"><div><p class="eyebrow">PATRIMONIO</p><h2>Todo tu dinero en una sola vista</h2></div><button class="primary" data-action="add-item">＋ Añadir elemento</button></div>
+      <div class="summary-strip"><div class="summary-box"><span>Activos</span><strong>${sensitive(euro(calc.grossAssets))}</strong></div><div class="summary-box"><span>Deudas</span><strong>${sensitive(euro(calc.debtTotal))}</strong></div><div class="summary-box"><span>Patrimonio neto</span><strong>${sensitive(euro(calc.netWorth))}</strong></div></div>
+      <div class="view-grid"><article class="panel"><div class="panel-head"><div><p class="eyebrow">ELEMENTOS</p><h3>Cuentas, inversiones e inmuebles</h3></div><span>${data.items.length}</span></div>${itemList()}</article><article class="panel"><div class="panel-head"><div><p class="eyebrow">DISTRIBUCIÓN</p><h3>Por tipo de activo</h3></div></div><div class="allocation">${grouped.map(row => `<div class="allocation-row"><span>${row.definition.label}</span><div><i style="width:${row.type === 'debt' ? Math.min(100,row.value/Math.max(1,calc.debtTotal)*100) : row.value/maxAllocation*100}%"></i></div><strong>${sensitive(euro(row.value, true))}</strong></div>`).join('') || '<div class="empty"><b>Sin datos</b>Añade tu primer elemento.</div>'}</div></article></div>`;
+  }
+
+  function itemList() {
+    if (!data.items.length) return `<div class="empty"><b>Tu patrimonio está vacío</b>Pulsa “Añadir elemento” para comenzar.</div>`;
+    return `<div class="item-list">${data.items.slice().sort((a,b) => (a.type === 'debt') - (b.type === 'debt') || b.value - a.value).map(item => `<button type="button" class="item-row" data-action="edit-item" data-id="${item.id}"><span class="item-type">${TYPES[item.type]?.icon || '•'}</span><div><strong>${escapeHtml(item.name)}</strong><small>${TYPES[item.type]?.label || item.type}${item.owner ? ` · ${escapeHtml(item.owner)}` : ''}</small></div><div class="item-values"><strong class="${item.type === 'debt' ? 'warning' : ''}">${item.type === 'debt' ? '−' : ''}${sensitive(euro(item.value))}</strong>${item.monthlyIncome ? `<small>+${euro(item.monthlyIncome)}/mes</small>` : ''}</div></button>`).join('')}</div>`;
+  }
+
+  function renderGoals() {
+    const calc = totals();
+    const current = goalCurrent(calc);
+    const progress = goalProgress(calc);
+    const contribution = safeNumber(data.goal.monthlyContribution);
+    const scenarios = [0.8, 1, 1.2].map(multiplier => ({ label: multiplier < 1 ? 'Prudente' : multiplier > 1 ? 'Acelerado' : 'Plan actual', contribution: contribution * multiplier, date: projectedDate(calc, contribution * multiplier) }));
+    viewRoot.innerHTML = `<div class="section-toolbar"><div><p class="eyebrow">OBJETIVOS</p><h2>${escapeHtml(data.goal.name)}</h2></div><button class="primary" data-action="edit-goal">Editar objetivo</button></div>
+      <article class="panel"><div class="goal-meta"><span><strong>${sensitive(euro(current))}</strong> de ${sensitive(euro(data.goal.target))}</span><span>${percent(progress,1)}</span></div><div class="bar" style="height:13px"><i style="width:${progress}%"></i></div><div class="scenario">${scenarios.map(item => `<div><span>${item.label}<br />${euro(item.contribution)}/mes</span><strong>${item.date}</strong></div>`).join('')}</div><div class="insight"><span>i</span><div><b>La fecha es una simulación educativa.</b><br />Utiliza una rentabilidad anual constante del 5 %, no garantiza resultados futuros y no incluye impuestos ni inflación.</div></div></article>`;
+  }
+
+  function renderReport() {
+    const calc = totals();
+    const progress = goalProgress(calc);
+    viewRoot.innerHTML = `<section class="report-hero"><p class="eyebrow">TU RESUMEN F
