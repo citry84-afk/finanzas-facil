@@ -1,0 +1,90 @@
+ * 100 : 0;
+    const passiveIncome = assets.reduce((sum, item) => sum + safeNumber(item.monthlyIncome), 0);
+    const currentMonth = dateIso().slice(0, 7);
+    const monthMovements = data.movements.filter(m => String(m.date || '').slice(0, 7) === currentMonth);
+    const movementTotals = monthMovements.reduce((result, movement) => {
+      const amount = safeNumber(movement.amount);
+      result[movement.kind] = (result[movement.kind] || 0) + amount;
+      return result;
+    }, { contribution: 0, market: 0, withdrawal: 0, income: 0 });
+    const monthChange = movementTotals.contribution + movementTotals.market + movementTotals.income - movementTotals.withdrawal;
+    return { assets, debts, grossAssets, debtTotal, netWorth, financialItems, financialAssets, cash, liquidityPct, concentrationPct, passiveIncome, monthMovements, movementTotals, monthChange };
+  }
+
+  function goalCurrent(calc = totals()) {
+    return data.goal.linkedToNetWorth ? calc.netWorth : safeNumber(data.goal.current);
+  }
+
+  function goalProgress(calc = totals()) {
+    const target = Math.max(1, safeNumber(data.goal.target, 1));
+    return Math.max(0, Math.min(100, (goalCurrent(calc) / target) * 100));
+  }
+
+  function monthsToGoal(current, target, contribution, annualReturn = 0.05) {
+    if (current >= target) return 0;
+    if (contribution <= 0 && current <= 0) return Infinity;
+    const monthlyRate = Math.pow(1 + annualReturn, 1 / 12) - 1;
+    let value = Math.max(0, current);
+    for (let month = 1; month <= 1200; month += 1) {
+      value = value * (1 + monthlyRate) + Math.max(0, contribution);
+      if (value >= target) return month;
+    }
+    return Infinity;
+  }
+
+  function projectedDate(calc = totals(), contribution = data.goal.monthlyContribution) {
+    const months = monthsToGoal(goalCurrent(calc), safeNumber(data.goal.target), safeNumber(contribution));
+    if (!Number.isFinite(months)) return 'Sin fecha estimada';
+    const date = new Date();
+    date.setMonth(date.getMonth() + months);
+    return new Intl.DateTimeFormat('es-ES', { month: 'long', year: 'numeric' }).format(date);
+  }
+
+  function controlScore(calc = totals()) {
+    let score = 0;
+    if (data.goal?.target > 0 && data.goal?.name) score += 20;
+    if (data.items.length > 0) score += 20;
+    const ageDays = (Date.now() - new Date(data.lastUpdated).getTime()) / 86400000;
+    if (ageDays <= 30) score += 20;
+    if (calc.movementTotals.contribution >= safeNumber(data.goal.monthlyContribution) && data.goal.monthlyContribution > 0) score += 20;
+    else if (data.goal.monthlyContribution === 0) score += 10;
+    if (calc.financialAssets === 0 || calc.liquidityPct >= data.rules.minLiquidityPct) score += 10;
+    if (calc.financialAssets === 0 || calc.concentrationPct <= data.rules.maxConcentrationPct) score += 10;
+    return Math.min(100, Math.round(score));
+  }
+
+  function alerts(calc = totals()) {
+    const list = [];
+    if (!data.items.length) list.push({ kind: 'warn', title: 'Añade tu patrimonio', text: 'Todavía no hay cuentas, inversiones, inmuebles o deudas registradas.' });
+    if (calc.financialAssets > 0 && calc.liquidityPct < data.rules.minLiquidityPct) list.push({ kind: 'warn', title: 'Liquidez por debajo de tu regla', text: `Tienes ${percent(calc.liquidityPct, 1)} y configuraste un mínimo del ${percent(data.rules.minLiquidityPct)}.` });
+    if (calc.financialAssets > 0 && calc.concentrationPct > data.rules.maxConcentrationPct) list.push({ kind: 'warn', title: 'Concentración por encima de tu límite', text: `La mayor posición supone ${percent(calc.concentrationPct, 1)} frente a tu máximo del ${percent(data.rules.maxConcentrationPct)}.` });
+    if (data.goal.monthlyContribution > 0 && calc.movementTotals.contribution < data.goal.monthlyContribution) list.push({ kind: 'warn', title: 'Aportación mensual pendiente', text: `Has registrado ${euro(calc.movementTotals.contribution)} de ${euro(data.goal.monthlyContribution)}.` });
+    if (!list.length) list.push({ kind: 'good', title: 'Todo dentro de tus reglas', text: 'Liquidez, concentración y aportación están en los rangos que configuraste.' });
+    return list;
+  }
+
+  function typeOptions(selected = '') {
+    return Object.entries(TYPES).map(([key, item]) => `<option value="${key}" ${selected === key ? 'selected' : ''}>${item.label}</option>`).join('');
+  }
+
+  const onboardingSteps = [
+    { label: 'Tu objetivo', render: renderGoalOnboarding, valid: () => onboardingDraft.name.trim() && onboardingDraft.goalTarget > 0 },
+    { label: 'Tu ritmo', render: renderRhythmOnboarding, valid: () => onboardingDraft.contribution >= 0 && onboardingDraft.horizon > 0 },
+    { label: 'Tu patrimonio', render: renderProductsOnboarding, valid: () => onboardingDraft.products.size > 0 },
+    { label: 'Tus reglas', render: renderRulesOnboarding, valid: () => onboardingDraft.minLiquidity >= 0 && onboardingDraft.maxConcentration > 0 },
+  ];
+
+  function renderGoalOnboarding() {
+    return `<p class="kicker">Empecemos por lo importante</p>
+      <h1>¿Qué quieres que tu dinero <em>haga por ti?</em></h1>
+      <p class="lead">Primero definimos el objetivo. Después construiremos el panel y los controles que realmente necesitas.</p>
+      <div class="field" style="margin-bottom:14px"><span>¿Cómo quieres que te llamemos?</span><input id="draftName" value="${escapeHtml(onboardingDraft.name)}" maxlength="35" /></div>
+      <div class="goal-grid">${Object.entries(GOAL_TYPES).map(([key, goal]) => `<button class="goal-option ${onboardingDraft.goalType === key ? 'selected' : ''}" type="button" data-goal="${key}"><span class="symbol">${goal.icon}</span><b>${goal.title}</b><small>${goal.subtitle}</small></button>`).join('')}</div>
+      <div class="fields-2" style="margin-top:14px"><div class="field"><span>Meta económica</span><input id="draftTarget" type="number" min="1" step="100" inputmode="decimal" value="${onboardingDraft.goalTarget}" /></div><div class="field"><span>Progreso actual</span><input id="draftCurrent" type="number" min="0" step="100" inputmode="decimal" value="${onboardingDraft.goalCurrent}" /></div></div>`;
+  }
+
+  function renderRhythmOnboarding() {
+    return `<p class="kicker">Un plan que puedas mantener</p><h1>Define tu <em>ritmo realista.</em></h1><p class="lead">No buscamos la aportación perfecta, sino la que puedes sostener y revisar con calma.</p>
+      <div class="fields-2"><div class="field"><span>Aportación mensual sostenible</span><input id="draftContribution" type="number" min="0" step="50" value="${onboardingDraft.contribution}" /></div><div class="field"><span>Horizonte estimado (años)</span><input id="draftHorizon" type="number" min="1" max="60" value="${onboardingDraft.horizon}" /></div></div>
+      <p class="kicker" style="margin-top:27px">Cómo quieres utilizar la app</p>
+      <div class="fields-2"><div class="field"><span>Frecuencia de revisión</span><select id="draftFrequency"><option value="weekly" ${onboardingDraft.reviewFrequency === 'weekly' ? 'selected' : ''}>Semanal</option><option value="monthly" ${onboardingDraft.reviewFrequency === 'monthly' ? 'selected' : ''}>Mensual</option><option value="alerts" ${onboardingDraft.reviewFrequency === 'alerts' ? 'selected' : ''}>Solo s
