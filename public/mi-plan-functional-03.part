@@ -1,0 +1,87 @@
+i hay alertas</option></select></div><div class="field"><span>Nivel de detalle</span><select id="draftDetail"><option value="essential" ${onboardingDraft.detail === 'essential' ? 'selected' : ''}>Esencial</option><option value="complete" ${onboardingDraft.detail === 'complete' ? 'selected' : ''}>Completo</option><option value="advanced" ${onboardingDraft.detail === 'advanced' ? 'selected' : ''}>Avanzado</option></select></div></div>
+      <div class="summary-row" style="margin-top:18px"><span>Estimación con rentabilidad anual del 5 %</span><b>${projectOnboarding()}</b></div>`;
+  }
+
+  function renderProductsOnboarding() {
+    const products = ['cash', 'funds', 'stocks', 'options', 'crypto', 'pension', 'realestate', 'debt', 'other'];
+    return `<p class="kicker">Una fotografía aproximada basta</p><h1>¿Qué quieres <em>controlar?</em></h1><p class="lead">Selecciona tus productos e introduce un valor aproximado. Más tarde podrás separar cada banco, broker o inmueble.</p>
+      <div class="product-grid">${products.map(key => `<button type="button" class="product-option ${onboardingDraft.products.has(key) ? 'selected' : ''}" data-product="${key}">${TYPES[key].icon} ${TYPES[key].label}</button>`).join('')}</div>
+      <div class="product-values">${[...onboardingDraft.products].map(key => `<div class="product-value-row"><div><b>${TYPES[key].label}</b><small>${key === 'debt' ? 'Se restará del patrimonio' : 'Valor aproximado actual'}</small></div><input type="number" min="0" step="100" inputmode="decimal" data-product-value="${key}" value="${safeNumber(onboardingDraft.productValues[key])}" aria-label="Valor de ${TYPES[key].label}" /></div>`).join('')}</div>
+      ${onboardingDraft.products.has('realestate') ? `<div class="field" style="margin-top:12px"><span>Ingresos mensuales de alquiler aproximados</span><input id="draftPassiveIncome" type="number" min="0" step="10" value="${onboardingDraft.passiveIncome}" /></div>` : ''}`;
+  }
+
+  function renderRulesOnboarding() {
+    return `<p class="kicker">La app comprobará tus límites</p><h1>Tus reglas. <em>Tus decisiones.</em></h1><p class="lead">FinanzasFácil no te dirá qué comprar o vender. Te avisará cuando tus propios límites dejen de cumplirse.</p>
+      <div class="fields-2"><div class="field"><span>Liquidez mínima sobre patrimonio financiero</span><input id="draftLiquidity" type="number" min="0" max="100" value="${onboardingDraft.minLiquidity}" /></div><div class="field"><span>Concentración máxima por posición</span><input id="draftConcentration" type="number" min="1" max="100" value="${onboardingDraft.maxConcentration}" /></div></div>
+      <div class="summary-list" style="margin-top:22px"><div class="summary-row"><span>Objetivo</span><b>${GOAL_TYPES[onboardingDraft.goalType].title}</b></div><div class="summary-row"><span>Meta</span><b>${euro(onboardingDraft.goalTarget)}</b></div><div class="summary-row"><span>Productos activos</span><b>${onboardingDraft.products.size}</b></div><div class="summary-row"><span>Datos</span><b>Solo en este dispositivo</b></div></div>`;
+  }
+
+  function projectOnboarding() {
+    const months = monthsToGoal(onboardingDraft.goalCurrent, onboardingDraft.goalTarget, onboardingDraft.contribution);
+    if (!Number.isFinite(months)) return 'Sin fecha estimada';
+    const date = new Date(); date.setMonth(date.getMonth() + months);
+    return new Intl.DateTimeFormat('es-ES', { month: 'long', year: 'numeric' }).format(date);
+  }
+
+  function bindOnboardingEvents() {
+    $$('#onboardingContent [data-goal]').forEach(button => button.addEventListener('click', () => {
+      onboardingDraft.goalType = button.dataset.goal;
+      onboardingDraft.goalTarget = GOAL_TYPES[onboardingDraft.goalType].target;
+      renderOnboarding(); vibrate();
+    }));
+    $$('#onboardingContent [data-product]').forEach(button => button.addEventListener('click', () => {
+      const type = button.dataset.product;
+      if (onboardingDraft.products.has(type)) onboardingDraft.products.delete(type); else onboardingDraft.products.add(type);
+      if (!(type in onboardingDraft.productValues)) onboardingDraft.productValues[type] = 0;
+      renderOnboarding(); vibrate();
+    }));
+    const mappings = [
+      ['#draftName', 'input', value => onboardingDraft.name = value],
+      ['#draftTarget', 'input', value => onboardingDraft.goalTarget = safeNumber(value)],
+      ['#draftCurrent', 'input', value => onboardingDraft.goalCurrent = safeNumber(value)],
+      ['#draftContribution', 'input', value => onboardingDraft.contribution = safeNumber(value)],
+      ['#draftHorizon', 'input', value => onboardingDraft.horizon = safeNumber(value, 1)],
+      ['#draftFrequency', 'change', value => onboardingDraft.reviewFrequency = value],
+      ['#draftDetail', 'change', value => onboardingDraft.detail = value],
+      ['#draftPassiveIncome', 'input', value => onboardingDraft.passiveIncome = safeNumber(value)],
+      ['#draftLiquidity', 'input', value => onboardingDraft.minLiquidity = safeNumber(value)],
+      ['#draftConcentration', 'input', value => onboardingDraft.maxConcentration = safeNumber(value)],
+    ];
+    mappings.forEach(([selector, event, setter]) => {
+      const element = $(selector);
+      if (element) element.addEventListener(event, e => { setter(e.target.value); renderPreview(); nextButton.disabled = !onboardingSteps[onboardingDraft.step].valid(); });
+    });
+    $$('[data-product-value]').forEach(input => input.addEventListener('input', event => {
+      onboardingDraft.productValues[event.target.dataset.productValue] = safeNumber(event.target.value);
+      renderPreview();
+    }));
+  }
+
+  function renderOnboarding() {
+    const step = onboardingSteps[onboardingDraft.step];
+    stepLabel.textContent = step.label;
+    stepCount.textContent = `${onboardingDraft.step + 1} de ${onboardingSteps.length}`;
+    progressFill.style.width = `${((onboardingDraft.step + 1) / onboardingSteps.length) * 100}%`;
+    content.innerHTML = step.render();
+    backButton.style.visibility = onboardingDraft.step === 0 ? 'hidden' : 'visible';
+    nextButton.disabled = !step.valid();
+    nextButton.innerHTML = onboardingDraft.step === onboardingSteps.length - 1 ? 'Crear mi sistema <span>✦</span>' : 'Continuar <span>→</span>';
+    renderPreview();
+    bindOnboardingEvents();
+  }
+
+  function previewTotals() {
+    let assets = 0; let debts = 0; let financial = 0; let cash = 0; let largest = 0;
+    onboardingDraft.products.forEach(type => {
+      const value = safeNumber(onboardingDraft.productValues[type]);
+      if (type === 'debt') debts += value; else assets += value;
+      if (TYPES[type]?.financial) { financial += value; largest = Math.max(largest, value); }
+      if (TYPES[type]?.liquid) cash += value;
+    });
+    return { netWorth: assets - debts, liquidity: financial ? cash / financial * 100 : 0, concentration: financial ? largest / financial * 100 : 0 };
+  }
+
+  function renderPreview() {
+    const calc = previewTotals();
+    const contributionOk = onboardingDraft.contribution > 0;
+    const score = 50 + (onboardingDraft.products.size ? 15 : 0) + (calc.liquidity >= onboardingDraft.minLiquidity ? 15 : 0) + (calc.concentration <= onboardingDraft.maxConcentration || cal
