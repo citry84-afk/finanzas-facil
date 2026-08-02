@@ -10,6 +10,9 @@
 # API de funciones Netlify
 /api/* /.netlify/functions/:splat 200
 
+# Prototipo aislado de Mi Plan
+/mi-plan /mi-plan.html 200
+
 # Rutas editoriales principales sin extension
 /metodo-dinero-tranquilo /metodo-dinero-tranquilo.html 200
 /privacidad-sin-bancos /privacidad-sin-bancos.html 200

@@ -1,0 +1,15 @@
+nboardingDraft.step -= 1; renderOnboarding(); vibrate(); } });
+  nextButton.addEventListener('click', () => { const step = onboardingSteps[onboardingDraft.step]; if (!step.valid()) return; if (onboardingDraft.step < onboardingSteps.length - 1) { onboardingDraft.step += 1; renderOnboarding(); } else finishOnboarding(); vibrate(10); });
+
+  $('#itemForm').addEventListener('submit', event => { if (event.submitter?.value === 'cancel') return; event.preventDefault(); if (saveItemFromForm()) { $('#itemDialog').close(); setView(currentView === 'settings' ? 'home' : currentView); } });
+  $('#deleteItemButton').addEventListener('click', () => { if (!editingItemId || !confirm('¿Eliminar este elemento?')) return; data.items = data.items.filter(item => item.id !== editingItemId); saveData('Elemento eliminado'); $('#itemDialog').close(); setView(currentView); });
+  $('#movementForm').addEventListener('submit', event => { if (event.submitter?.value === 'cancel') return; event.preventDefault(); if (saveMovementFromForm()) { $('#movementDialog').close(); setView(currentView); } });
+  $('#goalForm').addEventListener('submit', event => { if (event.submitter?.value === 'cancel') return; event.preventDefault(); if (saveGoalFromForm()) { $('#goalDialog').close(); setView(currentView); } });
+  $('#goalLinked').addEventListener('change', event => { $('#goalCurrent').disabled = event.target.checked; });
+  $('#rulesForm').addEventListener('submit', event => { if (event.submitter?.value === 'cancel') return; event.preventDefault(); if (saveRulesFromForm()) { $('#rulesDialog').close(); setView(currentView); } });
+  $('#importInput').addEventListener('change', event => { const file = event.target.files?.[0]; if (file) importData(file); event.target.value = ''; });
+
+  initializeTheme();
+  $('#itemType').innerHTML = typeOptions('cash');
+  if (data.onboardingComplete) showApp(); else renderOnboarding();
+})();
