@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="description" content="Prototipo de FinanzasFácil Mi Plan: un sistema financiero personal construido alrededor de tus objetivos." />
+  <title>Mi Plan — FinanzasFácil</title>
+  <link rel="stylesheet" href="/mi-plan.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="grid-glow"></span>
+  </div>
+
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Volver a Finanzas Muy Fácil">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="img"><path d="M7 27.5 15.8 19l6.2 5.8L33 12"/><path d="M26.5 12H33v6.5"/></svg>
+        </span>
+        <span>
+          <strong>FinanzasFácil</strong>
+          <small>Mi Plan · prototipo</small>
+        </span>
+      </a>
+      <div class="top-actions">
+        <span class="privacy-pill"><span class="privacy-dot"></span> Demo privada</span>
+        <button class="icon-button" id="resetButton" type="button" aria-label="Reiniciar prototipo" title="Reiniciar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="onboarding" class="onboarding-layout">
+        <div class="journey-panel">
+          <div class="progress-head">
+            <span id="stepEyebrow">Tu punto de partida</span>
+            <span id="stepCounter">1 de 3</span>
+          </div>
+          <div class="progress-track" aria-label="Progreso del onboarding">
+            <span id="progressBar"></span>
+          </div>
+
+          <div id="stepContent" class="step-content" aria-live="polite"></div>
+
+          <div class="nav-actions">
+            <button id="backButton" class="button button-ghost" type="button">Atrás</button>
+            <button id="nextButton" class="button button-primary" type="button">
+              <span>Continuar</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+          <p class="data-note"><span>●</span> Nada de este prototipo sale de tu dispositivo.</p>
+        </div>
+
+        <aside class="preview-panel" aria-label="Vista previa del dashboard">
+          <div class="preview-top">
+            <span>Tu sistema se construye en directo</span>
+            <span class="live-label"><i></i> EN VIVO</span>
+          </div>
+          <div id="livePreview" class="phone-preview"></div>
+        </aside>
+      </section>
+
+      <section id="reveal" class="reveal-screen is-hidden" aria-live="polite">
+        <div class="reveal-core">
+          <div class="reveal-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+          <p id="revealStatus" class="reveal-status">Entendiendo tu objetivo…</p>
+          <h1>Estamos construyendo<br /><em>tu sistema financiero.</em></h1>
+          <div class="reveal-checks" id="revealChecks"></div>
+        </div>
+      </section>
+
+      <section id="dashboard" class="dashboard is-hidden">
+        <div class="dashboard-nav">
+          <div>
+            <p class="eyebrow">DOMINGO, 2 DE AGOSTO</p>
+            <h1 id="dashboardGreeting">Buenas noches, Luis.</h1>
+          </div>
+          <div class="dashboard-actions">
+            <button class="button button-soft" id="openStoryButton" type="button">
+              <span class="story-spark">✦</span> Ver mi semana
+            </button>
+            <button class="avatar-button" type="button" aria-label="Perfil de demostración">LM</button>
+          </div>
+        </div>
+
+        <div class="status-hero">
+          <div class="status-copy">
+            <span class="status-kicker"><i></i> TU PLAN ESTÁ EN ORDEN</span>
+            <h2>Estás construyendo libertad<br />con un sistema que puedes mantener.</h2>
+            <p id="statusNarrative">Has avanzado 1.240 € este mes y mantienes todas tus reglas dentro del rango configurado.</p>
+            <div class="status-pills">
+              <span>✓ Aportación realizada</span>
+              <span>✓ Liquidez protegida</span>
+              <span>✓ Riesgo controlado</span>
+            </div>
+          </div>
+          <div class="pulse-wrap">
+            <div class="pulse-halo"></div>
+            <div class="pulse-ring" id="pulseRing">
+              <div class="pulse-inner">
+                <span>Índice de control</span>
+                <strong id="controlScore">86</strong>
+                <small>+4 este mes</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="metrics-grid" id="metricsGrid"></div>
+
+        <div class="dashboard-grid">
+          <article class="panel goal-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">TU OBJETIVO PRINCIPAL</p>
+                <h3 id="goalTitle">Patrimonio de 500.000 €</h3>
+              </div>
+              <button class="mini-button" type="button">Ver plan</button>
+            </div>
+            <div class="goal-progress-wrap">
+              <div class="goal-progress-meta">
+                <span><strong id="goalCurrent">184.620 €</strong> actuales</span>
+                <span id="goalPercent">37 % completado</span>
+              </div>
+              <div class="goal-track"><span id="goalTrackFill"></span><i id="goalMarker"></i></div>
+              <div class="timeline-labels"><span>Hoy</span><span>250k</span><span>500k</span></div>
+            </div>
+            <div class="goal-insight">
+              <span class="insight-icon">↗</span>
+              <p><strong>Vas 7 meses por delante.</strong><br /><span id="goalInsightText">Manteniendo 1.000 €/mes, alcanzarías el objetivo en marzo de 2043.</span></p>
+            </div>
+          </article>
+
+          <article class="panel attention-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">UNA COSA QUE REVISAR</p>
+                <h3>Concentración</h3>
+              </div>
+              <span class="attention-count">1</span>
+            </div>
+            <div class="attention-visual">
+              <div class="attention-bar"><span></span><i></i></div>
+              <div class="attention-labels"><span>Tu regla: 25 %</span><strong>29 %</strong></div>
+            </div>
+            <p>Tu mayor posición está ligeramente por encima del límite que configuraste. La app te informa; la decisión siempre es tuya.</p>
+            <button class="text-button" type="button">Entender el dato <span>→</span></button>
+          </article>
+
+          <article class="panel movement-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">QUÉ MOVIÓ TU PATRIMONIO</p>
+                <h3>Este mes</h3>
+              </div>
+              <span class="positive-chip">+1.240 €</span>
+            </div>
+            <div class="waterfall">
+              <div class="waterfall-row"><span>Aportaciones</span><div><i style="--w:78%"></i></div><strong>+1.000 €</strong></div>
+              <div class="waterfall-row"><span>Mercado</span><div><i style="--w:36%"></i></div><strong>+460 €</strong></div>
+              <div class="waterfall-row negative"><span>Gastos / retiradas</span><div><i style="--w:17%"></i></div><strong>−220 €</strong></div>
+            </div>
+          </article>
+        </div>
+
+        <nav class="mobile-tabbar" aria-label="Navegación principal">
+          <button class="active" type="button"><span>⌂</span>Inicio</button>
+          <button type="button"><span>◫</span>Patrimonio</button>
+          <button type="button"><span>◎</span>Objetivos</button>
+          <button id="mobileStoryButton" type="button"><span>✦</span>Informe</button>
+          <button type="button"><span>•••</span>Más</button>
+        </nav>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="storyDialog" class="story-dialog">
+    <form method="dialog"><button class="story-close" aria-label="Cerrar">×</button></form>
+    <div class="story-progress" id="storyProgress"></div>
+    <div id="storySlide" class="story-slide"></div>
+    <div class="story-controls">
+      <button id="storyPrev" type="button" aria-label="Historia anterior">‹</button>
+      <button id="storyNext" type="button">Siguiente <span>›</span></button>
+    </div>
+  </dialog>
+
+  <script src="/mi-plan.js"></script>
+</body>
+</html>
