@@ -4,210 +4,138 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#082a5c" />
-  <meta name="color-scheme" content="light" />
-  <meta name="description" content="Prototipo de FinanzasFácil Mi Plan: un sistema financiero personal construido alrededor de tus objetivos." />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="FinanzasFácil Mi Plan: control financiero personalizado y privado." />
   <title>Mi Plan — FinanzasFácil</title>
-  <link rel="stylesheet" href="/mi-plan.css" />
-  <link rel="stylesheet" href="/mi-plan-brand.css" />
+  <link rel="stylesheet" href="/mi-plan-functional-01.css" />
+<link rel="stylesheet" href="/mi-plan-functional-02.css" />
+<link rel="stylesheet" href="/mi-plan-functional-03.css" />
+<link rel="stylesheet" href="/mi-plan-functional-04.css" />
 </head>
 <body>
-  <div class="ambient" aria-hidden="true">
-    <span class="orb orb-a"></span>
-    <span class="orb orb-b"></span>
-    <span class="grid-glow"></span>
-  </div>
-
-  <div id="app" class="app-shell">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Volver a Finanzas Muy Fácil">
-        <span class="brand-mark" aria-hidden="true">
-          <img src="/logos/logo-icono.png" alt="" />
-        </span>
-        <span>
-          <strong>FinanzasFácil</strong>
-          <small>Mi Plan · prototipo</small>
-        </span>
-      </a>
-      <div class="top-actions">
-        <span class="privacy-pill"><span class="privacy-dot"></span> Demo privada</span>
-        <button class="icon-button" id="resetButton" type="button" aria-label="Reiniciar prototipo" title="Reiniciar">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
-        </button>
-      </div>
-    </header>
-
-    <main>
-      <section id="onboarding" class="onboarding-layout">
-        <div class="journey-panel">
-          <div class="progress-head">
-            <span id="stepEyebrow">Tu punto de partida</span>
-            <span id="stepCounter">1 de 3</span>
-          </div>
-          <div class="progress-track" aria-label="Progreso del onboarding">
-            <span id="progressBar"></span>
-          </div>
-
-          <div id="stepContent" class="step-content" aria-live="polite"></div>
-
-          <div class="nav-actions">
-            <button id="backButton" class="button button-ghost" type="button">Atrás</button>
-            <button id="nextButton" class="button button-primary" type="button">
-              <span>Continuar</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-          </div>
-          <p class="data-note"><span>●</span> Nada de este prototipo sale de tu dispositivo.</p>
-        </div>
-
-        <aside class="preview-panel" aria-label="Vista previa del dashboard">
-          <div class="preview-top">
-            <span>Tu sistema se construye en directo</span>
-            <span class="live-label"><i></i> EN VIVO</span>
-          </div>
-          <div id="livePreview" class="phone-preview"></div>
-        </aside>
-      </section>
-
-      <section id="reveal" class="reveal-screen is-hidden" aria-live="polite">
-        <div class="reveal-core">
-          <div class="reveal-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
-          <p id="revealStatus" class="reveal-status">Entendiendo tu objetivo…</p>
-          <h1>Estamos construyendo<br /><em>tu sistema financiero.</em></h1>
-          <div class="reveal-checks" id="revealChecks"></div>
-        </div>
-      </section>
-
-      <section id="dashboard" class="dashboard is-hidden">
-        <div class="dashboard-nav">
-          <div>
-            <p class="eyebrow">DOMINGO, 2 DE AGOSTO</p>
-            <h1 id="dashboardGreeting">Buenas noches, Isabel.</h1>
-          </div>
-          <div class="dashboard-actions">
-            <button class="button button-soft" id="openStoryButton" type="button">
-              <span class="story-spark">✦</span> Ver mi semana
-            </button>
-            <button class="avatar-button" type="button" aria-label="Perfil de demostración">IS</button>
-          </div>
-        </div>
-
-        <div class="status-hero">
-          <div class="status-copy">
-            <span class="status-kicker"><i></i> TU PLAN ESTÁ EN ORDEN</span>
-            <h2>Estás construyendo libertad<br />con un sistema que puedes mantener.</h2>
-            <p id="statusNarrative">Has avanzado 1.240 € este mes y mantienes todas tus reglas dentro del rango configurado.</p>
-            <div class="status-pills">
-              <span>✓ Aportación realizada</span>
-              <span>✓ Liquidez protegida</span>
-              <span>✓ Riesgo controlado</span>
-            </div>
-          </div>
-          <div class="pulse-wrap">
-            <div class="pulse-halo"></div>
-            <div class="pulse-ring" id="pulseRing">
-              <div class="pulse-inner">
-                <span>Índice de control</span>
-                <strong id="controlScore">86</strong>
-                <small>+4 este mes</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="metrics-grid" id="metricsGrid"></div>
-
-        <div class="dashboard-grid">
-          <article class="panel goal-panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">TU OBJETIVO PRINCIPAL</p>
-                <h3 id="goalTitle">Patrimonio de 500.000 €</h3>
-              </div>
-              <button class="mini-button" type="button">Ver plan</button>
-            </div>
-            <div class="goal-progress-wrap">
-              <div class="goal-progress-meta">
-                <span><strong id="goalCurrent">184.620 €</strong> actuales</span>
-                <span id="goalPercent">37 % completado</span>
-              </div>
-              <div class="goal-track"><span id="goalTrackFill"></span><i id="goalMarker"></i></div>
-              <div class="timeline-labels"><span>Hoy</span><span>250k</span><span>500k</span></div>
-            </div>
-            <div class="goal-insight">
-              <span class="insight-icon">↗</span>
-              <p><strong>Vas 7 meses por delante.</strong><br /><span id="goalInsightText">Manteniendo 1.000 €/mes, alcanzarías el objetivo en marzo de 2043.</span></p>
-            </div>
-          </article>
-
-          <article class="panel attention-panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">UNA COSA QUE REVISAR</p>
-                <h3>Concentración</h3>
-              </div>
-              <span class="attention-count">1</span>
-            </div>
-            <div class="attention-visual">
-              <div class="attention-bar"><span></span><i></i></div>
-              <div class="attention-labels"><span>Tu regla: 25 %</span><strong>29 %</strong></div>
-            </div>
-            <p>Tu mayor posición está ligeramente por encima del límite que configuraste. La app te informa; la decisión siempre es tuya.</p>
-            <button class="text-button" type="button">Entender el dato <span>→</span></button>
-          </article>
-
-          <article class="panel movement-panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">QUÉ MOVIÓ TU PATRIMONIO</p>
-                <h3>Este mes</h3>
-              </div>
-              <span class="positive-chip">+1.240 €</span>
-            </div>
-            <div class="waterfall">
-              <div class="waterfall-row"><span>Aportaciones</span><div><i style="--w:78%"></i></div><strong>+1.000 €</strong></div>
-              <div class="waterfall-row"><span>Mercado</span><div><i style="--w:36%"></i></div><strong>+460 €</strong></div>
-              <div class="waterfall-row negative"><span>Gastos / retiradas</span><div><i style="--w:17%"></i></div><strong>−220 €</strong></div>
-            </div>
-          </article>
-        </div>
-
-        <nav class="mobile-tabbar" aria-label="Navegación principal">
-          <button class="active" type="button"><span>⌂</span>Inicio</button>
-          <button type="button"><span>◫</span>Patrimonio</button>
-          <button type="button"><span>◎</span>Objetivos</button>
-          <button id="mobileStoryButton" type="button"><span>✦</span>Informe</button>
-          <button type="button"><span>•••</span>Más</button>
-        </nav>
-      </section>
-    </main>
-  </div>
-
-  <dialog id="storyDialog" class="story-dialog">
-    <form method="dialog"><button class="story-close" aria-label="Cerrar">×</button></form>
-    <div class="story-progress" id="storyProgress"></div>
-    <div id="storySlide" class="story-slide"></div>
-    <div class="story-controls">
-      <button id="storyPrev" type="button" aria-label="Historia anterior">‹</button>
-      <button id="storyNext" type="button">Siguiente <span>›</span></button>
+  <div class="ambient" aria-hidden="true"><span></span><span></span></div>
+  <header class="topbar">
+    <button class="brand" type="button" data-action="go-home" aria-label="Ir al inicio">
+      <img src="/logos/logo-icono.png" alt="" />
+      <span><strong>FinanzasFácil</strong><small>Mi Plan</small></span>
+    </button>
+    <div class="top-actions">
+      <span class="local-pill"><i></i> Privado · en este dispositivo</span>
+      <button class="round-button" id="themeButton" type="button" aria-label="Cambiar tema">◐</button>
+      <button class="primary compact dashboard-only" type="button" data-action="add-item">＋ Añadir</button>
     </div>
+  </header>
+
+  <main>
+    <section id="onboarding" class="onboarding-shell">
+      <div class="onboarding-main">
+        <div class="progress-row"><span id="stepLabel">Tu objetivo</span><strong id="stepCount">1 de 4</strong></div>
+        <div class="progress-track"><i id="progressFill"></i></div>
+        <div id="onboardingContent" class="onboarding-content" aria-live="polite"></div>
+        <div class="onboarding-actions">
+          <button class="ghost" id="backButton" type="button">Atrás</button>
+          <button class="primary" id="nextButton" type="button">Continuar <span>→</span></button>
+        </div>
+      </div>
+      <aside class="preview-card">
+        <div class="preview-label"><span>Tu panel se construye en directo</span><b><i></i> EN VIVO</b></div>
+        <div id="livePreview" class="preview-phone"></div>
+      </aside>
+    </section>
+
+    <section id="reveal" class="reveal hidden" aria-live="polite">
+      <div class="reveal-orbit"><img src="/logos/logo-icono.png" alt="" /></div>
+      <p id="revealStatus">Entendiendo tu objetivo…</p>
+      <h1>Estamos preparando<br /><em>tu sistema financiero.</em></h1>
+      <div id="revealChecks" class="reveal-checks"></div>
+    </section>
+
+    <section id="app" class="app hidden">
+      <div class="app-heading">
+        <div><p id="todayLabel" class="eyebrow"></p><h1 id="greeting">Hola.</h1></div>
+        <div class="heading-actions">
+          <button class="soft" type="button" data-action="add-movement">Actualizar mes</button>
+          <button class="avatar" type="button" data-view="settings" id="avatarButton">FF</button>
+        </div>
+      </div>
+      <nav class="desktop-nav" aria-label="Secciones">
+        <button class="active" data-view="home">Inicio</button>
+        <button data-view="wealth">Patrimonio</button>
+        <button data-view="goals">Objetivos</button>
+        <button data-view="report">Informe</button>
+        <button data-view="settings">Ajustes</button>
+      </nav>
+      <div id="viewRoot"></div>
+      <nav class="mobile-nav" aria-label="Navegación móvil">
+        <button class="active" data-view="home"><span>⌂</span>Inicio</button>
+        <button data-view="wealth"><span>▦</span>Patrimonio</button>
+        <button data-view="goals"><span>◎</span>Objetivos</button>
+        <button data-view="report"><span>✦</span>Informe</button>
+        <button data-view="settings"><span>•••</span>Más</button>
+      </nav>
+    </section>
+  </main>
+
+  <dialog id="itemDialog" class="modal">
+    <form id="itemForm" method="dialog">
+      <div class="modal-head"><div><p class="eyebrow">PATRIMONIO</p><h2 id="itemDialogTitle">Añadir elemento</h2></div><button class="close" value="cancel" aria-label="Cerrar">×</button></div>
+      <input type="hidden" id="itemId" />
+      <label>Nombre<input id="itemName" required maxlength="60" placeholder="Ej. Interactive Brokers" /></label>
+      <div class="form-grid">
+        <label>Tipo<select id="itemType" required></select></label>
+        <label>Valor actual (€)<input id="itemValue" type="number" min="0" step="0.01" inputmode="decimal" required /></label>
+      </div>
+      <div class="form-grid">
+        <label>Ingreso mensual (€)<input id="itemIncome" type="number" min="0" step="0.01" inputmode="decimal" value="0" /></label>
+        <label>Titular<input id="itemOwner" maxlength="40" placeholder="Personal, familiar…" /></label>
+      </div>
+      <p class="form-help">Las deudas se introducen como importe positivo y se restan automáticamente del patrimonio.</p>
+      <div class="modal-actions"><button class="danger-link hidden" id="deleteItemButton" type="button">Eliminar</button><span></span><button class="ghost" value="cancel">Cancelar</button><button class="primary" id="saveItemButton" value="default">Guardar</button></div>
+    </form>
   </dialog>
 
-  <script src="/mi-plan.js"></script>
-  <script>
-    (() => {
-      const applyDemoName = () => {
-        const greeting = document.querySelector('#dashboardGreeting');
-        if (greeting) greeting.textContent = 'Buenas noches, Isabel.';
-        document.querySelectorAll('.avatar-button, .preview-avatar').forEach((node) => {
-          node.textContent = 'IS';
-        });
-        document.querySelectorAll('.preview-greeting strong').forEach((node) => {
-          node.textContent = 'Buenas noches, Isabel.';
-        });
-      };
-      applyDemoName();
-      new MutationObserver(applyDemoName).observe(document.body, { childList: true, subtree: true });
-    })();
-  </script>
+  <dialog id="movementDialog" class="modal">
+    <form id="movementForm" method="dialog">
+      <div class="modal-head"><div><p class="eyebrow">ACTUALIZACIÓN</p><h2>Registrar movimiento</h2></div><button class="close" value="cancel" aria-label="Cerrar">×</button></div>
+      <div class="form-grid">
+        <label>Tipo<select id="movementKind"><option value="contribution">Aportación</option><option value="market">Mercado / revalorización</option><option value="withdrawal">Retirada o gasto</option><option value="income">Ingreso pasivo</option></select></label>
+        <label>Importe (€)<input id="movementAmount" type="number" min="0" step="0.01" inputmode="decimal" required /></label>
+      </div>
+      <div class="form-grid"><label>Fecha<input id="movementDate" type="date" required /></label><label>Nota<input id="movementNote" maxlength="80" placeholder="Opcional" /></label></div>
+      <div class="modal-actions"><span></span><button class="ghost" value="cancel">Cancelar</button><button class="primary" value="default">Registrar</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="goalDialog" class="modal">
+    <form id="goalForm" method="dialog">
+      <div class="modal-head"><div><p class="eyebrow">OBJETIVO</p><h2>Editar mi plan</h2></div><button class="close" value="cancel" aria-label="Cerrar">×</button></div>
+      <label>Nombre del objetivo<input id="goalName" maxlength="80" required /></label>
+      <div class="form-grid"><label>Meta (€)<input id="goalTarget" type="number" min="1" step="1" required /></label><label>Aportación mensual (€)<input id="goalContribution" type="number" min="0" step="1" required /></label></div>
+      <div class="form-grid"><label>Fecha objetivo<input id="goalDeadline" type="date" /></label><label>Progreso manual (€)<input id="goalCurrent" type="number" min="0" step="1" /></label></div>
+      <label class="check-row"><input id="goalLinked" type="checkbox" /> Vincular el progreso al patrimonio neto</label>
+      <div class="modal-actions"><span></span><button class="ghost" value="cancel">Cancelar</button><button class="primary" value="default">Guardar plan</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="rulesDialog" class="modal">
+    <form id="rulesForm" method="dialog">
+      <div class="modal-head"><div><p class="eyebrow">TUS REGLAS</p><h2>Límites personales</h2></div><button class="close" value="cancel" aria-label="Cerrar">×</button></div>
+      <div class="form-grid"><label>Liquidez mínima (%)<input id="ruleLiquidity" type="number" min="0" max="100" required /></label><label>Concentración máxima (%)<input id="ruleConcentration" type="number" min="1" max="100" required /></label></div>
+      <p class="form-help">Estas reglas no son recomendaciones. Son límites que tú eliges y la aplicación únicamente comprueba.</p>
+      <div class="modal-actions"><span></span><button class="ghost" value="cancel">Cancelar</button><button class="primary" value="default">Guardar reglas</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="storyDialog" class="story-modal">
+    <button class="story-close" type="button" data-action="close-story" aria-label="Cerrar">×</button>
+    <div id="storyProgress" class="story-progress"></div>
+    <div id="storyContent" class="story-content"></div>
+    <div class="story-actions"><button class="ghost" type="button" data-action="story-prev">‹</button><button class="primary" type="button" data-action="story-next">Siguiente →</button></div>
+  </dialog>
+
+  <input id="importInput" type="file" accept="application/json" hidden />
+  <canvas id="shareCanvas" width="1080" height="1350" hidden></canvas>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/mi-plan-functional-loader.js"></script>
 </body>
 </html>
