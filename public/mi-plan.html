@@ -81,13 +81,13 @@
         <div class="dashboard-nav">
           <div>
             <p class="eyebrow">DOMINGO, 2 DE AGOSTO</p>
-            <h1 id="dashboardGreeting">Buenas noches, Luis.</h1>
+            <h1 id="dashboardGreeting">Buenas noches, Isabel.</h1>
           </div>
           <div class="dashboard-actions">
             <button class="button button-soft" id="openStoryButton" type="button">
               <span class="story-spark">✦</span> Ver mi semana
             </button>
-            <button class="avatar-button" type="button" aria-label="Perfil de demostración">LM</button>
+            <button class="avatar-button" type="button" aria-label="Perfil de demostración">IS</button>
           </div>
         </div>
 
@@ -193,5 +193,21 @@
   </dialog>
 
   <script src="/mi-plan.js"></script>
+  <script>
+    (() => {
+      const applyDemoName = () => {
+        const greeting = document.querySelector('#dashboardGreeting');
+        if (greeting) greeting.textContent = 'Buenas noches, Isabel.';
+        document.querySelectorAll('.avatar-button, .preview-avatar').forEach((node) => {
+          node.textContent = 'IS';
+        });
+        document.querySelectorAll('.preview-greeting strong').forEach((node) => {
+          node.textContent = 'Buenas noches, Isabel.';
+        });
+      };
+      applyDemoName();
+      new MutationObserver(applyDemoName).observe(document.body, { childList: true, subtree: true });
+    })();
+  </script>
 </body>
 </html>
