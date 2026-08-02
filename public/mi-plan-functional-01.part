@@ -1,0 +1,188 @@
+(() => {
+  'use strict';
+
+  const STORAGE_KEY = 'ff_mi_plan_v2';
+  const THEME_KEY = 'ff_mi_plan_theme';
+  const TYPES = {
+    cash: { label: 'Cuentas y efectivo', icon: '€', financial: true, liquid: true },
+    funds: { label: 'Fondos / ETF', icon: '◫', financial: true, liquid: false },
+    stocks: { label: 'Acciones', icon: '↗', financial: true, liquid: false },
+    options: { label: 'Opciones', icon: '◎', financial: true, liquid: false },
+    crypto: { label: 'Criptomonedas', icon: '◇', financial: true, liquid: false },
+    pension: { label: 'Planes de pensiones', icon: '◌', financial: true, liquid: false },
+    realestate: { label: 'Inmuebles', icon: '⌂', financial: false, liquid: false },
+    other: { label: 'Otros activos', icon: '＋', financial: false, liquid: false },
+    debt: { label: 'Hipotecas / deuda', icon: '−', financial: false, liquid: false },
+  };
+  const GOAL_TYPES = {
+    calm: { title: 'Vivir con más tranquilidad', subtitle: 'Colchón, ahorro y control del mes', icon: '◌', target: 30000 },
+    home: { title: 'Comprar una vivienda', subtitle: 'Entrada, gastos y fecha objetivo', icon: '⌂', target: 90000 },
+    income: { title: 'Generar ingresos mensuales', subtitle: 'Dividendos, alquileres y primas', icon: '↗', target: 3000 },
+    wealth: { title: 'Construir mi patrimonio', subtitle: 'Inversiones, inmuebles y objetivos', icon: '◇', target: 500000 },
+  };
+
+  const onboardingDraft = {
+    step: 0,
+    name: 'Luis',
+    goalType: 'wealth',
+    goalTarget: 500000,
+    goalCurrent: 0,
+    contribution: 1000,
+    horizon: 15,
+    reviewFrequency: 'weekly',
+    detail: 'advanced',
+    products: new Set(['cash', 'funds', 'stocks', 'options', 'realestate', 'debt']),
+    productValues: { cash: 25000, funds: 40000, stocks: 58000, options: 0, realestate: 520000, debt: 384300 },
+    passiveIncome: 1410,
+    minLiquidity: 30,
+    maxConcentration: 25,
+  };
+
+
+  const memoryStorage = new Map();
+  function storageGet(key) {
+    try { return window.localStorage.getItem(key); }
+    catch (error) { return memoryStorage.has(key) ? memoryStorage.get(key) : null; }
+  }
+  function storageSet(key, value) {
+    try { window.localStorage.setItem(key, value); }
+    catch (error) { memoryStorage.set(key, value); }
+  }
+  function storageRemove(key) {
+    try { window.localStorage.removeItem(key); }
+    catch (error) { memoryStorage.delete(key); }
+  }
+
+  let data = loadData();
+  let currentView = 'home';
+  let storyIndex = 0;
+  let editingItemId = null;
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  const onboarding = $('#onboarding');
+  const reveal = $('#reveal');
+  const app = $('#app');
+  const viewRoot = $('#viewRoot');
+  const content = $('#onboardingContent');
+  const progressFill = $('#progressFill');
+  const stepLabel = $('#stepLabel');
+  const stepCount = $('#stepCount');
+  const nextButton = $('#nextButton');
+  const backButton = $('#backButton');
+  const livePreview = $('#livePreview');
+  const toast = $('#toast');
+
+  function id() {
+    return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  function nowIso() {
+    return new Date().toISOString();
+  }
+
+  function dateIso(date = new Date()) {
+    const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    return local.toISOString().slice(0, 10);
+  }
+
+  function safeNumber(value, fallback = 0) {
+    const number = Number(value);
+    return Number.isFinite(number) ? number : fallback;
+  }
+
+  function euro(value, compact = false) {
+    return new Intl.NumberFormat('es-ES', {
+      style: 'currency', currency: 'EUR', maximumFractionDigits: 0,
+      notation: compact ? 'compact' : 'standard',
+    }).format(safeNumber(value));
+  }
+
+  function percent(value, digits = 0) {
+    return `${new Intl.NumberFormat('es-ES', { maximumFractionDigits: digits }).format(safeNumber(value))} %`;
+  }
+
+  function escapeHtml(value = '') {
+    return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
+  }
+
+  function defaultData() {
+    return {
+      version: 2,
+      onboardingComplete: false,
+      profile: { name: 'Luis', detail: 'advanced', reviewFrequency: 'weekly' },
+      goal: { type: 'wealth', name: 'Patrimonio de 500.000 €', target: 500000, current: 0, linkedToNetWorth: true, monthlyContribution: 1000, deadline: '' },
+      items: [], movements: [],
+      rules: { minLiquidityPct: 30, maxConcentrationPct: 25 },
+      preferences: { hideSensitive: false },
+      lastUpdated: nowIso(),
+    };
+  }
+
+  function loadData() {
+    try {
+      const raw = storageGet(STORAGE_KEY);
+      if (!raw) return defaultData();
+      const parsed = JSON.parse(raw);
+      return migrate(parsed);
+    } catch (error) {
+      console.warn('No se pudo cargar el plan', error);
+      return defaultData();
+    }
+  }
+
+  function migrate(parsed) {
+    const base = defaultData();
+    if (!parsed || typeof parsed !== 'object') return base;
+    return {
+      ...base,
+      ...parsed,
+      profile: { ...base.profile, ...(parsed.profile || {}) },
+      goal: { ...base.goal, ...(parsed.goal || {}) },
+      rules: { ...base.rules, ...(parsed.rules || {}) },
+      preferences: { ...base.preferences, ...(parsed.preferences || {}) },
+      items: Array.isArray(parsed.items) ? parsed.items : [],
+      movements: Array.isArray(parsed.movements) ? parsed.movements : [],
+    };
+  }
+
+  function saveData(message) {
+    data.lastUpdated = nowIso();
+    storageSet(STORAGE_KEY, JSON.stringify(data));
+    if (message) showToast(message);
+  }
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove('show'), 2300);
+  }
+
+  function vibrate(duration = 7) {
+    if (navigator.vibrate) navigator.vibrate(duration);
+  }
+
+  function applyTheme(theme) {
+    document.body.classList.toggle('theme-dark', theme === 'dark');
+    storageSet(THEME_KEY, theme);
+    $('#themeButton').textContent = theme === 'dark' ? '☀' : '◐';
+  }
+
+  function initializeTheme() {
+    applyTheme(storageGet(THEME_KEY) || 'light');
+  }
+
+  function totals() {
+    const assets = data.items.filter(item => item.type !== 'debt');
+    const debts = data.items.filter(item => item.type === 'debt');
+    const grossAssets = assets.reduce((sum, item) => sum + safeNumber(item.value), 0);
+    const debtTotal = debts.reduce((sum, item) => sum + safeNumber(item.value), 0);
+    const netWorth = grossAssets - debtTotal;
+    const financialItems = assets.filter(item => TYPES[item.type]?.financial);
+    const financialAssets = financialItems.reduce((sum, item) => sum + safeNumber(item.value), 0);
+    const cash = assets.filter(item => TYPES[item.type]?.liquid).reduce((sum, item) => sum + safeNumber(item.value), 0);
+    const liquidityPct = financialAssets > 0 ? (cash / financialAssets) * 100 : 0;
+    const largest = financialItems.reduce((max, item) => Math.max(max, safeNumber(item.value)), 0);
+    const concentrationPct = financialAssets > 0 ? (largest / financialAssets) 
