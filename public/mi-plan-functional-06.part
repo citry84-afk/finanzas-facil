@@ -1,0 +1,111 @@
+INANCIERO</p><h2>Este mes has avanzado <em>${sensitive(euro(calc.monthChange))}</em>.</h2><p>${reportNarrative(calc)} Tu objetivo está al ${percent(progress,1)} y el índice de control se sitúa en ${controlScore(calc)} puntos.</p><div class="report-actions"><button class="primary" data-action="open-story">Ver historia mensual</button><button class="ghost" data-action="share-card">Generar ficha compartible</button></div></section>
+      <div class="metrics">${metricCards(calc).join('')}</div><article class="panel"><div class="panel-head"><div><p class="eyebrow">DESGLOSE</p><h3>Qué ha cambiado</h3></div></div>${movementList(calc.monthMovements)}</article>`;
+  }
+
+  function reportNarrative(calc) {
+    const parts = [];
+    if (calc.movementTotals.contribution) parts.push(`${euro(calc.movementTotals.contribution)} proceden de aportaciones`);
+    if (calc.movementTotals.market) parts.push(`${euro(calc.movementTotals.market)} del mercado`);
+    if (calc.movementTotals.income) parts.push(`${euro(calc.movementTotals.income)} de ingresos pasivos`);
+    if (calc.movementTotals.withdrawal) parts.push(`${euro(calc.movementTotals.withdrawal)} se destinaron a retiradas o gastos`);
+    return parts.length ? `${parts.join(', ')}.` : 'Todavía no has registrado movimientos durante este mes.';
+  }
+
+  function renderSettings() {
+    viewRoot.innerHTML = `<div class="section-toolbar"><div><p class="eyebrow">AJUSTES</p><h2>Tu sistema y tus datos</h2></div></div><div class="settings-grid">
+      <article class="settings-card"><h3>Privacidad</h3><p>Todo se guarda en el almacenamiento local de este navegador. No se envía a ningún servidor.</p><div class="settings-actions"><button class="soft" data-action="toggle-sensitive">${data.preferences.hideSensitive ? 'Mostrar importes' : 'Ocultar importes'}</button></div></article>
+      <article class="settings-card"><h3>Reglas personales</h3><p>Liquidez mínima: ${percent(data.rules.minLiquidityPct)}. Concentración máxima: ${percent(data.rules.maxConcentrationPct)}.</p><div class="settings-actions"><button class="soft" data-action="edit-rules">Editar reglas</button></div></article>
+      <article class="settings-card"><h3>Copia de seguridad</h3><p>Exporta todos tus datos a un archivo JSON o restaura una copia anterior.</p><div class="settings-actions"><button class="soft" data-action="export-data">Exportar</button><button class="ghost" data-action="import-data">Importar</button></div></article>
+      <article class="settings-card"><h3>Reiniciar</h3><p>Elimina todos los datos locales y vuelve al onboarding. Esta acción no se puede deshacer.</p><div class="settings-actions"><button class="danger-link" data-action="reset-all">Borrar todo</button></div></article>
+      <article class="settings-card"><h3>Perfil</h3><p>${escapeHtml(data.profile.name)} · ${data.profile.reviewFrequency === 'weekly' ? 'Revisión semanal' : data.profile.reviewFrequency === 'monthly' ? 'Revisión mensual' : 'Solo alertas'} · Nivel ${data.profile.detail}.</p></article>
+      <article class="settings-card"><h3>Estado de los datos</h3><p>${data.items.length} elementos, ${data.movements.length} movimientos. Última actualización: ${new Intl.DateTimeFormat('es-ES',{dateStyle:'medium',timeStyle:'short'}).format(new Date(data.lastUpdated))}.</p></article>
+    </div>`;
+  }
+
+  function openItemDialog(itemId = null) {
+    editingItemId = itemId;
+    const item = data.items.find(row => row.id === itemId);
+    $('#itemDialogTitle').textContent = item ? 'Editar elemento' : 'Añadir elemento';
+    $('#itemId').value = item?.id || '';
+    $('#itemName').value = item?.name || '';
+    $('#itemType').innerHTML = typeOptions(item?.type || 'cash');
+    $('#itemValue').value = item?.value ?? '';
+    $('#itemIncome').value = item?.monthlyIncome || 0;
+    $('#itemOwner').value = item?.owner || '';
+    $('#deleteItemButton').classList.toggle('hidden', !item);
+    $('#itemDialog').showModal();
+  }
+
+  function saveItemFromForm() {
+    const name = $('#itemName').value.trim();
+    const type = $('#itemType').value;
+    const value = safeNumber($('#itemValue').value);
+    if (!name || value < 0) return false;
+    const item = { id: editingItemId || id(), name, type, value, monthlyIncome: safeNumber($('#itemIncome').value), owner: $('#itemOwner').value.trim(), updatedAt: nowIso() };
+    if (editingItemId) data.items = data.items.map(row => row.id === editingItemId ? item : row); else data.items.push(item);
+    saveData(editingItemId ? 'Elemento actualizado' : 'Elemento añadido');
+    return true;
+  }
+
+  function openMovementDialog() {
+    $('#movementAmount').value = '';
+    $('#movementDate').value = dateIso();
+    $('#movementNote').value = '';
+    $('#movementKind').value = 'contribution';
+    $('#movementDialog').showModal();
+  }
+
+  function saveMovementFromForm() {
+    const amount = safeNumber($('#movementAmount').value);
+    if (amount <= 0) return false;
+    data.movements.push({ id: id(), kind: $('#movementKind').value, amount, date: $('#movementDate').value || dateIso(), note: $('#movementNote').value.trim(), createdAt: nowIso() });
+    saveData('Movimiento registrado');
+    return true;
+  }
+
+  function openGoalDialog() {
+    $('#goalName').value = data.goal.name;
+    $('#goalTarget').value = data.goal.target;
+    $('#goalContribution').value = data.goal.monthlyContribution;
+    $('#goalDeadline').value = data.goal.deadline || '';
+    $('#goalCurrent').value = data.goal.current || 0;
+    $('#goalLinked').checked = Boolean(data.goal.linkedToNetWorth);
+    $('#goalCurrent').disabled = $('#goalLinked').checked;
+    $('#goalDialog').showModal();
+  }
+
+  function saveGoalFromForm() {
+    data.goal.name = $('#goalName').value.trim() || data.goal.name;
+    data.goal.target = Math.max(1, safeNumber($('#goalTarget').value, 1));
+    data.goal.monthlyContribution = Math.max(0, safeNumber($('#goalContribution').value));
+    data.goal.deadline = $('#goalDeadline').value;
+    data.goal.linkedToNetWorth = $('#goalLinked').checked;
+    data.goal.current = Math.max(0, safeNumber($('#goalCurrent').value));
+    saveData('Plan actualizado');
+    return true;
+  }
+
+  function openRulesDialog() {
+    $('#ruleLiquidity').value = data.rules.minLiquidityPct;
+    $('#ruleConcentration').value = data.rules.maxConcentrationPct;
+    $('#rulesDialog').showModal();
+  }
+
+  function saveRulesFromForm() {
+    data.rules.minLiquidityPct = Math.max(0, Math.min(100, safeNumber($('#ruleLiquidity').value)));
+    data.rules.maxConcentrationPct = Math.max(1, Math.min(100, safeNumber($('#ruleConcentration').value, 25)));
+    saveData('Reglas actualizadas');
+    return true;
+  }
+
+  function openStory() {
+    storyIndex = 0;
+    renderStory();
+    $('#storyDialog').showModal();
+  }
+
+  function storySlides() {
+    const calc = totals();
+    return [
+      `<p class="eyebrow">TU RESUMEN</p><h2>Este mes has avanzado <em>${sensitive(euro(calc.monthChange))}</em>.</h2><p>${reportNarrative(calc)}</p>`,
+      `<p class="eyebrow">TUS REGLAS</p><h2>Tu liquidez está en <em>${percent(calc.liquidityPct,1)}</em>.</h2><p>Tu mínimo configurado es ${percent(data.rules.minLiquidityPct)}. La concentración máxima actual es ${percent(calc.concentrationPct,1)}.</p>
