@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculadora de interés compuesto | Ahorro e inversión mensual</title>
+  <meta name="description" content="Calcula cuánto podría crecer una aportación inicial y un ahorro mensual con interés compuesto. Compara plazo, rentabilidad e inflación sin registro.">
+  <link rel="canonical" href="https://finanzasmuyfacil.com/calculadora-interes-compuesto.html">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="apple-itunes-app" content="app-id=6754602748">
+  <style>
+    :root{--ink:#0f172a;--muted:#526076;--blue:#1666d9;--orange:#f28a23;--line:#dbe5f1;--soft:#f4f8fd;--green:#0f766e}*{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);line-height:1.55}.wrap{max-width:1000px;margin:auto;padding:0 22px}a{color:var(--blue)}
+    nav{display:flex;justify-content:space-between;padding:22px 0}.brand{font-weight:900;text-decoration:none;color:var(--ink)}header{background:var(--soft);padding:60px 0;border-block:1px solid var(--line)}
+    h1{font-size:clamp(40px,7vw,66px);line-height:1;margin:0 0 18px}.lead{font-size:21px;color:var(--muted);max-width:760px}.eyebrow{color:var(--orange);font-weight:900;text-transform:uppercase;letter-spacing:.07em;font-size:13px}
+    main{padding:48px 0}.calc{display:grid;grid-template-columns:1fr 1fr;gap:28px}.panel{border:1px solid var(--line);border-radius:16px;padding:25px}.field{margin:0 0 18px}label{display:block;font-weight:800;margin-bottom:7px}input{width:100%;padding:13px;border:1px solid #bcc9d8;border-radius:9px;font-size:17px}
+    .result{background:#0f2446;color:white}.big{font-size:42px;font-weight:900;margin:8px 0}.result p{color:#d9e7fb}.row{display:flex;justify-content:space-between;border-top:1px solid #ffffff25;padding:13px 0}.button{display:inline-block;background:var(--blue);color:white;text-decoration:none;font-weight:900;padding:14px 20px;border-radius:999px}
+    section{padding:42px 0}.notice{border-left:4px solid var(--orange);background:#fff7ed;padding:18px;border-radius:10px;color:#653813}.cta{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:28px}
+    footer{background:#08111f;color:white;padding:28px 0}footer a{color:#bfdbfe;margin-right:16px}@media(max-width:760px){.calc{grid-template-columns:1fr}.big{font-size:36px}}
+  </style>
+</head>
+<body>
+  <div class="wrap"><nav><a class="brand" href="/">Finanzas Muy Fácil</a><a href="/calculadoras.html">Todas las calculadoras</a></nav></div>
+  <header><div class="wrap"><p class="eyebrow">Calculadora gratuita</p><h1>Interés compuesto, sin cuentos.</h1><p class="lead">Introduce lo que ya tienes, cuánto aportarías cada mes y un rendimiento hipotético. Verás el valor futuro, tus aportaciones y el efecto estimado de la inflación.</p></div></header>
+  <main class="wrap">
+    <div class="calc">
+      <form class="panel" id="calc">
+        <div class="field"><label for="initial">Capital inicial (€)</label><input id="initial" type="number" min="0" step="100" value="5000"></div>
+        <div class="field"><label for="monthly">Aportación mensual (€)</label><input id="monthly" type="number" min="0" step="10" value="300"></div>
+        <div class="field"><label for="years">Plazo (años)</label><input id="years" type="number" min="1" max="60" value="20"></div>
+        <div class="field"><label for="rate">Rentabilidad anual hipotética (%)</label><input id="rate" type="number" min="-20" max="30" step="0.1" value="6"></div>
+        <div class="field"><label for="inflation">Inflación anual estimada (%)</label><input id="inflation" type="number" min="0" max="20" step="0.1" value="2"></div>
+      </form>
+      <section class="panel result" aria-live="polite"><p>Capital final estimado</p><div class="big" id="future">—</div><div class="row"><span>Dinero aportado</span><strong id="contrib">—</strong></div><div class="row"><span>Rendimiento acumulado</span><strong id="gain">—</strong></div><div class="row"><span>Valor en euros de hoy</span><strong id="real">—</strong></div><p>Supone aportaciones al final de cada mes y capitalización mensual. No incluye impuestos, comisiones ni variaciones reales del mercado.</p></section>
+    </div>
+    <section><div class="notice"><strong>No es una previsión ni una promesa.</strong> Una rentabilidad constante sirve para comparar escenarios, no para anticipar lo que hará una inversión. Prueba al menos tres casos: prudente, central y optimista.</div></section>
+    <section><h2>Cómo leer el resultado</h2><p>“Dinero aportado” es lo que sale de tu bolsillo. “Rendimiento acumulado” es la diferencia matemática generada por el escenario. “Euros de hoy” descuenta la inflación indicada para que no confundas una cifra futura grande con el mismo poder de compra.</p></section>
+    <section class="cta"><h2>Lleva el plan mes a mes</h2><p>En FinanzasFacil puedes crear el objetivo y comprobar tu margen sin conectar el banco.</p><a class="button" href="https://apps.apple.com/es/app/finanzasfacil/id6754602748?pt=127437652&ct=calc_compuesto&mt=8" rel="noopener">Abrir en App Store</a></section>
+  </main>
+  <footer><div class="wrap"><a href="/">Inicio</a><a href="/metodologia-fuentes.html">Metodología</a><a href="/privacidad.html">Privacidad</a></div></footer>
+  <script>
+    const ids=["initial","monthly","years","rate","inflation"];const euro=new Intl.NumberFormat("es-ES",{style:"currency",currency:"EUR",maximumFractionDigits:0});
+    function calculate(){const p=Math.max(0,+initial.value||0),m=Math.max(0,+monthly.value||0),n=Math.max(1,+years.value||1)*12,r=(+rate.value||0)/1200,inf=Math.max(0,+inflation.value||0)/100;let fv=p;if(Math.abs(r)<1e-10)fv=p+m*n;else fv=p*Math.pow(1+r,n)+m*((Math.pow(1+r,n)-1)/r);const paid=p+m*n;future.textContent=euro.format(fv);contrib.textContent=euro.format(paid);gain.textContent=euro.format(fv-paid);real.textContent=euro.format(fv/Math.pow(1+inf,n/12))}
+    ids.forEach(id=>document.getElementById(id).addEventListener("input",calculate));calculate();
+  </script>
+</body></html>
