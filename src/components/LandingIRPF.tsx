@@ -1,185 +1,44 @@
 export default function LandingIRPF() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-20 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Calculadora IRPF Autónomos 2025
-          </h1>
-          <p className="text-2xl mb-4 opacity-90">
-            Calcula tu IRPF, cuota de Seguridad Social y gastos deducibles en 2 minutos
-          </p>
-          <p className="text-xl mb-8 opacity-80">
-            ✅ 100% Gratis • ✅ Actualizado 2025 • ✅ Resultados Instantáneos
-          </p>
-          <a
-            href="/autonomos"
-            className="inline-block bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-2xl px-12 py-6 rounded-2xl transition-all transform hover:scale-105 shadow-2xl"
-          >
-            🧮 CALCULAR AHORA GRATIS
-          </a>
-        </div>
-      </div>
+    <main className="min-h-screen bg-slate-50 px-4 py-10 text-slate-950 md:py-16">
+      <article className="mx-auto max-w-4xl">
+        <a href="/" className="text-sm font-semibold text-blue-700 hover:text-blue-900">FinanzasFácil</a>
 
-      {/* Trust Indicators */}
-      <div className="py-8 bg-white border-y border-gray-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">50.000+</div>
-              <div className="text-gray-600">Cálculos realizados</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">100%</div>
-              <div className="text-gray-600">Gratis siempre</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">2 min</div>
-              <div className="text-gray-600">Tiempo promedio</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">2025</div>
-              <div className="text-gray-600">Actualizado</div>
-            </div>
+        <header className="mt-6 rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 md:p-11">
+          <p className="text-sm font-bold uppercase tracking-normal text-blue-700">Autónomos · planificación 2026</p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-normal text-slate-950 md:text-6xl">Entiende tu cuota y tu reserva fiscal sin hacer una declaración a ciegas</h1>
+          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-600">La herramienta de autónomos estima un tramo de cotización, una cuota mensual y una reserva fiscal de planificación. Sirve para ordenar números, no para presentar el Modelo 130 ni sustituir una gestoría.</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="/autonomos" className="inline-flex items-center justify-center rounded-xl bg-blue-700 px-6 py-3 font-bold text-white hover:bg-blue-800">Abrir herramienta de autónomos</a>
+            <a href="/guia-fiscal-autonomos-espana-2026.html" className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-6 py-3 font-bold text-slate-800 hover:bg-slate-100">Leer la guía fiscal 2026</a>
           </div>
-        </div>
-      </div>
+        </header>
 
-      {/* Beneficios */}
-      <div className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
-            ¿Qué Puedes Calcular?
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200">
-              <div className="text-5xl mb-4">💰</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">IRPF Trimestral</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Calcula exactamente cuánto debes pagar de IRPF cada trimestre con el Modelo 130. 
-                Incluye todos los tramos impositivos de 2025.
-              </p>
-            </div>
+        <section className="mt-7 grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200"><h2 className="text-lg font-bold">1. Rendimiento previsto</h2><p className="mt-2 text-slate-600">Parte de ingresos y gastos para mostrar un rango de cotización orientativo.</p></div>
+          <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200"><h2 className="text-lg font-bold">2. Cuota aproximada</h2><p className="mt-2 text-slate-600">Puedes ajustar la base dentro del tramo mostrado y ver cómo cambia la cuota.</p></div>
+          <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200"><h2 className="text-lg font-bold">3. Reserva prudente</h2><p className="mt-2 text-slate-600">Una referencia para planificar, sin convertirla en una liquidación oficial de IRPF.</p></div>
+        </section>
 
-            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-200">
-              <div className="text-5xl mb-4">📊</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Cuota Seguridad Social</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Descubre tu cuota mensual según el nuevo sistema por ingresos reales. 
-                Incluye tarifa plana y bonificaciones disponibles.
-              </p>
-            </div>
+        <section className="mt-7 rounded-2xl border border-amber-200 bg-amber-50 p-7">
+          <h2 className="text-2xl font-semibold tracking-normal">Antes de decidir o presentar</h2>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700">
+            <li>El IRPF depende de retenciones, gastos deducibles, circunstancias personales y comunidad autónoma.</li>
+            <li>El Modelo 130 trabaja con importes acumulados desde el inicio del año y puede no ser tu modelo aplicable.</li>
+            <li>Consulta la fuente oficial o una gestoría cuando la decisión afecte a una presentación real.</li>
+          </ul>
+        </section>
 
-            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
-              <div className="text-5xl mb-4">📝</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Gastos Deducibles</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Calcula cuánto ahorras deduciendo gastos profesionales. 
-                Incluye guía de los 20 gastos más importantes.
-              </p>
-            </div>
+        <section className="mt-7 rounded-2xl bg-slate-950 p-7 text-white md:p-9">
+          <h2 className="text-2xl font-semibold tracking-normal">Guías para comprobar el contexto</h2>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a className="font-semibold text-blue-300 hover:text-white" href="/cuota-autonomos-2026.html">Cuota de autónomos 2026</a>
+            <a className="font-semibold text-blue-300 hover:text-white" href="/modelo-130-autonomos-2026.html">Modelo 130</a>
+            <a className="font-semibold text-blue-300 hover:text-white" href="/gastos-deducibles-autonomos-2026.html">Gastos deducibles</a>
+            <a className="font-semibold text-blue-300 hover:text-white" href="/metodologia-fuentes.html">Metodología y fuentes</a>
           </div>
-        </div>
-      </div>
-
-      {/* CTA Principal */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-700 py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-4xl font-bold mb-6">
-            Calcula Tus Impuestos en 2 Minutos
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            No pierdas más tiempo con cálculos manuales. Nuestra calculadora hace TODO por ti.
-          </p>
-          <a
-            href="/autonomos"
-            className="inline-block bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-2xl px-12 py-6 rounded-2xl transition-all transform hover:scale-105 shadow-2xl"
-          >
-            🚀 EMPEZAR AHORA
-          </a>
-          <p className="mt-6 text-sm opacity-75">
-            ✅ Sin registro • ✅ Sin tarjeta • ✅ Sin instalación
-          </p>
-        </div>
-      </div>
-
-      {/* FAQ */}
-      <div className="py-16 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
-            Preguntas Frecuentes
-          </h2>
-          
-          <div className="space-y-4">
-            <details className="bg-white rounded-xl p-6 shadow-md">
-              <summary className="font-bold text-lg cursor-pointer">
-                ¿Cómo calculo el IRPF de autónomos en 2025?
-              </summary>
-              <p className="mt-4 text-gray-700">
-                El IRPF se calcula sobre tu beneficio neto (ingresos - gastos deducibles). Nuestra calculadora 
-                aplica automáticamente los tramos impositivos vigentes en 2025 y te muestra el resultado al instante.
-              </p>
-            </details>
-
-            <details className="bg-white rounded-xl p-6 shadow-md">
-              <summary className="font-bold text-lg cursor-pointer">
-                ¿La calculadora está actualizada con las tarifas de 2025?
-              </summary>
-              <p className="mt-4 text-gray-700">
-                Sí, incluye todas las actualizaciones de 2025: nuevas cuotas por ingresos reales, tarifa plana 
-                de 80€/mes, bonificaciones por edad y género, y todos los tramos de IRPF actualizados.
-              </p>
-            </details>
-
-            <details className="bg-white rounded-xl p-6 shadow-md">
-              <summary className="font-bold text-lg cursor-pointer">
-                ¿Tengo que pagar para usar la calculadora?
-              </summary>
-              <p className="mt-4 text-gray-700">
-                No, la calculadora es 100% gratuita y siempre lo será. No necesitas registrarte ni dar tu email.
-              </p>
-            </details>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Final */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-700 py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-4xl font-bold mb-6">
-            ¿Listo para Calcular tus Impuestos?
-          </h2>
-          <a
-            href="/autonomos"
-            className="inline-block bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-2xl px-12 py-6 rounded-2xl transition-all transform hover:scale-105 shadow-2xl"
-          >
-            🧮 CALCULAR GRATIS AHORA
-          </a>
-        </div>
-      </div>
-
-      {/* Schema.org */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "Calculadora IRPF Autónomos 2025",
-          "applicationCategory": "FinanceApplication",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "EUR"
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "1247"
-          }
-        })}
-      </script>
-    </div>
+        </section>
+      </article>
+    </main>
   );
 }
-

@@ -17,10 +17,12 @@ export type SeoPageMode =
   | 'producto-gastos'
   | 'producto-curso-finanzas'
   | 'donate'
-  | 'landing-irpf'
-  | 'landing-cuota'
-  | 'landing-gastos'
-  | 'social';
+	  | 'landing-irpf'
+	  | 'landing-cuota'
+	  | 'landing-gastos'
+	  | 'indemnizacion-despido'
+	  | 'coste-empleado'
+	  | 'social';
 
 export interface PageMeta {
   title: string;
@@ -34,17 +36,17 @@ export function getPageMeta(mode: SeoPageMode): PageMeta {
   switch (mode) {
     case 'autonomos':
       return {
-        title: 'Calculadora de autónomos 2026 | IRPF, cuota y gastos deducibles',
+        title: 'Calculadora de autónomos 2026 | Cuota y reserva de IRPF',
         description:
-          'Estima IRPF, cuota de Seguridad Social y gastos deducibles como autónomo en España. Resultados orientativos, sin registro.',
-        canonical: `${SITE}/calculadora-autonomos.html`,
+          'Estima tu cuota de autónomos 2026 y reserva mensual de impuestos. Rendimientos computables con el 7 % de gastos genéricos y cuota reducida editable con MEI.',
+        canonical: `${SITE}/autonomos`,
       };
     case 'hipoteca':
       return {
         title: 'Calculadora de hipoteca 2026 | Cuota mensual y amortización',
         description:
           'Simula la cuota de tu hipoteca, intereses totales y tabla de amortización. Fija, variable o mixta. Gratis y sin registro.',
-        canonical: `${SITE}/calculadora-hipoteca-gratis.html`,
+        canonical: `${SITE}/hipoteca`,
       };
     case 'salario':
       return {
@@ -58,22 +60,36 @@ export function getPageMeta(mode: SeoPageMode): PageMeta {
         title: 'Control de gastos mensual | App y guía sin Excel',
         description:
           'Organiza ingresos, gastos y ahorro con el método dinero tranquilo. Datos en tu dispositivo, sin cuenta obligatoria.',
-        canonical: `${SITE}/control-gastos-mensual.html`,
+        canonical: `${SITE}/control-gastos`,
       };
     case 'tiktok-millonario':
       return {
         title: '¿Cuándo seré millonario? | Calculadora de libertad financiera',
         description:
           'Simula cuánto necesitas ahorrar e invertir para alcanzar 1 millón de euros con interés compuesto. Herramienta gratuita.',
-        canonical: `${SITE}/calculadoras.html`,
+        canonical: `${SITE}/`,
       };
     case 'presupuesto-estudiante':
       return {
         title: 'Presupuesto universitario | Calculadora 50/30/20',
         description:
           'Calcula gastos de estudio por ciudad: alojamiento, comida, transporte y ocio. Regla 50/30/20 adaptada a estudiantes.',
-        canonical: `${SITE}/calculadora-presupuesto-estudiante-universitario.html`,
+        canonical: `${SITE}/presupuesto-estudiante`,
       };
+	    case 'indemnizacion-despido':
+	      return {
+	        title: 'Calculadora indemnización despido 2026 | España',
+	        description:
+	          'Calcula una estimación de indemnización por despido improcedente, objetivo o fin de contrato en España. Gratis, orientativo y sin registro.',
+	        canonical: `${SITE}/indemnizacion-despido`,
+	      };
+	    case 'coste-empleado':
+	      return {
+	        title: 'Calculadora coste empleado 2026 | Empresa y nómina',
+	        description:
+	          'Estima el coste real de un empleado para la empresa: salario bruto, cotizaciones y neto aproximado del trabajador.',
+	        canonical: `${SITE}/coste-empleado`,
+	      };
     case 'landing-irpf':
       return {
         title: 'IRPF autónomos 2026 | Guía y calculadora',

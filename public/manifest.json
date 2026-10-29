@@ -34,15 +34,15 @@
   ],
   "screenshots": [
     {
-      "src": "/logo-square.svg",
-      "sizes": "1280x720",
-      "type": "image/svg+xml",
+      "src": "/logos/finanzas-muy-facil-youtube-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
       "form_factor": "wide"
     },
     {
-      "src": "/logo-square.svg",
-      "sizes": "750x1334",
-      "type": "image/svg+xml",
+      "src": "/logos/finanzas-muy-facil-youtube-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
       "form_factor": "narrow"
     }
   ],

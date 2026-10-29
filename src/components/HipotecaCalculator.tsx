@@ -334,7 +334,7 @@ export default function HipotecaCalculator() {
             <li>
               Puedes ampliar lectura en nuestra página dedicada:{' '}
               <a
-                href="/calculadora-hipoteca-gratis.html"
+                href="/hipoteca"
                 className="text-blue-600 underline font-medium"
               >
                 guía y enlaces útiles de hipoteca

@@ -8,10 +8,10 @@ export default function LandingGastos() {
             20 Gastos Deducibles para Autónomos 2025
           </h1>
           <p className="text-2xl mb-4 opacity-90">
-            Descubre los gastos que te harán ahorrar entre 2.000€ y 5.000€ al año
+            Revisa gastos habituales, criterios prudentes y documentación que conviene conservar
           </p>
           <p className="text-xl mb-8 opacity-80">
-            ✅ Guía Completa GRATIS • ✅ Ejemplos Reales • ✅ PDF Premium 19€
+            Guía gratuita con ejemplos, límites habituales y avisos para revisar con tu gestoría
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
@@ -90,14 +90,14 @@ export default function LandingGastos() {
         </div>
       </div>
 
-      {/* PDF Premium */}
+      {/* Guía ampliada */}
       <div className="py-16 px-6">
         <div className="max-w-4xl mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-12 text-white text-center shadow-2xl">
           <div className="inline-block bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold mb-4 animate-pulse">
             🔥 OFERTA ESPECIAL
           </div>
           <h2 className="text-4xl font-bold mb-4">
-            PDF Premium: 20 Gastos Deducibles 2025
+            Guía ampliada: 20 gastos deducibles 2025
           </h2>
           <p className="text-xl mb-6 opacity-90">
             26 páginas con ejemplos detallados, caso práctico real, gráficas y checklist descargable
@@ -113,7 +113,7 @@ export default function LandingGastos() {
             </div>
             <div className="bg-white/20 px-6 py-3 rounded-xl">
               <div className="text-3xl font-bold">⭐⭐⭐⭐⭐</div>
-              <div className="text-sm opacity-80">500+ satisfechos</div>
+              <div className="text-sm opacity-80">Guía práctica</div>
             </div>
           </div>
           <a
@@ -132,4 +132,3 @@ export default function LandingGastos() {
     </div>
   );
 }
-

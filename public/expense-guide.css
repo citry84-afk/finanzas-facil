@@ -1,0 +1,39 @@
+.expense-guide { background: #fff; }
+.expense-guide .site-header { background: #fff; }
+.expense-guide .hero { background: #fff; color: var(--ink); padding: 2.25rem 1rem 1.75rem; }
+.expense-guide .hero::before, .expense-guide .hero::after { display: none; }
+.expense-guide .hero h1, .expense-guide .hero .lead, .expense-guide .hero .reviewed, .expense-guide .hero .eyebrow, .expense-guide .hero-actions { animation: none; }
+.expense-guide .hero .eyebrow { background: transparent; border: 0; padding: 0; color: var(--teal-deep); }
+.expense-guide .hero .lead { color: var(--ink-soft); }
+.expense-guide .hero .reviewed { color: var(--muted); }
+.expense-guide .hero .button--light { background: var(--teal-deep); color: #fff; border: 1px solid var(--teal-deep); border-radius: 6px; box-shadow: none; }
+.expense-guide .hero .button--ghost { color: var(--ink); border-color: var(--line); border-radius: 6px; }
+.expense-guide .reveal { opacity: 1; transform: none; transition: none; }
+.expense-guide .article { padding-top: 1.5rem; }
+.expense-guide .article-byline { padding: 0; border: 0; background: transparent; box-shadow: none; }
+.expense-guide .summary { border: 0; border-left: 3px solid var(--teal); border-radius: 0; background: #f2f8f6; box-shadow: none; }
+.expense-guide h1, .expense-guide h2, .expense-guide h3, .expense-guide .brand, .expense-guide .eyebrow { letter-spacing: 0; }
+.expense-guide .hero h1 { max-width: 28ch; font-size: 2.5rem; }
+.expense-guide .hero .lead { font-size: 1.1rem; }
+.expense-guide .article h2 { font-size: 1.6rem; }
+.expense-guide .article h3 { font-size: 1.1rem; }
+.expense-guide :target { scroll-margin-top: 5.5rem; }
+.expense-contents { display: flex; flex-wrap: wrap; gap: .6rem 1.25rem; padding: 1rem 0; border-block: 1px solid var(--line); font-size: .9rem; }
+.expense-table-wrap { max-width: 100%; overflow-x: auto; }
+.expense-table { width: 100%; border-collapse: collapse; font-size: .92rem; table-layout: fixed; }
+.expense-table caption { text-align: left; padding: .5rem 0 1rem; color: var(--muted); }
+.expense-table th, .expense-table td { padding: .85rem .7rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.expense-table thead { background: #e8f2ef; }
+.expense-table thead th:first-child { width: 24%; }
+.expense-table tbody th { font-weight: 700; }
+.expense-next-step { margin: 2rem 0; padding: .5rem 0 1.5rem; border-block: 1px solid var(--line); }
+.expense-guide .expense-next-step h2 { margin-top: 1.4rem; }
+.expense-next-step .action-row { display: flex; flex-wrap: wrap; gap: .75rem; }
+.expense-next-step .button { border-radius: 6px; }
+@media (max-width: 600px) {
+  .expense-guide :target { scroll-margin-top: 10rem; }
+  .expense-guide .hero h1 { font-size: 1.85rem; }
+  .expense-table { font-size: .82rem; }
+  .expense-table th, .expense-table td { padding: .7rem .35rem; }
+  .expense-table thead th:first-child { width: 26%; }
+}

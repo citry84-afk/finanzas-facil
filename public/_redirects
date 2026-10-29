@@ -4,13 +4,26 @@
 # app-ads.txt para AdMob (apps móviles)
 /app-ads.txt /app-ads.txt 200
 
-# ads.txt para AdSense (web)
+# Archivos de autorización publicitaria
 /ads.txt /ads.txt 200
+
+# Rutas del rediseño wow en la SPA
+/calculadora-salario-neto /index.html 200!
+/salario /index.html 200!
+/calculadora-autonomos /autonomos 301!
+/autonomos /index.html 200!
+/control-gastos /index.html 200!
+/calculadora-hipoteca /index.html 200!
+/hipoteca /index.html 200!
+/cuando-sere-millonario /index.html 200!
+/millonario /index.html 200!
+/indemnizacion-despido /index.html 200!
+/coste-empleado /index.html 200!
 
 # API de funciones Netlify
 /api/* /.netlify/functions/:splat 200
 
-# Prototipo aislado de Mi Plan
+# Conservar la experiencia de Mi Plan publicada desde GitHub
 /mi-plan /mi-plan.html 200
 
 # Rutas editoriales principales sin extension
@@ -28,14 +41,38 @@
 /gastos-deducibles-autonomos-2025.html /gastos-deducibles-autonomos-2026.html 301!
 /modelo-130-autonomos-2025.html /modelo-130-autonomos-2026.html 301!
 /calculadora-irpf-autonomo-2025.html /calculadora-irpf-autonomo-2026.html 301!
-/base-cotizacion-autonomos.html /calculadora-autonomos.html 301!
+/como-calcular-irpf-autonomos-2025.html /como-calcular-irpf-autonomos-2026.html 301!
+/base-cotizacion-autonomos.html /cuota-autonomos-2026.html 301!
 /tarifa-plana-autonomos-2025.html /guia-fiscal-autonomos-espana-2026.html 301!
 /tarifa-plana-requisitos.html /guia-fiscal-autonomos-espana-2026.html 301!
-/cuando-hacer-modelo-130.html /modelo-130-autonomos-2025.html 301!
-/lista-gastos-deducibles.html /gastos-deducibles-autonomos-2025.html 301!
-/modelo-130-online.html /modelo-130-autonomos-2025.html 301!
-/calcular-salario-neto.html /calcular-salario-neto-2025.html 301!
+/cuando-hacer-modelo-130.html /modelo-130-autonomos-2026.html 301!
+/lista-gastos-deducibles.html /gastos-deducibles-autonomos-2026.html 301!
+/modelo-130-online.html /modelo-130-autonomos-2026.html 301!
+/calcular-salario-neto.html /calcular-salario-neto-2026.html 301!
+/30000-brutos-a-netos.html /calcular-salario-neto-2026.html 301!
+/salario-bruto-espana.html /calcular-salario-neto-2026.html 301!
+/calculadora-sueldo-neto-autonomos.html /calculadora-autonomos.html 301!
+/irpf-autonomo.html /como-calcular-irpf-autonomos-2026.html 301!
+/comparativa-hipotecas-fija-vs-variable-2025.html /hipoteca 301!
+/mejor-calculadora-autonomos-2025.html /autonomos 301!
+/presupuesto-navideno-2025.html /blog.html 301!
+/blog/calcular-irpf-autonomos-2025.html /calculadora-irpf-autonomo-2026.html 301!
+/20-gastos-deducibles-autonomos-2025.pdf /gastos-deducibles-autonomos-2026.html 301!
 /privacy.html /privacidad.html 301!
+
+# Stubs delgados (noindex): consolidar hacia guías/herramientas canónicas
+/calculadoras.html /blog.html 301!
+/app-ios.html https://apps.apple.com/es/app/finanzasfacil/id6754602748 301!
+/gastos-hormiga.html /control-gastos-sin-excel.html 301!
+/plantilla-dinero-tranquilo.html /metodo-dinero-tranquilo.html 301!
+/test-salud-financiera.html /metodo-dinero-tranquilo.html 301!
+/nivel-endeudamiento-calculadora.html /que-deuda-pagar-primero.html 301!
+/calculadora-fondo-emergencia.html /cuanto-puedo-gastar-al-mes.html 301!
+/calculadora-hipoteca-gratis.html /hipoteca 301!
+/newsletter.html /blog.html 301!
+/ahorrar-black-friday.html /black-friday-2026.html 301!
+/ahorrar-black-friday /black-friday-2026.html 301!
+/calculadora-presupuesto-estudiante-universitario.html /presupuesto-estudiante 301!
 
 # Evitar que assets o HTML inexistentes devuelvan la home de la SPA
 /assets/* /404.html 404

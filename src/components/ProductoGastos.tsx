@@ -20,7 +20,7 @@ export default function ProductoGastos() {
           
           <div className="flex items-center justify-center gap-4 text-yellow-600 mb-8">
             <span className="text-3xl">⭐⭐⭐⭐⭐</span>
-            <span className="text-gray-700 font-semibold">4.9/5 - Más de 500 autónomos satisfechos</span>
+            <span className="text-gray-700 font-semibold">Guía práctica para revisar gastos deducibles con criterio</span>
           </div>
         </div>
 
@@ -365,7 +365,7 @@ export default function ProductoGastos() {
             ¿Listo para dejar de pagar de más?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Más de 500 autónomos ya están ahorrando miles de euros con esta guía
+            Revisa tus gastos con más orden antes de preparar impuestos o hablar con tu gestoría
           </p>
           
           <a
@@ -386,4 +386,3 @@ export default function ProductoGastos() {
     </div>
   );
 }
-

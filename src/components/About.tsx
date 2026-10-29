@@ -9,24 +9,28 @@ function About() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">¿Quiénes somos?</h2>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              FinanzasFácil es una plataforma web especializada en educación financiera y herramientas 
-              de cálculo gratuitas para mejorar la gestión personal del dinero. Nuestro equipo está 
-              formado por profesionales del sector financiero y desarrolladores especializados en 
-              crear herramientas útiles y fáciles de usar.
+              FinanzasFácil es una plataforma web de LIPA Studios especializada en educación financiera
+              y herramientas de cálculo gratuitas para mejorar la gestión personal del dinero. El proyecto
+              combina desarrollo web, revisión de fuentes públicas y contenido práctico adaptado a España.
             </p>
             <p className="text-gray-700 mb-4 leading-relaxed">
               Creemos que la educación financiera debe ser accesible para todos, independientemente 
               de su nivel de conocimientos o situación económica. Por eso, ofrecemos calculadoras 
               gratuitas, guías prácticas y recursos educativos sin necesidad de registro.
             </p>
+            <p className="text-gray-700 leading-relaxed">
+              En mayo de 2026 publicamos FinanzasFacil en App Store para acercar el control de gastos
+              al móvil: una app gratuita para iPhone y iPad, pensada para usarla sin registro obligatorio
+              y con exportación de datos.
+            </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Nuestra misión</h2>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              Democratizar el acceso a la información financiera de calidad, proporcionando 
-              herramientas precisas y actualizadas que ayuden a las personas a tomar mejores 
-              decisiones económicas y alcanzar sus objetivos financieros.
+              Hacer más comprensible la información financiera cotidiana, proporcionando herramientas
+              orientativas y guías claras que ayuden a preparar mejores preguntas antes de tomar
+              decisiones económicas o fiscales importantes.
             </p>
           </section>
 
@@ -50,6 +54,21 @@ function About() {
                   <li>• Estrategias de ahorro e inversión</li>
                   <li>• Planificación financiera personal</li>
                 </ul>
+              </div>
+              <div className="bg-indigo-50 rounded-xl p-6 md:col-span-2">
+                <h3 className="text-xl font-semibold text-indigo-900 mb-3">📱 App iOS publicada</h3>
+                <p className="text-indigo-800 leading-relaxed">
+                  FinanzasFacil está disponible en App Store para iPhone y iPad. La app complementa la web
+                  con control de gastos local, onboarding guiado y exportación de datos.
+                </p>
+                <a
+                  href="https://apps.apple.com/es/app/finanzasfacil/id6754602748"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-4 text-indigo-900 font-semibold underline"
+                >
+                  Ver app en App Store
+                </a>
               </div>
             </div>
           </section>
@@ -85,14 +104,14 @@ function About() {
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Transparencia y sostenibilidad</h2>
             <div className="bg-gray-50 rounded-xl p-6">
               <p className="text-gray-700 mb-4 leading-relaxed">
-                FinanzasFácil se mantiene gracias a la publicidad responsable mediante Google AdSense. 
-                Esta publicidad nos permite ofrecer todas nuestras herramientas de forma completamente 
-                gratuita sin comprometer la experiencia del usuario.
+                FinanzasFácil es un proyecto de LIPA Studios. Mantenemos las herramientas gratuitas
+                priorizando una experiencia clara, contenido educativo propio y una navegación sin
+                registro obligatorio.
               </p>
               <ul className="text-gray-700 space-y-2">
                 <li>• <strong>Sin registro obligatorio:</strong> Puedes usar las herramientas básicas sin crear cuenta</li>
                 <li>• <strong>Publicidad no intrusiva:</strong> Anuncios relevantes que no interfieren con el uso</li>
-                <li>• <strong>Datos seguros:</strong> No vendemos ni compartimos tu información personal</li>
+                <li>• <strong>Datos bajo tu control:</strong> El control de gastos permite guardar en el dispositivo y exportar</li>
                 <li>• <strong>Herramientas actualizadas:</strong> Mantenemos los cálculos al día con la normativa</li>
               </ul>
             </div>
@@ -143,16 +162,16 @@ function About() {
                 calculadoras precisas y actualizadas con la normativa vigente.
               </p>
               <p className="text-gray-700 leading-relaxed">
-                Hoy, miles de usuarios confían en nuestras herramientas para tomar decisiones financieras informadas. 
-                Seguimos comprometidos con nuestro objetivo original: hacer que las finanzas personales sean realmente fáciles 
-                para todo el mundo, sin importar su nivel de conocimientos previos.
+                Seguimos mejorando el proyecto con nuevas calculadoras, explicaciones más claras y avisos
+                prudentes sobre los límites de cada simulación. La meta es que las finanzas personales sean
+                más fáciles de entender, sin prometer resultados que dependan de cada caso particular.
               </p>
             </div>
           </section>
 
           <div className="text-center pt-8 border-t border-gray-200">
             <p className="text-gray-500 text-sm">
-              Última actualización: Enero 2025 | FinanzasFácil - Herramientas financieras gratuitas
+              Última actualización: Mayo 2026 | FinanzasFácil - Herramientas financieras gratuitas
             </p>
           </div>
         </div>
@@ -162,5 +181,3 @@ function About() {
 }
 
 export default About;
-
-

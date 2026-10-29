@@ -1,4 +1,335 @@
 [[redirects]]
+  from = "/calculadora-salario-neto"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/salario"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/calculadora-autonomos"
+  to = "/autonomos"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/autonomos"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/control-gastos"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/calculadora-hipoteca"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/hipoteca"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/cuando-sere-millonario"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/millonario"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/indemnizacion-despido"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/coste-empleado"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/mi-plan"
+  to = "/mi-plan.html"
+  status = 200
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/public/*"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/calculadora-irpf-autonomos-2021.html"
+  to = "/calculadora-irpf-autonomo-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tabla-irpf-autonomos-2022.html"
+  to = "/tabla-irpf-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tramos-irpf-autonomos-2021.html"
+  to = "/tabla-irpf-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/autonomos-jovenes-2025.html"
+  to = "/guia-fiscal-autonomos-espana-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cuota-autonomos-2025.html"
+  to = "/cuota-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calcular-salario-neto-2025.html"
+  to = "/calcular-salario-neto-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tabla-irpf-autonomos-2025.html"
+  to = "/tabla-irpf-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/gastos-deducibles-autonomos-2025.html"
+  to = "/gastos-deducibles-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/modelo-130-autonomos-2025.html"
+  to = "/modelo-130-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculadora-irpf-autonomo-2025.html"
+  to = "/calculadora-irpf-autonomo-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/como-calcular-irpf-autonomos-2025.html"
+  to = "/como-calcular-irpf-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/30000-brutos-a-netos.html"
+  to = "/calcular-salario-neto-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/salario-bruto-espana.html"
+  to = "/calcular-salario-neto-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculadora-sueldo-neto-autonomos.html"
+  to = "/calculadora-autonomos.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/irpf-autonomo.html"
+  to = "/como-calcular-irpf-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/base-cotizacion-autonomos.html"
+  to = "/cuota-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tarifa-plana-autonomos-2025.html"
+  to = "/guia-fiscal-autonomos-espana-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tarifa-plana-requisitos.html"
+  to = "/guia-fiscal-autonomos-espana-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cuando-hacer-modelo-130.html"
+  to = "/modelo-130-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/lista-gastos-deducibles.html"
+  to = "/gastos-deducibles-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/modelo-130-online.html"
+  to = "/modelo-130-autonomos-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+from = "/calcular-salario-neto.html"
+to = "/calcular-salario-neto-2026.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "/comparativa-hipotecas-fija-vs-variable-2025.html"
+to = "/hipoteca"
+status = 301
+force = true
+
+[[redirects]]
+from = "/mejor-calculadora-autonomos-2025.html"
+to = "/autonomos"
+status = 301
+force = true
+
+[[redirects]]
+from = "/presupuesto-navideno-2025.html"
+to = "/blog.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/calcular-irpf-autonomos-2025.html"
+to = "/calculadora-irpf-autonomo-2026.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "/20-gastos-deducibles-autonomos-2025.pdf"
+to = "/gastos-deducibles-autonomos-2026.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "/privacy.html"
+to = "/privacidad.html"
+status = 301
+force = true
+
+[[redirects]]
+  from = "/calculadoras.html"
+  to = "/blog.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/app-ios.html"
+  to = "https://apps.apple.com/es/app/finanzasfacil/id6754602748"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/gastos-hormiga.html"
+  to = "/control-gastos-sin-excel.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/plantilla-dinero-tranquilo.html"
+  to = "/metodo-dinero-tranquilo.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/test-salud-financiera.html"
+  to = "/metodo-dinero-tranquilo.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/nivel-endeudamiento-calculadora.html"
+  to = "/que-deuda-pagar-primero.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculadora-fondo-emergencia.html"
+  to = "/cuanto-puedo-gastar-al-mes.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculadora-hipoteca-gratis.html"
+  to = "/hipoteca"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/newsletter.html"
+  to = "/blog.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ahorrar-black-friday.html"
+  to = "/black-friday-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ahorrar-black-friday"
+  to = "/black-friday-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculadora-presupuesto-estudiante-universitario.html"
+  to = "/presupuesto-estudiante"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*.html"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
@@ -42,5 +373,3 @@
 
 [build.environment]
   NODE_VERSION = "20"
-
-

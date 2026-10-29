@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <meta name="google-adsense-account" content="ca-pub-4837743291717475">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guía fiscal para autónomos en España (2026) | Calendario, IRPF y obligaciones | FinanzasFácil</title>
@@ -8,31 +9,25 @@
   <link rel="canonical" href="https://finanzasmuyfacil.com/guia-fiscal-autonomos-espana-2026.html" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta name="robots" content="index, follow" />
+  <link rel="stylesheet" href="/editorial.css">
   <style>
-    :root { color-scheme: light; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height: 1.75; color: #1e293b; background: #f8fafc; }
-    header { background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%); color: #fff; padding: 2.5rem 1.25rem 2rem; }
-    header h1 { max-width: 48rem; margin: 0 auto 0.75rem; font-size: clamp(1.5rem, 4vw, 2.25rem); line-height: 1.25; }
-    header .meta { max-width: 48rem; margin: 0 auto; font-size: 0.95rem; opacity: 0.9; }
-    nav { max-width: 52rem; margin: -1.25rem auto 0; padding: 0 1rem; position: relative; z-index: 2; }
-    nav .inner { background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(15,23,42,.12); padding: 1rem 1.25rem; display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; }
-    nav a { color: #1d4ed8; font-weight: 600; text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-    main { max-width: 52rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
-    main p { margin: 0 0 1.1rem; }
-    h2 { font-size: 1.35rem; margin: 2.25rem 0 0.75rem; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.35rem; }
-    h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #334155; }
-    ul, ol { margin: 0 0 1.1rem 1.25rem; padding: 0; }
-    li { margin-bottom: 0.35rem; }
-    .callout { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 1rem 1.15rem; margin: 1.5rem 0; color: #1e3a8a; }
-    .warn { background: #fffbeb; border: 1px solid #fde68a; color: #854d0e; }
-    footer { background: #0f172a; color: #e2e8f0; padding: 2rem 1.25rem; text-align: center; font-size: 0.9rem; }
-    footer a { color: #93c5fd; }
-    .toc { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 2rem 0; }
-    .toc strong { display: block; margin-bottom: 0.75rem; color: #0f172a; }
+    .toc {
+      margin: 1.7rem 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.5rem;
+      background: var(--paper-bright);
+      box-shadow: 0 10px 30px rgba(12, 27, 42, 0.04);
+    }
+    .toc strong {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+    }
     .toc ol { margin: 0; padding-left: 1.25rem; }
-    .toc a { color: #1d4ed8; }
+    .toc a { font-weight: 650; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
   </style>
   <script type="application/ld+json">
   {
@@ -48,41 +43,55 @@
       "logo": { "@type": "ImageObject", "url": "https://finanzasmuyfacil.com/logo-square.svg" }
     },
     "datePublished": "2026-05-11",
-    "dateModified": "2026-07-09",
+    "dateModified": "2026-08-16",
     "mainEntityOfPage": "https://finanzasmuyfacil.com/guia-fiscal-autonomos-espana-2026.html"
   }
   </script>
 </head>
 <body>
-  <header>
-    <h1>Guía fiscal para autónomos en España (2026)</h1>
-    <p class="meta">Actualizado el 9 de julio de 2026 · Contenido educativo · Comprueba siempre importes y fechas en la sede electrónica de la AEAT y en la TGSS</p>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/"><img src="/logos/finanzas-muy-facil-youtube-logo-192.png" alt="">FinanzasFácil</a>
+      <nav class="site-nav" aria-label="Navegación">
+        <a href="/calculadora-autonomos.html">Calculadora</a>
+        <a href="/calendario-fiscal-autonomos-2026.html">Calendario</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/metodologia-fuentes.html">Metodología</a>
+      </nav>
+    </div>
   </header>
 
-  <nav aria-label="Navegación principal">
-    <div class="inner">
-      <a href="/">Inicio (calculadoras)</a>
-      <a href="/autonomos">Calculadora autónomos</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/acerca-de.html">Sobre nosotros</a>
-      <a href="/contacto.html">Contacto</a>
-      <a href="/privacidad.html">Privacidad</a>
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="eyebrow">Mapa fiscal · autónomos 2026</p>
+      <h1>Tu año fiscal, sin el laberinto</h1>
+      <p class="lead">Alta, cotización, IRPF, Modelo 130, gastos y calendario: un mapa claro para decidir con más calma. Orientación educativa, no asesoramiento personalizado.</p>
+      <p class="reviewed">Actualizado el 16 de julio de 2026 · Confirma cifras en AEAT y TGSS</p>
+      <div class="hero-actions">
+        <a class="button button--light" href="/calculadora-autonomos.html">Abrir calculadora</a>
+        <a class="button button--ghost" href="/calendario-fiscal-autonomos-2026.html">Ver calendario</a>
+      </div>
     </div>
-  </nav>
+  </section>
 
-  <main>
-    <p>
-      Esta guía está pensada para quien empieza como <strong>autónomo</strong> en España o quiere ordenar su año fiscal sin perderse entre modelos, cuotas y plazos.
-      Aquí no sustituimos a un <strong>gestor o asesor fiscal</strong>: cada actividad, comunidad autónoma y situación familiar cambia el resultado final.
-      Lo que sí ofrecemos es un mapa claro, enlaces a recursos propios del sitio y criterios para tomar decisiones con más tranquilidad.
-    </p>
+  <main class="article">
+    <aside class="article-byline" aria-label="Autoría y revisión editorial">
+      <img src="/logos/finanzas-muy-facil-youtube-logo-192.png" alt="">
+      <div>
+        <p class="article-byline__kicker">Autoría y revisión</p>
+        <p><strong>Luis Alberto Moratalla</strong> mantiene FinanzasFácil desde LIPA Studios. Esta guía reúne fuentes públicas, pero tu situación fiscal puede requerir revisión profesional.</p>
+        <p class="article-byline__links"><a href="/acerca-de.html">Quién firma esta guía</a><a href="/metodologia-fuentes.html">Método y fuentes</a></p>
+      </div>
+    </aside>
+    <section class="summary reveal">
+      Esta guía está pensada para quien empieza como <strong>autónomo</strong> en España o quiere ordenar su año fiscal. No sustituimos a un <strong>gestor</strong>: cada actividad y comunidad cambia el resultado. Aquí hay un mapa, enlaces útiles y criterios para decidir con más tranquilidad.
+    </section>
 
-    <div class="callout warn" role="note">
-      <strong>Aviso importante.</strong> Cotizaciones mínimas, tramos de IRPF y calendarios pueden cambiar con leyes o correcciones normativas.
-      Usa esta página como orientación y confirma cifras en fuentes oficiales o con tu gestoría antes de presentar modelos o pagar cuotas.
+    <div class="notice notice--caution reveal" role="note">
+      <strong>Aviso importante.</strong> Cotizaciones, tramos de IRPF y calendarios pueden cambiar. Usa esta página como orientación y confirma cifras en fuentes oficiales o con tu gestoría.
     </div>
 
-    <div class="toc">
+    <div class="toc reveal">
       <strong>Índice</strong>
       <ol>
         <li><a href="#antes-empezar">Antes de darte de alta</a></li>
@@ -92,114 +101,193 @@
         <li><a href="#irpf">IRPF: retenciones, tramos y pagos fraccionados</a></li>
         <li><a href="#modelo-130">Modelo 130 u otras opciones</a></li>
         <li><a href="#calendario">Calendario fiscal (referencia)</a></li>
+        <li><a href="#liquidez">Liquidez y Dinero Tranquilo</a></li>
         <li><a href="#herramientas">Cómo usar nuestras calculadoras</a></li>
+        <li><a href="#iva">IVA sin mezclarlo con IRPF</a></li>
+        <li><a href="#primer-ano">Ritmo del primer año</a></li>
+        <li><a href="#errores">Errores caros</a></li>
       </ol>
     </div>
 
-    <h2 id="antes-empezar">1. Antes de darte de alta</h2>
-    <p>
-      Trabajar por cuenta propia implica encajar tres piezas: <strong>actividad económica</strong> (CNAE y epígrafes IAE),
-      <strong>cotización mensual</strong> a la Seguridad Social y <strong>obligaciones tributarias</strong> (IVA, IRPF u otros impuestos según el caso).
-      Antes de dar el paso, conviene tener claro si facturarás con IVA, si tendrás clientes en la UE (oss / inversión del sujeto pasivo) y si combinas empleo por cuenta ajena con autonomo (puede afectar a bonificaciones y bases).
-    </p>
-    <h3>Documentación y hábitos que marcan la diferencia</h3>
-    <ul>
-      <li>Cuenta bancaria o libro de ingresos y gastos ordenado desde el primer día.</li>
-      <li>Facturas con datos completos y retenciones de IRPF cuando proceda.</li>
-      <li>Reserva mensual para impuestos y cotización: tratarlas como un gasto fijo, no como “lo que sobra”.</li>
-    </ul>
-
-    <h2 id="alta-seguridad-social">2. Alta en Seguridad Social y Hacienda</h2>
-    <p>
-      El alta en autónomos se gestiona principalmente a través de la <strong>Tesorería General de la Seguridad Social</strong> y la <strong>Agencia Tributaria</strong>.
-      La cuota que pagas cada mes no es un “impuesto extra”: financia prestaciones como baja médica, jubilación y otras coberturas.
-      En FinanzasFácil tienes una calculadora para <strong>estimar cuota e IRPF</strong> según tus ingresos y gastos: es un punto de partida, no el cálculo oficial que enviarás a la administración.
-    </p>
-    <p>
-      Para estimar tu caso, empieza por la
-      <a href="/calculadora-autonomos.html">calculadora de autónomos</a>, que reúne cuota, IRPF y gastos en una sola herramienta.
-    </p>
-
-    <h2 id="facturacion">3. Facturación y registro de ingresos</h2>
-    <p>
-      La factura es el documento central: acredita el hecho imponible del IVA (si aplica) y el ingreso para IRPF.
-      Guarda copia digital y, si tu sector lo exige, cumple con la <strong>facturación electrónica</strong> o sistemas Veri*Factu según la normativa aplicable en tu momento.
-      Si tienes varios tipos de cliente (particular, empresa, extranjero), revisa en cada caso el tratamiento del IVA y de las retenciones.
-    </p>
-
-    <h2 id="gastos">4. Gastos deducibles: enfoque realista</h2>
-    <p>
-      Un gasto suele ser deducible cuando está <strong>vinculado a la actividad</strong>, está <strong>contabilizado</strong> y existe
-      <strong>documentación</strong> que lo acredite. No todo lo que “parece profesional” lo es a ojos de inspección: por ejemplo, el uso mixto de vivienda o vehículo requiere criterios claros y, a veces, prorrateo.
-    </p>
-    <p>
-      En el sitio recopilamos una guía sobre
-      <a href="/gastos-deducibles-autonomos-2026.html">gastos deducibles habituales</a>.
-      Úsalas para preparar preguntas a tu gestor, no como lista cerrada al 100&nbsp;% para todos los sectores.
-    </p>
-
-    <h2 id="irpf">5. IRPF: retenciones, tramos y pagos fraccionados</h2>
-    <p>
-      El IRPF es progresivo: a mayor base imponible, mayor tipo marginal aplicable en cada tramo.
-      Como autónomo, normalmente te interesa <strong>anticipar</strong> el impuesto mediante pagos fraccionados o retenciones sobre tus facturas a clientes empresas.
-      Así reduces sobresaltos en la declaración de la renta y mejoras tu liquidez.
-    </p>
-    <p>
-      Los tramos y tipos autonómicos cambian; por eso publicamos tablas y calculadoras actualizables, como la
-      <a href="/tabla-irpf-autonomos-2026.html">guía para entender el IRPF de autónomos</a> y la
-      <a href="/calculadora-irpf-autonomo-2026.html">calculadora orientativa de IRPF</a>.
-    </p>
-
-    <h2 id="modelo-130">6. Modelo 130 u otras opciones</h2>
-    <p>
-      El <strong>Modelo 130</strong> es un pago fraccionado del IRPF para muchos autónomos en estimación directa.
-      Existen exclusiones (por ejemplo, si ya te retienen suficiente IRPF en tus cobros) que debes validar cada ejercicio.
-      Si no te afecta el 130, puede aplicarte otro régimen o modelo: tu gestor lo confirma con tu historial y tus retenciones reales.
-    </p>
-    <p>
-      Puedes leer una introducción en
-      <a href="/modelo-130-autonomos-2026.html">Modelo 130 para autónomos</a>.
-    </p>
-
-    <h2 id="calendario">7. Calendario fiscal (referencia)</h2>
-    <p>
-      Más allá del IRPF, un autónomo habitualmente gestiona <strong>IVA trimestral</strong> (modelo 303),
-      <strong>resumen anual</strong> de operaciones con terceros cuando proceda, y la <strong>declaración de la renta</strong> entre abril y julio.
-      Las fechas exactas se publican cada año en el calendario del contribuyente de la AEAT: úsalo como referencia oficial para no perder plazos.
-      En el sitio tienes un resumen editorial: <a href="/calendario-fiscal-autonomos-2026.html">calendario fiscal autónomos 2026</a>.
-    </p>
-    <ul>
-      <li>Anota en agenda los últimos días hábiles de cada trimestre de IVA.</li>
-      <li>Revisa si debes presentar operaciones intracomunitarias u otros anexos.</li>
-      <li>Reserva tiempo en enero para cerrar el año: facturas pendientes, amortizaciones y saldos.</li>
-    </ul>
-
-    <h2 id="herramientas">8. Cómo usar nuestras calculadoras</h2>
-    <p>
-      La <a href="/autonomos">calculadora de autónomos en la app</a> te permite simular escenarios: ingresos, gastos, comunidad autónoma y otros parámetros.
-      Los resultados son <strong>orientativos</strong>: la legislación, tus datos personales y las actualizaciones normativas pueden cambiar el cálculo final.
-      Para el salario por cuenta ajena, usa la <a href="/calculadora-salario-neto">calculadora de salario neto</a>; para vivienda, la <a href="/calculadora-hipoteca">simulación de hipoteca</a>.
-    </p>
-
-    <div class="callout">
-      <strong>Transparencia editorial.</strong> FinanzasFácil financia parte del proyecto con publicidad digital.
-      Eso nos permite mantener calculadoras gratuitas y ampliar guías como esta. La publicidad no influye en las fórmulas base de las herramientas.
+    <div class="reveal">
+      <h2 id="antes-empezar">1. Antes de darte de alta</h2>
+      <p>
+        Trabajar por cuenta propia implica encajar tres piezas: <strong>actividad económica</strong> (CNAE y epígrafes IAE),
+        <strong>cotización mensual</strong> a la Seguridad Social y <strong>obligaciones tributarias</strong> (IVA, IRPF u otros según el caso).
+        Antes de dar el paso, conviene tener claro si facturarás con IVA, si tendrás clientes en la UE y si combinas empleo por cuenta ajena con autónomo (pluriactividad: puede afectar a bonificaciones y bases).
+      </p>
+      <p>Checklist de decisión (educativa, no exhaustiva):</p>
+      <ul>
+        <li>¿Tengo colchón para 2–3 meses de cuota + gastos mínimos mientras cobran los primeros clientes?</li>
+        <li>¿Sé si mis clientes serán particulares, empresas (posible retención IRPF) o UE?</li>
+        <li>¿Voy a separar desde el día uno una cuenta o al menos un criterio de registro?</li>
+        <li>¿He hablado con gestoría o leído el mapa de modelos que me aplican?</li>
+      </ul>
+      <div class="steps-wow">
+        <div class="step-wow"><span>1</span><h3>Banco ordenado</h3><p>Ingresos y gastos claros desde el día uno.</p></div>
+        <div class="step-wow"><span>2</span><h3>Facturas completas</h3><p>Datos y retenciones cuando proceda.</p></div>
+        <div class="step-wow"><span>3</span><h3>Reserva fija</h3><p>Impuestos y cuota como gasto, no como “lo que sobra”.</p></div>
+      </div>
     </div>
 
-    <p>
-      Si detectas un error o echas en falta un apartado, escríbenos desde
-      <a href="/contacto.html">contacto</a>: revisamos sugerencias y actualizamos el texto cuando cambia la normativa relevante.
-    </p>
+    <div class="reveal">
+      <h2 id="alta-seguridad-social">2. Alta en Seguridad Social y Hacienda</h2>
+      <p>
+        El alta se gestiona principalmente a través de la <strong>TGSS</strong> y la <strong>Agencia Tributaria</strong>.
+        La cuota mensual no es un “impuesto extra”: financia baja médica, jubilación y otras coberturas. Confundir cuota con IRPF es uno de los primeros líos mentales: una es cotización; el otro es impuesto sobre la renta de la actividad.
+      </p>
+      <p>En los primeros 30 días conviene fijar hábitos: numeración de facturas, carpeta de gastos, y una estimación de cuánto apartar por cada cobro. Empieza por la <a href="/calculadora-autonomos.html">calculadora de autónomos</a> y la página de <a href="/cuota-autonomos-2026.html">cuota 2026</a>: son puntos de partida, no el cálculo oficial que enviarás a la administración.</p>
+    </div>
+
+    <div class="reveal">
+      <h2 id="facturacion">3. Facturación y registro de ingresos</h2>
+      <p>
+        La factura acredita el hecho imponible del IVA (si aplica) y el ingreso para IRPF.
+        Guarda copia digital y, si tu sector lo exige, cumple con la facturación electrónica o Veri*Factu según la normativa del momento.
+      </p>
+      <p>Datos mínimos que suelen importar: identificación de emisor y cliente, fecha, concepto, bases, tipos de IVA, y retención de IRPF cuando el cliente esté obligado a retener. En muchos servicios a empresas verás retenciones del <strong>15 %</strong> o, en supuestos de inicio, del <strong>7 %</strong>: no son tu impuesto final, son pagos a cuenta. Detalle: <a href="/retencion-irpf-autonomos.html">retención IRPF en factura</a>.</p>
+      <p>Si mezclas cobros personales y profesionales en la misma cuenta sin criterio, el trimestre se vuelve arqueología. Ordenar el registro es más barato que reconstruir tres meses el día 18.</p>
+    </div>
+
+    <div class="reveal">
+      <h2 id="gastos">4. Gastos deducibles: enfoque realista</h2>
+      <p>
+        Un gasto suele ser deducible cuando está <strong>vinculado a la actividad</strong>, <strong>contabilizado</strong> y con
+        <strong>documentación</strong>. El uso mixto de vivienda o vehículo requiere criterios claros.
+      </p>
+      <p>
+        No uses esta sección como lista mágica. La guía práctica larga está en
+        <a href="/gastos-deducibles-autonomos-2026.html">gastos deducibles habituales</a>:
+        filtros, ejemplos de uso mixto y errores frecuentes.
+      </p>
+    </div>
+
+    <div class="callout-wow reveal">No trates el cobro de una factura como dinero libre. Primero reserva cuota, IVA e IRPF estimado.</div>
+
+    <div class="reveal">
+      <h2 id="irpf">5. IRPF: retenciones, tramos y pagos fraccionados</h2>
+      <p>
+        El IRPF es progresivo: a mayor base, mayor tipo marginal en cada tramo. Como autónomo, la base de la actividad parte, en estimación directa, de ingresos menos gastos fiscalmente deducibles (con matices y normas que debes contrastar).
+      </p>
+      <p>Hay tres piezas que la gente mezcla:</p>
+      <ul>
+        <li><strong>Retención en factura:</strong> el cliente te ingresa menos y paga a cuenta a Hacienda.</li>
+        <li><strong>Modelo 130:</strong> tú presentas un pago fraccionado si te aplica.</li>
+        <li><strong>Renta anual:</strong> liquidación definitiva del ejercicio, donde se cruzan retenciones y pagos a cuenta.</li>
+      </ul>
+      <p>
+        Recorrido educativo: <a href="/como-calcular-irpf-autonomos-2026.html">cómo estimar el IRPF</a>,
+        <a href="/tabla-irpf-autonomos-2026.html">tabla / guía de tramos</a> y
+        <a href="/calculadora-irpf-autonomo-2026.html">calculadora orientativa</a>.
+      </p>
+      <div class="formula-wow">Rendimiento ≈ ingresos − gastos deducibles → luego IRPF según reglas y pagos a cuenta</div>
+    </div>
+
+    <div class="reveal">
+      <h2 id="modelo-130">6. Modelo 130 u otras opciones</h2>
+      <p>
+        El <strong>Modelo 130</strong> es un pago fraccionado del IRPF para muchos autónomos en estimación directa.
+        Hay exclusiones (por ejemplo, si ya te retienen suficiente IRPF en facturas). Validación: tu gestor + tu historial + norma del ejercicio.
+      </p>
+      <p>No copies el “siempre presento el 130” del año pasado sin mirar si cambió tu mix de clientes. Introducción: <a href="/modelo-130-autonomos-2026.html">Modelo 130 2026</a>.</p>
+    </div>
+
+    <div class="reveal">
+      <h2 id="calendario">7. Calendario fiscal (referencia)</h2>
+      <p>Habitualmente gestionarás <strong>IVA trimestral</strong> (303), posibles resúmenes anuales y la <strong>renta</strong> en primavera.
+        Fechas oficiales: calendario del contribuyente de la AEAT.
+        Resumen editorial: <a href="/calendario-fiscal-autonomos-2026.html">calendario fiscal autónomos 2026</a>.
+      </p>
+      <p>Una forma práctica de no improvisar: bloquea en el calendario del móvil los días 1–15 de abril, julio, octubre y enero con la etiqueta “liquidación”. Usa los cinco días previos solo para archivo y contraste, no para empezar a buscar facturas.</p>
+      <ul>
+        <li>Últimos días hábiles de cada trimestre de IVA.</li>
+        <li>Operaciones intracomunitarias u anexos si te aplican.</li>
+        <li>Enero: cierre de año (facturas, amortizaciones, saldos).</li>
+        <li>Hábito: 10 minutos semanales de archivo > domingo de pánico.</li>
+      </ul>
+    </div>
+
+    <div class="reveal">
+      <h2 id="liquidez">8. Liquidez: el método Dinero Tranquilo para autónomos</h2>
+      <p>El mapa fiscal falla si no hay caja. Cada cobro debería pasar por un filtro mental: IVA a apartar, reserva de IRPF/cuota, y solo después “disponible”. Eso es el <a href="/metodo-dinero-tranquilo.html">método Dinero Tranquilo</a> aplicado a facturas. Herramienta: <a href="/cuanto-apartar-impuestos-autonomo.html">apartar al cobrar</a>.</p>
+      <p>Si tus ingresos son irregulares, calcula el dinero tranquilo con un mes <em>prudente</em> (no con el mejor mes del año) y revisa tras cada trimestre. Guía de hábito: <a href="/control-gastos-mensual.html">control de gastos mensual</a>.</p>
+    </div>
+
+    <div class="reveal">
+      <h2 id="iva">10. IVA en una frase (y por qué no va en el IRPF)</h2>
+      <p>Si estás en régimen general de IVA, cobras IVA a tus clientes y deduces (cuando proceda) el IVA soportado de compras. La liquidación habitual es trimestral (Modelo 303). El IVA <strong>no es tu margen</strong>: está de paso. Mezclarlo con el IRPF o con la cuota es el error que más vacía la cuenta el día 20.</p>
+      <p>Exenciones, recargo de equivalencia, operaciones intracomunitarias o criterios de caja cambian el mapa: no copies el 303 de un compañero. Esta guía solo te marca el sitio en el calendario; el detalle lo confirma la AEAT o tu gestoría.</p>
+    </div>
+
+    <div class="reveal">
+      <h2 id="primer-ano">11. Primer año: ritmo recomendado (educativo)</h2>
+      <ol>
+        <li><strong>Semana 0–2:</strong> alta TGSS + Hacienda, numeración de facturas, cuenta o criterio de registro, estimación de cuota.</li>
+        <li><strong>Cada cobro:</strong> aparta IVA / IRPF / cuota antes de gastar el disponible.</li>
+        <li><strong>Cada semana (10 min):</strong> archiva facturas emitidas y recibidas; anota retenciones.</li>
+        <li><strong>Cada trimestre:</strong> 303 (si aplica), 130 (si aplica), revisión de tramo de cotización.</li>
+        <li><strong>Cierre de año / renta:</strong> cruza retenciones, pagos a cuenta, gastos dudosos y datos personales.</li>
+      </ol>
+      <p>Si empiezas con cuota reducida, no bajes la guardia fiscal: baja la reserva de cuota, no la de IVA/IRPF. Ver <a href="/cuota-autonomos-2026.html">cuota 2026</a>.</p>
+    </div>
+
+    <div class="reveal">
+      <h2 id="errores">12. Errores que más caros salen</h2>
+      <ul>
+        <li>Tratar el ingreso en cuenta como “sueldo neto”.</li>
+        <li>No revisar si el 130 te aplica cuando cambia el % de retenciones.</li>
+        <li>Deducir gastos sin justificante “porque todo el mundo lo hace”.</li>
+        <li>Olvidar el calendario hasta el penúltimo día hábil.</li>
+        <li>Confundir cotización con impuesto y no apartar IRPF.</li>
+        <li>Comparar facturación bruta con un sueldo bruto de nómina sin ajustar gastos ni cotización.</li>
+      </ul>
+      <div class="callout-wow">El mapa fiscal no evita sustos: la reserva al cobrar sí. El resto es orden y fechas.</div>
+    </div>
+
+    <div class="reveal">
+      <h2 id="herramientas">9. Cómo usar nuestras calculadoras</h2>
+      <p>
+        La <a href="/calculadora-autonomos.html">calculadora de autónomos</a> simula escenarios. Los resultados son <strong>orientativos</strong>.
+        Por cuenta ajena: <a href="/calcular-salario-neto-2026.html">salario neto 2026</a>. Vivienda: <a href="/hipoteca">hipoteca</a>.
+      </p>
+      <div class="notice">
+        <strong>Transparencia.</strong> Parte del proyecto se financia con publicidad digital. No influye en las fórmulas de las herramientas.
+        <a href="/metodologia-fuentes.html">Metodología</a> · <a href="/politica-editorial.html">Política editorial</a>.
+      </div>
+      <div class="action-row">
+        <a class="button" href="/calculadora-autonomos.html">Calcular mi escenario</a>
+        <a class="button button--quiet" href="/contacto.html">Sugerir una mejora</a>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h2>Preguntas frecuentes</h2>
+      <h3>¿Necesito gestor desde el día uno?</h3>
+      <p>No es obligatorio legalmente en todos los casos, pero un buen criterio documental y alguien que revise tu régimen evita errores caros. Esta guía no sustituye ese rol.</p>
+      <h3>¿Cuota e IRPF se pagan juntos?</h3>
+      <p>No. La cuota va a la Seguridad Social; el IRPF a Hacienda (retenciones, 130, renta). Sepáralos en tu cabeza y en tu caja.</p>
+      <h3>¿Puedo gastarme el IVA cobrado?</h3>
+      <p>No lo trates como margen. Está destinado a liquidarse. Si lo mezclas con el día a día, el trimestre duele.</p>
+      <h3>¿Esta guía calcula mi cuota exacta?</h3>
+      <p>No. Ofrece un mapa y enlaces a herramientas orientativas. Confirma en TGSS/AEAT o con profesional.</p>
+      <h3>¿Qué hago el primer mes si aún no cobro?</h3>
+      <p>Prioriza el alta correcta, un colchón mínimo y no acumular gastos fijos “de negocio” sin ingreso. La cuota corre aunque el cliente tarde en pagar.</p>
+      <h3>¿Pluriactividad cambia algo?</h3>
+      <p>Puede afectar a cotizaciones y bonificaciones. Confírmalo en TGSS; no asumas la misma cuota que un autónomo a tiempo completo.</p>
+    </div>
   </main>
 
-  <footer>
-    <p>© 2026 FinanzasFácil · LIPA Studios</p>
-    <p>
-      <a href="/">Inicio</a> ·
-      <a href="/blog.html">Blog</a> ·
-      <a href="/terminos.html">Términos</a> ·
-      <a href="/privacidad.html">Privacidad</a>
-    </p>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>© 2026 FinanzasFácil · LIPA Studios</p>
+      <p>
+        <a href="/">Inicio</a> ·
+        <a href="/blog.html">Blog</a> ·
+        <a href="/terminos.html">Términos</a> ·
+        <a href="/privacidad.html">Privacidad</a>
+      </p>
+    </div>
   </footer>
+  <script src="/editorial-reveal.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-4837743291717475">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Control de gastos mensual | Método sencillo y app iOS</title>
+  <meta name="description" content="Aprende a controlar tus gastos mensuales con un método sencillo: ingresos, gastos fijos, gastos variables, dinero tranquilo y exportación. Incluye app iOS gratuita sin registro obligatorio.">
+  <link rel="canonical" href="https://finanzasmuyfacil.com/control-gastos-mensual.html">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="apple-itunes-app" content="app-id=6754602748">
+  <meta property="og:title" content="Control de gastos mensual sin complicarte">
+  <meta property="og:description" content="Una guía sencilla para ordenar tu mes, detectar gastos hormiga y usar FinanzasFacil en iPhone o web.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://finanzasmuyfacil.com/control-gastos-mensual.html">
+  <meta property="og:image" content="https://finanzasmuyfacil.com/app/control-gastos-dashboard.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Control de gastos mensual: método sencillo para ordenar tu dinero",
+    "description": "Guía práctica para controlar gastos mensuales con ingresos, gastos fijos, variables, ahorro y dinero tranquilo.",
+    "author": {
+      "@type": "Organization",
+      "name": "FinanzasFácil"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "LIPA Studios",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://finanzasmuyfacil.com/logos/finanzas-muy-facil-youtube-logo-192.png"
+      }
+    },
+    "datePublished": "2026-05-23",
+    "dateModified": "2026-07-16",
+    "mainEntityOfPage": "https://finanzasmuyfacil.com/control-gastos-mensual.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "¿Cuál es la forma más fácil de controlar gastos mensuales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Empieza separando ingresos, gastos fijos, gastos variables y una pequeña reserva de ahorro. Después revisa qué margen queda antes de gastar. En FinanzasFacil lo llamamos dinero tranquilo."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿Necesito registrar todos los gastos al céntimo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No al principio. Es mejor empezar con una foto aproximada del mes y mejorarla poco a poco. El objetivo es entender patrones, no convertir la app en una obligación pesada."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿La app FinanzasFacil requiere registro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No es obligatorio registrarse para usar el control de gastos. Los datos principales se guardan en el dispositivo y se pueden exportar."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿Puedo usar una plantilla antes de instalar la app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Puedes empezar con una calculadora de margen sencilla y pasar a la app cuando quieras llevar el hábito en el móvil."
+      }
+    }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Cómo controlar tus gastos mensuales sin complicarte",
+    "description": "Método práctico para separar ingresos, gastos fijos, gastos variables, ahorro y margen disponible.",
+    "step": [
+      { "@type": "HowToStep", "name": "Anota ingresos", "text": "Suma el dinero que entra en un mes normal." },
+      { "@type": "HowToStep", "name": "Separa gastos fijos", "text": "Incluye vivienda, suministros, transporte, suscripciones y otros pagos recurrentes." },
+      { "@type": "HowToStep", "name": "Apunta gastos variables", "text": "Agrupa comida, ocio, compras pequeñas, Bizum y gastos puntuales." },
+      { "@type": "HowToStep", "name": "Reserva ahorro", "text": "Aparta una cantidad realista antes de calcular tu margen." },
+      { "@type": "HowToStep", "name": "Calcula dinero tranquilo", "text": "Resta gastos y ahorro a tus ingresos para saber cuánto puedes usar con calma." }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --ink: #162033;
+      --muted: #5b6678;
+      --line: #dbe4ef;
+      --blue: #1d4ed8;
+      --green: #0f766e;
+      --soft: #f5f8fc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.65;
+    }
+    a { color: var(--blue); }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    header {
+      color: white;
+      background: linear-gradient(135deg, #172554 0%, #285c9d 58%, #13a7c8 100%);
+      padding: 28px 0 58px;
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 52px; }
+    nav a { color: rgba(255,255,255,.86); text-decoration: none; font-weight: 750; }
+    .brand { display: flex; align-items: center; gap: 12px; color: white; }
+    .brand img { width: 42px; height: 42px; border-radius: 50%; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      gap: 40px;
+      align-items: center;
+    }
+    .eyebrow { font-size: 13px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; color: #bbf7d0; margin: 0 0 10px; }
+    h1 { font-size: clamp(42px, 7vw, 76px); line-height: .95; letter-spacing: 0; margin: 0 0 22px; }
+    h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: 0; margin: 0 0 16px; }
+    h3 { font-size: 23px; line-height: 1.2; margin: 0 0 10px; }
+    .lead { font-size: clamp(19px, 2.5vw, 25px); color: rgba(255,255,255,.85); margin: 0 0 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 850;
+    }
+    .primary { background: white; color: #102b5f; }
+    .secondary { border: 1px solid rgba(255,255,255,.45); color: white; }
+    .phone {
+      max-width: 330px;
+      justify-self: center;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.3);
+      box-shadow: 0 26px 70px rgba(0,0,0,.28);
+      background: rgba(255,255,255,.12);
+      padding: 10px;
+    }
+    .phone img { width: 100%; display: block; border-radius: 22px; }
+    section { padding: 58px 0; }
+    .intro { max-width: 790px; }
+    .intro .eyebrow { color: var(--green); }
+    .muted { color: var(--muted); font-size: 18px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 22px; background: white; }
+    .band { background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+    .step { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+    .step span { display: inline-flex; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 50%; background: #dbeafe; color: #1d4ed8; font-weight: 900; margin-bottom: 12px; }
+    .article { max-width: 860px; }
+    .article p, .article li { font-size: 18px; color: #374151; }
+    .article li { margin: 8px 0; }
+	    .callout { border-left: 4px solid var(--blue); background: #eff6ff; padding: 18px 20px; border-radius: 8px; margin: 24px 0; }
+	    .cta { background: #102b5f; color: white; border-radius: 8px; padding: 30px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+	    .cta p { color: rgba(255,255,255,.8); margin: 0; }
+	    .tool {
+	      display: grid;
+	      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+	      gap: 22px;
+	      align-items: stretch;
+	      margin-top: 28px;
+	    }
+	    .panel {
+	      border: 1px solid var(--line);
+	      border-radius: 8px;
+	      padding: 24px;
+	      background: white;
+	    }
+	    .field { margin-bottom: 14px; }
+	    label { display: block; margin-bottom: 6px; color: #334155; font-weight: 850; }
+	    input {
+	      width: 100%;
+	      min-height: 48px;
+	      border: 1px solid var(--line);
+	      border-radius: 8px;
+	      padding: 10px 12px;
+	      font: inherit;
+	      color: var(--ink);
+	    }
+	    .result {
+	      min-height: 100%;
+	      border-radius: 8px;
+	      padding: 28px;
+	      color: white;
+	      background: linear-gradient(135deg, #0f766e, #1d4ed8);
+	      display: flex;
+	      flex-direction: column;
+	      justify-content: center;
+	    }
+	    .result strong { display: block; font-size: clamp(38px, 6vw, 68px); line-height: 1; margin: 12px 0; }
+	    .result p { color: rgba(255,255,255,.84); margin: 0; }
+	    .lead-form {
+	      border: 1px solid var(--line);
+	      border-radius: 8px;
+	      padding: 28px;
+	      background: white;
+	      display: grid;
+	      grid-template-columns: minmax(0, 1fr) minmax(240px, .75fr);
+	      gap: 24px;
+	      align-items: end;
+	    }
+	    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+	    .form-grid .full { grid-column: 1 / -1; }
+	    .small { font-size: 14px; color: var(--muted); margin-top: 10px; }
+	    footer { padding: 34px 0; border-top: 1px solid var(--line); color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer a { font-weight: 750; }
+    @media (max-width: 900px) {
+	      .hero, .cards, .steps, .cta, .tool, .lead-form, .form-grid { grid-template-columns: 1fr; }
+	      nav { align-items: flex-start; }
+	      .actions .button, .cta .button { width: 100%; }
+	      .phone { max-width: 280px; }
+	      .form-grid .full { grid-column: auto; }
+	    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="/">
+          <img src="/logos/finanzas-muy-facil-youtube-logo-192.png" alt="">
+          <span>Finanzas Muy Fácil</span>
+        </a>
+        <a href="/control-gastos-mensual.html">Control de gastos</a>
+      </nav>
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Guía práctica + app gratuita</p>
+          <h1>Control de gastos mensual sin complicarte</h1>
+          <p class="lead">Un método sencillo para saber qué entra, qué sale y cuánto puedes gastar con calma antes de llegar justo a final de mes.</p>
+          <div class="actions">
+            <a class="button primary" href="https://apps.apple.com/es/app/finanzasfacil/id6754602748">Descargar app iOS</a>
+            <a class="button secondary" href="/control-gastos">Probar control web</a>
+          </div>
+        </div>
+        <div class="phone">
+          <img src="/app/control-gastos-dashboard.png" alt="Pantalla de FinanzasFacil con resumen de dinero tranquilo y objetivos">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap intro">
+      <p class="eyebrow">El problema real</p>
+      <h2>No necesitas una hoja enorme: necesitas una foto clara de tu mes</h2>
+      <p class="muted">Muchas personas abandonan el control financiero porque intentan registrarlo todo perfecto desde el primer día. Es mejor empezar con una foto aproximada, detectar patrones y ajustar poco a poco.</p>
+    </div>
+    <div class="wrap cards">
+      <article class="card">
+        <h3>Lo que entra</h3>
+        <p>Salario, facturas cobradas, ayudas, ingresos variables o cualquier dinero que llegue durante el mes.</p>
+      </article>
+      <article class="card">
+        <h3>Lo que sale</h3>
+        <p>Vivienda, comida, transporte, suscripciones, compras pequeñas y gastos puntuales.</p>
+      </article>
+      <article class="card">
+        <h3>Lo que queda</h3>
+        <p>Tu margen real después de gastos y ahorro. En la app lo llamamos dinero tranquilo.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap intro">
+      <p class="eyebrow">Prueba rápida</p>
+      <h2>Calcula tu dinero tranquilo en un minuto</h2>
+      <p class="muted">No hace falta que los datos sean perfectos. Usa números aproximados para ver tu margen mensual antes de gastar.</p>
+    </div>
+    <div class="wrap tool" aria-label="Calculadora rápida de dinero tranquilo">
+      <div class="panel">
+        <div class="field">
+          <label for="income">Ingresos mensuales netos</label>
+          <input id="income" type="number" inputmode="decimal" value="1500" min="0">
+        </div>
+        <div class="field">
+          <label for="fixed">Gastos fijos aproximados</label>
+          <input id="fixed" type="number" inputmode="decimal" value="900" min="0">
+        </div>
+        <div class="field">
+          <label for="variable">Gastos variables estimados</label>
+          <input id="variable" type="number" inputmode="decimal" value="250" min="0">
+        </div>
+        <div class="field">
+          <label for="saving">Ahorro que quieres reservar</label>
+          <input id="saving" type="number" inputmode="decimal" value="150" min="0">
+        </div>
+      </div>
+      <div class="result">
+        <span>Dinero tranquilo estimado</span>
+        <strong id="calm-result">200 €</strong>
+        <p id="calm-message">Es el margen que te quedaría después de gastos y ahorro. Úsalo como referencia, no como una sentencia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap intro">
+      <p class="eyebrow">Método sencillo</p>
+      <h2>Revisa tu mes en cinco pasos</h2>
+    </div>
+    <div class="wrap steps">
+      <div class="step"><span>1</span><strong>Ingresos</strong><p>Anota cuánto entra en un mes normal.</p></div>
+      <div class="step"><span>2</span><strong>Fijos</strong><p>Separa alquiler, hipoteca, suministros y cuotas.</p></div>
+      <div class="step"><span>3</span><strong>Variables</strong><p>Agrupa comida, transporte, ocio y compras.</p></div>
+      <div class="step"><span>4</span><strong>Ahorro</strong><p>Reserva algo al cobrar, aunque sea pequeño.</p></div>
+      <div class="step"><span>5</span><strong>Margen</strong><p>Decide con tu dinero tranquilo delante.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <article class="wrap article">
+      <p class="eyebrow">Guía rápida</p>
+      <h2>Cómo controlar gastos sin convertirlo en otra obligación</h2>
+      <p>El primer objetivo no es tener una contabilidad perfecta. El objetivo es responder tres preguntas: cuánto dinero entra, qué gastos se repiten y qué decisiones puedes tomar antes de que el mes se complique.</p>
+      <p>Empieza por los gastos que más pesan. Vivienda, comida y transporte suelen explicar gran parte del presupuesto. Después añade gastos pequeños que se repiten: cafés, compras online, Bizum, suscripciones olvidadas o compras de conveniencia.</p>
+      <div class="callout">
+        <strong>Idea clave:</strong> controlar gastos no significa prohibirse gastar. Significa ver el margen antes de decidir.
+      </div>
+      <h3>Ejemplo de un mes (números redondos)</h3>
+      <p>Ingresos netos 1.800 €. Fijos 950 € (vivienda, suministros, transporte, un par de suscripciones). Variables estimados 320 € (comida, ocio, compras). Ahorro objetivo 150 €. Dinero tranquilo ≈ 1.800 − 950 − 320 − 150 = <strong>380 €</strong>. Ese margen es lo que puedes repartir en extras o en acelerar deuda sin mentirte.</p>
+      <p>Si a mitad de mes ya llevas 280 € en variables, no “verás” el problema el día 28: lo verás el domingo de revisión. Por eso el control semanal importa más que el Excel perfecto.</p>
+
+      <h3>Qué revisar una vez por semana</h3>
+      <ul>
+        <li>Si los gastos variables van más rápido que el mes.</li>
+        <li>Si hay suscripciones o pagos pequeños que ya no aportan valor.</li>
+        <li>Si el ahorro se ha reservado al principio o se está dejando para el final.</li>
+        <li>Si hay un gasto puntual que conviene preparar para el mes siguiente.</li>
+      </ul>
+
+      <h3>Fijos vs variables: por qué separarlos</h3>
+      <p>Los fijos cambian poco; los variables son donde suele estar la fuga. Si mezclas todo en una sola lista, no sabes si el problema es el alquiler o los pedidos a domicilio. Empieza con cuatro cubos: vivienda, comida, transporte y extras. Cuando el hábito aguante dos semanas, afina.</p>
+      <p>Si tienes deudas, las cuotas van en fijos. El “extra” para acelerarlas sale del dinero tranquilo, no de dejar de pagar el mínimo. Orden: <a href="/que-deuda-pagar-primero.html">qué deuda pagar primero</a>.</p>
+
+      <h3>Si tus ingresos son variables (freelance, extras, propinas)</h3>
+      <p>No uses el mejor mes como base. Usa una media prudente o el mes más flojo reciente. Aparta impuestos si facturas como autónomo (<a href="/cuanto-apartar-impuestos-autonomo.html">apartar al cobrar</a>) y calcula el margen sobre lo que queda después de esa reserva. El método completo está en <a href="/metodo-dinero-tranquilo.html">Dinero Tranquilo</a>.</p>
+
+      <h3>Ritual de 15 minutos cada domingo</h3>
+      <ol>
+        <li>Anota o importa lo que salió esta semana (aproximado vale).</li>
+        <li>Compara variables gastados vs presupuesto del mes.</li>
+        <li>Marca una sola fuga a vigilar los próximos 7 días.</li>
+        <li>Si el margen se estrecha, decide ya: menos extras o más ingreso, no “ya veré”.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>Empieza sin app si lo prefieres:</strong> usa la
+        <a href="/cuanto-puedo-gastar-al-mes.html">calculadora de dinero tranquilo</a> para hacer tu primera foto del mes.
+        Después puedes pasar al
+        <a href="/control-gastos-mensual.html">control de gastos mensual</a> y detectar qué pequeños pagos se repiten.
+      </div>
+      <h3>Por qué usar una app local</h3>
+      <p>Una app sencilla evita depender de hojas complejas. En FinanzasFacil puedes empezar sin registro obligatorio, guardar los datos en el dispositivo y exportarlos cuando quieras conservar una copia. Si no quieres Excel ni app, el mismo método cabe en notas o papel: <a href="/control-gastos-sin-excel.html">control sin Excel</a>.</p>
+      <h3>Qué hace diferente a FinanzasFacil</h3>
+      <p>La app no intenta convertirte en contable. Prioriza una lectura simple: dinero tranquilo, gastos hormiga, objetivos y exportación. La idea es que puedas mirar tu mes en pocos minutos, no que tengas que vivir dentro de la aplicación.</p>
+      <ul>
+        <li>Control de gastos sin registro obligatorio.</li>
+        <li>Datos guardados en el dispositivo.</li>
+        <li>Secciones desplegables para no ver todo de golpe.</li>
+        <li>Exportación para conservar tus datos.</li>
+        <li>Reto de gastos hormiga para empezar por algo pequeño.</li>
+      </ul>
+      <h3>Errores que hacen abandonar el control</h3>
+      <ul>
+        <li>Querer 20 categorías el día uno.</li>
+        <li>Apuntar al céntimo y castigarte por un café.</li>
+        <li>Revisar solo cuando ya no queda dinero.</li>
+        <li>Subir el ahorro objetivo sin mirar el margen real.</li>
+        <li>Cambiar de app cada semana en lugar de repetir 14 días el mismo sistema.</li>
+      </ul>
+      <h3>Autónomo vs nómina: el mismo método, distinta reserva</h3>
+      <p>Si cobras nómina, el IRPF y la Seguridad Social ya van descontados: trabajas con neto. Si facturas, el ingreso en cuenta puede incluir IVA y aún no haber pagado el 130 o la cuota. Antes de calcular dinero tranquilo, aparta la capa fiscal. Luego aplica los cinco pasos de esta página sobre lo que queda. Mapa: <a href="/guia-fiscal-autonomos-espana-2026.html">guía fiscal autónomos</a>.</p>
+      <h3>Qué hacer si el margen sale negativo</h3>
+      <p>No empieces por “ahorrar más”. Primero lista fijos: ¿hay suscripción o seguro duplicado? Después una sola fuga variable durante 7 días. Si tras eso sigue negativo, el problema es estructural (vivienda, deuda, ingresos) y conviene mirar <a href="/que-deuda-pagar-primero.html">prioridad de deudas</a> o subir ingresos, no solo “apuntar mejor”.</p>
+      <div class="cta">
+        <div>
+          <h2 style="margin-bottom:10px">Lleva este método en el iPhone</h2>
+          <p>FinanzasFacil está publicada en App Store para iPhone y iPad. Puedes usarla para registrar gastos, revisar objetivos y exportar tus datos.</p>
+        </div>
+        <a class="button primary" href="https://apps.apple.com/es/app/finanzasfacil/id6754602748">Ver en App Store</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="band">
+    <div class="wrap lead-form">
+      <div>
+        <p class="eyebrow">Plantilla gratuita</p>
+        <h2>Recibe la plantilla para hacer tu primera foto del mes</h2>
+        <p class="muted">Te enviamos la calculadora de dinero tranquilo y una secuencia corta para empezar sin agobiarte.</p>
+      </div>
+      <form name="newsletter" method="POST" action="/newsletter.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p style="display:none"><label>No rellenar <input name="bot-field"></label></p>
+        <div class="form-grid">
+          <div>
+            <label for="lead-name">Nombre</label>
+            <input id="lead-name" name="nombre" autocomplete="name" placeholder="Tu nombre">
+          </div>
+          <div>
+            <label for="lead-email">Email</label>
+            <input id="lead-email" name="email" type="email" autocomplete="email" required placeholder="tu@email.com">
+          </div>
+          <input type="hidden" name="fuente" value="landing-control-gastos">
+          <button class="button primary full" type="submit">Recibir plantilla</button>
+        </div>
+        <p class="small">Sin promesas raras ni spam. Puedes calcular el margen directamente aquí: <a href="/cuanto-puedo-gastar-al-mes.html">abrir calculadora</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap intro">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2>Dudas normales al empezar</h2>
+    </div>
+    <div class="wrap cards">
+      <article class="card">
+        <h3>¿Tengo que apuntarlo todo?</h3>
+        <p>No. Empieza por los importes grandes y por los pequeños que se repiten. La precisión llega después.</p>
+      </article>
+      <article class="card">
+        <h3>¿Sirve si tengo ingresos variables?</h3>
+        <p>Sí. Usa una estimación prudente y revisa cada mes. En ingresos variables conviene separar una reserva.</p>
+      </article>
+      <article class="card">
+        <h3>¿La app sincroniza con bancos?</h3>
+        <p>No. La idea es una herramienta manual, privada y sencilla para entender tu mes sin conectar cuentas bancarias.</p>
+      </article>
+      <article class="card">
+        <h3>¿Qué hago si siempre llego justo?</h3>
+        <p>Empieza por una sola categoría durante 7 días. Reducir una fuga pequeña suele funcionar mejor que intentar cambiar todo el mes.</p>
+      </article>
+      <article class="card">
+        <h3>¿Puedo exportar mis datos?</h3>
+        <p>Sí. El control de gastos permite exportar tus datos para conservar una copia o revisarlos fuera de la app.</p>
+      </article>
+      <article class="card">
+        <h3>¿Está disponible en Android?</h3>
+        <p>La versión iOS está publicada. Android está en preparación, mientras tanto puedes usar la herramienta web.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 FinanzasFácil - LIPA Studios</span>
+      <span><a href="/">Calculadoras</a> · <a href="/control-gastos-mensual.html">Control de gastos</a> · <a href="/cuanto-puedo-gastar-al-mes.html">Dinero tranquilo</a> · <a href="/privacidad.html">Privacidad</a></span>
+    </div>
+  </footer>
+  <script>
+    const formatter = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const fields = ['income', 'fixed', 'variable', 'saving'].map((id) => document.getElementById(id));
+    const result = document.getElementById('calm-result');
+    const message = document.getElementById('calm-message');
+
+    function numberValue(input) {
+      return Math.max(0, Number(input.value || 0));
+    }
+
+    function updateCalmMoney() {
+      const [income, fixed, variable, saving] = fields.map(numberValue);
+      const calm = income - fixed - variable - saving;
+      result.textContent = formatter.format(calm);
+      if (calm < 0) {
+        message.textContent = 'El margen sale negativo. Prueba a revisar una sola fuga o baja temporalmente el objetivo de ahorro.';
+      } else if (calm < income * 0.1) {
+        message.textContent = 'El margen es pequeño. Conviene decidir antes de gastar y vigilar gastos hormiga esta semana.';
+      } else {
+        message.textContent = 'Tienes margen para decidir con más calma. Reserva ahorro primero y usa este dato como brújula.';
+      }
+    }
+
+    fields.forEach((field) => field.addEventListener('input', updateCalmMoney));
+    updateCalmMoney();
+  </script>
+</body>
+</html>

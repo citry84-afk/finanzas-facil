@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test de salud financiera: descubre tu prioridad nº1 | FinanzasFácil</title>
+  <meta name="description" content="Responde 8 preguntas sencillas y descubre tu prioridad financiera número 1: equilibrar el mes, deuda cara, fondo de emergencia, inversión, impuestos o vivienda.">
+  <link rel="canonical" href="https://finanzasmuyfacil.com/test-salud-financiera.html">
+  <meta name="robots" content="noindex, follow">
+  <meta name="apple-itunes-app" content="app-id=6754602748">
+  <meta property="og:title" content="Test de salud financiera: tu prioridad nº1">
+  <meta property="og:description" content="Una cascada sencilla para saber qué mirar primero sin intentar arreglarlo todo a la vez.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://finanzasmuyfacil.com/test-salud-financiera.html">
+  <meta property="og:image" content="https://finanzasmuyfacil.com/logos/finanzas-muy-facil-youtube-logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Test de salud financiera: descubre tu prioridad nº1",
+    "description": "Test educativo con cascada de prioridades para detectar qué conviene mirar primero: equilibrio mensual, deuda, ahorro, inversión, impuestos o vivienda.",
+    "author": { "@type": "Organization", "name": "FinanzasFácil" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "LIPA Studios",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://finanzasmuyfacil.com/logos/finanzas-muy-facil-youtube-logo-192.png"
+      }
+    },
+    "datePublished": "2026-05-25",
+    "dateModified": "2026-06-04",
+    "mainEntityOfPage": "https://finanzasmuyfacil.com/test-salud-financiera.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Test de salud financiera",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <style>
+    :root {
+      --ink: #142033;
+      --muted: #586579;
+      --line: #d7e0ea;
+      --blue: #1d4ed8;
+      --green: #0f766e;
+      --amber: #b7791f;
+      --soft: #f6f8fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: white;
+      line-height: 1.65;
+    }
+    a { color: var(--blue); }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    header {
+      color: white;
+      background: linear-gradient(135deg, #172554 0%, #4f46e5 48%, #0f766e 100%);
+      padding: 28px 0 58px;
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 52px; }
+    nav a { color: rgba(255,255,255,.88); text-decoration: none; font-weight: 850; }
+    .brand { display: flex; align-items: center; gap: 12px; color: white; }
+    .brand img { width: 42px; height: 42px; border-radius: 50%; }
+    .hero { max-width: 900px; }
+    .eyebrow { margin: 0 0 10px; color: #bbf7d0; font-size: 13px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    h1 { margin: 0 0 22px; font-size: clamp(42px, 7vw, 76px); line-height: .95; letter-spacing: 0; }
+    h2 { margin: 0 0 16px; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: 0; }
+    h3 { margin: 0 0 10px; font-size: 23px; line-height: 1.2; }
+    .lead { margin: 0 0 28px; color: rgba(255,255,255,.86); font-size: clamp(19px, 2.4vw, 25px); }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 900;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+    .primary { background: white; color: #102b5f; }
+    .blue { background: var(--blue); color: white; }
+    .outline { background: white; color: var(--blue); border: 1px solid var(--line); }
+    section { padding: 58px 0; }
+    .band { background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .quiz {
+      display: grid;
+      grid-template-columns: minmax(0, .72fr) minmax(280px, .28fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .panel { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 24px; }
+    .question { display: none; }
+    .question.active { display: block; }
+    .progress { height: 12px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin-bottom: 24px; }
+    .progress div { height: 100%; width: 12.5%; background: linear-gradient(90deg, #22c55e, #1d4ed8); transition: width .2s ease; }
+    .option {
+      width: 100%;
+      display: block;
+      text-align: left;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: white;
+      padding: 16px 18px;
+      font: inherit;
+      cursor: pointer;
+      margin: 10px 0;
+      color: var(--ink);
+    }
+    .option:hover, .option.selected { border-color: var(--blue); background: #eff6ff; }
+    .side { position: sticky; top: 18px; }
+    .score { font-size: 48px; line-height: 1; font-weight: 950; margin: 8px 0; color: var(--blue); }
+    .muted { color: var(--muted); font-size: 18px; }
+    .result { display: none; }
+    .result.show { display: block; }
+    .result-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+      background: white;
+      margin-top: 18px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 22px; background: white; }
+    footer { padding: 34px 0; border-top: 1px solid var(--line); color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer a { font-weight: 800; }
+    @media (max-width: 900px) {
+      nav { align-items: flex-start; }
+      .quiz, .cards { grid-template-columns: 1fr; }
+      .side { position: static; }
+      .actions .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="/">
+          <img src="/logos/finanzas-muy-facil-youtube-logo-192.png" alt="">
+          <span>Finanzas Muy Fácil</span>
+        </a>
+        <div>
+          <a href="/metodo-dinero-tranquilo.html">Método</a>
+          <a href="/blog.html" style="margin-left:18px">Blog</a>
+        </div>
+      </nav>
+      <div class="hero">
+        <p class="eyebrow">Empieza sin perderte</p>
+        <h1>Descubre tu prioridad financiera nº1</h1>
+        <p class="lead">Responde 8 preguntas sencillas. El test sigue un orden lógico: primero respirar a fin de mes, luego deuda, colchón, inversión, impuestos y vivienda.</p>
+        <a class="button primary" href="#test">Empezar test</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="test" class="band">
+    <div class="wrap quiz">
+      <div class="panel">
+        <div class="progress" aria-hidden="true"><div id="progress"></div></div>
+        <div id="questions"></div>
+        <div class="result" id="result">
+          <p class="eyebrow">Resultado educativo</p>
+          <h2 id="resultTitle">Tu prioridad</h2>
+          <p class="muted" id="resultText"></p>
+          <div class="result-card">
+            <h3>Primer paso recomendado</h3>
+            <p id="resultStep"></p>
+            <p class="muted" id="resultWhy"></p>
+            <div class="actions" id="resultActions"></div>
+          </div>
+          <button class="button outline" id="restart" type="button">Repetir test</button>
+        </div>
+      </div>
+      <aside class="panel side">
+        <p class="eyebrow">Progreso</p>
+        <div class="score" id="stepText">1/8</div>
+        <p class="muted">No hay respuestas buenas o malas. El test busca el primer bloqueo, no una nota.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--green)">Qué mide</p>
+      <h2>Un test simple para ordenar prioridades</h2>
+      <p class="muted">No diagnostica tu vida financiera ni sustituye asesoramiento. Solo aplica una regla educativa: arreglar primero lo que más puede desordenar el mes.</p>
+      <div class="cards">
+        <article class="card"><h3>Primero respirar</h3><p>Si el mes queda en negativo, la prioridad es recuperar margen antes de hablar de inversión.</p></article>
+        <article class="card"><h3>Después proteger</h3><p>Deuda cara y fondo de emergencia van antes que objetivos bonitos pero frágiles.</p></article>
+        <article class="card"><h3>Luego crecer</h3><p>Cuando hay margen y colchón, toca inversión, vivienda, impuestos u optimización.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>FinanzasFácil - LIPA Studios</span>
+      <span>
+        <a href="/">Inicio</a> ·
+        <a href="/cuanto-puedo-gastar-al-mes.html">Dinero tranquilo</a> ·
+        <a href="/metodo-dinero-tranquilo.html">Método</a> ·
+        <a href="/privacidad-sin-bancos.html">Sin bancos</a> ·
+        <a href="/control-gastos-mensual.html">Control de gastos</a> ·
+        <a href="/privacidad.html">Privacidad</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        key: 'balance',
+        text: 'Cuando llega final de mes...',
+        options: [
+          { text: 'Gasto más de lo que ingreso o tiro de tarjeta', value: 'negative' },
+          { text: 'Llego muy justo, con poco margen', value: 'tight' },
+          { text: 'Me suele quedar algo de margen', value: 'positive' }
+        ]
+      },
+      {
+        key: 'debt',
+        text: '¿Tienes deuda cara o pagos que pesan?',
+        options: [
+          { text: 'Sí: tarjeta, revolving o préstamo personal caro', value: 'expensive' },
+          { text: 'Tengo cuotas, pero son asumibles', value: 'manageable' },
+          { text: 'No tengo deuda relevante', value: 'none' }
+        ]
+      },
+      {
+        key: 'emergency',
+        text: '¿Tienes fondo de emergencia separado?',
+        options: [
+          { text: 'No, si pasa algo improviso', value: 'none' },
+          { text: 'Algo tengo, pero menos de 3 meses de gastos', value: 'low' },
+          { text: 'Sí, al menos 3 meses de gastos', value: 'ok' }
+        ]
+      },
+      {
+        key: 'investing',
+        text: '¿Inviertes de forma periódica para largo plazo?',
+        options: [
+          { text: 'No, todavía no he empezado', value: 'no' },
+          { text: 'A veces, pero sin sistema', value: 'irregular' },
+          { text: 'Sí, aporto de forma regular', value: 'yes' }
+        ]
+      },
+      {
+        key: 'autonomo',
+        text: '¿Eres autónomo o tienes ingresos variables?',
+        options: [
+          { text: 'Sí, y no separo bien IVA/IRPF/cuota', value: 'no_reserve' },
+          { text: 'Sí, y ya reservo impuestos aparte', value: 'reserved' },
+          { text: 'No, tengo nómina o ingresos bastante estables', value: 'no' }
+        ]
+      },
+      {
+        key: 'housing',
+        text: '¿Tienes hipoteca o quieres comprar vivienda pronto?',
+        options: [
+          { text: 'Sí, quiero comprar en los próximos 2 años', value: 'soon' },
+          { text: 'Tengo hipoteca y quiero saber si voy cómodo', value: 'mortgage' },
+          { text: 'No es mi prioridad ahora', value: 'no' }
+        ]
+      },
+      {
+        key: 'today',
+        text: 'Si te pregunto cuánto puedes gastar esta semana...',
+        options: [
+          { text: 'No sabría decirlo', value: 'unknown' },
+          { text: 'Tengo una idea aproximada', value: 'approx' },
+          { text: 'Lo sé bastante bien', value: 'clear' }
+        ]
+      },
+      {
+        key: 'goal',
+        text: 'Ahora mismo, lo que más calma te daría es...',
+        options: [
+          { text: 'Respirar a final de mes', value: 'balance' },
+          { text: 'Quitarme deuda o pagos de encima', value: 'debt' },
+          { text: 'Crear colchón o ahorrar mejor', value: 'emergency' },
+          { text: 'Empezar a invertir con orden', value: 'investing' },
+          { text: 'Separar impuestos o facturas', value: 'autonomo' },
+          { text: 'Preparar vivienda o hipoteca', value: 'housing' }
+        ]
+      }
+    ];
+
+    const results = {
+      balance: {
+        title: 'Prioridad nº1: equilibrar el mes',
+        text: 'Antes de deuda, inversión o vivienda, lo primero es que tus ingresos cubran el mes sin depender de tarjeta o improvisación.',
+        step: 'Calcula tu dinero tranquilo y elige una fuga pequeña que puedas reducir esta semana.',
+        why: 'La cascada empieza aquí porque un mes en negativo vuelve frágil cualquier otro plan.',
+        actions: [
+          ['Calcular dinero tranquilo', '/cuanto-puedo-gastar-al-mes.html'],
+          ['Ver control de gastos', '/control-gastos-mensual.html'],
+          ['Descargar app iOS', 'https://apps.apple.com/es/app/finanzasfacil/id6754602748']
+        ]
+      },
+      expensiveDebt: {
+        title: 'Prioridad nº1: atacar la deuda cara',
+        text: 'Si hay tarjeta, revolving o préstamo caro, suele ser más urgente que invertir o asumir nuevos objetivos.',
+        step: 'Lista tus deudas, tipo aproximado, cuota y saldo. Después decide si empezar por avalancha o bola de nieve.',
+        why: 'El test la coloca arriba porque una deuda cara puede comerse tu margen aunque tus ingresos sean buenos.',
+        actions: [
+          ['Qué deuda pagar primero', '/que-deuda-pagar-primero.html'],
+          ['Nivel de endeudamiento', '/nivel-endeudamiento-calculadora.html'],
+          ['Calcular dinero tranquilo', '/cuanto-puedo-gastar-al-mes.html']
+        ]
+      },
+      emergency: {
+        title: 'Prioridad nº1: construir colchón de emergencia',
+        text: 'Si el mes ya respira y no hay deuda cara, el siguiente paso es tener una reserva para imprevistos.',
+        step: 'Empieza por una primera meta pequeña y automática. Después sube poco a poco hacia varios meses de gastos.',
+        why: 'Un colchón evita que cualquier avería, recibo o imprevisto te devuelva a la deuda.',
+        actions: [
+          ['Calcular fondo de emergencia', '/calculadora-fondo-emergencia.html'],
+          ['Cómo ahorrar cada mes', '/como-ahorrar-dinero-cada-mes.html'],
+          ['Plantilla dinero tranquilo', '/plantilla-dinero-tranquilo.html']
+        ]
+      },
+      investing: {
+        title: 'Prioridad nº1: empezar inversión periódica sencilla',
+        text: 'Si ya hay margen, no hay deuda cara y tienes colchón, puedes empezar a pensar en largo plazo con calma.',
+        step: 'Define una aportación pequeña, periódica y sostenible. La clave es el hábito, no acertar el momento perfecto.',
+        why: 'El test llega aquí solo cuando lo básico está más protegido.',
+        actions: [
+          ['Camino al millón', '/?mode=tiktok-millonario'],
+          ['Regla 50/30/20', '/regla-50-30-20-espana.html'],
+          ['Método Dinero Tranquilo', '/metodo-dinero-tranquilo.html']
+        ]
+      },
+      taxes: {
+        title: 'Prioridad nº1: separar impuestos y dinero realmente tuyo',
+        text: 'Si eres autónomo, cobrar una factura no significa que todo sea margen disponible.',
+        step: 'Aparta IVA, una provisión de IRPF y la cuota antes de decidir cuánto puedes gastar.',
+        why: 'Separar impuestos evita sustos trimestrales y hace que tu dinero tranquilo sea más realista.',
+        actions: [
+          ['Cuánto apartar al cobrar', '/cuanto-apartar-impuestos-autonomo.html'],
+          ['Guía fiscal autónomos', '/guia-fiscal-autonomos-espana-2026.html'],
+          ['Calculadora autónomos', '/calculadora-autonomos.html']
+        ]
+      },
+      housing: {
+        title: 'Prioridad nº1: comprobar vivienda con números prudentes',
+        text: 'Si estás pensando en comprar, conviene mirar cuota, entrada, gastos de compra y margen mensual antes de comprometerte.',
+        step: 'Simula una hipoteca y compara la cuota con tus ingresos netos y tu dinero tranquilo.',
+        why: 'La vivienda es una decisión grande: mejor detectar tensión antes de firmar o enamorarte de una cifra.',
+        actions: [
+          ['Calculadora hipoteca', '/calculadora-hipoteca-gratis.html'],
+          ['Dinero tranquilo', '/cuanto-puedo-gastar-al-mes.html'],
+          ['Regla 50/30/20', '/regla-50-30-20-espana.html']
+        ]
+      },
+      optimize: {
+        title: 'Prioridad nº1: optimizar sin perder simplicidad',
+        text: 'Parece que lo básico está bastante cubierto. Ahora puedes afinar vivienda, inversión, fiscalidad o patrimonio sin urgencias.',
+        step: 'Elige una mejora concreta para este mes: revisar ahorro, simular hipoteca, automatizar inversión o preparar impuestos.',
+        why: 'Cuando lo básico está cubierto, el riesgo es complicarse demasiado. Mejor una optimización cada vez.',
+        actions: [
+          ['Método Dinero Tranquilo', '/metodo-dinero-tranquilo.html'],
+          ['Calculadora salario neto', '/calcular-salario-neto-2026.html'],
+          ['Blog completo', '/blog.html']
+        ]
+      }
+    };
+
+    const questionsEl = document.getElementById('questions');
+    const progress = document.getElementById('progress');
+    const stepText = document.getElementById('stepText');
+    const resultEl = document.getElementById('result');
+    const answers = {};
+    let current = 0;
+
+    function renderQuestion() {
+      resultEl.classList.remove('show');
+      const question = questions[current];
+      progress.style.width = ((current + 1) / questions.length * 100) + '%';
+      stepText.textContent = (current + 1) + '/' + questions.length;
+      questionsEl.innerHTML = '<div class="question active"><p class="eyebrow" style="color:var(--green)">Pregunta ' + (current + 1) + '</p><h2>' + question.text + '</h2></div>';
+      const box = questionsEl.querySelector('.question');
+      question.options.forEach((option) => {
+        const button = document.createElement('button');
+        button.className = 'option';
+        button.type = 'button';
+        button.textContent = option.text;
+        button.addEventListener('click', () => answer(question.key, option.value));
+        box.appendChild(button);
+      });
+    }
+
+    function answer(key, value) {
+      answers[key] = value;
+      current += 1;
+      if (current >= questions.length) {
+        showResult();
+      } else {
+        renderQuestion();
+      }
+    }
+
+    function decidePriority() {
+      if (answers.balance === 'negative') return 'balance';
+      if (answers.debt === 'expensive') return 'expensiveDebt';
+      if (answers.emergency === 'none' || answers.emergency === 'low') return 'emergency';
+      if (answers.investing === 'no' || answers.investing === 'irregular') return 'investing';
+      if (answers.autonomo === 'no_reserve') return 'taxes';
+      if (answers.housing === 'soon' || answers.housing === 'mortgage' || answers.goal === 'housing') return 'housing';
+      if (answers.today === 'unknown' || answers.goal === 'balance' || answers.balance === 'tight') return 'balance';
+      if (answers.goal === 'debt') return 'expensiveDebt';
+      if (answers.goal === 'emergency') return 'emergency';
+      if (answers.goal === 'investing') return 'investing';
+      if (answers.goal === 'autonomo') return 'taxes';
+      return 'optimize';
+    }
+
+    function showResult() {
+      questionsEl.innerHTML = '';
+      progress.style.width = '100%';
+      stepText.textContent = 'Listo';
+      const winner = decidePriority();
+      const result = results[winner];
+      document.getElementById('resultTitle').textContent = result.title;
+      document.getElementById('resultText').textContent = result.text;
+      document.getElementById('resultStep').textContent = result.step;
+      document.getElementById('resultWhy').textContent = result.why;
+      const actions = document.getElementById('resultActions');
+      actions.innerHTML = '';
+      result.actions.forEach(([label, href], index) => {
+        const link = document.createElement('a');
+        link.className = 'button ' + (index === 0 ? 'blue' : 'outline');
+        link.href = href;
+        link.textContent = label;
+        actions.appendChild(link);
+      });
+      resultEl.classList.add('show');
+    }
+
+    document.getElementById('restart').addEventListener('click', () => {
+      Object.keys(answers).forEach((key) => { delete answers[key]; });
+      current = 0;
+      renderQuestion();
+    });
+
+    renderQuestion();
+  </script>
+</body>
+</html>
