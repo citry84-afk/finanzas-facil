@@ -117,42 +117,36 @@ function Resources() {
     {
       title: "Padre Rico, Padre Pobre",
       author: "Robert Kiyosaki",
-      rating: 4.2,
       category: "Educación Financiera",
       description: "Fundamentos de la mentalidad financiera y la diferencia entre activos y pasivos."
     },
     {
       title: "El Inversor Inteligente",
       author: "Benjamin Graham",
-      rating: 4.5,
       category: "Inversión",
       description: "La biblia de la inversión en valor, escrito por el mentor de Warren Buffett."
     },
     {
       title: "Los Secretos de la Mente Millonaria",
       author: "T. Harv Eker",
-      rating: 4.1,
       category: "Mentalidad",
       description: "Cómo reprogramar tu mente para el éxito financiero."
     },
     {
       title: "Un Paseo Aleatorio por Wall Street",
       author: "Burton Malkiel",
-      rating: 4.3,
       category: "Inversión",
       description: "Introducción a la inversión pasiva y los fondos indexados."
     },
     {
       title: "Dinero: Domina el Juego",
       author: "Tony Robbins",
-      rating: 4.0,
       category: "Estrategia Financiera",
       description: "7 pasos simples para la libertad financiera."
     },
     {
       title: "El Hombre Más Rico de Babilonia",
       author: "George S. Clason",
-      rating: 4.4,
       category: "Principios Básicos",
       description: "Lecciones atemporales sobre el ahorro y la inversión."
     }
@@ -165,7 +159,6 @@ function Resources() {
       duration: "4 semanas",
       level: "Principiante",
       price: "Gratis",
-      rating: 4.6,
       description: "Curso completo de la Universidad de Michigan sobre gestión financiera personal."
     },
     {
@@ -174,7 +167,6 @@ function Resources() {
       duration: "8 horas",
       level: "Principiante",
       price: "€29.99",
-      rating: 4.4,
       description: "Aprende los fundamentos de la inversión en mercados financieros."
     },
     {
@@ -183,7 +175,6 @@ function Resources() {
       duration: "3 horas",
       level: "Intermedio",
       price: "€19.99",
-      rating: 4.5,
       description: "Todo sobre impuestos, deducciones y optimización fiscal para autónomos."
     },
     {
@@ -192,7 +183,6 @@ function Resources() {
       duration: "6 semanas",
       level: "Intermedio",
       price: "Gratis",
-      rating: 4.3,
       description: "Estrategias avanzadas para asegurar tu futuro financiero."
     }
   ];
@@ -273,9 +263,7 @@ function Resources() {
                     <h3 className="text-lg font-bold text-gray-900 mb-1">{book.title}</h3>
                     <p className="text-gray-600 text-sm mb-2">{book.author}</p>
                     <div className="flex items-center mb-2">
-                      <span className="text-yellow-500 mr-1">★</span>
-                      <span className="text-sm text-gray-600">{book.rating}</span>
-                      <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full ml-2">
+                      <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
                         {book.category}
                       </span>
                     </div>
@@ -319,10 +307,7 @@ function Resources() {
                       {course.level}
                     </span>
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-yellow-500 mr-1">★</span>
-                    <span className="text-sm text-gray-600">{course.rating}</span>
-                  </div>
+                  <span className="text-sm text-gray-500">Recurso externo</span>
                 </div>
                 
                 <button className="w-full bg-orange-600 text-white py-3 rounded-xl hover:bg-orange-700 transition-colors font-semibold">
@@ -359,4 +344,3 @@ function Resources() {
 }
 
 export default Resources;
-

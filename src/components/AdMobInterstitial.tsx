@@ -1,4 +1,5 @@
 import { AdMob } from '@capacitor-community/admob';
+import { Capacitor } from '@capacitor/core';
 import { getInterstitialConfig, ADMOB_CONFIG } from '../config/admob';
 
 interface InterstitialResult {
@@ -26,7 +27,12 @@ class AdMobInterstitialManager {
         return false;
       }
 
-      const config = getInterstitialConfig();
+      const platform = Capacitor.getPlatform();
+      if (platform !== 'android' && platform !== 'ios') {
+        return false;
+      }
+
+      const config = getInterstitialConfig(platform);
       
       await AdMob.prepareInterstitial({
         adId: config.adId,

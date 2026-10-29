@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-4837743291717475">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cuánto apartar para impuestos como autónomo | FinanzasFácil</title>
+  <meta name="description" content="Calculadora orientativa para saber cuánto apartar de una factura como autónomo: IVA, retención, IRPF, cuota y dinero disponible sin sustos.">
+  <link rel="canonical" href="https://finanzasmuyfacil.com/cuanto-apartar-impuestos-autonomo.html">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:title" content="Cuánto apartar para impuestos como autónomo">
+  <meta property="og:description" content="Estima cuánto reservar de una factura para IVA, IRPF y cuota antes de gastar.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://finanzasmuyfacil.com/cuanto-apartar-impuestos-autonomo.html">
+  <meta property="og:image" content="https://finanzasmuyfacil.com/logos/finanzas-muy-facil-youtube-logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cuánto apartar para impuestos como autónomo",
+    "description": "Guía y calculadora orientativa para separar IVA, IRPF, cuota y dinero disponible al cobrar una factura.",
+    "author": { "@type": "Person", "name": "Luis Alberto Moratalla" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "LIPA Studios",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://finanzasmuyfacil.com/logos/finanzas-muy-facil-youtube-logo-192.png"
+      }
+    },
+    "datePublished": "2026-05-25",
+    "dateModified": "2026-07-16",
+    "mainEntityOfPage": "https://finanzasmuyfacil.com/cuanto-apartar-impuestos-autonomo.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "¿Tengo que apartar todo el IVA de una factura?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Como regla prudente, conviene no gastar el IVA cobrado. En la liquidación se compensa con el IVA soportado deducible, si procede."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿Qué pasa si mi factura lleva retención de IRPF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La retención es un anticipo de IRPF que el cliente ingresa por ti. Aun así, puede ser prudente reservar algo más si tu beneficio trimestral supera lo retenido."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿Esta calculadora sustituye a una gestoría?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Es una herramienta educativa para ordenar dinero y evitar gastar impuestos. Tu caso real puede variar según actividad, régimen fiscal, gastos, retenciones y comunidad autónoma."
+      }
+    }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Calculadora para apartar impuestos de autónomo",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <style>
+    :root {
+      --ink: #142033;
+      --muted: #586579;
+      --line: #d7e0ea;
+      --blue: #1d4ed8;
+      --green: #0f766e;
+      --amber: #b7791f;
+      --red: #b91c1c;
+      --soft: #f6f8fb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: white;
+      line-height: 1.65;
+    }
+    a { color: var(--blue); }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    header {
+      color: white;
+      background: linear-gradient(135deg, #162554 0%, #1d4ed8 48%, #0f766e 100%);
+      padding: 28px 0 58px;
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 52px; }
+    nav a { color: rgba(255,255,255,.88); text-decoration: none; font-weight: 850; }
+    .brand { display: flex; align-items: center; gap: 12px; color: white; }
+    .brand img { width: 42px; height: 42px; border-radius: 50%; }
+    .hero { max-width: 900px; }
+    .eyebrow { margin: 0 0 10px; color: #bbf7d0; font-size: 13px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    h1 { margin: 0 0 22px; font-size: clamp(42px, 7vw, 76px); line-height: .95; letter-spacing: 0; }
+    h2 { margin: 0 0 16px; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: 0; }
+    h3 { margin: 0 0 10px; font-size: 23px; line-height: 1.2; }
+    .lead { margin: 0 0 28px; color: rgba(255,255,255,.86); font-size: clamp(19px, 2.4vw, 25px); }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 900;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+    .primary { background: white; color: #102b5f; }
+    .secondary { border: 1px solid rgba(255,255,255,.5); color: white; background: transparent; }
+    section { padding: 58px 0; }
+    .band { background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .intro { max-width: 820px; }
+    .intro .eyebrow, .article .eyebrow { color: var(--green); }
+    .muted { color: var(--muted); font-size: 18px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 22px; background: white; }
+    .tool { display: grid; grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr); gap: 22px; margin-top: 28px; }
+    .panel { border: 1px solid var(--line); border-radius: 8px; padding: 24px; background: white; }
+    .field { margin-bottom: 14px; }
+    label { display: block; margin-bottom: 6px; color: #334155; font-weight: 850; }
+    input, select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font: inherit;
+      color: var(--ink);
+      background: white;
+    }
+    .result {
+      min-height: 100%;
+      border-radius: 8px;
+      padding: 28px;
+      color: white;
+      background: linear-gradient(135deg, #102b5f, #0f766e);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .result strong { display: block; font-size: clamp(38px, 6vw, 68px); line-height: 1; margin: 12px 0; }
+    .result p { color: rgba(255,255,255,.84); margin: 0 0 12px; }
+    .breakdown { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+    .item { border: 1px solid rgba(255,255,255,.24); border-radius: 8px; padding: 14px; }
+    .item span { display: block; color: rgba(255,255,255,.72); font-size: 14px; }
+    .item b { font-size: 25px; }
+    .article { max-width: 860px; }
+    .article p, .article li { color: #374151; font-size: 18px; }
+    .article li { margin: 8px 0; }
+    .callout { border-left: 4px solid var(--amber); background: #fffbeb; padding: 18px 20px; border-radius: 8px; margin: 24px 0; }
+    .cta { background: #102b5f; color: white; border-radius: 8px; padding: 30px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+    .cta p { color: rgba(255,255,255,.8); margin: 0; }
+    footer { padding: 34px 0; border-top: 1px solid var(--line); color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer a { font-weight: 800; }
+    @media (max-width: 900px) {
+      nav { align-items: flex-start; }
+      .cards, .tool, .breakdown, .cta { grid-template-columns: 1fr; }
+      .actions .button, .cta .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="/">
+          <img src="/logos/finanzas-muy-facil-youtube-logo-192.png" alt="">
+          <span>Finanzas Muy Fácil</span>
+        </a>
+        <a href="/guia-fiscal-autonomos-espana-2026.html">Guía fiscal</a>
+      </nav>
+      <div class="hero">
+        <p class="eyebrow">Autónomos sin sustos</p>
+        <h1>Cuánto apartar para impuestos cuando cobras una factura</h1>
+        <p class="lead">Una calculadora orientativa para separar IVA, IRPF, cuota y dinero disponible antes de que el dinero de la factura parezca más tuyo de lo que es.</p>
+        <div class="actions">
+          <a class="button primary" href="#calculadora">Calcular ahora</a>
+          <a class="button secondary" href="/calculadora-autonomos.html">Ver calculadora autónomos</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap intro">
+      <p class="eyebrow">La idea clave</p>
+      <h2>Lo facturado no es lo mismo que lo disponible</h2>
+      <p class="muted">Cuando cobras una factura, una parte puede ser IVA, otra puede ir anticipada como retención y otra conviene reservarla para pagos trimestrales o cuota. Esta herramienta te ayuda a no mezclarlo todo en la misma bolsa.</p>
+    </div>
+    <div class="wrap cards">
+      <article class="card">
+        <h3>IVA</h3>
+        <p>Si tu factura lleva IVA, trátalo como dinero que está de paso hasta la liquidación correspondiente.</p>
+      </article>
+      <article class="card">
+        <h3>IRPF</h3>
+        <p>La retención ya es un anticipo, pero puede no cubrir todo según beneficio, gastos y situación.</p>
+      </article>
+      <article class="card">
+        <h3>Cuota</h3>
+        <p>Aunque no salga de cada factura, tu cuota mensual debe vivir en el cálculo para no sorprenderte.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="band" id="calculadora">
+    <div class="wrap intro">
+      <p class="eyebrow">Calculadora</p>
+      <h2>Estima cuánto apartar</h2>
+      <p class="muted">Es una orientación prudente. Tu caso real puede variar por actividad, régimen, gastos deducibles, IVA soportado, retenciones y criterios de tu gestoría.</p>
+    </div>
+    <div class="wrap tool">
+      <div class="panel">
+        <div class="field">
+          <label for="base">Base de la factura, sin IVA</label>
+          <input id="base" type="number" min="0" step="50" value="1000">
+        </div>
+        <div class="field">
+          <label for="vat">IVA aplicado</label>
+          <select id="vat">
+            <option value="21">21% general</option>
+            <option value="10">10% reducido</option>
+            <option value="4">4% superreducido</option>
+            <option value="0">Sin IVA / exento</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="retention">Retención IRPF en factura</label>
+          <select id="retention">
+            <option value="15">15% general profesionales</option>
+            <option value="7">7% nuevos profesionales</option>
+            <option value="0">Sin retención</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="expenses">Gastos vinculados a ese cobro</label>
+          <input id="expenses" type="number" min="0" step="25" value="150">
+        </div>
+        <div class="field">
+          <label for="deductibleVat">IVA soportado deducible aproximado</label>
+          <input id="deductibleVat" type="number" min="0" step="10" value="30">
+        </div>
+        <div class="field">
+          <label for="quota">Parte de cuota mensual a reservar</label>
+          <input id="quota" type="number" min="0" step="25" value="100">
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <p>Dinero que conviene no tocar</p>
+        <strong id="reserveTotal">0 €</strong>
+        <p id="message">Calculando...</p>
+        <div class="breakdown">
+          <div class="item"><span>IVA a guardar</span><b id="vatReserve">0 €</b></div>
+        <div class="item"><span>Reserva fiscal orientativa</span><b id="irpfReserve">0 €</b></div>
+          <div class="item"><span>Cuota reservada</span><b id="quotaReserve">0 €</b></div>
+          <div class="item"><span>Dinero disponible</span><b id="available">0 €</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap article">
+      <p class="eyebrow">Cómo interpretarlo</p>
+      <h2>Una factura puede engañar mucho</h2>
+      <p>Si emites una factura de 1.000 euros más IVA, puede entrar bastante más dinero en tu cuenta. Pero una parte no es margen real. El objetivo de esta calculadora es separar mentalmente lo que está de paso de lo que puedes usar.</p>
+      <div class="callout">
+        <strong>Regla prudente:</strong> si dudas, aparta de más y corrige cuando presentes impuestos. Duele menos liberar dinero después que descubrir que ya gastaste lo que tocaba pagar.
+      </div>
+      <h2>Qué estamos estimando</h2>
+      <ul>
+        <li><strong>IVA a guardar:</strong> IVA cobrado menos IVA soportado deducible aproximado.</li>
+        <li><strong>Reserva fiscal orientativa:</strong> una referencia simple sobre beneficio estimado, descontando retenciones ya practicadas. No es un tipo de IRPF universal.</li>
+        <li><strong>Cuota:</strong> una parte de tu cuota mensual para que no salga de golpe.</li>
+        <li><strong>Disponible:</strong> lo que queda tras esas reservas orientativas.</li>
+      </ul>
+
+      <h2>Ejemplo paso a paso (1.000 € + IVA 21 % + retención 15 %)</h2>
+      <p>Base 1.000 €. IVA 210 €. Retención 150 €. Entra en cuenta: 1.000 + 210 − 150 = <strong>1.060 €</strong>. Si aparte tienes 30 € de IVA soportado deducible y 150 € de gastos vinculados, y reservas 100 € de cuota:</p>
+      <ul>
+        <li>IVA a guardar ≈ 210 − 30 = 180 €</li>
+        <li>Beneficio estimado ≈ 1.000 − 150 = 850 € → reserva IRPF orientativa 20 % − retención = máx(0, 170 − 150) = 20 €</li>
+        <li>Cuota reservada = 100 €</li>
+        <li>Total “no tocar” ≈ 300 €; el resto es el margen orientativo tras gastos</li>
+      </ul>
+      <p>Los números cambian con tu caso. La lección es la misma: <strong>el ingreso en cuenta miente si no separas capas</strong>.</p>
+
+      <h2>Cuenta separada (o etiquetas) para la caja fiscal</h2>
+      <p>No hace falta un banco complejo. Sirve una cuenta secundaria o, como mínimo, anotar en cada cobro: IVA / IRPF / cuota / disponible. Si mezclas todo con el supermercado, el trimestre se convierte en arqueología. Encaja con el <a href="/metodo-dinero-tranquilo.html">método Dinero Tranquilo</a>: primero compromisos, después margen.</p>
+
+      <h2>Errores que generan sustos</h2>
+      <ul>
+        <li>Gastar el IVA “porque este mes va justo”.</li>
+        <li>Creer que con retención del 15 % ya no hay que reservar nada más.</li>
+        <li>Olvidar la cuota hasta el cargo de la Seguridad Social.</li>
+        <li>Calcular disponible antes de restar gastos del proyecto.</li>
+        <li>No revisar el criterio cuando cambia el mix de clientes (más o menos retención).</li>
+      </ul>
+
+      <h2>Cómo encaja con el Modelo 130 y el 303</h2>
+      <p>Apartar no presenta modelos por ti. El IVA se liquida (cuando procede) en el ámbito del IVA; el IRPF fraccionado, si te aplica, en el <a href="/modelo-130-autonomos-2026.html">Modelo 130</a>; la cuota en la TGSS. El calendario orientativo está en <a href="/calendario-fiscal-autonomos-2026.html">calendario fiscal 2026</a>.</p>
+
+      <h2>Segundo ejemplo: factura sin retención (cliente particular)</h2>
+      <p>Base 1.000 €, IVA 21 % (210 €), retención 0 %. Entra en cuenta: <strong>1.210 €</strong>. Con 150 € de gastos, 30 € de IVA soportado y 100 € de cuota asignada:</p>
+      <ul>
+        <li>IVA a guardar ≈ 180 €</li>
+        <li>Reserva IRPF orientativa ≈ 20 % × (1.000 − 150) = 170 € (aquí no hay retención que reste)</li>
+        <li>Cuota = 100 €</li>
+        <li>Total “no tocar” ≈ 450 € sobre un ingreso que “parece” holgado</li>
+      </ul>
+      <p>Comparado con el ejemplo con retención del 15 %, <strong>cobras más en banco y debes apartar más de IRPF</strong>. El mix de clientes (empresas que retienen vs particulares) cambia tu liquidez aunque el margen del proyecto sea el mismo. Detalle: <a href="/retencion-irpf-autonomos.html">retención IRPF</a>.</p>
+
+      <h2>Rutina de 10 minutos al cobrar</h2>
+      <ol>
+        <li>Anota base, IVA, retención y lo que ha entrado en cuenta.</li>
+        <li>Pasa IVA neto estimado y reserva de IRPF/cuota a la cuenta o etiqueta “Hacienda / SS”.</li>
+        <li>Solo entonces mueve el disponible a gastos personales o a ahorro del negocio.</li>
+        <li>Una vez al mes, compara lo apartado con lo que prevés de 303 / 130 / cuota.</li>
+      </ol>
+      <p>Si un mes apartaste de más, no lo celebres gastándolo: déjalo como colchón del siguiente trimestre. Si apartaste de menos, sube el % la próxima factura en lugar de “arreglarlo” el día 19.</p>
+
+      <h2>Cuándo subir o bajar la reserva del 20 %</h2>
+      <p>El 20 % sobre beneficio estimado es una <strong>regla prudente de planificación</strong>, alineada mentalmente con el fraccionado habitual del 130, no con tu tipo marginal real. Sube la reserva si: tienes pocos gastos, vives en un escenario de tramos altos, o casi no te retienen. Bájala con cuidado solo si: ya acumulas muchas retenciones, tu margen es estrecho y documentado, o tu gestoría te da otra referencia —y aun así mantén el IVA y la cuota separados.</p>
+      <p>Para estimar el impuesto anual con más capas (mínimos, CCAA, etc.): <a href="/como-calcular-irpf-autonomos-2026.html">cómo estimar el IRPF</a>.</p>
+
+      <h2>Fuentes oficiales útiles</h2>
+      <p>Para fechas y modelos, revisa siempre la Agencia Tributaria: <a href="https://sede.agenciatributaria.gob.es/Sede/impuestos-tasas/impuesto-sobre-renta-personas-fisicas/modelo-130-irpf______esionales-estimacion-directa-fraccionado_/instrucciones.html" rel="noopener noreferrer">instrucciones del Modelo 130</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/iva/presentar-declaracion-iva-modelo-303/plazo-presentacion-modelo-303.html" rel="noopener noreferrer">plazos del Modelo 303</a> y <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/folleto-actividades-economicas/7-otras-obligaciones-fiscales-retenciones.html" rel="noopener noreferrer">retenciones de actividades económicas</a>.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2>Si eres autónomo, une impuestos y gastos personales</h2>
+          <p>Primero separa impuestos. Después calcula tu dinero tranquilo mensual para no mezclar caja profesional con gastos del día a día.</p>
+        </div>
+        <a class="button primary" href="/cuanto-puedo-gastar-al-mes.html">Calcular dinero tranquilo</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap article">
+      <h2>Preguntas frecuentes</h2>
+      <h3>¿El IVA cobrado es mío?</h3>
+      <p>No conviene tratarlo como dinero disponible. En la liquidación del IVA se compensa con el IVA soportado deducible, pero hasta entonces es mejor tenerlo separado.</p>
+      <h3>¿Si tengo retención ya no aparto IRPF?</h3>
+      <p>Depende. La retención es un anticipo, pero no siempre coincide con tu resultado final. Si tienes pocos gastos o ingresos altos, puede hacer falta reservar más.</p>
+      <h3>¿Qué porcentaje de IRPF usa la calculadora?</h3>
+      <p>Usa una referencia de planificación del 20% sobre beneficio vinculado a la factura, restando la retención de esa factura. No es un tipo de IRPF universal ni una liquidación fiscal.</p>
+      <h3>¿Debo apartar también si estoy en cuota reducida?</h3>
+      <p>Sí respecto al IVA (si aplica) y al IRPF según tu caso. La cuota reducida baja el cargo de Seguridad Social, pero no elimina impuestos. Ajusta a la baja el campo “cuota a reservar” de la calculadora.</p>
+      <h3>¿Sirve apartar en efectivo “en un cajón”?</h3>
+      <p>Mejor una cuenta o subcuenta visible. El cajón se mezcla con gastos personales; la cuenta fiscal se revisa en cinco minutos antes de cada plazo.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>FinanzasFácil - LIPA Studios</span>
+      <span>
+        <a href="/">Inicio</a> ·
+        <a href="/guia-fiscal-autonomos-espana-2026.html">Guía fiscal</a> ·
+        <a href="/calculadora-autonomos.html">Calculadora autónomos</a> ·
+        <a href="/politica-editorial.html">Política editorial</a> ·
+        <a href="/privacidad.html">Privacidad</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    const ids = ['base', 'vat', 'retention', 'expenses', 'deductibleVat', 'quota'];
+    const money = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const out = {
+      reserveTotal: document.getElementById('reserveTotal'),
+      vatReserve: document.getElementById('vatReserve'),
+      irpfReserve: document.getElementById('irpfReserve'),
+      quotaReserve: document.getElementById('quotaReserve'),
+      available: document.getElementById('available'),
+      message: document.getElementById('message')
+    };
+
+    function value(id) {
+      return Number(document.getElementById(id).value || 0);
+    }
+
+    function calculate() {
+      const base = value('base');
+      const vatRate = value('vat') / 100;
+      const retentionRate = value('retention') / 100;
+      const expenses = value('expenses');
+      const deductibleVat = value('deductibleVat');
+      const quota = value('quota');
+      const vatCharged = base * vatRate;
+      const retention = base * retentionRate;
+      const cashIn = base + vatCharged - retention;
+      const vatReserve = Math.max(0, vatCharged - deductibleVat);
+      const estimatedProfit = Math.max(0, base - expenses);
+      const prudentIrpf = Math.max(0, estimatedProfit * 0.2 - retention);
+      const reserveTotal = vatReserve + prudentIrpf + quota;
+      const available = cashIn - reserveTotal - expenses;
+
+      out.reserveTotal.textContent = money.format(reserveTotal);
+      out.vatReserve.textContent = money.format(vatReserve);
+      out.irpfReserve.textContent = money.format(prudentIrpf);
+      out.quotaReserve.textContent = money.format(quota);
+      out.available.textContent = money.format(available);
+
+      if (available < 0) {
+        out.message.textContent = 'Con estos datos, la factura no cubre gastos, reservas y cuota. Revisa precio, gastos o cuota asignada.';
+      } else if (available < base * 0.35) {
+        out.message.textContent = 'Hay margen, pero no tanto como parece al ver el ingreso en cuenta. Separar impuestos antes de gastar es clave.';
+      } else {
+        out.message.textContent = 'Buen margen orientativo. Aun así, guarda IVA e IRPF en una cuenta separada para evitar sustos trimestrales.';
+      }
+    }
+
+    ids.forEach((id) => document.getElementById(id).addEventListener('input', calculate));
+    calculate();
+  </script>
+</body>
+</html>

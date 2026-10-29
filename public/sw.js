@@ -1,4 +1,6 @@
-const CACHE_NAME = 'finanzas-facil-v1.1.0-social-login-reactivated';
+// Cambiar esta versión con cada publicación que altere la app para no servir
+// un bundle antiguo desde Cache Storage.
+const CACHE_NAME = 'finanzas-facil-v1.2.0-control-gastos-2';
 const urlsToCache = [
   // No cacheamos HTML para evitar pantallas en blanco por versiones desincronizadas
   '/manifest.json',

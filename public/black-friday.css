@@ -1,0 +1,62 @@
+:root { color-scheme: light; --ink: #182b2d; --muted: #526368; --accent: #0b665b; --line: #d9e3e3; }
+* { box-sizing: border-box; letter-spacing: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+body { margin: 0; color: var(--ink); background: #fff; font-family: system-ui, -apple-system, sans-serif; line-height: 1.65; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: #08493f; }
+:focus-visible { outline: 3px solid #b64819; outline-offset: 4px; }
+[hidden] { display: none !important; }
+.shell { width: min(100% - 2rem, 64rem); margin: 0 auto; }
+.skip-link { position: absolute; left: 1rem; top: -5rem; padding: .6rem 1rem; background: #fff; z-index: 2; }
+.skip-link:focus { top: .5rem; }
+.site-header { border-bottom: 1px solid var(--line); }
+.header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; padding: 1rem 0; }
+.brand { display: inline-flex; align-items: center; gap: .65rem; color: var(--ink); font-size: 1.25rem; font-weight: 750; text-decoration: none; }
+.brand img { border-radius: 50%; }
+.site-header nav { display: flex; gap: 1.25rem; font-size: .9rem; }
+.introduction { padding: 2rem 0 1.5rem; }
+.eyebrow { margin: 0 0 .5rem; color: var(--accent); font-size: .85rem; font-weight: 750; }
+h1 { max-width: 28ch; margin: 0 0 .75rem; font-size: 2.25rem; line-height: 1.18; text-wrap: balance; }
+.lead { max-width: 54rem; margin: 0 0 .8rem; font-size: 1.1rem; }
+.byline { margin: 0; color: var(--muted); font-size: .82rem; }
+.comparison-band { padding: 1.5rem 0 2rem; background: #f3f7f7; border-block: 1px solid var(--line); }
+h2 { margin: 0 0 1rem; font-size: 1.5rem; line-height: 1.3; }
+.comparison-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+label { display: flex; flex-direction: column; justify-content: space-between; gap: .4rem; font-size: .88rem; font-weight: 650; }
+input { display: block; width: 100%; min-width: 0; height: 2.8rem; border: 1px solid #9bafb2; border-radius: 6px; padding: .5rem .7rem; background: #fff; color: var(--ink); font: inherit; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+.field-help, .result-note { color: var(--muted); font-size: .8rem; line-height: 1.55; }
+.field-help { margin: .9rem 0 1rem; }
+button { min-height: 2.75rem; max-width: 100%; padding: .6rem 1.2rem; border: 1px solid var(--accent); border-radius: 6px; background: var(--accent); color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+button:hover { background: #08493f; }
+button:disabled { opacity: .55; cursor: not-allowed; }
+.comparison-result { min-height: 19rem; border-left: 2px solid #b8ceca; padding-left: 1.5rem; }
+.result-heading { margin: 0 0 .75rem; font-weight: 700; }
+dl { display: grid; gap: .9rem; margin: 0; }
+dt { font-size: .8rem; color: var(--muted); }
+dd { margin: 0; font-size: 1.6rem; font-weight: 750; line-height: 1.4; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.budget-status { margin: 1rem 0 .5rem; color: var(--accent); font-weight: 700; }
+.budget-status.over-budget, #deal-error { color: #a32236; }
+.result-note { margin: .5rem 0 0; }
+.article { max-width: 72ch; padding: 1.5rem 0 3rem; }
+.contents { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; padding: 0 0 1.5rem; border-bottom: 1px solid var(--line); font-size: .88rem; }
+.article section { margin-top: 2.5rem; }
+.article h3 { margin: 1.5rem 0 .6rem; font-size: 1.1rem; line-height: 1.4; }
+.article p { margin: 0 0 1rem; }
+.article ul, .article ol { padding-left: 1.3rem; }
+.article li { margin: .7rem 0; }
+.formula { border-left: 3px solid #a0b9b5; padding-left: 1rem; font-variant-numeric: tabular-nums; }
+.sources { border-top: 1px solid var(--line); padding-top: 1.75rem; font-size: .9rem; }
+.site-footer { padding: 1.5rem 0; border-top: 1px solid var(--line); background: #f3f7f7; font-size: .88rem; }
+.site-footer p { margin: .2rem 0; }
+@media (max-width: 680px) {
+  h1 { font-size: 1.85rem; }
+  .introduction { padding-top: 1.5rem; }
+  .comparison-layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .comparison-result { min-height: 18rem; border-left: 0; border-top: 2px solid #b8ceca; padding: 1rem 0 0; }
+  .site-header nav { flex-wrap: wrap; }
+}
+@media (max-width: 380px) {
+  .fields { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

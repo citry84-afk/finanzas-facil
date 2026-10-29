@@ -9,7 +9,7 @@ const TermsOfService: React.FC = () => {
           
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p className="text-lg">
-              <strong>Última actualización:</strong> 19 de enero de 2025
+              <strong>Última actualización:</strong> 16 de agosto de 2026
             </p>
             
             <div className="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
@@ -129,11 +129,12 @@ const TermsOfService: React.FC = () => {
             
             <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">7. Publicidad y contenido de terceros</h2>
             
-            <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">7.1 Google AdSense</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">7.1 Publicidad en aplicaciones móviles</h3>
             <p>
-              Nuestro sitio web utiliza Google AdSense para mostrar anuncios. Google puede utilizar 
-              cookies para personalizar anuncios según tus intereses. La presencia de anuncios no 
-              constituye un respaldo de FinanzasFácil hacia los productos o servicios anunciados.
+              La web no muestra anuncios actualmente. Las aplicaciones móviles pueden mostrar banners de <strong>Google AdMob</strong>
+              después de solicitar las opciones de privacidad que correspondan. Los anuncios no constituyen un respaldo de
+              FinanzasFácil hacia los productos o servicios anunciados. Consulta la{' '}
+              <a href="/privacidad" className="text-blue-600 hover:underline">política de privacidad</a> para más detalle.
             </p>
             
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">7.2 Enlaces externos</h3>

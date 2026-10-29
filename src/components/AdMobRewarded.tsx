@@ -1,4 +1,5 @@
 import { AdMob } from '@capacitor-community/admob';
+import { Capacitor } from '@capacitor/core';
 import { getRewardedConfig, ADMOB_CONFIG } from '../config/admob';
 
 interface RewardedResult {
@@ -40,7 +41,12 @@ class AdMobRewardedManager {
         return false;
       }
 
-      const config = getRewardedConfig();
+      const platform = Capacitor.getPlatform();
+      if (platform !== 'android' && platform !== 'ios') {
+        return false;
+      }
+
+      const config = getRewardedConfig(platform);
       
       await AdMob.prepareRewardVideoAd({
         adId: config.adId,

@@ -1,6 +1,6 @@
 /**
  * Bloque editorial visible en la landing para reforzar contenido propio (calidad / AdSense).
- * Enlaces a guías estáticas y a la app; sin cifras de impacto no verificables.
+ * Enlaces a guías indexables profundas; sin cifras de impacto no verificables.
  */
 export default function LandingEditorialSection() {
   return (
@@ -34,15 +34,15 @@ export default function LandingEditorialSection() {
         <div className="rounded-3xl bg-[#f5f5f7] p-6">
           <h3 className="text-xl font-semibold mb-3">Empieza por aquí</h3>
           <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-4">
-            Si no sabes qué mirar primero, haz un test corto y después pasa a gastos, ahorro, deuda, impuestos o
-            vivienda según tu resultado.
+            Si no sabes qué mirar primero, empieza por el método Dinero Tranquilo y después pasa a gastos, ahorro o
+            deuda según tu situación.
           </p>
           <div className="flex flex-col gap-2">
             <a
-              href="/test-salud-financiera.html"
+              href="/metodo-dinero-tranquilo.html"
               className="inline-flex items-center justify-center w-full md:w-auto rounded-full bg-blue-600 px-5 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
             >
-              Hacer test financiero
+              Método Dinero Tranquilo
             </a>
             <a className="underline font-medium text-slate-700 hover:text-slate-950" href="/control-gastos-mensual.html">
               Leer guía de gastos
@@ -54,20 +54,19 @@ export default function LandingEditorialSection() {
         </div>
 
         <div className="rounded-3xl bg-[#f5f5f7] p-6">
-          <h3 className="text-xl font-semibold mb-3">Plantilla + gastos hormiga</h3>
+          <h3 className="text-xl font-semibold mb-3">Margen del mes</h3>
           <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-4">
-            Empieza con una hoja mensual imprimible y después revisa pequeños gastos repetidos sin convertirlo en una
-            obsesión. Es el camino más amable para crear hábito.
+            Calcula cuánto puedes gastar con calma y revisa el mes sin convertirlo en una hoja interminable.
           </p>
           <div className="flex flex-col gap-2">
             <a
-              href="/plantilla-dinero-tranquilo.html"
+              href="/cuanto-puedo-gastar-al-mes.html"
               className="inline-flex items-center justify-center w-full md:w-auto rounded-full bg-blue-600 px-5 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
             >
-              Abrir plantilla
+              Calcular dinero tranquilo
             </a>
-            <a className="underline font-medium text-slate-700 hover:text-slate-950" href="/gastos-hormiga.html">
-              Ver guía de gastos hormiga
+            <a className="underline font-medium text-slate-700 hover:text-slate-950" href="/control-gastos-mensual.html">
+              Control de gastos mensual
             </a>
           </div>
         </div>
@@ -80,13 +79,13 @@ export default function LandingEditorialSection() {
           </p>
           <div className="flex flex-col gap-2">
             <a
-              href="/cuanto-puedo-gastar-al-mes.html"
+              href="/como-ahorrar-dinero-cada-mes.html"
               className="inline-flex items-center justify-center w-full md:w-auto rounded-full bg-blue-600 px-5 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
             >
-              Calcular dinero tranquilo
-            </a>
-            <a className="underline font-medium text-slate-700 hover:text-slate-950" href="/como-ahorrar-dinero-cada-mes.html">
               Leer guía de ahorro
+            </a>
+            <a className="underline font-medium text-slate-700 hover:text-slate-950" href="/regla-50-30-20-espana.html">
+              Regla 50/30/20
             </a>
           </div>
         </div>
@@ -136,8 +135,12 @@ export default function LandingEditorialSection() {
               </a>
             </li>
             <li>
-              <a className="font-medium text-blue-600 hover:text-blue-700" href="/como-calcular-irpf-autonomos-2025.html">
+              <a className="font-medium text-blue-600 hover:text-blue-700" href="/como-calcular-irpf-autonomos-2026.html">
                 Cómo calcular IRPF (guía)
+              </a>{' '}
+              ·{' '}
+              <a className="font-medium text-blue-600 hover:text-blue-700" href="/cuota-autonomos-2026.html">
+                Cuota autónomos 2026
               </a>{' '}
               ·{' '}
               <a className="font-medium text-blue-600 hover:text-blue-700" href="/blog.html">
@@ -149,37 +152,33 @@ export default function LandingEditorialSection() {
                 Cuánto puedo gastar
               </a>{' '}
               ·{' '}
-              <a className="font-medium text-blue-600 hover:text-blue-700" href="/calculadora-fondo-emergencia.html">
-                Fondo emergencia
-              </a>{' '}
-              <br />
               <a className="font-medium text-blue-600 hover:text-blue-700" href="/regla-50-30-20-espana.html">
                 Regla 50/30/20
-              </a>{' '}
-              ·{' '}
-              <a className="font-medium text-blue-600 hover:text-blue-700" href="/nivel-endeudamiento-calculadora.html">
-                Nivel de deuda
-              </a>{' '}
-              ·{' '}
+              </a>
+              <br />
               <a className="font-medium text-blue-600 hover:text-blue-700" href="/que-deuda-pagar-primero.html">
                 Qué deuda pagar
               </a>{' '}
-              <br />
+              ·{' '}
               <a className="font-medium text-blue-600 hover:text-blue-700" href="/como-ahorrar-dinero-cada-mes.html">
                 Ahorrar cada mes
               </a>
             </li>
             <li>
-              <a className="font-medium text-blue-600 hover:text-blue-700" href="/test-salud-financiera.html">
-                Test financiero
+              <a className="font-medium text-blue-600 hover:text-blue-700" href="/metodo-dinero-tranquilo.html">
+                Método Dinero Tranquilo
               </a>{' '}
               ·{' '}
               <a className="font-medium text-blue-600 hover:text-blue-700" href="/control-gastos-sin-excel.html">
                 Sin Excel
-              </a>{' '}
+              </a>
               <br />
               <a className="font-medium text-blue-600 hover:text-blue-700" href="/acerca-de.html">
                 Quiénes somos
+              </a>{' '}
+              ·{' '}
+              <a className="font-medium text-blue-600 hover:text-blue-700" href="/metodologia-fuentes.html">
+                Metodología
               </a>{' '}
               ·{' '}
               <a className="font-medium text-blue-600 hover:text-blue-700" href="/contacto.html">

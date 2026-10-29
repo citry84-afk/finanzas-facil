@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense, type ReactNode } from 'react';
 import YouTubeVideosSlider from './components/YouTubeVideosSlider';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
@@ -17,16 +17,20 @@ import ProductoCursoFinanzas from './components/ProductoCursoFinanzas';
 import DonationModal from './components/DonationModal';
 import SocialLinks from './components/SocialLinks';
 import RouteLoading from './components/RouteLoading';
+import {
+  WowAutonomosPage,
+  WowEmployeeCostPage,
+  WowHipotecaPage,
+  WowHome,
+  WowMillionairePage,
+  WowSalaryPage,
+  WowSeverancePage,
+} from './components/wow/WowPages';
+import { ControlGastos2Page } from './components/wow/ControlGastos2';
 import { usePageMeta } from './seo/usePageMeta';
 
-const ExpenseControlApp = lazy(() => import('./components/ExpenseControlApp'));
-const TikTokMillionaireCalculator = lazy(() => import('./components/TikTokMillionaireCalculator'));
-const SalaryCalculator = lazy(() => import('./components/SalaryCalculator'));
-const HipotecaCalculator = lazy(() => import('./components/HipotecaCalculator'));
-const AutonomosCalculator = lazy(() => import('./components/AutonomosCalculator'));
 const PresupuestoEstudianteCalculator = lazy(() => import('./components/PresupuestoEstudianteCalculator'));
 import { BookOpen, Briefcase, Calculator, ExternalLink, GraduationCap, Home, Landmark, ShieldCheck, Smartphone, WalletCards } from 'lucide-react';
-// import { AdMobBanner } from './components/AdMobBanner'; // Temporalmente desactivado para debug Android
 // import { useInterstitialAd } from './components/AdMobInterstitial';
 import { Capacitor } from '@capacitor/core';
 import { analyticsEvents, trackPageView } from './utils/analytics';
@@ -34,12 +38,13 @@ import StructuredData from './components/StructuredData';
 import PWAInstall from './components/PWAInstall';
 import PWADebug from './components/PWADebug';
 import { useSwipe } from './hooks/useSwipe';
+import { AdMobBanner } from './components/AdMobBanner';
 
 const APP_STORE_URL = 'https://apps.apple.com/es/app/finanzasfacil/id6754602748';
 
 // Helper para determinar el modo inicial según URL
 function getInitialMode() {
-  const defaultMode: AppMode = Capacitor.getPlatform() === 'web' ? 'landing' : 'gastos';
+  const defaultMode: AppMode = 'landing';
 
   if (typeof window === 'undefined') {
     return defaultMode;
@@ -52,10 +57,12 @@ function getInitialMode() {
     | 'millonario'
     | 'gastos'
     | 'presupuesto-estudiante'
-    | 'landing'
-    | 'landing-irpf'
-    | 'landing-cuota'
-    | 'landing-gastos';
+	    | 'landing'
+	    | 'landing-irpf'
+	    | 'landing-cuota'
+	    | 'landing-gastos'
+	    | 'indemnizacion-despido'
+	    | 'coste-empleado';
 
   const mapTokenToMode = (token: string | null): AppMode | null => {
     const value = token as ModeParam | null;
@@ -78,10 +85,14 @@ function getInitialMode() {
         return 'landing-irpf';
       case 'landing-cuota':
         return 'landing-cuota';
-      case 'landing-gastos':
-        return 'landing-gastos';
-      default:
-        return null;
+	      case 'landing-gastos':
+	        return 'landing-gastos';
+	      case 'indemnizacion-despido':
+	        return 'indemnizacion-despido';
+	      case 'coste-empleado':
+	        return 'coste-empleado';
+	      default:
+	        return null;
     }
   };
 
@@ -106,9 +117,13 @@ function getInitialMode() {
     case '/calculadora-salario-neto':
     case '/salario':
       return 'salario';
-    case '/cuando-sere-millonario':
-    case '/millonario':
-      return 'tiktok-millonario';
+	    case '/cuando-sere-millonario':
+	    case '/millonario':
+	      return 'tiktok-millonario';
+	    case '/indemnizacion-despido':
+	      return 'indemnizacion-despido';
+	    case '/coste-empleado':
+	      return 'coste-empleado';
     case '/control-gastos':
     case '/gastos':
       return 'gastos';
@@ -145,15 +160,23 @@ type AppMode =
   | 'producto-gastos'
   | 'producto-curso-finanzas'
   | 'donate'
-  | 'landing-irpf'
-  | 'landing-cuota'
-  | 'landing-gastos'
-  | 'social';
+	  | 'landing-irpf'
+	  | 'landing-cuota'
+	  | 'landing-gastos'
+	  | 'indemnizacion-despido'
+	  | 'coste-empleado'
+	  | 'social';
 function AppContent() {
   // Estado inicial: detectar modo a partir de URL (pathname / ?mode=)
   // Esto permite que URLs como /autonomos o /calculadora-hipoteca carguen directamente la herramienta correcta
   const [mode, setMode] = useState<AppMode>(() => getInitialMode());
   usePageMeta(mode);
+  const renderSharedNativePage = (page: ReactNode) => (
+    <>
+      {page}
+      {Capacitor.isNativePlatform() && <AdMobBanner position="bottom" size="adaptive" enabled />}
+    </>
+  );
   const [calmIncome, setCalmIncome] = useState(1500);
   const [calmExpenses, setCalmExpenses] = useState(980);
   const [calmSavings, setCalmSavings] = useState(150);
@@ -162,11 +185,33 @@ function AppContent() {
   const calmExpensePercent = Math.min(100, Math.round((calmExpenses / Math.max(calmIncome, 1)) * 100));
   const calmSavingsPercent = Math.min(100, Math.round((calmSavings / Math.max(calmIncome, 1)) * 100));
   const calmMoneyPercent = Math.min(100, Math.round((calmMoney / Math.max(calmIncome, 1)) * 100));
-  const formatEuros = (value: number) =>
-    new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
-  const trackCalmSimulatorAdjustment = (field: string) => {
-    analyticsEvents.calmSimulatorAdjusted(field, calmDeficit > 0 ? -calmDeficit : calmMoney);
-  };
+	  const formatEuros = (value: number) =>
+	    new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
+	  const trackCalmSimulatorAdjustment = (field: string) => {
+	    analyticsEvents.calmSimulatorAdjusted(field, calmDeficit > 0 ? -calmDeficit : calmMoney);
+	  };
+	  const navigateToMode = (newMode: string) => {
+	    const nextMode = newMode as AppMode;
+	    setMode(nextMode);
+	    const paths: Partial<Record<AppMode, string>> = {
+	      landing: '/',
+	      gastos: '/control-gastos',
+	      autonomos: '/autonomos',
+	      salario: '/calculadora-salario-neto',
+	      hipoteca: '/calculadora-hipoteca',
+	      'tiktok-millonario': '/cuando-sere-millonario',
+	      'indemnizacion-despido': '/indemnizacion-despido',
+	      'coste-empleado': '/coste-empleado',
+	      about: '/acerca-de',
+	      contact: '/contacto',
+	      privacy: '/privacidad',
+	      terms: '/terminos',
+	    };
+	    const path = paths[nextMode];
+	    if (path && typeof window !== 'undefined' && window.location.pathname !== path) {
+	      window.history.pushState({}, '', path);
+	    }
+	  };
   
   // Hook para manejar anuncios interstitial
   // const { showOnNavigation } = useInterstitialAd();
@@ -228,8 +273,8 @@ function AppContent() {
     };
   }, []);
 
-  // Track mode changes
-  useEffect(() => {
+	  // Track mode changes
+	  useEffect(() => {
     switch (mode) {
       case 'gastos':
         analyticsEvents.expenseControlOpened();
@@ -250,129 +295,51 @@ function AppContent() {
         trackPageView('/', 'Finanzas Fáciles - Landing');
         break;
     }
-  }, [mode]);
+	  }, [mode]);
 
-  if (mode === 'gastos') {
-    return (
-      <Suspense fallback={<RouteLoading />}>
-        <ExpenseControlApp
-          onBack={() => {
-            setMode('landing');
-            trackPageView('/', 'Landing Page');
-          }}
-        />
-      </Suspense>
-    );
-  }
+	  if (mode === 'landing') {
+	    return renderSharedNativePage(<WowHome onNavigate={navigateToMode} />);
+	  }
 
-  if (mode === 'autonomos') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50">
-        {/* Structured Data para Calculadora Autónomos */}
-        <StructuredData 
-          type="AutonomosCalculator" 
-          data={{
-            name: "Calculadora de Autónomos 2025 - IRPF y Seguridad Social",
-            description: "Calculadora gratuita para autónomos en España. Calcula IRPF, cuota de Seguridad Social, gastos deducibles y bonificaciones por comunidad autónoma.",
-            url: "https://finanzasmuyfacil.com/autonomos"
-          }} 
-        />
-        
-        <div className="absolute top-20 left-4 z-10">
-          <button
-            onClick={() => setMode('landing')}
-            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
-          >
-            ← Volver
-          </button>
-        </div>
-        <Suspense fallback={<RouteLoading />}>
-          <AutonomosCalculator onBack={() => setMode('landing')} />
-        </Suspense>
-      </div>
-    );
-  }
+	  if (mode === 'autonomos') {
+	    return renderSharedNativePage(<WowAutonomosPage onNavigate={navigateToMode} />);
+	  }
 
-  if (mode === 'tiktok-millonario') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-600">
-        {/* Structured Data para Calculadora Millonario */}
-        <StructuredData 
-          type="Calculator" 
-          data={{
-            name: "Calculadora ¿Cuándo Seré Millonario? - Libertad Financiera",
-            description: "Calculadora interactiva para saber cuándo podrás cumplir tus sueños y alcanzar la libertad financiera. Calcula tu edad para ser millonario con gráficos y animaciones.",
-            url: "https://finanzasmuyfacil.com/cuando-ser-millonario",
-            features: [
-              "Cálculo de interés compuesto",
-              "Gráficos interactivos",
-              "Animaciones de confeti",
-              "Sliders interactivos",
-              "Comparativas de ahorro"
-            ]
-          }} 
-        />
-        
-        <div className="absolute top-20 left-4 z-10">
-          <button
-            onClick={() => setMode('landing')}
-            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
-          >
-            ← Volver
-          </button>
-        </div>
-        <Suspense fallback={<RouteLoading />}>
-          <TikTokMillionaireCalculator onBack={() => setMode('landing')} />
-        </Suspense>
-      </div>
-    );
-  }
+	  if (mode === 'tiktok-millonario') {
+	    return renderSharedNativePage(<WowMillionairePage onNavigate={navigateToMode} />);
+	  }
 
-  if (mode === 'salario') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-        {/* Structured Data para Calculadora Salario */}
-        <StructuredData 
-          type="Calculator" 
-          data={{
-            name: "Calculadora Salario Neto 2025 - Sueldo Bruto a Neto España",
-            description: "Calculadora de salario neto 2025 para España. Convierte tu sueldo bruto a neto con cálculos precisos de IRPF, Seguridad Social y comparativas regionales.",
-            url: "https://finanzasmuyfacil.com/calculadora-salario-neto",
-            features: [
-              "Cálculo IRPF 2025",
-              "Deducciones Seguridad Social",
-              "Comparativas regionales",
-              "Gráficos de pagas extra",
-              "Diseño mobile-first"
-            ]
-          }} 
-        />
-        
-        <div className="absolute top-20 left-4 z-10">
-          <button
-            onClick={() => setMode('landing')}
-            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
-          >
-            ← Volver
-          </button>
-        </div>
-        <Suspense fallback={<RouteLoading />}>
-          <SalaryCalculator />
-        </Suspense>
-      </div>
-    );
-  }
+	  if (mode === 'salario') {
+	    return renderSharedNativePage(<WowSalaryPage onNavigate={navigateToMode} />);
+	  }
+
+	  if (mode === 'hipoteca') {
+	    return renderSharedNativePage(<WowHipotecaPage onNavigate={navigateToMode} />);
+	  }
+
+	  if (mode === 'indemnizacion-despido') {
+	    return renderSharedNativePage(<WowSeverancePage onNavigate={navigateToMode} />);
+	  }
+
+	  if (mode === 'coste-empleado') {
+	    return renderSharedNativePage(<WowEmployeeCostPage onNavigate={navigateToMode} />);
+	  }
+
+		  if (mode === 'gastos') {
+		    return <ControlGastos2Page onNavigate={navigateToMode} />;
+	  }
+
 
   if (mode === 'presupuesto-estudiante') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="native-ad-page min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         {/* Structured Data para Calculadora Presupuesto Estudiante */}
         <StructuredData
           type="Calculator"
           data={{
-            name: "Calculadora Presupuesto Estudiante Universitario 2025",
-            description: "Calculadora gratuita para gestionar el presupuesto universitario con la regla 50/30/20. Calcula gastos, ahorro y proyecciones para estudiantes.",
-            url: "https://finanzasmuyfacil.com/calculadora-presupuesto-estudiante-universitario",
+            name: "Presupuesto universitario orientativo",
+            description: "Herramienta educativa para organizar una estimación de gastos, ahorro y prioridades durante los estudios.",
+            url: "https://finanzasmuyfacil.com/presupuesto-estudiante",
             features: [
               "Regla 50/30/20",
               "Cálculo por ciudad",
@@ -394,45 +361,11 @@ function AppContent() {
         <Suspense fallback={<RouteLoading />}>
           <PresupuestoEstudianteCalculator onBack={() => setMode('landing')} />
         </Suspense>
+        {Capacitor.isNativePlatform() && <AdMobBanner position="bottom" size="adaptive" enabled />}
       </div>
     );
   }
 
-  if (mode === 'hipoteca') {
-    return (
-      <div className="min-h-screen">
-        {/* Structured Data para Calculadora Hipoteca */}
-        <StructuredData 
-          type="Calculator" 
-          data={{
-            name: "Calculadora de Hipoteca Gratuita 2025 - Simula tu Hipoteca",
-            description: "Calculadora de hipoteca gratuita 2025. Calcula tu cuota mensual, intereses totales, gastos adicionales y viabilidad de operación. Compara hipotecas fijas, variables y mixtas.",
-            url: "https://finanzasmuyfacil.com/calculadora-hipoteca",
-            features: [
-              "Cálculo de cuota mensual",
-              "Análisis de viabilidad bancaria",
-              "Gastos adicionales (comunidad, IBI, seguros)",
-              "Comparador de tipos de hipoteca",
-              "Capacidad de endeudamiento",
-              "Recomendaciones personalizadas"
-            ]
-          }} 
-        />
-        
-        <div className="absolute top-20 left-4 z-10">
-          <button
-            onClick={() => setMode('landing')}
-            className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-white transition-colors shadow-lg"
-          >
-            ← Volver
-          </button>
-        </div>
-        <Suspense fallback={<RouteLoading />}>
-          <HipotecaCalculator />
-        </Suspense>
-      </div>
-    );
-  }
 
   if (mode === 'privacy') {
     return (
@@ -685,8 +618,10 @@ function AppContent() {
             <a href="#herramientas" className="hover:text-slate-950">Herramientas</a>
             <a href="/metodo-dinero-tranquilo.html" className="hover:text-slate-950">Método</a>
             <a href="#guias-rapidas" className="hover:text-slate-950">Guías</a>
-            <a href="/app-ios.html" className="hover:text-slate-950">App iOS</a>
+            <a href="https://apps.apple.com/es/app/finanzasfacil/id6754602748" className="hover:text-slate-950" rel="noopener noreferrer">App iOS</a>
             <a href="/blog.html" className="hover:text-slate-950">Blog</a>
+            <a href="/metodologia-fuentes.html" className="hover:text-slate-950">Metodología</a>
+            <a href="/politica-editorial.html" className="hover:text-slate-950">Política editorial</a>
           </div>
           <a
             href={APP_STORE_URL}
@@ -822,9 +757,9 @@ function AppContent() {
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
-              <a href="/test-salud-financiera.html" className="rounded-2xl bg-white/10 p-5 transition-colors hover:bg-white/15">
+              <a href="/metodo-dinero-tranquilo.html" className="rounded-2xl bg-white/10 p-5 transition-colors hover:bg-white/15">
                 <span className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-500 text-sm font-black">1</span>
-                <strong className="block text-lg">Test</strong>
+                <strong className="block text-lg">Método</strong>
                 <span className="mt-2 block text-sm text-white/65">Qué mirar primero: gastos, ahorro, deuda, vivienda o autónomos.</span>
               </a>
               <a href="/cuanto-puedo-gastar-al-mes.html" className="rounded-2xl bg-white/10 p-5 transition-colors hover:bg-white/15">
@@ -832,9 +767,9 @@ function AppContent() {
                 <strong className="block text-lg">Margen</strong>
                 <span className="mt-2 block text-sm text-white/65">Calcula tu dinero tranquilo mensual y semanal.</span>
               </a>
-              <a href="/gastos-hormiga.html" className="rounded-2xl bg-white/10 p-5 transition-colors hover:bg-white/15">
+              <a href="/control-gastos-mensual.html" className="rounded-2xl bg-white/10 p-5 transition-colors hover:bg-white/15">
                 <span className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-orange-500 text-sm font-black">3</span>
-                <strong className="block text-lg">Reto</strong>
+                <strong className="block text-lg">Control</strong>
                 <span className="mt-2 block text-sm text-white/65">Elige una acción pequeña que puedas cumplir esta semana.</span>
               </a>
             </div>
@@ -900,34 +835,34 @@ function AppContent() {
               <span className="text-sm text-slate-600">Calcula margen y elige una fuga pequeña para empezar.</span>
             </a>
             <a
-              href="/calculadora-fondo-emergencia.html"
+              href="/cuanto-puedo-gastar-al-mes.html"
               className="rounded-xl border border-slate-200 p-4 hover:border-teal-300 hover:bg-teal-50 transition-colors"
             >
               <span className="block text-xs font-black uppercase tracking-wide text-teal-700 mb-2">
                 Colchón
               </span>
-              <strong className="block text-lg mb-1">Fondo de emergencia</strong>
-              <span className="text-sm text-slate-600">Calcula cuánto guardar para imprevistos sin agobio.</span>
+              <strong className="block text-lg mb-1">Dinero tranquilo</strong>
+              <span className="text-sm text-slate-600">Calcula margen y colchón del mes sin Excel.</span>
             </a>
             <a
-              href="/test-salud-financiera.html"
+              href="/metodo-dinero-tranquilo.html"
               className="rounded-xl border border-slate-200 p-4 hover:border-violet-300 hover:bg-violet-50 transition-colors"
             >
               <span className="block text-xs font-black uppercase tracking-wide text-violet-700 mb-2">
                 Primer paso
               </span>
-              <strong className="block text-lg mb-1">Test financiero</strong>
-              <span className="text-sm text-slate-600">Descubre qué deberías mirar primero en 2 minutos.</span>
+              <strong className="block text-lg mb-1">Método Dinero Tranquilo</strong>
+              <span className="text-sm text-slate-600">El marco completo para ordenar el mes con calma.</span>
             </a>
             <a
-              href="/nivel-endeudamiento-calculadora.html"
+              href="/que-deuda-pagar-primero.html"
               className="rounded-xl border border-slate-200 p-4 hover:border-rose-300 hover:bg-rose-50 transition-colors"
             >
               <span className="block text-xs font-black uppercase tracking-wide text-rose-700 mb-2">
                 Deuda y cuotas
               </span>
-              <strong className="block text-lg mb-1">Nivel de deuda</strong>
-              <span className="text-sm text-slate-600">Comprueba si tus cuotas mensuales pesan demasiado.</span>
+              <strong className="block text-lg mb-1">Qué deuda pagar</strong>
+              <span className="text-sm text-slate-600">Ordena tarjetas, préstamos y compras aplazadas.</span>
             </a>
             <a
               href="/que-deuda-pagar-primero.html"
@@ -936,8 +871,8 @@ function AppContent() {
               <span className="block text-xs font-black uppercase tracking-wide text-orange-700 mb-2">
                 Prioridades
               </span>
-              <strong className="block text-lg mb-1">Qué deuda pagar</strong>
-              <span className="text-sm text-slate-600">Ordena tarjetas, préstamos y compras aplazadas.</span>
+              <strong className="block text-lg mb-1">Avalancha o bola de nieve</strong>
+              <span className="text-sm text-slate-600">Elige método según interés, saldo o tensión mensual.</span>
             </a>
             <a
               href="/metodo-dinero-tranquilo.html"
@@ -1073,9 +1008,9 @@ function AppContent() {
           <div className="rounded-[28px] bg-white p-7 shadow-sm ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1">
             <div>
               <WalletCards className="mb-6 h-9 w-9 text-blue-600" aria-hidden="true" />
-              <h2 className="text-2xl font-semibold text-slate-950 mb-3">Calculadora Salario Neto 2025</h2>
+              <h2 className="text-2xl font-semibold text-slate-950 mb-3">Calculadora Salario Neto 2026</h2>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                Calculadora gratuita para convertir sueldo bruto a neto en España 2025. Calcula IRPF, Seguridad Social y descubre cuánto recibirás realmente en tu nómina.
+                Calculadora para convertir sueldo bruto a neto en España 2026. Estima IRPF, Seguridad Social y cuánto podrías recibir en tu nómina.
               </p>
               <button
                 onClick={() => {
@@ -1442,7 +1377,7 @@ function AppContent() {
           </h3>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="rounded-3xl bg-[#f5f5f7] p-6">
-              <h4 className="mb-3 text-xl font-semibold text-slate-950">¿Cómo calcular mi salario neto 2025?</h4>
+              <h4 className="mb-3 text-xl font-semibold text-slate-950">¿Cómo calcular mi salario neto 2026?</h4>
               <p className="text-slate-600">La calculadora convierte sueldo bruto a neto considerando IRPF, Seguridad Social y deducciones habituales en España.</p>
             </div>
             <div className="rounded-3xl bg-[#f5f5f7] p-6">
@@ -1533,18 +1468,20 @@ function AppContent() {
             <a href="/blog.html" className="hover:text-slate-950">Blog</a>
             <a href="/metodo-dinero-tranquilo.html" className="hover:text-slate-950">Método</a>
             <a href="/privacidad-sin-bancos.html" className="hover:text-slate-950">Sin bancos</a>
+            <a href="/metodologia-fuentes.html" className="hover:text-slate-950">Metodología</a>
+            <a href="/politica-editorial.html" className="hover:text-slate-950">Política editorial</a>
             <a href="#guias-rapidas" className="hover:text-slate-950">Guías rápidas</a>
             <button onClick={() => setMode('content-hub')} className="hover:text-slate-950">Hub de Contenido</button>
             <button onClick={() => setMode('resources')} className="hover:text-slate-950">Recursos</button>
             <button onClick={() => setMode('faq')} className="hover:text-slate-950">FAQ</button>
             <button onClick={() => setMode('about')} className="hover:text-slate-950">Sobre nosotros</button>
             <button onClick={() => setMode('contact')} className="hover:text-slate-950">Contacto</button>
-            <a href="/app-ios.html" className="hover:text-slate-950">App iOS</a>
+            <a href="https://apps.apple.com/es/app/finanzasfacil/id6754602748" className="hover:text-slate-950" rel="noopener noreferrer">App iOS</a>
             <button onClick={() => setMode('privacy')} className="hover:text-slate-950">Privacidad</button>
             <button onClick={() => setMode('terms')} className="hover:text-slate-950">Términos</button>
           </div>
           <p className="mt-5 text-sm text-slate-500">
-            © 2025 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
+            © 2026 FinanzasFácil - LIPA Studios. Todos los derechos reservados.
           </p>
           <p className="mx-auto mt-5 max-w-3xl text-xs leading-relaxed text-slate-500">
             <strong>Aviso legal:</strong> FinanzasFácil proporciona herramientas de cálculo y contenido educativo con fines informativos.
@@ -1558,9 +1495,6 @@ function AppContent() {
       
       {/* PWA Debug Info */}
       <PWADebug />
-      
-      {/* AdMob Banner - TEMPORALMENTE DESACTIVADO PARA DEBUG ANDROID */}
-      {/* <AdMobBanner position="bottom" size="adaptive" /> */}
     </div>
   );
 }

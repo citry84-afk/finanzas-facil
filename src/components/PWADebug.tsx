@@ -53,9 +53,8 @@ const PWADebug: React.FC = () => {
     checkPWAStatus();
   }, []);
 
-  // Solo mostrar en desarrollo o si hay un parámetro debug
-  const shouldShow = process.env.NODE_ENV === 'development' || 
-                   new URLSearchParams(window.location.search).has('debug');
+  // Solo mostrar si se pide explícitamente con ?debug=1.
+  const shouldShow = new URLSearchParams(window.location.search).has('debug');
 
   if (!shouldShow) return null;
 
@@ -102,6 +101,5 @@ const PWADebug: React.FC = () => {
 };
 
 export default PWADebug;
-
 
 

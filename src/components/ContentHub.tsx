@@ -15,7 +15,6 @@ interface ContentItem {
   publishDate: string;
   author: string;
   image?: string;
-  rating?: number;
   price?: string;
   affiliateLink?: string;
 }
@@ -74,8 +73,7 @@ Recuerda: esta regla es un punto de partida. Puedes ajustarla según tu situaci�
     difficulty: 'Principiante',
     featured: true,
     publishDate: '2025-01-15',
-    author: 'Equipo FinanzasFácil',
-    rating: 4.9
+    author: 'Equipo FinanzasFácil'
   },
   {
     id: 'guia-primer-presupuesto',
@@ -147,7 +145,7 @@ Recuerda: esta regla es un punto de partida. Puedes ajustarla según tu situaci�
 **Por qué leerlo:** Cambia tu mentalidad sobre prospectos de dinero y enseña la diferencia entre activos y pasivos.
 
 ## 2. "El Inversor Inteligente" - Benjamin Graham
-**Precio:** 25-30€ | **Rating:** 4.7/5
+**Precio orientativo:** 25-30€
 **Por qué leerlo:** La biblia de la inversión en valor, recomendado por Warren Buffett.
 
 ## 3. "Piense y Hágase Rico" - Napoleon Hill
@@ -171,7 +169,7 @@ Recuerda: esta regla es un punto de partida. Puedes ajustarla según tu situaci�
 **Por qué leerlo:** Guía completa y accesible para principiantes.
 
 ## 8. "El Pequeño Libro de la Inversión" - John Bogle
-**Precio:** 15-20€ | **Rating:** 4.8/5
+**Precio orientativo:** 15-20€
 **Por qué leerlo:** Fundamentos de inversión en fondos indexados.
 
 ## 9. "Your Money or Your Life" - Vicki Robin
@@ -193,7 +191,6 @@ Recuerda: esta regla es un punto de partida. Puedes ajustarla según tu situaci�
     featured: true,
     publishDate: '2025-01-12',
     author: 'Equipo FinanzasFácil',
-    rating: 4.8,
     price: 'Desde 10€',
     affiliateLink: 'https://amazon.es/libros-finanzas'
   },
@@ -271,8 +268,7 @@ Recuerda: el objetivo no es eliminar completamente estos gastos, sino hacerlos c
     difficulty: 'Principiante',
     featured: false,
     publishDate: '2025-01-08',
-    author: 'Equipo FinanzasFácil',
-    rating: 4.7
+    author: 'Equipo FinanzasFácil'
   }
 ];
 
@@ -337,7 +333,6 @@ function ContentHub() {
             </span>
             <span>{selectedContent.readTime} min lectura</span>
             <span>{selectedContent.difficulty}</span>
-            {selectedContent.rating && <span>⭐ {selectedContent.rating}/5</span>}
             {selectedContent.price && <span>💰 {selectedContent.price}</span>}
           </div>
 
@@ -397,7 +392,7 @@ function ContentHub() {
                     <p className="text-gray-400 text-sm mb-4">{item.excerpt}</p>
                     <div className="flex items-center gap-4 text-xs text-gray-500">
                       <span>{item.readTime} min</span>
-                      <span>⭐ {item.rating || 4.5}/5</span>
+                      <span>{item.difficulty}</span>
                     </div>
                   </div>
                 ))}
@@ -578,7 +573,7 @@ function ContentHub() {
                   <div className="flex items-center justify-between pt-4">
                     <div className="flex items-center space-x-4 text-sm text-gray-400">
                       <span>📖 {item.readTime} min</span>
-                      <span>⭐ {item.rating || 4.5}/5</span>
+                      <span>{item.difficulty}</span>
                       {item.price && <span>💰 {item.price}</span>}
                     </div>
                     

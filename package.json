@@ -1,18 +1,17 @@
 {
   "name": "finanzas-facil",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.4.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:ios:test": "VITE_ADMOB_TESTING=true npm run build && npx cap sync ios",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@capacitor-community/admob": "^7.0.3",
-    "@capacitor-firebase/app": "^7.3.1",
-    "@capacitor-firebase/authentication": "^7.3.1",
     "@capacitor/android": "^7.4.3",
     "@capacitor/cli": "^7.4.3",
     "@capacitor/core": "^7.4.3",
@@ -20,9 +19,7 @@
     "@capacitor/preferences": "^7.0.2",
     "@capacitor/push-notifications": "^7.0.3",
     "@capacitor/share": "^7.0.2",
-    "capacitor-plugin-app-tracking-transparency": "^2.0.5",
     "chart.js": "^4.5.0",
-    "firebase": "^12.3.0",
     "jspdf": "^4.2.1",
     "lucide-react": "^0.263.1",
     "react": "^18.2.0",

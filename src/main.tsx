@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import './styles/wow.css'
 
 // Registrar Service Worker para PWA
 if ('serviceWorker' in navigator) {
@@ -46,7 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 
 // Ocultar contenido inicial HTML cuando React se monte
-// Esto asegura que AdSense vea el contenido, pero la UX permanece inalterada
+// Esto asegura que los crawlers vean contenido editorial sin depender solo del bundle.
 setTimeout(() => {
   const initialContent = document.getElementById('initial-content');
   if (initialContent) {

@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { trackEvent } from '../utils/analytics';
 
 const STORAGE_SUBSCRIBED = 'finanzas_newsletter_subscribed';
 const STORAGE_POPUP_DISMISSED = 'finanzas_newsletter_popup_dismissed';
 /** Compatibilidad con claves antiguas */
 const LEGACY_CLOSED = 'finanzas_lead_closed';
 const LEGACY_CAPTURED = 'finanzas_lead_captured';
+
+type LeadMagnetVariant = 'newsletter' | 'moneyPlan';
+type LeadSource = 'popup' | 'inline' | 'money_plan_inline' | 'money_plan_popup';
+
+type LeadMagnetProps = {
+  variant?: LeadMagnetVariant;
+};
 
 function readStoredBoolean(key: string): boolean {
   try {
@@ -14,7 +22,7 @@ function readStoredBoolean(key: string): boolean {
   }
 }
 
-export default function LeadMagnet() {
+export default function LeadMagnet({ variant = 'newsletter' }: LeadMagnetProps) {
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,6 +30,9 @@ export default function LeadMagnet() {
   const [showPopup, setShowPopup] = useState(false);
   const [popupDismissed, setPopupDismissed] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const isMoneyPlan = variant === 'moneyPlan';
+  const inlineSource: LeadSource = isMoneyPlan ? 'money_plan_inline' : 'inline';
+  const popupSource: LeadSource = isMoneyPlan ? 'money_plan_popup' : 'popup';
 
   /** Hidratar desde localStorage (solo cliente) */
   useEffect(() => {
@@ -142,7 +153,7 @@ export default function LeadMagnet() {
    * crear submission (SPA + rewrites / edge). El POST “de navegador” vía iframe sí lo registra.
    * Orden: iframe primero; fetch solo como respaldo.
    */
-  const submitToNetlify = async (fuente: 'popup' | 'inline') => {
+  const submitToNetlify = async (fuente: LeadSource) => {
     const params = new URLSearchParams();
     params.append('form-name', 'newsletter');
     params.append('bot-field', '');
@@ -168,13 +179,33 @@ export default function LeadMagnet() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
   };
 
-  const handleSubmit = async (e: React.FormEvent, fuente: 'popup' | 'inline') => {
+  const sendWelcomeEmail = async (fuente: LeadSource) => {
+    try {
+      await fetch('/.netlify/functions/newsletter-welcome', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre: nombre.trim(),
+          email: email.trim(),
+          fuente,
+        }),
+      });
+    } catch (err) {
+      console.warn('Newsletter welcome email pending:', err);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent, fuente: LeadSource) => {
     e.preventDefault();
     setSubmitError(null);
     setIsSubmitting(true);
 
     try {
       await submitToNetlify(fuente);
+      await sendWelcomeEmail(fuente);
+      trackEvent('newsletter_signup', 'lead_capture', fuente);
 
       try {
         localStorage.setItem(STORAGE_SUBSCRIBED, 'true');
@@ -204,9 +235,18 @@ export default function LeadMagnet() {
       </div>
       <h3 className="text-xl md:text-2xl font-bold text-white mb-2">¡Listo, estás en la lista!</h3>
       <p className="text-blue-100 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
-        Cuando enviemos el resumen semanal, llegará a tu correo (revisa spam). Mientras tanto,
-        usa las calculadoras y el blog.
+        {isMoneyPlan
+          ? 'Te avisaremos con la plantilla y recursos prácticos para ordenar el mes. Mientras tanto, puedes probar la app o leer el método completo.'
+          : 'Cuando enviemos el resumen semanal, llegará a tu correo (revisa spam). Mientras tanto, usa las calculadoras y el blog.'}
       </p>
+      {isMoneyPlan && (
+        <a
+          href="/cuanto-puedo-gastar-al-mes.html"
+          className="mt-5 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-white px-5 py-3 font-black text-blue-700 hover:bg-blue-50"
+        >
+          Abrir plantilla ahora
+        </a>
+      )}
     </div>
   );
 
@@ -245,33 +285,36 @@ export default function LeadMagnet() {
                   id="lead-popup-title"
                   className="text-2xl md:text-3xl font-bold text-gray-900 mb-3"
                 >
-                  Newsletter semanal + recursos para autónomos
+                  {isMoneyPlan ? 'Plantilla mensual + recursos para controlar gastos' : 'Newsletter semanal + recursos para autónomos'}
                 </h2>
                 <p className="text-lg text-gray-700">
-                  Un correo a la semana con resúmenes prácticos: autónomos, impuestos, ahorro y
-                  novedades fiscales en España. Sin spam, baja en un clic.
+                  {isMoneyPlan
+                    ? 'Te enviaremos el plan mensual de dinero tranquilo: ingresos, gastos, ahorro y margen disponible en una guía fácil. Sin spam, baja en un clic.'
+                    : 'Un correo a la semana con resúmenes prácticos: autónomos, impuestos, ahorro y novedades fiscales en España. Sin spam, baja en un clic.'}
                 </p>
               </div>
 
               <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-5 mb-6 text-left">
-                <h3 className="font-bold text-gray-900 mb-3">Qué puedes esperar</h3>
+                <h3 className="font-bold text-gray-900 mb-3">
+                  {isMoneyPlan ? 'Qué incluye la plantilla' : 'Qué puedes esperar'}
+                </h3>
                 <ul className="space-y-2 text-gray-700 text-sm md:text-base">
                   <li className="flex gap-2">
                     <span className="text-green-600 font-bold">✓</span>
-                    Resumen de cambios en cotización, IRPF y calendario fiscal
+                    {isMoneyPlan ? 'Foto mensual: ingresos, gastos fijos, variables y ahorro reservado' : 'Resumen de cambios en cotización, IRPF y calendario fiscal'}
                   </li>
                   <li className="flex gap-2">
                     <span className="text-green-600 font-bold">✓</span>
-                    Ideas de gastos deducibles y buenas prácticas
+                    {isMoneyPlan ? 'Lista de gastos hormiga para detectar fugas sin culpabilizarte' : 'Ideas de gastos deducibles y buenas prácticas'}
                   </li>
                   <li className="flex gap-2">
                     <span className="text-green-600 font-bold">✓</span>
-                    Enlace a calculadoras y artículos del sitio
+                    {isMoneyPlan ? 'Enlace al método y a la app para llevarlo de forma automática' : 'Enlace a calculadoras y artículos del sitio'}
                   </li>
                 </ul>
               </div>
 
-              <form onSubmit={(e) => handleSubmit(e, 'popup')} className="space-y-4">
+              <form onSubmit={(e) => handleSubmit(e, popupSource)} className="space-y-4">
                 <div>
                   <label htmlFor="lead-nombre-popup" className="sr-only">
                     Nombre
@@ -312,7 +355,7 @@ export default function LeadMagnet() {
                   disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg text-lg disabled:opacity-50 min-h-[48px]"
                 >
-                  {isSubmitting ? 'Enviando…' : 'Suscribirme'}
+                  {isSubmitting ? 'Enviando…' : isMoneyPlan ? 'Quiero la plantilla' : 'Suscribirme'}
                 </button>
                 <p className="text-xs text-center text-gray-500 leading-relaxed">
                   Al enviar, aceptas recibir correos según nuestra{' '}
@@ -325,23 +368,6 @@ export default function LeadMagnet() {
             </div>
           </div>
         </div>
-      )}
-
-      {/* Acceso rápido: ancla fija (encima del contenido; PWA sigue a la derecha) */}
-      {!subscribed && (
-        <a
-          href="#newsletter-finanzas"
-          className="fixed bottom-4 left-4 z-[100] inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg ring-2 ring-white/30 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white md:text-base"
-          onClick={(e) => {
-            e.preventDefault();
-            document
-              .getElementById('newsletter-finanzas')
-              ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }}
-        >
-          <span aria-hidden="true">📬</span>
-          Newsletter semanal
-        </a>
       )}
 
       {/* Bloque en página: siempre visible salvo ya suscrito (confirmación explícita) */}
@@ -359,25 +385,37 @@ export default function LeadMagnet() {
                   📬
                 </div>
                 <h2 className="text-2xl md:text-4xl font-bold mb-4">
-                  Newsletter semanal FinanzasFácil
+                  {isMoneyPlan ? 'Recibe el plan mensual de dinero tranquilo' : 'Newsletter semanal FinanzasFácil'}
                 </h2>
                 <p className="text-lg text-blue-100 leading-relaxed">
-                  Apunta tu email y recibe cada semana un resumen claro: fiscalidad para autónomos,
-                  ideas de ahorro y enlaces a las calculadoras del sitio. Sin promesas mágicas: solo
-                  contenido útil.
+                  {isMoneyPlan
+                    ? 'Una plantilla práctica para ordenar ingresos, gastos fijos, variables, ahorro y margen disponible. Después te enviaremos ideas sencillas para mantener el hábito y sacarle más partido a la app.'
+                    : 'Apunta tu email y recibe cada semana un resumen claro: fiscalidad para autónomos, ideas de ahorro y enlaces a las calculadoras del sitio. Sin promesas mágicas: solo contenido útil.'}
                 </p>
               </div>
 
               <div className="bg-white/10 backdrop-blur rounded-2xl p-6 mb-8 text-sm md:text-base text-blue-50">
-                <p className="font-semibold text-white mb-3">Qué enviamos (cuando arranque el boletín)</p>
+                <p className="font-semibold text-white mb-3">
+                  {isMoneyPlan ? 'Qué te llevas' : 'Qué enviamos (cuando arranque el boletín)'}
+                </p>
                 <ul className="space-y-2 leading-relaxed opacity-95 list-none pl-0">
-                  <li>✓ Fechas y cambios que suelen afectar a autónomos</li>
-                  <li>✓ Recordatorios útiles (sin saturar)</li>
-                  <li>✓ Enlace al contenido nuevo del blog o la web</li>
+                  {isMoneyPlan ? (
+                    <>
+                      <li>✓ Plantilla mensual para saber tu dinero tranquilo</li>
+                      <li>✓ Mini reto de 7 días para detectar gastos hormiga</li>
+                      <li>✓ Guía para pasar del papel a la app sin complicarte</li>
+                    </>
+                  ) : (
+                    <>
+                      <li>✓ Fechas y cambios que suelen afectar a autónomos</li>
+                      <li>✓ Recordatorios útiles (sin saturar)</li>
+                      <li>✓ Enlace al contenido nuevo del blog o la web</li>
+                    </>
+                  )}
                 </ul>
               </div>
 
-              <form onSubmit={(e) => handleSubmit(e, 'inline')} className="space-y-4">
+              <form onSubmit={(e) => handleSubmit(e, inlineSource)} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <label htmlFor="lead-nombre-inline" className="sr-only">
                     Nombre
@@ -416,7 +454,7 @@ export default function LeadMagnet() {
                   disabled={isSubmitting}
                   className="w-full bg-white text-blue-600 font-bold py-4 rounded-xl hover:bg-blue-50 transition-all shadow-lg text-lg disabled:opacity-50 min-h-[48px]"
                 >
-                  {isSubmitting ? 'Enviando…' : 'Apuntarme a la newsletter'}
+                  {isSubmitting ? 'Enviando…' : isMoneyPlan ? 'Recibir plantilla y abrirla' : 'Apuntarme a la newsletter'}
                 </button>
                 <p className="text-xs text-center text-blue-100">
                   Sin spam. Baja cuando quieras. Base legal en privacidad y términos del sitio.

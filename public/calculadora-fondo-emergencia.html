@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de fondo de emergencia | FinanzasFácil</title>
+  <meta name="description" content="Calcula cuánto deberías tener como fondo de emergencia y cuánto ahorrar cada mes para llegar sin agobiarte. Herramienta gratuita y sencilla.">
+  <link rel="canonical" href="https://finanzasmuyfacil.com/calculadora-fondo-emergencia.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:title" content="Calculadora de fondo de emergencia">
+  <meta property="og:description" content="Descubre tu colchón mínimo, cómodo y cuánto aportar cada mes.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://finanzasmuyfacil.com/calculadora-fondo-emergencia.html">
+  <meta property="og:image" content="https://finanzasmuyfacil.com/logos/finanzas-muy-facil-youtube-logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Calculadora de fondo de emergencia",
+    "description": "Guía y calculadora para estimar un colchón de emergencia según gastos fijos, ingresos variables, personas a cargo y deuda.",
+    "author": { "@type": "Organization", "name": "FinanzasFácil" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "LIPA Studios",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://finanzasmuyfacil.com/logos/finanzas-muy-facil-youtube-logo-192.png"
+      }
+    },
+    "datePublished": "2026-05-25",
+    "dateModified": "2026-05-25",
+    "mainEntityOfPage": "https://finanzasmuyfacil.com/calculadora-fondo-emergencia.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "¿Cuánto dinero debería tener en un fondo de emergencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una referencia habitual es cubrir entre 3 y 6 meses de gastos esenciales, aunque la cantidad real depende de ingresos, estabilidad laboral, personas a cargo, deuda y otros apoyos."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿Dónde guardar el fondo de emergencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Debe estar disponible y separado del dinero del día a día. Normalmente se busca liquidez y bajo riesgo, no rentabilidad alta."
+      }
+    },{
+      "@type": "Question",
+      "name": "¿Y si tengo deudas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Puede tener sentido crear primero un colchón mínimo para no volver a endeudarte ante cualquier imprevisto y después acelerar deudas caras."
+      }
+    }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Calculadora de fondo de emergencia",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <style>
+    :root {
+      --ink: #132033;
+      --muted: #586579;
+      --line: #d7e0ea;
+      --blue: #1d4ed8;
+      --green: #0f766e;
+      --amber: #b7791f;
+      --soft: #f6f8fb;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: white; line-height: 1.65; }
+    a { color: var(--blue); }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    header { color: white; background: linear-gradient(135deg, #064e3b 0%, #1d4ed8 56%, #7c3aed 100%); padding: 28px 0 58px; }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 52px; }
+    nav a { color: rgba(255,255,255,.9); text-decoration: none; font-weight: 850; }
+    .brand { display: flex; align-items: center; gap: 12px; color: white; }
+    .brand img { width: 42px; height: 42px; border-radius: 50%; }
+    .hero { max-width: 900px; }
+    .eyebrow { margin: 0 0 10px; color: #d1fae5; font-size: 13px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    h1 { margin: 0 0 22px; font-size: clamp(42px, 7vw, 76px); line-height: .95; letter-spacing: 0; }
+    h2 { margin: 0 0 16px; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: 0; }
+    h3 { margin: 0 0 10px; font-size: 23px; line-height: 1.2; }
+    .lead { margin: 0 0 28px; color: rgba(255,255,255,.88); font-size: clamp(19px, 2.4vw, 25px); }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 22px; border-radius: 10px; text-decoration: none; font-weight: 900; border: 0; cursor: pointer; font: inherit; }
+    .primary { background: white; color: #064e3b; }
+    section { padding: 58px 0; }
+    .band { background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .intro { max-width: 840px; }
+    .intro .eyebrow, .article .eyebrow { color: var(--green); }
+    .muted { color: var(--muted); font-size: 18px; }
+    .tool { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 22px; margin-top: 28px; }
+    .panel { border: 1px solid var(--line); border-radius: 8px; padding: 24px; background: white; }
+    .field { margin-bottom: 14px; }
+    label { display: block; margin-bottom: 6px; color: #334155; font-weight: 850; }
+    input, select { width: 100%; min-height: 48px; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font: inherit; color: var(--ink); background: white; }
+    .result { min-height: 100%; border-radius: 8px; padding: 28px; color: white; background: linear-gradient(135deg, #047857, #1d4ed8); display: flex; flex-direction: column; justify-content: center; }
+    .result strong { display: block; font-size: clamp(42px, 6vw, 72px); line-height: 1; margin: 8px 0 18px; }
+    .result p { color: rgba(255,255,255,.86); margin: 0 0 12px; }
+    .split { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+    .item { border: 1px solid rgba(255,255,255,.24); border-radius: 8px; padding: 14px; }
+    .item span { display: block; color: rgba(255,255,255,.72); font-size: 14px; }
+    .item b { font-size: 22px; }
+    .progress { height: 18px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.22); margin: 14px 0; }
+    .progress div { height: 100%; width: 0%; background: #fef3c7; transition: width .2s ease; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 22px; background: white; }
+    .article { max-width: 880px; }
+    .article p, .article li { color: #374151; font-size: 18px; }
+    .article li { margin: 8px 0; }
+    .callout { border-left: 4px solid var(--amber); background: #fffbeb; padding: 18px 20px; border-radius: 8px; margin: 24px 0; }
+    footer { padding: 34px 0; border-top: 1px solid var(--line); color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer a { font-weight: 800; }
+    @media (max-width: 900px) {
+      nav { align-items: flex-start; }
+      .tool, .cards, .split { grid-template-columns: 1fr; }
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="/">
+          <img src="/logos/finanzas-muy-facil-youtube-logo-192.png" alt="">
+          <span>Finanzas Muy Fácil</span>
+        </a>
+        <a href="/cuanto-puedo-gastar-al-mes.html">Dinero tranquilo</a>
+      </nav>
+      <div class="hero">
+        <p class="eyebrow">Colchón sin misterio</p>
+        <h1>Calculadora de fondo de emergencia</h1>
+        <p class="lead">Calcula cuánto colchón necesitas para imprevistos y cuánto ahorrar al mes para llegar sin convertirlo en otra preocupación.</p>
+        <a class="button primary" href="#calculadora">Calcular mi colchón</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap intro">
+      <p class="eyebrow">La idea</p>
+      <h2>Un fondo de emergencia no es para hacerse rico: es para no romper el mes</h2>
+      <p class="muted">Sirve para averías, pérdida temporal de ingresos, gastos médicos no previstos o reparaciones urgentes. No es el dinero de vacaciones ni de compras planificadas.</p>
+    </div>
+    <div class="wrap cards">
+      <article class="card"><h3>Meta mínima</h3><p>Un primer colchón para no tirar de tarjeta ante el primer imprevisto.</p></article>
+      <article class="card"><h3>Meta cómoda</h3><p>Varios meses de gastos esenciales, adaptados a tu estabilidad e ingresos.</p></article>
+      <article class="card"><h3>Meta mensual</h3><p>Una aportación realista para llegar poco a poco sin abandonar a la segunda semana.</p></article>
+    </div>
+  </section>
+
+  <section class="band" id="calculadora">
+    <div class="wrap intro">
+      <p class="eyebrow">Calculadora</p>
+      <h2>Calcula tu fondo de emergencia</h2>
+      <p class="muted">La referencia de 3 a 6 meses de gastos es útil, pero no todos necesitan lo mismo. Ajustamos la meta según estabilidad, personas a cargo y deuda.</p>
+    </div>
+    <div class="wrap tool">
+      <div class="panel">
+        <div class="field">
+          <label for="expenses">Gastos esenciales al mes</label>
+          <input id="expenses" type="number" min="0" step="50" value="1200">
+        </div>
+        <div class="field">
+          <label for="saved">Colchón que ya tienes</label>
+          <input id="saved" type="number" min="0" step="50" value="300">
+        </div>
+        <div class="field">
+          <label for="stability">Estabilidad de ingresos</label>
+          <select id="stability">
+            <option value="3">Ingresos bastante estables</option>
+            <option value="4">Ingresos normales, algún cambio posible</option>
+            <option value="6">Ingresos variables o autónomo</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="dependents">Personas a cargo</label>
+          <select id="dependents">
+            <option value="0">Ninguna</option>
+            <option value="1">Una persona</option>
+            <option value="2">Dos o más personas</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="debt">¿Tienes deuda con cuota mensual?</label>
+          <select id="debt">
+            <option value="0">No o muy poca</option>
+            <option value="1">Sí, pero controlada</option>
+            <option value="2">Sí, me pesa bastante</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="months">Quiero llegar en</label>
+          <select id="months">
+            <option value="6">6 meses</option>
+            <option value="12" selected>12 meses</option>
+            <option value="18">18 meses</option>
+            <option value="24">24 meses</option>
+          </select>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <p>Meta recomendada aproximada</p>
+        <strong id="target">0 €</strong>
+        <p id="message">Calculando...</p>
+        <div class="progress"><div id="bar"></div></div>
+        <div class="split">
+          <div class="item"><span>Meta mínima</span><b id="minimum">0 €</b></div>
+          <div class="item"><span>Te falta</span><b id="missing">0 €</b></div>
+          <div class="item"><span>Ahorro mensual</span><b id="monthly">0 €</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap article">
+      <p class="eyebrow">Cómo usarlo</p>
+      <h2>Empieza por una meta pequeña y luego sube el colchón</h2>
+      <ol>
+        <li>Calcula tus gastos esenciales: vivienda, comida, suministros, transporte, seguros y cuotas obligatorias.</li>
+        <li>Si tienes deuda cara, crea primero una protección mínima para no volver a financiar imprevistos.</li>
+        <li>Guarda el fondo separado de la cuenta del día a día, pero accesible.</li>
+        <li>No lo uses para compras previsibles. Para eso crea objetivos de ahorro aparte.</li>
+        <li>Revísalo cuando cambien tus gastos, ingresos o responsabilidades familiares.</li>
+      </ol>
+      <div class="callout">
+        <strong>Idea práctica:</strong> si la cifra final te impone, empieza por 300 €, luego 1 mes de gastos y después sube hacia 3-6 meses. Lo importante es que el hábito sobreviva.
+      </div>
+      <p>La guía educativa del Banco de España recuerda que el fondo de emergencia depende de las circunstancias personales y sirve para afrontar gastos no planeados sin recurrir a financiación externa. Puedes consultar sus materiales de educación financiera en la sesión de <a href="https://www.bde.es/f/webbe/INF/MenuHorizontal/AreasActuacion/conducta/ficheros/Sesion4Gestionfinanzaspersonales.pdf" rel="noopener noreferrer">gestión de finanzas personales</a>.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="cards">
+        <article class="card"><h3>Calcula margen</h3><p><a href="/cuanto-puedo-gastar-al-mes.html">Dinero tranquilo</a> te ayuda a saber cuánto puedes reservar sin quedarte a cero.</p></article>
+        <article class="card"><h3>Si hay deuda</h3><p><a href="/que-deuda-pagar-primero.html">Ordena qué deuda pagar primero</a> antes de acelerar pagos sin plan.</p></article>
+        <article class="card"><h3>Control simple</h3><p><a href="/control-gastos-sin-excel.html">Control de gastos sin Excel</a> para construir hábito desde el móvil.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>FinanzasFácil - LIPA Studios</span>
+      <span>
+        <a href="/">Inicio</a> ·
+        <a href="/blog.html">Blog</a> ·
+        <a href="/test-salud-financiera.html">Test financiero</a> ·
+        <a href="/privacidad.html">Privacidad</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    const ids = ['expenses', 'saved', 'stability', 'dependents', 'debt', 'months'];
+    const money = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const targetEl = document.getElementById('target');
+    const minimumEl = document.getElementById('minimum');
+    const missingEl = document.getElementById('missing');
+    const monthlyEl = document.getElementById('monthly');
+    const messageEl = document.getElementById('message');
+    const bar = document.getElementById('bar');
+
+    function num(id) {
+      return Number(document.getElementById(id).value || 0);
+    }
+
+    function calculate() {
+      const expenses = num('expenses');
+      const saved = num('saved');
+      const months = num('months');
+      const baseMonths = num('stability');
+      const extra = Math.min(2, num('dependents') + num('debt') * 0.5);
+      const recommendedMonths = Math.min(8, baseMonths + extra);
+      const minimum = Math.max(300, expenses);
+      const target = Math.max(minimum, expenses * recommendedMonths);
+      const missing = Math.max(0, target - saved);
+      const monthly = months > 0 ? missing / months : missing;
+      const progress = target > 0 ? Math.min(100, saved / target * 100) : 0;
+
+      targetEl.textContent = money.format(target);
+      minimumEl.textContent = money.format(minimum);
+      missingEl.textContent = money.format(missing);
+      monthlyEl.textContent = money.format(monthly);
+      bar.style.width = progress + '%';
+
+      if (saved >= target) {
+        messageEl.textContent = 'Ya tienes cubierto este objetivo aproximado. Revisa que esté separado, disponible y sin riesgo innecesario.';
+      } else if (saved >= minimum) {
+        messageEl.textContent = 'Ya tienes una primera protección. Ahora puedes subir el colchón poco a poco hasta una zona más cómoda.';
+      } else {
+        messageEl.textContent = 'Empieza por la meta mínima. No hace falta hacerlo perfecto: la prioridad es no depender de tarjeta ante cualquier imprevisto.';
+      }
+    }
+
+    ids.forEach((id) => document.getElementById(id).addEventListener('input', calculate));
+    ids.forEach((id) => document.getElementById(id).addEventListener('change', calculate));
+    calculate();
+  </script>
+</body>
+</html>

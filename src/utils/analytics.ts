@@ -38,7 +38,6 @@ export const analyticsEvents = {
   
   // Control de Gastos
   expenseControlOpened: () => trackEvent('app_opened', 'expense_control'),
-  userRegistered: () => trackEvent('user_registered', 'expense_control'),
   expenseAdded: (amount: number, category: string) => 
     trackEvent('expense_added', 'expense_control', category, amount),
   incomeAdded: (amount: number, source: string) => 
@@ -50,14 +49,20 @@ export const analyticsEvents = {
   navigationToExpenseControl: () => trackEvent('navigation', 'app_flow', 'to_expense_control'),
   navigationToCalculator: (calculatorType: string) => 
     trackEvent('navigation', 'app_flow', `to_${calculatorType}`),
+
+  // Home / conversión
+  calmSimulatorAdjusted: (field: string, margin: number) =>
+    trackEvent('calm_simulator_adjusted', 'home_conversion', field, margin),
+  calmSimulatorMethodClick: (margin: number) =>
+    trackEvent('calm_simulator_method_click', 'home_conversion', 'control_gastos_mensual', margin),
+  calmSimulatorWebAppClick: (margin: number) =>
+    trackEvent('calm_simulator_web_app_click', 'home_conversion', 'expense_control_web', margin),
   
   // Engagement
   timeSpentOnPage: (page: string, seconds: number) => 
     trackEvent('time_spent', 'engagement', page, seconds),
   featureUsed: (feature: string) => trackEvent('feature_used', 'engagement', feature),
 };
-
-
 
 
 

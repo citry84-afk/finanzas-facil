@@ -1,4 +1,5 @@
 import React from 'react';
+import AdPrivacyControls from './AdPrivacyControls';
 
 const PrivacyPolicy: React.FC = () => {
   return (
@@ -9,13 +10,13 @@ const PrivacyPolicy: React.FC = () => {
           
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p className="text-lg">
-              <strong>Última actualización:</strong> 19 de enero de 2025
+              <strong>Última actualización:</strong> 16 de agosto de 2026
             </p>
             
             <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
               <p className="text-blue-800">
                 <strong>Importante:</strong> Esta política describe cómo FinanzasFácil recopila, 
-                utiliza y protege tu información personal cuando utilizas nuestro sitio web y servicios.
+                utiliza y protege tu información cuando utilizas la web y las aplicaciones móviles.
               </p>
             </div>
             
@@ -25,9 +26,10 @@ const PrivacyPolicy: React.FC = () => {
             <p>Recopilamos información que nos proporcionas directamente, incluyendo:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Datos de contacto (nombre, dirección de email)</li>
-              <li>Información financiera que introduces en nuestras calculadoras (salarios, gastos, objetivos de ahorro)</li>
+              <li>Datos que introduces en las calculadoras. Los cálculos se realizan localmente y no enviamos esos importes a un servidor propio.</li>
+              <li>Movimientos y plan del control de gastos. Se guardan en tu dispositivo y puedes exportarlos.</li>
               <li>Comentarios, preguntas y comunicaciones que nos envías</li>
-              <li>Información de registro si creas una cuenta</li>
+              <li>No es necesario crear una cuenta para utilizar las herramientas.</li>
             </ul>
             
             <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">1.2 Información técnica</h3>
@@ -65,15 +67,31 @@ const PrivacyPolicy: React.FC = () => {
               <li><strong>Cookies esenciales:</strong> Necesarias para el funcionamiento básico del sitio</li>
               <li><strong>Cookies de rendimiento:</strong> Nos ayudan a entender cómo los usuarios interactúan con el sitio</li>
               <li><strong>Cookies de funcionalidad:</strong> Recuerdan tus preferencias y configuraciones</li>
-              <li><strong>Cookies de publicidad:</strong> Utilizadas para mostrar anuncios relevantes</li>
+              <li><strong>Publicidad móvil:</strong> AdMob puede usar identificadores y almacenamiento del dispositivo en las apps, según tus opciones de privacidad</li>
             </ul>
             
-            <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">3.2 Google AdSense</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">3.2 Publicidad en las aplicaciones móviles</h3>
             <p>
-              Utilizamos Google AdSense para mostrar anuncios. Google puede utilizar cookies 
-              para personalizar anuncios según tus intereses. Puedes gestionar tus preferencias 
-              de anuncios en <a href="https://adssettings.google.com" className="text-blue-600 hover:underline">Google Ad Settings</a>.
+              La web no muestra anuncios actualmente. Las aplicaciones móviles pueden utilizar <strong>Google AdMob</strong>
+              para mostrar banners y medir su rendimiento. Solicitamos a AdMob anuncios no personalizados y, cuando corresponde
+              por tu región, mostramos el formulario de consentimiento de Google antes de pedir un anuncio.
             </p>
+            <p>Puedes revisar las opciones de Google en:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Configuración de anuncios de Google</a></li>
+              <li><a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">aboutads.info (EE. UU.)</a></li>
+              <li><a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Your Online Choices (UE)</a></li>
+            </ul>
+            <p>
+              El archivo <a href="/app-ads.txt" className="text-blue-600 hover:underline">app-ads.txt</a> del dominio declara el editor autorizado de las apps.
+              La presencia de anuncios no implica que FinanzasFácil respalde los productos o servicios anunciados.
+            </p>
+            <p>
+              Puedes denunciar un anuncio inapropiado desde el propio anuncio o escribir a{' '}
+              <a href="mailto:lipastudios4@gmail.com" className="text-blue-600 hover:underline">lipastudios4@gmail.com</a>{' '}
+              adjuntando una captura.
+            </p>
+            <AdPrivacyControls />
             
             <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">4. Compartir información con terceros</h2>
             
@@ -81,7 +99,7 @@ const PrivacyPolicy: React.FC = () => {
             <p>Compartimos información con proveedores que nos ayudan a operar nuestro negocio:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Google Analytics:</strong> Para análisis de tráfico web</li>
-              <li><strong>Google AdSense:</strong> Para mostrar anuncios relevantes</li>
+              <li><strong>Google AdMob:</strong> Para mostrar anuncios en las apps móviles y medir su rendimiento</li>
               <li><strong>Netlify:</strong> Para hosting y servicios de infraestructura</li>
               <li><strong>Servicios de email:</strong> Para comunicaciones (si te suscribes)</li>
             </ul>
@@ -161,7 +179,7 @@ const PrivacyPolicy: React.FC = () => {
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Publicación de la nueva política en esta página</li>
-              <li>Notificación por email (si tienes una cuenta)</li>
+              <li>Aviso visible en la web o en la aplicación</li>
               <li>Aviso prominente en nuestro sitio web</li>
             </ul>
             

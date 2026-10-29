@@ -1,53 +1,85 @@
 import React, { useEffect, useState } from 'react';
-import { AdMob, BannerAdSize, BannerAdPosition } from '@capacitor-community/admob';
+import { Capacitor } from '@capacitor/core';
+import { AdMob, BannerAdPluginEvents, BannerAdSize, BannerAdPosition } from '@capacitor-community/admob';
 import { getBannerConfig } from '../config/admob';
+import { ensureAdMobReady } from '../services/admob';
 
 interface AdMobBannerProps {
   position?: 'top' | 'bottom';
   size?: 'adaptive' | 'large' | 'medium' | 'full';
+  enabled?: boolean;
 }
 
 export const AdMobBanner: React.FC<AdMobBannerProps> = ({ 
   position = 'bottom', 
-  size = 'adaptive'
+  size = 'adaptive',
+  enabled = true
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
+    const listenerHandles: Array<{ remove: () => Promise<void> }> = [];
+
+    const clearBannerLayout = () => {
+      document.documentElement.classList.remove('native-ad-banner-visible');
+      document.documentElement.style.removeProperty('--native-ad-banner-height');
+    };
+
     const initializeBanner = async () => {
       try {
-        // Verificar si AdMob está disponible
-        if (!AdMob) {
-          console.log('AdMob not available on this platform');
+        if (!Capacitor.isNativePlatform()) {
           return;
         }
 
-        // Configurar el banner
-        const bannerConfig = getBannerConfig();
+        if (!enabled) {
+          await AdMob.removeBanner().catch(() => undefined);
+          clearBannerLayout();
+          return;
+        }
+
+        const adsAllowed = await ensureAdMobReady();
+        if (!adsAllowed || cancelled) return;
+
+        const platform = Capacitor.getPlatform();
+        if (platform !== 'android' && platform !== 'ios') {
+          return;
+        }
+
+        const bannerConfig = getBannerConfig(platform);
         
-        // Mapear posición
         const adPosition = position === 'top' 
           ? BannerAdPosition.TOP_CENTER 
           : BannerAdPosition.BOTTOM_CENTER;
 
-        // Mapear tamaño
         const adSize = size === 'adaptive' 
           ? BannerAdSize.ADAPTIVE_BANNER 
           : BannerAdSize.BANNER;
 
-        // Mostrar el banner
+        listenerHandles.push(await AdMob.addListener(BannerAdPluginEvents.SizeChanged, ({ height }) => {
+          if (height > 0) {
+            document.documentElement.style.setProperty('--native-ad-banner-height', `${Math.ceil(height)}px`);
+            document.documentElement.classList.add('native-ad-banner-visible');
+          } else {
+            clearBannerLayout();
+          }
+        }));
+
         await AdMob.showBanner({
           adId: bannerConfig.adId,
           adSize: adSize,
           position: adPosition,
           margin: bannerConfig.margin,
-          isTesting: bannerConfig.isTesting
+          isTesting: bannerConfig.isTesting,
+          npa: bannerConfig.npa
         });
 
-        setIsLoaded(true);
-        console.log('AdMob Banner loaded successfully');
-        
+        if (cancelled) {
+          await AdMob.removeBanner().catch(() => undefined);
+          clearBannerLayout();
+          return;
+        }
+
       } catch (err) {
         console.error('Error loading AdMob Banner:', err);
         setError('Error loading banner');
@@ -56,23 +88,22 @@ export const AdMobBanner: React.FC<AdMobBannerProps> = ({
 
     initializeBanner();
 
-    // Cleanup al desmontar el componente
     return () => {
-      if (AdMob && isLoaded) {
-        AdMob.hideBanner().catch(console.error);
+      cancelled = true;
+      listenerHandles.forEach((handle) => void handle.remove());
+      clearBannerLayout();
+      if (Capacitor.isNativePlatform()) {
+        AdMob.removeBanner().catch(() => undefined);
       }
     };
-  }, [position, size]);
+  }, [enabled, position, size]);
 
   // Si hay error, no mostrar nada
   if (error) {
     return null;
   }
 
-  // En web, no mostrar nada ya que usamos AdSense
-  if (!AdMob) {
-    return null; // Web usa AdSense, no AdMob
-  }
+  if (!Capacitor.isNativePlatform()) return null;
 
   // El banner se renderiza nativamente, este componente solo maneja la lógica
   return null;
@@ -84,15 +115,21 @@ export const useAdMobBanner = () => {
 
   const showBanner = async () => {
     try {
-      if (!AdMob) return;
+      if (!Capacitor.isNativePlatform()) return;
       
-      const bannerConfig = getBannerConfig();
+      const adsAllowed = await ensureAdMobReady();
+      if (!adsAllowed) return;
+      const platform = Capacitor.getPlatform();
+      if (platform !== 'android' && platform !== 'ios') return;
+
+      const bannerConfig = getBannerConfig(platform);
       await AdMob.showBanner({
         adId: bannerConfig.adId,
         adSize: BannerAdSize.ADAPTIVE_BANNER,
         position: BannerAdPosition.BOTTOM_CENTER,
-        margin: 0,
-        isTesting: bannerConfig.isTesting
+        margin: bannerConfig.margin,
+        isTesting: bannerConfig.isTesting,
+        npa: bannerConfig.npa
       });
       
       setIsVisible(true);
@@ -103,7 +140,7 @@ export const useAdMobBanner = () => {
 
   const hideBanner = async () => {
     try {
-      if (!AdMob) return;
+      if (!Capacitor.isNativePlatform()) return;
       
       await AdMob.hideBanner();
       setIsVisible(false);
