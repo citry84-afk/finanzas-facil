@@ -27,7 +27,7 @@ const boundaries = [
   [1850, 6], [1850.01, 7], [2030, 7], [2030.01, 8],
   [2330, 8], [2330.01, 9], [2760, 9], [2760.01, 10],
   [3190, 10], [3190.01, 11], [3620, 11], [3620.01, 12],
-  [4050, 12], [4050.01, 13], [6000, 13], [6000.01, 14], [1000000, 14],
+  [4050, 12], [4050.01, 13], [6000, 13], [6000.01, 14], [100000, 14],
 ];
 for (const [monthly, index] of boundaries) {
   const result = calculateAutonomos({ income: monthly * 12 / 0.93, expenses: 0 });
@@ -50,7 +50,7 @@ const losses = calculateAutonomos({ income: 0, expenses: 0 });
 assert.equal(losses.reservaFiscalAnual, 0);
 close(losses.margenMensual, -205.88);
 assert.ok(calculateAutonomos({ income: 12000, expenses: 13000 }).margenMensual < 0);
-for (const invalid of [NaN, Infinity, -1]) {
+for (const invalid of [NaN, Infinity, -1, Number.MAX_VALUE]) {
   for (const field of ['income', 'expenses', 'baseCotizacion', 'cuotaReducidaMensual']) {
     assert.throws(() => calculateAutonomos({ income: 36000, expenses: 6000, [field]: invalid }), RangeError);
   }

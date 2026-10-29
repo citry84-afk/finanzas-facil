@@ -42,6 +42,7 @@ export const AUTONOMOS_CUOTA_REDUCIDA = 80;
 // Referencia publicada en la guia de Importass; el recibo real puede variar.
 export const AUTONOMOS_CUOTA_REDUCIDA_CON_MEI = 88.64;
 export const AUTONOMOS_GASTOS_GENERICOS = 0.07;
+export const AUTONOMOS_IMPORTE_MAXIMO = 100_000_000;
 
 export function parseEuro(value: string | number): number {
   if (typeof value === 'number') return Math.max(0, value);
@@ -118,8 +119,8 @@ export function calculateAutonomos(params: {
 }) {
   const { income, expenses, cuotaReducida = false, baseCotizacion, cuotaReducidaMensual = AUTONOMOS_CUOTA_REDUCIDA_CON_MEI } = params;
   for (const value of [income, expenses, baseCotizacion, cuotaReducidaMensual]) {
-    if (value !== undefined && (!Number.isFinite(value) || value < 0)) {
-      throw new RangeError('Los importes deben ser finitos y no negativos.');
+    if (value !== undefined && (!Number.isFinite(value) || value < 0 || value > AUTONOMOS_IMPORTE_MAXIMO)) {
+      throw new RangeError('Los importes deben estar entre 0 y 100 millones de euros.');
     }
   }
   // Actividad individual en estimacion directa, todo el ano; expenses excluye

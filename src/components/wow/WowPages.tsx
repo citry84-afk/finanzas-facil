@@ -17,6 +17,7 @@ import { useTheme } from '../../hooks/useTheme';
 import {
   AUTONOMOS_TRAMOS,
   AUTONOMOS_CUOTA_REDUCIDA_CON_MEI,
+  AUTONOMOS_IMPORTE_MAXIMO,
   calculateAmortizationByYear,
   calculateAutonomos,
   calculateEmployeeCost,
@@ -493,10 +494,10 @@ export function WowAutonomosPage({ onNavigate }: { onNavigate: Navigate }) {
       ? `${formatTramoLimit(data.tramo.minRendimiento)} a ${formatTramoLimit(data.tramo.maxRendimiento)} al mes`
       : `${formatTramoLimit(data.tramo.minRendimiento)} a menos de ${formatTramoLimit(data.tramo.maxRendimiento)} al mes`;
   return (
-    <ToolLayout onNavigate={onNavigate} eyebrow="Autónomos 2026" title="Calculadora de cuota y reserva de impuestos" text="Actividad individual en estimación directa y de alta todo el año. Importes sin IVA; los gastos no deben incluir tu cuota de autónomos.">
+    <ToolLayout onNavigate={onNavigate} eyebrow="Autónomos 2026" title="Calculadora de autónomos 2026" text="Actividad individual en estimación directa y de alta todo el año. Importes sin IVA; los gastos no deben incluir tu cuota de autónomos.">
       <div className="wow-form-grid">
-        <MoneyField id="autoIncome" label="Ingresos anuales previstos" value={income} onChange={setIncome} />
-        <MoneyField id="autoExpenses" label="Gastos anuales sin cuota de autónomos" value={expenses} onChange={setExpenses} />
+        <MoneyField id="autoIncome" label="Ingresos anuales previstos" value={income} onChange={(value) => setIncome(Math.min(value, AUTONOMOS_IMPORTE_MAXIMO))} />
+        <MoneyField id="autoExpenses" label="Gastos anuales sin cuota de autónomos" value={expenses} onChange={(value) => setExpenses(Math.min(value, AUTONOMOS_IMPORTE_MAXIMO))} />
       </div>
       <label className="wow-autonomos-check">
         <input type="checkbox" checked={cuotaReducida} onChange={(event) => setCuotaReducida(event.target.checked)} />
